@@ -1,20 +1,36 @@
-const Aboutcard = ({ links }) => {
-    return (
-      <div  className="flex flex-wrap justify-between items-center text-center mr-9 ml-9">
-        {Array.isArray(links) && links.length > 0 ? (
-          links.map((link, index) => (
-            <div key={index} className="text-center justify-center h-96 w-96 flex flex-col items-center p-10 space-y-3 hover:bg-blue-100 rounded-full ">
-              <img src={link.image} alt={link.title} className="bg-primary h-24 w-24 rounded-full text-center p-4"/>
-              <h1 className="text-xl font-bold">{link.title}</h1>
-              <p className="text-muted" dir="rtl">{link.p}</p>
-            </div>
-          ))
-        ) : (
-          <p>No links available</p>
-        )}
-      </div>
-    );
-  };
-  
-  export default Aboutcard;
-  
+import { AboutCarts } from "@/app/utils/types";
+import Image from "next/image";
+
+interface AboutCardProps {
+  aboutCart: AboutCarts;
+}
+const AboutCard = ({ aboutCart }: AboutCardProps) => {
+  return (
+    <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 text-center ">
+      {Array.isArray(aboutCart) && aboutCart.length > 0 ? (
+        aboutCart.map((about, index) => (
+          <div
+            key={index}
+            className="flex flex-col items-center  justify-center h-80 w-80 p-12   space-y-3 hover:bg-blue-100 rounded-full hover:cursor-default "
+          >
+            <Image
+              src={about.image}
+              alt={about.title}
+              className="bg-primary h-24 w-24 rounded-full text-center p-4"
+              width={96}
+              height={96}
+            />
+            <h1 className="text-xl font-bold">{about.title}</h1>
+            <p className="text-muted" dir="rtl">
+              {about.description}
+            </p>
+          </div>
+        ))
+      ) : (
+        <p>No links available</p>
+      )}
+    </div>
+  );
+};
+
+export default AboutCard;

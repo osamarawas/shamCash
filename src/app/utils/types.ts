@@ -6,9 +6,16 @@ export type NavLink = {
 
 export type NavLinks = NavLink[];
 
-export type fAnswerQuestion = {
+export type FAnswerQuestion = {
   id: string;
   answer: string;
   question: string;
 };
-export type fAnswerQuestions = fAnswerQuestion[];
+export type FAnswerQuestions = FAnswerQuestion[];
+
+export type AboutCart = {
+  image: HTMLImageElement;
+  title: string;
+  description: string;
+};
+export type AboutCarts = AboutCart[];
