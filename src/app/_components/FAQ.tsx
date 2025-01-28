@@ -8,7 +8,7 @@ import { fAnswerQuestion } from "../utils/siteData";
 const FAQ = () => {
   return (
     <div
-      className="flex items-center justify-center container flex-col h-screen gap-10 "
+      className="flex items-center justify-center container flex-col h-screen gap-10 mx-auto"
       dir="rtl"
     >
       <h3 className="text-primary font-bold text-2xl underLine relative ">
@@ -20,7 +20,7 @@ const FAQ = () => {
         إذا كنت تواجه أي استفسار أو مشكلة لم يتم تناولها هنا، لا تتردد في
         التواصل مع فريق الدعم الذي يتوفر على مدار الساعة لمساعدتك.
       </p>
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 ">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-10  w-4/5">
         {fAnswerQuestion.map((faq) => (
           <div key={faq.id}>
             <Accordion type="single" collapsible>
