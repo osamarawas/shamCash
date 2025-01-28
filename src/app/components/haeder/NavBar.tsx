@@ -22,7 +22,7 @@ const NavBar = () => {
           alt="Logo"
         />
       </div>
-      <div className="flex items-center gap-8">
+      <div className="md:flex items-center gap-8 hidden ">
         {navLinks.map((link) => (
           <Link
             href={link.Path}

@@ -6,7 +6,7 @@ export default function Home() {
   return (
     <div className="">
       <Landing />
-      <About/>
+      <About />
       <FAQ />
     </div>
   );
