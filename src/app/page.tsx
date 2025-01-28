@@ -9,7 +9,6 @@ export default function Home() {
       <Landing />
       <About />
       <FAQ />
-      <Footer />
     </div>
   );
 }
