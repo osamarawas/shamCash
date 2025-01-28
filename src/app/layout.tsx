@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Noto_Kufi_Arabic } from "next/font/google";
 import "./globals.css";
 import NavBar from "./components/haeder/NavBar";
+import { ThemeProvider } from "./components/theme-provider";
+import Footer from "./components/Footer/Footer";
 
 const notoKufi = Noto_Kufi_Arabic({
   subsets: ["arabic"],
@@ -20,8 +22,16 @@ export default function RootLayout({
   return (
     <html lang="ar">
       <body className={`${notoKufi.className}  antialiased`}>
-        <NavBar />
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <NavBar />
+          {children}
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );
