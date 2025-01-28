@@ -5,3 +5,10 @@ export type NavLink = {
 };
 
 export type NavLinks = NavLink[];
+
+export type fAnswerQuestion = {
+  id: string;
+  answer: string;
+  question: string;
+};
+export type fAnswerQuestions = fAnswerQuestion[];
