@@ -8,7 +8,7 @@ const Landing = () => {
       lg:fix-height flex justify-center items-center flex-col  lg:space-y-4 text-center mx-auto overflow-hidden"
     >
       {/* الخلفيات */}
-      <div className="absolute top-0 right-0 w-1/2 h-full bg-cover bg-right gradiantRight"></div>
+      <div className="absolute top-0 -right-12 lg:right-0  w-1/2 h-full bg-cover lg:bg-right gradiantRight"></div>
       <div className="absolute -top-3 left-0 w-1/2 h-full bg-cover bg-left gradiantLeft"></div>
       <div className="space-y-4">
         {/* المحتوى */}
