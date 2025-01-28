@@ -6,8 +6,8 @@ import { Button } from "@/components/ui/button";
 
 const Landing = () => {
   return (
-    <div className=" fix-height bg-white">
-      <div className="pointer-events-none">
+    <div className=" fix-height bg-white container">
+      <div className="pointer-events-none ">
         <Image
           src={gradiantRight}
           alt="gradiant"
@@ -16,12 +16,12 @@ const Landing = () => {
         <Image
           src={gradiantLeft}
           alt="gradiant"
-          className="absolute fix-height object-cover  w-full "
+          className="absolute fix-height object-cover  w-full"
         />
       </div>
       <div className="flex justify-center items-center h-full flex-col space-y-4">
         <h1 className="text-3xl leading-10 font-bold">
-          <span className="bg-gradient-to-t bg-linear-88.45  from-primary from-52 to-white to-100% text-transparent bg-clip-text">
+          <span className="text-gradiant  text-transparent bg-clip-text">
             تطبيق شام{" "}
           </span>
           كاش متوفر الآن
@@ -35,7 +35,7 @@ const Landing = () => {
           وشفافية
         </p>
         <div className="">
-          <Button className="py-1 px-12 mt-20">تحميل</Button>
+          <Button className="py-1 px-12 mt-16 text-white">تحميل</Button>
         </div>
       </div>
     </div>
