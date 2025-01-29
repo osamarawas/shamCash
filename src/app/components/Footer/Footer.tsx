@@ -14,11 +14,11 @@ import x_h from "@/assets/icon/x_h.svg";
 
 const Footer = () => {
   return (
-    <footer className='bg-footer h-96 text-center items-center px-72 py-16'>
+    <footer className=' bg-footer text-center items-center py-14 px-7 min-h-96'>
         <h1 className='text-white font-bold text-2xl underLine relative w-48 text-center mx-auto mb-16'>تواصل معنا</h1>
-        <p dir='rtl' className='text-white text-lg'>إذا كان لديك أي استفسار، ملاحظة، أو تواجه أي مشكلة، لا تتردد في التواصل معنا. فريق الدعم الخاص بنا متواجد دائمًا لتقديم المساعدة وضمان تجربة استخدام سلسة.</p>
-        <div className='flex w-96 items-center mx-auto mt-12 justify-between'>
-            <div className="group">
+        <p dir='rtl' className='text-white text-lg mx-auto w-3/4'>إذا كان لديك أي استفسار، ملاحظة، أو تواجه أي مشكلة، لا تتردد في التواصل معنا. فريق الدعم الخاص بنا متواجد دائمًا لتقديم المساعدة وضمان تجربة استخدام سلسة.</p>
+        <div className='flex flex-wrap items-center w-1/3 mx-auto mt-12 justify-around'>
+            <div className="group m-2">
                 <Image 
                   src={face} 
                   alt='' 
@@ -34,7 +34,7 @@ const Footer = () => {
                   className='hidden group-hover:block cursor-pointer'
                 />
             </div>
-            <div className="group">
+            <div className="group m-2">
                 <Image 
                   src={whatsup} 
                   alt='' 
@@ -50,7 +50,7 @@ const Footer = () => {
                   className='hidden group-hover:block cursor-pointer'
                 />
             </div>
-            <div className="group">
+            <div className="group m-2">
                 <Image 
                   src={telegram} 
                   alt='' 
@@ -66,7 +66,7 @@ const Footer = () => {
                   className='hidden group-hover:block cursor-pointer'
                 />
             </div>
-            <div className="group">
+            <div className="group m-2">
                 <Image 
                   src={x} 
                   alt='' 
