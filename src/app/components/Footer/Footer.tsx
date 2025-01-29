@@ -14,7 +14,7 @@ import x_h from "@/assets/icon/x_h.svg";
 
 const Footer = () => {
   return (
-    <footer className=' bg-footer text-center items-center py-14 px-7'>
+    <footer className=' bg-footer text-center items-center py-14 px-7 min-h-96'>
         <h1 className='text-white font-bold text-2xl underLine relative w-48 text-center mx-auto mb-16'>تواصل معنا</h1>
         <p dir='rtl' className='text-white text-lg mx-auto w-3/4'>إذا كان لديك أي استفسار، ملاحظة، أو تواجه أي مشكلة، لا تتردد في التواصل معنا. فريق الدعم الخاص بنا متواجد دائمًا لتقديم المساعدة وضمان تجربة استخدام سلسة.</p>
         <div className='flex flex-wrap items-center w-1/3 mx-auto mt-12 justify-around'>
