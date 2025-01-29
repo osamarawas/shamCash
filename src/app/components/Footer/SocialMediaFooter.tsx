@@ -7,8 +7,7 @@ interface SocialMediaFooterprops {
 }
 
 const SocialMediaFooter = ({ socialMedia }: SocialMediaFooterprops) => {
-  const { theme, setTheme } = useTheme();
-  console.log(theme === "dark");
+  const { theme } = useTheme();
   const setSocialIcon = () => {
     return theme === "dark" ? socialMedia.imgDark : socialMedia.imgLight;
   };
