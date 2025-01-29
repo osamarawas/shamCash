@@ -13,6 +13,7 @@ body {
     --background: 0 0% 100%;
     --foreground: 204 48% 8%;
     --footer: 206.25 44.44% 7.06%;
+    --footer-foreground: 203 4% 36%;
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
     --popover: 0 0% 100%;
@@ -43,6 +44,8 @@ body {
   .dark {
     --background: 206 44% 7%;
     --foreground: 203 63% 89%;
+    --footer: 0 0% 100%;
+    --footer-foreground: 203 4% 36%;
     --card: 222.2 84% 4.9%;
     --card-foreground: 210 40% 98%;
     --popover: 222.2 84% 4.9%;
