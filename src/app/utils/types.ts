@@ -19,3 +19,13 @@ export type AboutCart = {
   description: string;
 };
 export type AboutCarts = AboutCart[];
+
+export type SocialMedia = {
+  id: string;
+  name: string;
+  imgDark: HTMLImageElement;
+  imgLight: HTMLImageElement;
+  imgDarkHover: HTMLImageElement;
+  imgLightHover: HTMLImageElement;
+};
+export type socialMedias = SocialMedia[];
