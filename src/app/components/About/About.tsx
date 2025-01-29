@@ -1,5 +1,5 @@
-import { aboutCart } from "@/app/utils/siteData";
-import AboutCard from "./AboutCard";
+import { aboutCard } from "@/app/utils/siteData";
+import AboutCard from "@/app/components/About/AboutCard";
 
 const About = () => {
   return (
@@ -19,7 +19,7 @@ const About = () => {
         </p>
       </div>
 
-      <AboutCard aboutCart={aboutCart} />
+      <AboutCard aboutCard={aboutCard} />
     </div>
   );
 };

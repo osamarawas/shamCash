@@ -13,9 +13,19 @@ export type FAnswerQuestion = {
 };
 export type FAnswerQuestions = FAnswerQuestion[];
 
-export type AboutCart = {
+export type AboutCard = {
   image: HTMLImageElement;
   title: string;
   description: string;
 };
-export type AboutCarts = AboutCart[];
+export type AboutCards = AboutCard[];
+
+export type SocialMedia = {
+  id: string;
+  name: string;
+  imgDark: HTMLImageElement;
+  imgLight: HTMLImageElement;
+  imgDarkHover: HTMLImageElement;
+  imgLightHover: HTMLImageElement;
+};
+export type socialMedias = SocialMedia[];
