@@ -5,8 +5,21 @@ import sun from "@/assets/icon/sun.svg";
 import moon from "@/assets/icon/moon.svg";
 const ThemeBtn = () => {
   const { theme, setTheme } = useTheme();
-  const setThemIcon = () => (theme === "dark" ? sun : moon);
+
+  const setThemIcon = () => {
+    const systemThemeStorage = getSystemTheme();
+    if (systemThemeStorage) return systemThemeStorage === "dark" ? sun : moon;
+    else return theme === "dark" ? sun : moon;
+  };
   const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
+
+  function getSystemTheme() {
+    const theme = localStorage.getItem("theme");
+    if (theme) {
+      return theme;
+    }
+  }
+
   return (
     <Image
       src={setThemIcon()}
