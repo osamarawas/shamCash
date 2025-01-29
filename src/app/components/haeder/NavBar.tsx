@@ -2,10 +2,10 @@
 import Image from "next/image";
 import React from "react";
 import Logo from "@/assets/icon/logo.svg";
-import theme from "@/assets/icon/noun-mode-3638316 1.svg";
 import Link from "next/link";
 import { navLinks } from "@/app/utils/siteData";
 import { usePathname } from "next/navigation";
+import ThemeBtn from "./ThemeBtn";
 const NavBar = () => {
   const pathName = usePathname();
   const isActive = (path: string) => pathName === path;
@@ -35,13 +35,7 @@ const NavBar = () => {
       </div>
       <div className="flex gap-4 items-center">
         <span className="cursor-pointer">العربية</span>
-        <Image
-          src={theme}
-          width={19}
-          height={25}
-          className="h-6 w-5 cursor-pointer"
-          alt="Logo"
-        />
+        <ThemeBtn />
       </div>
     </div>
   );

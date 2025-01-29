@@ -22,6 +22,7 @@ export default {
         },
         footer: {
           DEFAULT: "hsl(var(--footer))",
+          foreground: "hsl(var(--footer-foreground))",
         },
         primary: {
           DEFAULT: "hsl(var(--primary))",
