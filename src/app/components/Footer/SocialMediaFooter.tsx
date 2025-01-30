@@ -1,20 +1,34 @@
 "use client";
+import { getStorageTheme } from "@/app/utils/helper";
 import { SocialMedia as SocialMediaType } from "@/app/utils/types";
 import { useTheme } from "next-themes";
 import Image from "next/image";
 interface SocialMediaFooterprops {
   socialMedia: SocialMediaType;
 }
-
 const SocialMediaFooter = ({ socialMedia }: SocialMediaFooterprops) => {
-  const { theme } = useTheme();
+  const { systemTheme } = useTheme();
+  const ThemeStorage = getStorageTheme();
   const setSocialIcon = () => {
-    return theme === "dark" ? socialMedia.imgDark : socialMedia.imgLight;
+    if (ThemeStorage)
+      return ThemeStorage === "dark"
+        ? socialMedia.imgDark
+        : socialMedia.imgLight;
+    else
+      return systemTheme === "dark"
+        ? socialMedia.imgDark
+        : socialMedia.imgLight;
   };
+
   const setSocialIconHover = () => {
-    return theme === "dark"
-      ? socialMedia.imgDarkHover
-      : socialMedia.imgLightHover;
+    if (ThemeStorage)
+      return ThemeStorage === "dark"
+        ? socialMedia.imgDarkHover
+        : socialMedia.imgLightHover;
+    else
+      return systemTheme === "dark"
+        ? socialMedia.imgDarkHover
+        : socialMedia.imgLightHover;
   };
 
   return (
