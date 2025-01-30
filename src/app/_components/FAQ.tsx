@@ -8,7 +8,7 @@ import { fAnswerQuestion } from "../utils/siteData";
 const FAQ = () => {
   return (
     <div
-      className="flex items-center justify-center container flex-col gap-5 mx-auto  my-6 lg:my-10 "
+      className="flex items-center justify-center container flex-col gap-5 mx-auto  my-8 lg:my-14 "
       dir="rtl"
     >
       <h3 className="text-primary font-bold text-2xl underLine relative ">

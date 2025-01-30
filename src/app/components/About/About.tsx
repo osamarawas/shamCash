@@ -3,7 +3,7 @@ import AboutCard from "./AboutCard";
 
 const About = () => {
   return (
-    <div className="text-center justify-center flex items-center flex-col my-6 lg:my-10">
+    <div className="text-center justify-center flex items-center flex-col  my-8 lg:my-12">
       <div>
         <h1 className="text-primary text-center text-3xl font-bold mb-14 underLine relative mx-auto w-16 m-16">
           حول
