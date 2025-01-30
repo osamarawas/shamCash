@@ -3,22 +3,17 @@ import { useTheme } from "next-themes";
 import Image from "next/image";
 import sun from "@/assets/icon/sun.svg";
 import moon from "@/assets/icon/moon.svg";
+import { getStorageTheme } from "@/app/utils/helper";
 const ThemeBtn = () => {
   const { theme, setTheme, systemTheme } = useTheme();
 
   const setThemIcon = () => {
-    const systemThemeStorage = getSystemTheme();
-    if (systemThemeStorage) return systemThemeStorage === "dark" ? sun : moon;
+    const ThemeStorage = getStorageTheme();
+    if (ThemeStorage) return ThemeStorage === "dark" ? sun : moon;
     else return systemTheme === "dark" ? sun : moon;
   };
-  const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
 
-  function getSystemTheme() {
-    const theme = localStorage.getItem("theme");
-    if (theme) {
-      return theme;
-    }
-  }
+  const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
 
   return (
     <Image
