@@ -1,5 +1,5 @@
 import { aboutCart } from "@/app/utils/siteData";
-import AboutCard from "./AboutCard";
+import AboutCard from "./Aboutcard";
 
 const About = () => {
   return (
