@@ -14,7 +14,7 @@ const Footer = () => {
         معنا. فريق الدعم الخاص بنا متواجد دائمًا لتقديم المساعدة وضمان تجربة
         استخدام سلسة.
       </p>
-      <div className="flex flex-wrap items-center w-1/3 mx-auto mt-12 justify-around">
+      <div className="flex flex-wrap items-center w-1/3 mx-auto mt-12 justify-around flex-row ">
         {socialMedia.map((social, index) => (
           <SocialMediaFooter socialMedia={social} key={index} />
         ))}

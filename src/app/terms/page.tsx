@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: "الأحكام والشروط",
 };
 const page = () => {
-  return <div>page</div>;
+  return <div></div>;
 };
 
 export default page;
