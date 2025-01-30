@@ -11,7 +11,7 @@ const AboutCard = ({ aboutCart }: AboutCardProps) => {
         aboutCart.map((about, index) => (
           <div
             key={index}
-            className="flex flex-col items-center  justify-center h-80 w-80 p-12   space-y-3 hover:bg-hover  rounded-full hover:cursor-default "
+            className="flex flex-col items-center  justify-center h-80 w-80 p-12   space-y-3 hover:bg-hover transition  rounded-full hover:cursor-default "
           >
             <Image
               src={about.image}
