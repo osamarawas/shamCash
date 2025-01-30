@@ -4,12 +4,12 @@ import Image from "next/image";
 import sun from "@/assets/icon/sun.svg";
 import moon from "@/assets/icon/moon.svg";
 const ThemeBtn = () => {
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme, systemTheme } = useTheme();
 
   const setThemIcon = () => {
     const systemThemeStorage = getSystemTheme();
     if (systemThemeStorage) return systemThemeStorage === "dark" ? sun : moon;
-    else return theme === "dark" ? sun : moon;
+    else return systemTheme === "dark" ? sun : moon;
   };
   const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
 
