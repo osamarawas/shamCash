@@ -20,7 +20,7 @@ import { AboutCarts, FAnswerQuestions, NavLinks, socialMedias } from "./types";
 export const navLinks: NavLinks = [
   { id: crypto.randomUUID(), title: "الصفحة الرئيسية", Path: "/" },
   { id: crypto.randomUUID(), title: "الأحكام والشروط", Path: "/terms" },
-  { id: crypto.randomUUID(), title: "تواصل معنا", Path: "/support" },
+  { id: crypto.randomUUID(), title: "تواصل معنا", Path: "#footer" },
 ];
 
 export const fAnswerQuestion: FAnswerQuestions = [

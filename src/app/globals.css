@@ -2,12 +2,18 @@
 @tailwind components;
 @tailwind utilities;
 
+html{
+  scroll-behavior: smooth;
+  
+}
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
+
 :root {
   --nav-height: 112px;
 }
+
 @layer base {
   :root {
     --background: 0 0% 100%;
@@ -41,6 +47,7 @@ body {
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
+
   .dark {
     --background: 206 44% 7%;
     --foreground: 203 63% 89%;
@@ -78,21 +85,26 @@ body {
   * {
     @apply border-border;
   }
+
   body {
     @apply text-foreground bg-background;
   }
+
   .fix-height {
     height: calc(100vh - var(--nav-height));
   }
+
   .underLine::before {
     width: calc(100% + 18px);
     content: "";
-    @apply absolute h-0.5  -bottom-3 -left-0.5 text-center;
+    @apply absolute h-0.5 -bottom-3 -left-0.5 text-center;
     background: linear-gradient(269.87deg, #277eb8 -9.64%, #ffffff 96.57%);
   }
+
   .text-gradiant {
     background: linear-gradient(21.45deg, #277eb8 32.36%, #fff 110.94%);
   }
+
   /* .gradiantRight {
     background-image: url(../assets/images/gradiantright.svg);
     @apply absolute top-0  w-1/2 h-full bg-cover transform translate-x-4 -translate-y-0;
@@ -102,7 +114,10 @@ body {
     background-image: url(../assets/images/gradiantLeft.svg);
     @apply absolute top-10 left-0 w-1/2 h-full bg-cover bg-left;
   } */
-  .landbg {
-    background: linear-gradient(to top right, #78B07EE0 , #ffffff 50%, #277EB88F 100%);
+  .landbg-light {
+    background-image: url('../assets/images/22222.svg');
+    background-attachment: scroll;
+    background-size: cover;
+    background-repeat: no-repeat;
   }
 }
