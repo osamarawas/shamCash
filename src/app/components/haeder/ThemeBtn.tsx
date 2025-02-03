@@ -3,21 +3,22 @@ import { useTheme } from "next-themes";
 import Image from "next/image";
 import sun from "@/assets/icon/sun.svg";
 import moon from "@/assets/icon/moon.svg";
-import { getStorageTheme } from "@/app/utils/helper";
+import { useIsDark } from "@/app/utils/helper";
+import { useEffect, useState } from "react";
 const ThemeBtn = () => {
-  const { theme, setTheme, systemTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
+  const [themeIcon, setThemeIcon] = useState(moon);
 
-  const setThemIcon = () => {
-    const ThemeStorage = getStorageTheme();
-    if (ThemeStorage) return ThemeStorage === "dark" ? sun : moon;
-    else return systemTheme === "dark" ? sun : moon;
-  };
+  const isDark = useIsDark();
+  useEffect(() => {
+    setThemeIcon(isDark ? sun : moon);
+  }, [theme]);
 
   const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
 
   return (
     <Image
-      src={setThemIcon()}
+      src={themeIcon}
       onClick={toggleTheme}
       width={19}
       height={25}

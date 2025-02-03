@@ -112,6 +112,11 @@ body {
 
   .gradiantLeft {
     background-image: url(../assets/images/gradiantLeft.svg);
+    @apply absolute top-0 left-0 w-1/2 h-full bg-cover bg-left;
+  }
+
+  .ter {
+    background-color: rgba(217, 217, 217, 0.4);
     @apply absolute top-10 left-0 w-1/2 h-full bg-cover bg-left;
   } */
   .landbg-light {

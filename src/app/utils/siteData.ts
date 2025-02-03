@@ -15,7 +15,7 @@ import facebookHover from "@/assets/icon/facebookHover.svg";
 import telegramHover from "@/assets/icon/telegramHover.svg";
 import whatsupHover from "@/assets/icon/whatsupHover.svg";
 
-import { AboutCarts, FAnswerQuestions, NavLinks, socialMedias } from "./types";
+import { AboutCards, FAnswerQuestions, NavLinks, socialMedias } from "./types";
 
 export const navLinks: NavLinks = [
   { id: crypto.randomUUID(), title: "الصفحة الرئيسية", Path: "/" },
@@ -47,7 +47,7 @@ export const fAnswerQuestion: FAnswerQuestions = [
       "قريباً بإذن الله سيتم تفعيل عدد من الخدمات ومنها الاتصالات والكهرباء والتسويق الإلكتروني",
   },
 ];
-export const aboutCart: AboutCarts = [
+export const aboutCard: AboutCards = [
   {
     image: headphones.src,
     title: "الدعم",

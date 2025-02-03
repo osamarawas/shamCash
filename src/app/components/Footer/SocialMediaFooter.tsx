@@ -1,48 +1,48 @@
 "use client";
-import { getStorageTheme } from "@/app/utils/helper";
+import { useIsDark } from "@/app/utils/helper";
 import { SocialMedia as SocialMediaType } from "@/app/utils/types";
 import { useTheme } from "next-themes";
 import Image from "next/image";
+import { useEffect, useState } from "react";
+
 interface SocialMediaFooterprops {
   socialMedia: SocialMediaType;
 }
-const SocialMediaFooter = ({ socialMedia }: SocialMediaFooterprops) => {
-  const { systemTheme } = useTheme();
-  const ThemeStorage = getStorageTheme();
-  const setSocialIcon = () => {
-    if (ThemeStorage)
-      return ThemeStorage === "dark"
-        ? socialMedia.imgDark
-        : socialMedia.imgLight;
-    else
-      return systemTheme === "dark"
-        ? socialMedia.imgDark
-        : socialMedia.imgLight;
-  };
 
-  const setSocialIconHover = () => {
-    if (ThemeStorage)
-      return ThemeStorage === "dark"
-        ? socialMedia.imgDarkHover
-        : socialMedia.imgLightHover;
-    else
-      return systemTheme === "dark"
-        ? socialMedia.imgDarkHover
-        : socialMedia.imgLightHover;
-  };
+const SocialMediaFooter = ({ socialMedia }: SocialMediaFooterprops) => {
+  const { theme } = useTheme();
+  const [socialIcon, setSocialIcon] = useState(socialMedia.imgLight);
+  const [socialIconHover, setSocialIconHover] = useState(
+    socialMedia.imgLightHover
+  );
+  const isDark = useIsDark();
+  function getSocialIcon() {
+    if (isDark) return socialMedia.imgDark;
+    else return socialMedia.imgLight;
+  }
+  function getSocialIconHover() {
+    if (isDark) return socialMedia.imgDarkHover;
+    else {
+      return socialMedia.imgLightHover;
+    }
+  }
+  useEffect(() => {
+    setSocialIcon(getSocialIcon);
+    setSocialIconHover(getSocialIconHover);
+  }, [theme]);
 
   return (
     <div className="group m-2">
       <Image
-        src={setSocialIcon()}
-        alt=""
+        src={socialIcon}
+        alt="social icon"
         height={42}
         width={42}
         className="group-hover:hidden"
       />
       <Image
-        src={setSocialIconHover()}
-        alt=""
+        src={socialIconHover}
+        alt="social icon hover"
         height={42}
         width={42}
         className="hidden group-hover:block cursor-pointer"
