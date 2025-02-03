@@ -7,6 +7,7 @@ import Footer from "./components/Footer/Footer";
 
 const notoKufi = Noto_Kufi_Arabic({
   subsets: ["arabic"],
+  weight: ["700", "500", "600"],
 });
 
 export const metadata: Metadata = {
@@ -28,7 +29,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ar">
-      <body className={`${notoKufi.className}  antialiased`}>
+      <body className={`${notoKufi.className} antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
