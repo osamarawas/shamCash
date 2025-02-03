@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 const Landing = () => {
   return (
     <div
-      className=" landbg relative h-screen
+      className=" landbg-light dark:bg-top relative h-screen
       lg:fix-height flex justify-center items-center flex-col  lg:space-y-4 text-center mx-auto overflow-hidden"
     >
       {/* الخلفيات */}
@@ -14,9 +14,10 @@ const Landing = () => {
         {/* المحتوى */}
         <h1 className="text-2xl lg:text-4xl font-bold leading-tight">
           <span className="text-gradiant text-transparent bg-clip-text">
-            تطبيق شام{" "}
-          </span>{" "}
-          كاش متوفر الآن
+            {" "}
+            تطبيق شام كاش{" "}
+          </span>
+          متوفر الآن
         </h1>
         <h2 className="text-xl font-semibold leading-9">
           حمّل التطبيق وأستمتع بخدماتنا
