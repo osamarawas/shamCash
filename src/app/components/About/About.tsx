@@ -1,9 +1,14 @@
+<<<<<<< HEAD
 import { aboutCard } from "@/app/utils/siteData";
 import AboutCard from "@/app/components/About/AboutCard";
+=======
+import { aboutCart } from "@/app/utils/siteData";
+import AboutCard from "./Aboutcard";
+>>>>>>> 1df29e67276f409da763daee72e498bd3b22b32c
 
 const About = () => {
   return (
-    <div className="text-center justify-center flex items-center flex-col my-6 lg:my-10">
+    <div className="text-center justify-center flex items-center flex-col  my-8 lg:my-12">
       <div>
         <h1 className="text-primary text-center text-3xl font-bold mb-14 underLine relative mx-auto w-16 m-16">
           حول

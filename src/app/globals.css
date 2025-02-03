@@ -50,7 +50,7 @@ body {
     --card-foreground: 210 40% 98%;
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
-    --hover: 204 56% 98%;
+    --hover: 205.71 18.42% 14.9%;
     --primary: 204 65% 44%;
     --primary-foreground: 222.2 47.4% 11.2%;
     --secondary: 126 26% 58%;
@@ -93,17 +93,24 @@ body {
   .text-gradiant {
     background: linear-gradient(21.45deg, #277eb8 32.36%, #fff 110.94%);
   }
-  .gradiantRight {
+  /* .gradiantRight {
     background-image: url(../assets/images/gradiantright.svg);
     @apply absolute top-0  w-1/2 h-full bg-cover transform translate-x-4 -translate-y-0;
   }
 
   .gradiantLeft {
     background-image: url(../assets/images/gradiantLeft.svg);
+<<<<<<< HEAD
     @apply absolute top-0 left-0 w-1/2 h-full bg-cover bg-left;
   }
 
   .ter{
     background-color: rgba(217, 217, 217, 0.4)	;
+=======
+    @apply absolute top-10 left-0 w-1/2 h-full bg-cover bg-left;
+  } */
+  .landbg {
+    background: linear-gradient(to top right, #78B07EE0 , #ffffff 50%, #277EB88F 100%);
+>>>>>>> 1df29e67276f409da763daee72e498bd3b22b32c
   }
 }
