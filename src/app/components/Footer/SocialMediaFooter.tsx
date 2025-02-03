@@ -8,12 +8,9 @@ interface SocialMediaFooterprops {
   socialMedia: SocialMediaType;
 }
 const SocialMediaFooter = ({ socialMedia }: SocialMediaFooterprops) => {
-<<<<<<< HEAD
-  const { theme, setTheme } = useTheme();
-=======
   const { systemTheme } = useTheme();
   const ThemeStorage = getStorageTheme();
->>>>>>> 1df29e67276f409da763daee72e498bd3b22b32c
+ 
   const setSocialIcon = () => {
     if (ThemeStorage)
       return ThemeStorage === "dark"

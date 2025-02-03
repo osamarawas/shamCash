@@ -1,11 +1,11 @@
-import { Metadata } from "next";
-import React from "react";
+import Investments from '@/app/components/investments/Investments'
 
-export const metadata: Metadata = {
-  title: "الأحكام والشروط",
-};
-const page = () => {
-  return <div></div>;
-};
 
-export default page;
+export default function investments() {
+  return (
+    <div>
+        <Investments />
+    </div>
+  );
+}
+

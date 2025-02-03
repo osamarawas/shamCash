@@ -91,26 +91,47 @@ body {
     background: linear-gradient(269.87deg, #277eb8 -9.64%, #ffffff 96.57%);
   }
   .text-gradiant {
-    background: linear-gradient(21.45deg, #277eb8 32.36%, #fff 110.94%);
-  }
-  /* .gradiantRight {
-    background-image: url(../assets/images/gradiantright.svg);
-    @apply absolute top-0  w-1/2 h-full bg-cover transform translate-x-4 -translate-y-0;
+    background: linear-gradient(21.45deg, #277eb8 32.36%, #c6cdd3 110.94%);
   }
 
-  .gradiantLeft {
-    background-image: url(../assets/images/gradiantLeft.svg);
-<<<<<<< HEAD
-    @apply absolute top-0 left-0 w-1/2 h-full bg-cover bg-left;
+  .terms-card{
+    background-color: rgba(217, 217, 217, 0.3)	;
+
+  } 
+
+  .terms-card-dark{
+    background-color: rgba(217, 217, 217, 0.2)	;
+
+  } 
+
+  .background-terms-dark{
+    background-image: url(../assets/images/background-dark.svg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
   }
 
-  .ter{
-    background-color: rgba(217, 217, 217, 0.4)	;
-=======
-    @apply absolute top-10 left-0 w-1/2 h-full bg-cover bg-left;
-  } */
-  .landbg {
+  .background-terms-light{
+    background-image: url(../assets/images/background-light.svg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  .bg-home{
+    background-image: url(../assets/images/bg-home.svg);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    text-align: center;
+  }
+
+
+
+
+
+  /* .landbg {
     background: linear-gradient(to top right, #78B07EE0 , #ffffff 50%, #277EB88F 100%);
->>>>>>> 1df29e67276f409da763daee72e498bd3b22b32c
-  }
+
+  } */
 }

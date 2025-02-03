@@ -15,12 +15,24 @@ import facebookHover from "@/assets/icon/facebookHover.svg";
 import telegramHover from "@/assets/icon/telegramHover.svg";
 import whatsupHover from "@/assets/icon/whatsupHover.svg";
 
-import { AboutCards, FAnswerQuestions, NavLinks, socialMedias } from "./types";
+import { AboutCards, FAnswerQuestions, NavLinks, socialMedias, terms as termsType} from "./types";
 
 export const navLinks: NavLinks = [
   { id: crypto.randomUUID(), title: "الصفحة الرئيسية", Path: "/" },
   { id: crypto.randomUUID(), title: "الأحكام والشروط", Path: "/terms" },
   { id: crypto.randomUUID(), title: "تواصل معنا", Path: "/support" },
+];
+
+export const terms: termsType = [
+  {li: "تتحمل كامل المسؤولية عن صحة بيانات حسابك وعن حماية بيانات الدخول."},
+  {li: "نخلي مسؤوليتنا عن أي أخطاء نتيجة سوء استخدامك للبرنامج."},
+  {li: "تعتبر مسؤول مسؤولية تامة عن كافة العمليات و التحويلات التي تتم في حسابك."},
+  {li: "استخدامك البرنامج بشكل غير لائق وغير أخلاقي و محاولتك التحايل والإلتفاف على البرنامج يحملك كامل المسؤولية ويعرضك للمسألة."},
+  {li: "نحن غير مسؤولين عن أي عمليات احتيال تتعرض لها نتيجة استخدامك النسخ المزورة أو بالطرق الأخرى."},
+  {li: "لا يحق لك استخدام البرنامج في الأغراض الغير شرعية او المخالفة للأنظمة والقوانين المعمول بها."},
+  {li: "يحق لنا ايقاف حسابك في حال مخالفتك للاتفاقية أو بموجب امر قضائي دون الرجوع إليك."},
+  {li: "يتم حل كافة المسائل القضائية من خلال المحاكم التابعة للسلطة المحلية."},
+  {li: "نحن نحتفظ بالحق في تغيير أو تعديل هذه الاتفاقية في أي وقت, دون ضرورة إبلاغك وإنما الإعلان عن ذلك بالطريقة التي نراها مناسبة ويعتبر استمرارك في استخدام البرنامج بعد إجراء أي تغييرات أو تعديلات على هذه الاتفاقية قبولاً منك لهذه التغييرات أو التعديلات."},
 ];
 
 export const fAnswerQuestion: FAnswerQuestions = [

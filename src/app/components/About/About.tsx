@@ -1,10 +1,5 @@
-<<<<<<< HEAD
 import { aboutCard } from "@/app/utils/siteData";
-import AboutCard from "@/app/components/About/AboutCard";
-=======
-import { aboutCart } from "@/app/utils/siteData";
 import AboutCard from "./Aboutcard";
->>>>>>> 1df29e67276f409da763daee72e498bd3b22b32c
 
 const About = () => {
   return (
