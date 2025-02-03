@@ -5,7 +5,10 @@ import SocialMediaFooter from "./SocialMediaFooter";
 
 const Footer = () => {
   return (
-    <footer id="footer" className=" bg-footer text-center items-center py-14 px-7 min-h-96">
+    <footer
+      id="footer"
+      className=" bg-footer text-center items-center py-14 px-7 min-h-96"
+    >
       <h1 className="text-white dark:text-primary font-bold text-2xl underLine relative w-48 text-center mx-auto mb-16">
         تواصل معنا
       </h1>
