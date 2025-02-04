@@ -14,13 +14,15 @@ const NavBar = () => {
   return (
     <div className=" flex justify-between items-center shadow h-28 px-12 ">
       <div>
-        <Image
-          src={Logo}
-          width={86}
-          height={99}
-          className="h-20 w-20"
-          alt="Logo"
-        />
+        <Link href={"/"}>
+          <Image
+            src={Logo}
+            width={86}
+            height={99}
+            className="h-20 w-20"
+            alt="Logo"
+          />
+        </Link>
       </div>
       <div className="md:flex items-center gap-8 hidden ">
         {navLinks.map((link) => (

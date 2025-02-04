@@ -1,14 +1,14 @@
-import { AboutCarts } from "@/app/utils/types";
+import { AboutCards } from "@/app/utils/types";
 import Image from "next/image";
 
 interface AboutCardProps {
-  aboutCart: AboutCarts;
+  aboutCard: AboutCards;
 }
-const AboutCard = ({ aboutCart }: AboutCardProps) => {
+const AboutCard = ({ aboutCard }: AboutCardProps) => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 text-center ">
-      {Array.isArray(aboutCart) && aboutCart.length > 0 ? (
-        aboutCart.map((about, index) => (
+      {Array.isArray(aboutCard) && aboutCard.length > 0 ? (
+        aboutCard.map((about, index) => (
           <div
             key={index}
             className="flex flex-col items-center  justify-center h-80 w-80 p-12   space-y-3 hover:bg-hover transition  rounded-full hover:cursor-default "
