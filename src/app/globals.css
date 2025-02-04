@@ -115,8 +115,12 @@ body {
 }
 
 
+.bg-landing{
+  background-size: 100% 100%;
+}
+
 .background-terms{
-  @apply bg-cover bg-center bg-no-repeat
+  @apply bg-cover bg-center bg-no-repeat;
 }
 /* .landbg {
     background: linear-gradient(to top right, #78B07EE0 , #ffffff 50%, #277EB88F 100%);
