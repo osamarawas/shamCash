@@ -8,7 +8,7 @@ interface termsProps {
 const InvestmentsCard = ({ term }: termsProps) => {
   return (
     <div className='relative terms-card dark:terms-card-dark w-3/4 mx-auto py-12 px-12 rounded-3xl my-10'>
-        <ol dir='rtl' className='text-lg mb-12 list-decimal'>
+        <ol dir='rtl' className='text-lg mb-12 list-decimal space-y-4'>
       {Array.isArray(term) && term.length > 0 ? (
         term.map((term, index) => (
     
