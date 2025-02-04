@@ -1,11 +1,9 @@
-import Investments from '@/app/components/investments/Investments'
-
+import Investments from "../components/investments/Investments";
 
 export default function investments() {
   return (
     <div>
-        <Investments />
+      <Investments />
     </div>
   );
 }
-

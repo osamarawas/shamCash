@@ -4,8 +4,9 @@ import { Button } from "@/components/ui/button";
 const Landing = () => {
   return (
     <div
-      className=" landbg-light dark:bg-top relative h-screen
-      lg:fix-height flex justify-center items-center flex-col  lg:space-y-4 text-center mx-auto overflow-hidden"
+      className="h-screen
+      flex justify-center items-center lg:space-y-4 text-center mx-auto overflow-hidden bg-landing
+      bg-no-repeat bg-[url(../assets/images/landing-light.png)] dark:bg-[url(../assets/images/landing-dark.png)]"
     >
       <div className="space-y-4">
         {/* المحتوى */}
