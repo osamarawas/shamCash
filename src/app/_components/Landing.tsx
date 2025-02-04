@@ -16,7 +16,7 @@ const Landing = () => {
           </span>
           متوفر الآن
         </h1>
-        <h2 className="text-xl font-semibold leading-9">
+        <h2 className="text-xl font-semibold leading-9 font-">
           حمّل التطبيق وأستمتع بخدماتنا
         </h2>
         <p className="w-3/5 mx-auto font-medium text-lg text-gray-700 leading-relaxed">

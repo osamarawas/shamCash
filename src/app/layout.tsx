@@ -1,12 +1,13 @@
 import type { Metadata } from "next";
 import { Noto_Kufi_Arabic } from "next/font/google";
 import "./globals.css";
-import NavBar from "./components/haeder/NavBar";
+import NavBar from "./components/header/NavBar";
 import { ThemeProvider } from "./components/theme-provider";
 import Footer from "./components/Footer/Footer";
 
 const notoKufi = Noto_Kufi_Arabic({
   subsets: ["arabic"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -27,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ar">
+    <html lang="ar" suppressHydrationWarning>
       <body className={`${notoKufi.className}  antialiased`}>
         <ThemeProvider
           attribute="class"

@@ -12,7 +12,7 @@ const NavBar = () => {
   const activeStyle = " text-primary font-semibold ";
 
   return (
-    <div className=" flex justify-between items-center shadow h-28 px-12 ">
+    <div className=" flex justify-between items-center shadow h-28 px-12 font-se">
       <div>
         <Link href={"/"}>
           <Image
