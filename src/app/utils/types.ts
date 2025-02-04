@@ -20,6 +20,11 @@ export type AboutCard = {
 };
 export type AboutCards = AboutCard[];
 
+export type term = {
+  li: string;
+};
+export type terms = term[];
+
 export type SocialMedia = {
   id: string;
   name: string;
