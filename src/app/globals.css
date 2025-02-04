@@ -25,7 +25,7 @@ body {
     --popover-foreground: 222.2 84% 4.9%;
     --primary: 204 65% 44%;
     --primary-foreground: 204 8% 13%;
-    --hover: 204 56% 98%;
+    --hover: 0 0% 74.9%;
     --secondary: 126 26% 58%;
     --secondary-foreground: 222.2 47.4% 11.2%;
     --muted: 203 4% 36%;
@@ -122,8 +122,5 @@ body {
 .background-terms{
   @apply bg-cover bg-center bg-no-repeat;
 }
-/* .landbg {
-    background: linear-gradient(to top right, #78B07EE0 , #ffffff 50%, #277EB88F 100%);
 
-  } */
 }
