@@ -5,8 +5,9 @@ const Landing = () => {
 
   return (
     <div
-      className=" landbg-light dark:bg-top relative h-screen
-      lg:fix-height flex justify-center items-center flex-col  lg:space-y-4 text-center mx-auto overflow-hidden"
+      className="h-screen
+      flex justify-center items-center lg:space-y-4 text-center mx-auto overflow-hidden bg-landing
+      bg-no-repeat bg-[url(../assets/images/landing-light.png)] dark:bg-[url(../assets/images/landing-dark.png)]"
     >
       <div className="space-y-4">
         {/* المحتوى */}
@@ -20,7 +21,7 @@ const Landing = () => {
         <h2 className="text-xl font-semibold leading-9">
           حمّل التطبيق وأستمتع بخدماتنا
         </h2>
-        <p className="w-3/5 mx-auto font-medium text-lg text-gray-700 leading-relaxed">
+        <p dir="rtl" className="w-3/5 mx-auto font-medium text-lg text-gray-600 leading-relaxed">
           نسعى لتوفير منصة موثوقة وآمنة تتيح للمستخدمين إجراء المعاملات المالية
           بسهولة ومرونة. هدفنا هو تمكين الأفراد من إدارة شؤونهم المالية بكفاءة
           وشفافية.
