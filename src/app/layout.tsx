@@ -4,6 +4,7 @@ import "./globals.css";
 import NavBar from "./components/haeder/NavBar";
 import { ThemeProvider } from "./components/theme-provider";
 import Footer from "./components/Footer/Footer";
+import AosInitializer from "./components/Aos"; // استيراد مكون AOS
 
 const notoKufi = Noto_Kufi_Arabic({
   subsets: ["arabic"],
@@ -27,8 +28,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ar">
-      <body className={`${notoKufi.className}  antialiased`}>
+    <html lang="ar" suppressHydrationWarning>
+      <body className={`${notoKufi.className} antialiased`}>
+        <AosInitializer />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
