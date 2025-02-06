@@ -25,7 +25,7 @@ body {
     --popover-foreground: 222.2 84% 4.9%;
     --primary: 204 65% 44%;
     --primary-foreground: 204 8% 13%;
-    --hover: 204 56% 98%;
+    --hover: 204 56% 95%;
     --secondary: 126 26% 58%;
     --secondary-foreground: 222.2 47.4% 11.2%;
     --muted: 203 4% 36%;
@@ -94,35 +94,29 @@ body {
   }
 
   .underLine::before {
-    width: calc(100% + 18px);
+    width: calc(100% + 50px);
     content: "";
-    @apply absolute h-0.5 -bottom-3 -left-0.5 text-center;
     background: linear-gradient(269.87deg, #277eb8 -9.64%, #ffffff 96.57%);
+    @apply absolute h-0.5 -bottom-3 left-1/2 text-center;
+    transform: translateX(-50%);
   }
 
   .text-gradiant {
     background: linear-gradient(21.45deg, #277eb8 32.36%, #fff 110.94%);
   }
 
+  .terms-card {
+    background-color: rgba(217, 217, 217, 0.3);
+  }
 
-.terms-card {
-  background-color: rgba(217, 217, 217, 0.3);
-}
+  .terms-card-dark {
+    background-color: rgba(217, 217, 217, 0.2);
+  }
+  .bg-landing {
+    background-size: 100% 100%;
+  }
 
-.terms-card-dark {
-  background-color: rgba(217, 217, 217, 0.2);
-}
-
-
-.bg-landing{
-  background-size: 100% 100%;
-}
-
-.background-terms{
-  @apply bg-cover bg-center bg-no-repeat;
-}
-/* .landbg {
-    background: linear-gradient(to top right, #78B07EE0 , #ffffff 50%, #277EB88F 100%);
-
-  } */
+  .background-terms {
+    @apply bg-cover bg-center bg-no-repeat;
+  }
 }

@@ -13,12 +13,12 @@ export type FAnswerQuestion = {
 };
 export type FAnswerQuestions = FAnswerQuestion[];
 
-export type AboutCard = {
+export type Card = {
   image: HTMLImageElement;
   title: string;
   description: string;
 };
-export type AboutCards = AboutCard[];
+export type AboutCards = Card[];
 
 export type term = {
   li: string;
@@ -34,3 +34,5 @@ export type SocialMedia = {
   imgLightHover: HTMLImageElement;
 };
 export type socialMedias = SocialMedia[];
+
+export type FeaturesCards = Card[];

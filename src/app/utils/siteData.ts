@@ -14,8 +14,19 @@ import xHoverLight from "@/assets/icon/xHoverLight.svg";
 import facebookHover from "@/assets/icon/facebookHover.svg";
 import telegramHover from "@/assets/icon/telegramHover.svg";
 import whatsupHover from "@/assets/icon/whatsupHover.svg";
+import services from "@/assets/icon/services.svg";
+import convert from "@/assets/icon/convert.svg";
+import user from "@/assets/icon/user.svg";
+import paper from "@/assets/icon/paper.svg";
 
-import { AboutCards, FAnswerQuestions, NavLinks, socialMedias, terms as termsType} from "./types";
+import {
+  AboutCards,
+  FAnswerQuestions,
+  FeaturesCards as FeaturesCardsType,
+  NavLinks,
+  socialMedias,
+  terms as termsType,
+} from "./types";
 
 export const navLinks: NavLinks = [
   { id: crypto.randomUUID(), title: "الصفحة الرئيسية", Path: "/" },
@@ -24,15 +35,29 @@ export const navLinks: NavLinks = [
 ];
 
 export const terms: termsType = [
-  {li: "تتحمل كامل المسؤولية عن صحة بيانات حسابك وعن حماية بيانات الدخول."},
-  {li: "نخلي مسؤوليتنا عن أي أخطاء نتيجة سوء استخدامك للبرنامج."},
-  {li: "تعتبر مسؤول مسؤولية تامة عن كافة العمليات و التحويلات التي تتم في حسابك."},
-  {li: "استخدامك البرنامج بشكل غير لائق وغير أخلاقي و محاولتك التحايل والإلتفاف على البرنامج يحملك كامل المسؤولية ويعرضك للمسألة."},
-  {li: "نحن غير مسؤولين عن أي عمليات احتيال تتعرض لها نتيجة استخدامك النسخ المزورة أو بالطرق الأخرى."},
-  {li: "لا يحق لك استخدام البرنامج في الأغراض الغير شرعية او المخالفة للأنظمة والقوانين المعمول بها."},
-  {li: "يحق لنا ايقاف حسابك في حال مخالفتك للاتفاقية أو بموجب امر قضائي دون الرجوع إليك."},
-  {li: "يتم حل كافة المسائل القضائية من خلال المحاكم التابعة للسلطة المحلية."},
-  {li: "نحن نحتفظ بالحق في تغيير أو تعديل هذه الاتفاقية في أي وقت, دون ضرورة إبلاغك وإنما الإعلان عن ذلك بالطريقة التي نراها مناسبة ويعتبر استمرارك في استخدام البرنامج بعد إجراء أي تغييرات أو تعديلات على هذه الاتفاقية قبولاً منك لهذه التغييرات أو التعديلات."},
+  { li: "تتحمل كامل المسؤولية عن صحة بيانات حسابك وعن حماية بيانات الدخول." },
+  { li: "نخلي مسؤوليتنا عن أي أخطاء نتيجة سوء استخدامك للبرنامج." },
+  {
+    li: "تعتبر مسؤول مسؤولية تامة عن كافة العمليات و التحويلات التي تتم في حسابك.",
+  },
+  {
+    li: "استخدامك البرنامج بشكل غير لائق وغير أخلاقي و محاولتك التحايل والإلتفاف على البرنامج يحملك كامل المسؤولية ويعرضك للمسألة.",
+  },
+  {
+    li: "نحن غير مسؤولين عن أي عمليات احتيال تتعرض لها نتيجة استخدامك النسخ المزورة أو بالطرق الأخرى.",
+  },
+  {
+    li: "لا يحق لك استخدام البرنامج في الأغراض الغير شرعية او المخالفة للأنظمة والقوانين المعمول بها.",
+  },
+  {
+    li: "يحق لنا ايقاف حسابك في حال مخالفتك للاتفاقية أو بموجب امر قضائي دون الرجوع إليك.",
+  },
+  {
+    li: "يتم حل كافة المسائل القضائية من خلال المحاكم التابعة للسلطة المحلية.",
+  },
+  {
+    li: "نحن نحتفظ بالحق في تغيير أو تعديل هذه الاتفاقية في أي وقت, دون ضرورة إبلاغك وإنما الإعلان عن ذلك بالطريقة التي نراها مناسبة ويعتبر استمرارك في استخدام البرنامج بعد إجراء أي تغييرات أو تعديلات على هذه الاتفاقية قبولاً منك لهذه التغييرات أو التعديلات.",
+  },
 ];
 
 export const fAnswerQuestion: FAnswerQuestions = [
@@ -59,7 +84,7 @@ export const fAnswerQuestion: FAnswerQuestions = [
       "قريباً بإذن الله سيتم تفعيل عدد من الخدمات ومنها الاتصالات والكهرباء والتسويق الإلكتروني",
   },
 ];
-export const aboutCard: AboutCards = [
+export const aboutCards: AboutCards = [
   {
     image: headphones.src,
     title: "الدعم",
@@ -111,5 +136,41 @@ export const socialMedia: socialMedias = [
     imgLight: telegramLight.src,
     imgDarkHover: telegramHover.src,
     imgLightHover: telegramHover.src,
+  },
+];
+export const featuresCards: FeaturesCardsType = [
+  {
+    image: services.src,
+    title: "الخدمات",
+    description:
+      "نوفر مجموعة من الخدمات المتنوعة التي تلبي احتياجاتك اليومية وتوفر عليك الوقت والجهد.",
+  },
+  {
+    image: convert.src,
+    title: "سهولة التحويل بين المستخدمين",
+    description: "أرسل واستقبل الأموال بسهولة وسلاسة بين مستخدمي التطبيق.",
+  },
+  {
+    image: flash.src,
+    title: "سرعة العمليات",
+    description: "نفّذ معاملاتك المالية بسرعة فائقة دون أي تأخير.",
+  },
+  {
+    image: user.src,
+    title: "سهولة الاستخدام",
+    description:
+      "واجهة تطبيق بسيطة ومباشرة تسهل عليك إجراء العمليات دون تعقيد.",
+  },
+  {
+    image: shield.src,
+    title: "أمان الأموال",
+    description:
+      "نضمن حماية كاملة لأموالك ومعاملاتك باستخدام أحدث تقنيات الأمان.",
+  },
+  {
+    image: paper.src,
+    title: "بدون رسوم",
+    description:
+      "استمتع بخدماتنا المالية بدون أي رسوم خفية، لتبقى كل معاملتك واضحة وشفافة.",
   },
 ];
