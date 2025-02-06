@@ -30,7 +30,6 @@ export default function RootLayout({
   return (
     <html lang="ar" suppressHydrationWarning>
       <body className={`${notoKufi.className} antialiased`}>
-        {/* تهيئة تأثيرات AOS */}
         <AosInitializer />
         <ThemeProvider
           attribute="class"
