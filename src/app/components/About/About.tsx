@@ -11,6 +11,7 @@ const About = () => {
         <p
           className="text-center justify-center w-8/12 mx-auto mb-8 text-lg text-muted"
           dir="rtl"
+          data-aos="fade-left"
         >
           تطبيقنا هو الحل الأمثل لإدارة معاملاتك المالية بسهولة وأمان يتيح لك
           إرسال واستلام الأموال بسرعة وسلاسة، مع واجهة استخدام بسيطة وتجربة

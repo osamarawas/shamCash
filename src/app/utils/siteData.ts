@@ -21,6 +21,8 @@ export const navLinks: NavLinks = [
   { id: crypto.randomUUID(), title: "الصفحة الرئيسية", Path: "/" },
   { id: crypto.randomUUID(), title: "الأحكام والشروط", Path: "/terms" },
   { id: crypto.randomUUID(), title: "تواصل معنا", Path: "#footer" },
+  // { id: crypto.randomUUID(), title: "ادخال", Path: "/form" },
+  
 ];
 
 export const terms: termsType = [

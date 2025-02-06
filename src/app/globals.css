@@ -110,7 +110,6 @@ body {
   background-attachment: scroll;
   background-size: cover;
   background-repeat: no-repeat;
-  background: linear-gradient(21.45deg, #277eb8 32.36%, #c6cdd3 110.94%);
 }
 
 .terms-card {
@@ -135,7 +134,3 @@ body {
   background-repeat: no-repeat;
 }
 
-/* .landbg {
-    background: linear-gradient(to top right, #78B07EE0 , #ffffff 50%, #277EB88F 100%);
-
-  } */

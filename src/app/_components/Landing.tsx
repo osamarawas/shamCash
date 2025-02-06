@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "@/components/ui/button";
 
 const Landing = () => {
+
   return (
     <div
       className=" landbg-light dark:bg-top relative h-screen

@@ -27,7 +27,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ar">
+    <html lang="ar" suppressHydrationWarning>
       <body className={`${notoKufi.className}  antialiased`}>
         <ThemeProvider
           attribute="class"
