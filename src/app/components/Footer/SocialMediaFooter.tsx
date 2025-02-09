@@ -16,7 +16,7 @@ const SocialMediaFooter = ({ socialMedia }: SocialMediaFooterprops) => {
     socialMedia.imgLightHover
   );
   const isDark = useIsDark();
-  
+
   function getSocialIcon() {
     if (isDark) return socialMedia.imgDark;
     else return socialMedia.imgLight;
