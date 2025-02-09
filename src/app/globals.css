@@ -106,6 +106,10 @@ body {
     background: linear-gradient(21.45deg, #277eb8 32.36%, #fff 110.94%);
   }
 
+  .bg-landing {
+    background-size: 100% 100%;
+  }
+
   .background-terms {
     @apply bg-cover bg-center bg-no-repeat;
   }
