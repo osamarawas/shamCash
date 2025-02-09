@@ -105,16 +105,7 @@ body {
     background: linear-gradient(21.45deg, #277eb8 32.36%, #fff 110.94%);
   }
 
-  .terms-card {
-    background-color: rgba(217, 217, 217, 0.3);
-  }
 
-  .terms-card-dark {
-    background-color: rgba(217, 217, 217, 0.2);
-  }
-  .bg-landing {
-    background-size: 100% 100%;
-  }
 
   .background-terms {
     @apply bg-cover bg-center bg-no-repeat;
@@ -131,4 +122,9 @@ body {
 
 .background-terms {
   @apply bg-cover bg-center bg-no-repeat;
+}
+/* .landbg {
+    background: linear-gradient(to top right, #78B07EE0 , #ffffff 50%, #277EB88F 100%);
+
+  } */
 }
