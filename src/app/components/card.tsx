@@ -6,7 +6,11 @@ interface CardProps {
 }
 const Card = ({ item }: CardProps) => {
   return (
-    <div className="flex flex-col items-center justify-center h-96 w-96 p-10 space-y-6 hover:bg-hover transition  rounded-full hover:cursor-default ">
+    <div
+      className="flex flex-col items-center justify-center h-96 w-96 p-10 space-y-6 hover:bg-hover transition  rounded-full hover:cursor-default "
+      data-aos="fade-up"
+      data-aos-duration="800"
+    >
       <div className="flex justify-center items-center bg-primary rounded-full">
         <Image
           src={item.image}

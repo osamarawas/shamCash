@@ -4,10 +4,15 @@ import Card from "../components/card";
 const About = () => {
   return (
     <div className="flex items-center justify-center container flex-col gap-5 mx-auto my-8 lg:my-14">
-      <h2 className="text-primary text-center text-3xl font-bold mb-14 underLine relative mx-auto  ">
+      <h2
+        className="text-primary text-center text-3xl font-bold mb-14 underLine relative mx-auto  "
+        data-aos="zoom-out"
+      >
         حول
       </h2>
       <p
+        data-aos="fade-up"
+        data-aos-duration="800"
         className="text-center justify-center w-8/12 mx-auto mb-8 text-lg text-muted"
         dir="rtl"
       >

@@ -4,11 +4,13 @@ import Card from "../components/card";
 
 const Features = () => {
   return (
-    <div className="flex items-center justify-center container flex-col gap-5 mx-auto  my-8 lg:my-14  bg-landing  bg-no-repeat bg-[url(../assets/images/bg-applogo-light.png)] dark:bg-[url(../assets/images/bg-applogo-dark.png)]">
+    <div className="flex items-center justify-center container flex-col gap-5 mx-auto  my-8 lg:my-14  bg-landing  bg-feature dark:bg-feature-dark ">
       <h2 className="text-primary text-center text-3xl font-bold mb-14 underLine relative mx-auto w-16  ">
         مزايا
       </h2>
-      <p className="w-2/3 text-center  text-lg text-muted leading-9 font-medium ">
+      <p className="w-2/3 text-center  text-lg text-muted leading-9 font-medium "         
+          data-aos="fade-up"
+          data-aos-duration="800">
         يقدم تطبيقنا مجموعة من المزايا المصممة لتلبية احتياجاتك بكل احترافية،
         منها السرعة في تنفيذ العمليات، السهولة في الاستخدام، أعلى مستويات
         الأمان، وخدمات بدون رسوم خفية. هدفنا هو توفير تجربة مالية مريحة وشفافة

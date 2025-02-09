@@ -5,6 +5,7 @@
 html {
   scroll-behavior: smooth;
 }
+
 body {
   font-family: Arial, Helvetica, sans-serif;
 }
@@ -105,8 +106,6 @@ body {
     background: linear-gradient(21.45deg, #277eb8 32.36%, #fff 110.94%);
   }
 
-
-
   .background-terms {
     @apply bg-cover bg-center bg-no-repeat;
   }
@@ -123,8 +122,12 @@ body {
 .background-terms {
   @apply bg-cover bg-center bg-no-repeat;
 }
-/* .landbg {
-    background: linear-gradient(to top right, #78B07EE0 , #ffffff 50%, #277EB88F 100%);
 
-  } */
+.bg-feature-dark {
+  background-image: url('../assets/images/bg-applogo-dark.png');
+  background-repeat: no-repeat;
+}
+.bg-feature{
+  background-image: url('../assets/images/bg-applogo-light.png');
+  background-repeat: no-repeat;
 }
