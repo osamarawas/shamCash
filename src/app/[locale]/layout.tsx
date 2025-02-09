@@ -33,7 +33,7 @@ export default async function RootLayout({
   params: { locale },
 }: {
   children: React.ReactNode;
-  params: { locale: string };
+  params: { locale: Languages };
 }) {
   if (!routing.locales.includes(locale as Languages)) {
     notFound();

@@ -2,7 +2,7 @@
 import Image from "next/image";
 import React from "react";
 import Logo from "@/assets/icon/logo.svg";
-import Link from "next/link";
+import { Link } from "@/i18n/routing";
 import { navLinks } from "@/app/utils/siteData";
 import { usePathname } from "next/navigation";
 import ThemeBtn from "./ThemeBtn";
