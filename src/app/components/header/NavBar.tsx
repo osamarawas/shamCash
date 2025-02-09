@@ -6,10 +6,11 @@ import Link from "next/link";
 import { navLinks } from "@/app/utils/siteData";
 import { usePathname } from "next/navigation";
 import ThemeBtn from "./ThemeBtn";
+import LanguageSwitcher from "./LanguageSwitcher";
 const NavBar = () => {
   const pathName = usePathname();
   const isActive = (path: string) => pathName === path;
-  const activeStyle = " text-primary font-semibold ";
+  const activeStyle = "text-primary font-semibold ";
 
   return (
     <div className=" flex justify-between items-center shadow h-28 px-12 font-se">
@@ -36,7 +37,7 @@ const NavBar = () => {
         ))}
       </div>
       <div className="flex gap-4 items-center">
-        <span className="cursor-pointer">العربية</span>
+        <LanguageSwitcher />
         <ThemeBtn />
       </div>
     </div>

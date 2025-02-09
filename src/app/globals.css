@@ -119,16 +119,7 @@ body {
   .background-terms {
     @apply bg-cover bg-center bg-no-repeat;
   }
-}
-
-.terms-card-dark {
-  background-color: rgba(217, 217, 217, 0.2);
-}
-
-.bg-landing {
-  background-size: 100% 100%;
-}
-
-.background-terms {
-  @apply bg-cover bg-center bg-no-repeat;
+  .background-terms {
+    @apply bg-cover bg-center bg-no-repeat;
+  }
 }

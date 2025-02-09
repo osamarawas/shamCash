@@ -1,5 +1,5 @@
 import { aboutCards } from "@/app/utils/siteData";
-import Card from "../components/card";
+import Card from "../../components/card";
 
 const About = () => {
   return (

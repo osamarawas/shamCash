@@ -1,6 +1,6 @@
 import React from "react";
-import { featuresCards } from "../utils/siteData";
-import Card from "../components/card";
+import { featuresCards } from "../../utils/siteData";
+import Card from "../../components/card";
 
 const Features = () => {
   return (

@@ -4,7 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { fAnswerQuestion } from "../utils/siteData";
+import { fAnswerQuestion } from "../../utils/siteData";
 const FAQ = () => {
   return (
     <div
