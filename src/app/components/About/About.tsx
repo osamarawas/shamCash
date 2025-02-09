@@ -1,4 +1,4 @@
-import { aboutCard } from "@/app/utils/siteData";
+import { aboutCards } from "@/app/utils/siteData";
 import AboutCard from "./Aboutcard";
 
 const About = () => {
@@ -20,7 +20,7 @@ const About = () => {
         </p>
       </div>
 
-      <AboutCard aboutCard={aboutCard} />
+      <AboutCard aboutCard={aboutCards} />
     </div>
   );
 };

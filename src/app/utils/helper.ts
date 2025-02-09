@@ -8,7 +8,6 @@ export function getStorageTheme() {
     }
   }
 }
-
 export function useIsDark() {
   const ThemeStorage = getStorageTheme();
   const { systemTheme } = useTheme();

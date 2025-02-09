@@ -18,10 +18,10 @@ const Landing = () => {
           </span>
           متوفر الآن
         </h1>
-        <h2 className="text-xl font-semibold leading-9">
+        <h2 className="text-xl font-semibold leading-9 font-">
           حمّل التطبيق وأستمتع بخدماتنا
         </h2>
-        <p className="w-3/5 mx-auto font-medium text-lg text-gray-700 leading-relaxed">
+        <p dir="rtl" className="w-3/5 mx-auto font-medium text-lg text-gray-600 leading-relaxed">
           نسعى لتوفير منصة موثوقة وآمنة تتيح للمستخدمين إجراء المعاملات المالية
           بسهولة ومرونة. هدفنا هو تمكين الأفراد من إدارة شؤونهم المالية بكفاءة
           وشفافية.

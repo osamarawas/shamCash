@@ -1,12 +1,14 @@
 import type { Metadata } from "next";
 import { Noto_Kufi_Arabic } from "next/font/google";
 import "./globals.css";
-import NavBar from "./components/haeder/NavBar";
+import NavBar from "./components/header/NavBar";
 import { ThemeProvider } from "./components/theme-provider";
 import Footer from "./components/Footer/Footer";
+import AosInitializer from "./components/Aos"; // استيراد مكون AOS
 
 const notoKufi = Noto_Kufi_Arabic({
   subsets: ["arabic"],
+  weight: ["400", "500", "600", "700", "800"],
 });
 
 export const metadata: Metadata = {
@@ -28,7 +30,8 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ar" suppressHydrationWarning>
-      <body className={`${notoKufi.className}  antialiased`}>
+      <body className={`${notoKufi.className} antialiased`}>
+        <AosInitializer />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

@@ -14,7 +14,7 @@ const FAQ = () => {
       <h3 className="text-primary font-bold text-2xl underLine relative ">
         الأسئلة الشائعة
       </h3>
-      <p className="w-2/3 text-center  text-xl text-muted leading-9 mt-10">
+      <p className="w-[68%] text-center  text-xl text-muted leading-9 mt-10 font-medium">
         نقدم لك إجابات على الأسئلة الأكثر شيوعًا التي قد تكون لديك حول استخدام
         التطبيق. هدفنا هو تزويدك بكل المعلومات التي تحتاجها لتجربة سلسة ومريحة.
         إذا كنت تواجه أي استفسار أو مشكلة لم يتم تناولها هنا، لا تتردد في
