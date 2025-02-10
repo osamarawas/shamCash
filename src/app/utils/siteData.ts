@@ -142,39 +142,38 @@ export const socialMedia: socialMedias = [
     imgLightHover: telegramHover.src,
   },
 ];
-export const featuresCards: FeaturesCardsType = [
-  {
-    image: services.src,
-    title: "الخدمات",
-    description:
-      "نوفر مجموعة من الخدمات المتنوعة التي تلبي احتياجاتك اليومية وتوفر عليك الوقت والجهد.",
-  },
-  {
-    image: convert.src,
-    title: "سهولة التحويل بين المستخدمين",
-    description: "أرسل واستقبل الأموال بسهولة وسلاسة بين مستخدمي التطبيق.",
-  },
-  {
-    image: flash.src,
-    title: "سرعة العمليات",
-    description: "نفّذ معاملاتك المالية بسرعة فائقة دون أي تأخير.",
-  },
-  {
-    image: user.src,
-    title: "سهولة الاستخدام",
-    description:
-      "واجهة تطبيق بسيطة ومباشرة تسهل عليك إجراء العمليات دون تعقيد.",
-  },
-  {
-    image: shield.src,
-    title: "أمان الأموال",
-    description:
-      "نضمن حماية كاملة لأموالك ومعاملاتك باستخدام أحدث تقنيات الأمان.",
-  },
-  {
-    image: paper.src,
-    title: "بدون رسوم",
-    description:
-      "استمتع بخدماتنا المالية بدون أي رسوم خفية، لتبقى كل معاملتك واضحة وشفافة.",
-  },
-];
+export const featuresCards = async () : Promise<FeaturesCardsType>=>{
+  const t = await getTranslations("features.sections");
+  return [
+    {
+      image: services.src,
+      title: t("services.title"),
+      description:t("services.description")    
+    },
+    {
+      image: convert.src,
+      title: t("convert.title"),
+      description:t("convert.description")  
+    },
+    {
+      image: flash.src,
+      title: t("flash.title"),
+      description:t("flash.description")  
+    },
+    {
+      image: user.src,
+      title: t("user.title"),
+      description:t("user.description")  
+    },
+    {
+      image: shield.src,
+      title: t("shield.title"),
+      description:t("shield.description")  
+    },
+    {
+      image: paper.src,
+      title: t("paper.title"),
+      description:t("paper.description")  
+    },
+  ];
+} 
