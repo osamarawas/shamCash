@@ -5,6 +5,24 @@
     "downloadApp": "Download the app and enjoy our services",
     "platformGoal": "We strive to provide a reliable and secure platform that enables users to carry out financial transactions easily and flexibly. Our goal is to empower individuals to manage their financial affairs efficiently and transparently."
   },
+  "about": {
+    "title": "About",
+    "description": "Our application is the ultimate solution for managing your financial transactions easily and securely. It allows you to send and receive money quickly and seamlessly, with a simple user interface and a comfortable experience. We strive to provide innovative financial services that ensure transparency and reliability, giving you full control over your money anytime, anywhere.",
+    "sections": {
+      "support": {
+        "title": "Support",
+        "description": "Our support team is available 24/7 to answer your inquiries and resolve any issues you may encounter, ensuring a smooth and hassle-free experience."
+      },
+      "security": {
+        "title": "Security",
+        "description": "Our application is designed with the highest security standards to protect your data and financial transactions, ensuring a reliable and secure experience at every step."
+      },
+      "speed": {
+        "title": "Speed",
+        "description": "Our application offers high-speed transaction processing, providing you with an instant and seamless experience that meets your needs anytime."
+      }
+    }
+  },
   "features":{
     "title":"Features",
     "desc":"Our application offers a set of features designed to meet your needs professionally Including speed in implementing operations ease of use and the highest levels Security, services and no hidden fees. Our goal is to provide a convenient and transparent financial experience Fits your daily lifestyle.",
