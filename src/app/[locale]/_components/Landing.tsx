@@ -3,7 +3,6 @@ import { getTranslations } from "next-intl/server";
 
 const Landing = async () => {
   const t = await getTranslations("");
-
   return (
     <div
       className="h-screen

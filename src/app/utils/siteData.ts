@@ -27,13 +27,13 @@ import {
   socialMedias,
   terms as termsType,
 } from "./types";
+import { getTranslations } from "next-intl/server";
 
 export const navLinks: NavLinks = [
   { id: crypto.randomUUID(), title: "الصفحة الرئيسية", Path: "/" },
   { id: crypto.randomUUID(), title: "الأحكام والشروط", Path: "/terms" },
   { id: crypto.randomUUID(), title: "تواصل معنا", Path: "#footer" },
   // { id: crypto.randomUUID(), title: "ادخال", Path: "/form" },
-  
 ];
 
 export const terms: termsType = [
@@ -86,26 +86,28 @@ export const fAnswerQuestion: FAnswerQuestions = [
       "قريباً بإذن الله سيتم تفعيل عدد من الخدمات ومنها الاتصالات والكهرباء والتسويق الإلكتروني",
   },
 ];
-export const aboutCards: AboutCards = [
-  {
-    image: headphones.src,
-    title: "الدعم",
-    description:
-      "فريق الدعم الخاص بنا متواجد على مدار الساعة للرد على استفساراتك وحل أي مشاكل قد تواجهها، لضمان تجربة استخدام سلسة وخالية من العقبات.",
-  },
-  {
-    image: shield.src,
-    title: "الأمان",
-    description:
-      "تطبيقنا مصمم بأعلى معايير الأمان لحماية بياناتك ومعاملاتك المالية، مما يضمن لك تجربة موثوقة وآمنة في كل خطوة.",
-  },
-  {
-    image: flash.src,
-    title: "السرعة",
-    description:
-      "تطبيقنا يتميز بالسرعة العالية لتنفيذ العمليات، مما يضمن تجربة فورية وسلسة تلبي احتياجاتك في أي وقت.",
-  },
-];
+
+export const aboutCards = async (): Promise<AboutCards> => {
+  const t = await getTranslations("about.sections");
+  return [
+    {
+      image: headphones.src,
+      title: t("support.title"),
+      description: t("support.description"),
+    },
+    {
+      image: shield.src,
+      title: t("security.title"),
+      description: t("security.description"),
+    },
+    {
+      image: flash.src,
+      title: t("speed.title"),
+      description: t("speed.description"),
+    },
+  ];
+};
+
 export const socialMedia: socialMedias = [
   {
     id: crypto.randomUUID(),
