@@ -1,3 +1,5 @@
+import { resourceType } from "./enums";
+
 export type NavLink = {
   id: string;
   title: string;
@@ -36,3 +38,21 @@ export type SocialMedia = {
 export type socialMedias = SocialMedia[];
 
 export type FeaturesCards = Card[];
+
+export type FaqCategorie = {
+  id: string;
+  name: string;
+  href: string;
+};
+
+export type faqsWithCategorie = {
+  categoryName: string;
+  categoryId: string;
+  description?: string;
+  questions: {
+    question: string;
+    answer: string;
+    resources?: { type: resourceType; url: string }[];
+    lastUpdated?: string;
+  }[];
+};

@@ -31,6 +31,12 @@ export default {
           DEFAULT: "hsl(var(--primary))",
           foreground: "hsl(var(--primary-foreground))",
         },
+        light_primary: {
+          DEFAULT: "hsl(var(--light-primary))",
+        },
+        light_primary_hover: {
+          DEFAULT: "hsl(var(--light-primary-hover))",
+        },
         hover: {
           DEFAULT: "hsl(var(--hover))",
         },

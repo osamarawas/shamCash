@@ -26,6 +26,8 @@ body {
     --popover-foreground: 222.2 84% 4.9%;
     --primary: 204 65% 44%;
     --primary-foreground: 204 8% 13%;
+    --light-primary: 201 50% 95%;
+    --light-primary-hover: 201 11% 73%;
     --hover: 204 56% 95%;
     --secondary: 126 26% 58%;
     --secondary-foreground: 222.2 47.4% 11.2%;
@@ -60,6 +62,8 @@ body {
     --hover: 205.71 18.42% 14.9%;
     --primary: 204 65% 44%;
     --primary-foreground: 222.2 47.4% 11.2%;
+    --light-primary: 206 38% 11%;
+    --light-primary-hover: 201 11% 73%;
     --secondary: 126 26% 58%;
     --secondary-foreground: 210 40% 98%;
     --muted: 200 7% 67%;

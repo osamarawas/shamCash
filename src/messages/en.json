@@ -53,5 +53,100 @@
       }
     }
   },
+  "faqPage": {
+    "title": "Frequently asked questions",
+    "description": "We give you answers to the most common questions you may have about using the app. Our goal is to provide you with all the information you need for a smooth and comfortable experience. If you have any questions or issues that are not addressed here, feel free to reach out to our support team who are available around the clock to help you.",
+    "category": {
+      "category1": {
+        "name": "General questions",
+        "questions": {
+          "q1": {
+            "question": "Are there any authorized agents for you in all provinces?",
+            "answer": "The authorized agents have not been determined yet."
+          },
+          "q2": {
+            "question": "What is the activation process for the app?",
+            "answer": "Please watch the video dedicated to how to create an account."
+          },
+          "q3": {
+            "question": "Can you tell me about the purpose of the ShamCash app?",
+            "answer": "ShamCash is an app dedicated to electronic payments and money transfers, offering a wide range of diverse services."
+          },
+          "q4": {
+            "question": "Where can I find my account number?",
+            "answer": "The account number is located under your name and is made up of 16 digits."
+          },
+          "q5": {
+            "question": "Is the app intended for transferring salaries to it instead of receiving them as cash?",
+            "answer": "Yes, this is one of the app's goals."
+          },
+          "q6": {
+            "question": "How can I update the Sham Cash app?",
+            "answer": "You can update the app from the official Sham Cash website or through its official channels on Telegram and WhatsApp."
+          },
+          "q7": {
+            "question": "Is there a Sham Cash app for computers or a link to open it in a browser?",
+            "answer": "This service is not available at the moment."
+          },
+          "q8": {
+            "question": "What is the purpose of the Sham Cash app?",
+            "answer": "The main purpose of Sham Cash is to facilitate financial transactions, reduce the burden of damaged currency, and provide the essential services we need."
+          },
+          "q9": {
+            "question": "Is there a channel on Telegram or a page on Facebook I can follow for the latest news?",
+            "answer": "We have a channel on Telegram and a page on Facebook to follow the latest news and updates: Telegram channel: https://t.me/ShamCash2 Facebook page: https://www.facebook.com/sham.cash1"
+          },
+          "q10": {
+            "question": "What is a Sham Cash account?",
+            "answer": "Sham Cash account is an electronic bank account used to execute financial transactions through the app. Currently, there is no integration with other electronic payment applications, but any future updates will be announced."
+          },
+          "q11": {
+            "question": "What is meant by the account name?",
+            "answer": "The account name is the name that appears to the public in the Sham Cash application. It is preferable to choose a three-part name to avoid similarity with other names."
+          },
+          "q12": {
+            "question": "Is there a problem if I click on verify later without entering the confirmation code?",
+            "answer": "No problem if you press verify later. The code will be requested in the next update."
+          },
+          "q13": {
+            "question": "Can I use a non-Arabic name for a Sham Cash account?",
+            "answer": "You can use any name that hasn't been used before, but it's better to write your full name to avoid name similarities."
+          },
+          "q14": {
+            "question": "How can I benefit from the code I saved when creating the account?",
+            "answer": "The code you saved is used to recover your account or reset your password in case you lose it."
+          },
+          "q15": {
+            "question": "How can I become an agent for Sham Cash in the Safira area of rural Aleppo?",
+            "answer": "There is no possibility to appoint agents. You can leave a clarification about your work, address, in addition to your name and contact number, in case agents or authorized representatives become available in the future, so you can be informed of the conditions."
+          },
+          "q16": {
+            "question": "Can I change the email associated with my account?",
+            "answer": "The email associated with your account cannot be changed."
+          },
+          "q17": {
+            "question": "I use the Cham Cash account normally. Should I open a Cham Bank account in Idlib or is it unnecessary?",
+            "answer": "The Sham Cash app is dedicated to electronic financial transactions and is not linked to Sham Bank. Therefore, it is not necessary to open an account at Sham Bank to use Sham Cash."
+          }
+        }
+      },
+      "category2": {
+        "name": "Questions about Financial Services (Withdrawal, Deposit, Transfer)",
+        "questions": {}
+      },
+      "category3": {
+        "name": "Questions about Account Security and Money Protection",
+        "questions": {}
+      },
+      "category4": {
+        "name": "Questions about Additional Services and Features",
+        "questions": {}
+      },
+      "category5": {
+        "name": "Questions about Technical Issues and Technical Support",
+        "questions": {}
+      }
+    }
+  },
   "download": "download"
 }
