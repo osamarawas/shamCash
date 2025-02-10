@@ -5,5 +5,35 @@
     "downloadApp": "Download the app and enjoy our services",
     "platformGoal": "We strive to provide a reliable and secure platform that enables users to carry out financial transactions easily and flexibly. Our goal is to empower individuals to manage their financial affairs efficiently and transparently."
   },
+  "features":{
+    "title":"Features",
+    "desc":"Our application offers a set of features designed to meet your needs professionally Including speed in implementing operations ease of use and the highest levels Security, services and no hidden fees. Our goal is to provide a convenient and transparent financial experience Fits your daily lifestyle.",
+    "sections":{
+      "services":{
+        "title":"services",
+        "description":"We offer a variety of services that meet your daily needs and save you time and effort"
+      },
+      "convert":{
+        "title":"Ease of switching between users",
+        "description":"Send and receive money easily and seamlessly between app users."
+      },
+      "flash":{
+        "title":"Fast Transactions",
+        "description":"Execute your financial operations with exceptional speed and without delays."
+      },
+      "user":{
+        "title":"Ease of Use",
+        "description":"A simple and intuitive app interface makes conducting transactions hassle-free."
+      },
+      "shield":{
+        "title":"Funds Security",
+        "description":"We ensure complete protection for your funds and transactions using the latest security technologies."
+      },
+      "paper":{
+        "title":"No Fees",
+        "description":"Enjoy our financial services with no hidden fees, keeping all your transactions clear and transparent"
+      }
+    }
+  },
   "download": "download"
 }
