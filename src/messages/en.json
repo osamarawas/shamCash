@@ -53,5 +53,34 @@
       }
     }
   },
+  "navlinks": {
+    "home": "Home",
+    "terms": "Terms and Conditions",
+    "contact-us": "Contact us"
+  },
+  "footer": {
+    "title": "Contact us",
+    "description": "If you have any questions, comments, or encounter any problems, please feel free to contact us. Our support team is always here to provide assistance and ensure a smooth user experience."
+  },
+  "terms":{
+    "title":"Terms and Conditions",
+    "desc":"Welcome to Sham Cash service, we are proud to offer you the electronic payment service, by using this program, you agree to comply with the following terms and conditions:",
+    "cnonditions":{
+      "cnonditions1": "You are fully responsible for the accuracy of your account data and for protecting login data.",
+      "cnonditions2": "We disclaim any responsibility for any errors resulting from your misuse of the program.",
+      "cnonditions3": "You are responsible for all operations and transfers that take place in your account.",
+      "cnonditions4": "Your inappropriate and unethical use of the program and your attempt to circumvent the program makes you fully responsible and exposes you to the issue.",
+      "cnonditions5": "We are not responsible for any fraudulent operations that you are exposed to as a result of your use of counterfeit copies or other methods.",
+      "cnonditions6": "You are not entitled to use the program for illegal purposes or in violation of the systems and laws in force.",
+      "cnonditions7": "We have the right to suspend your account if you violate the agreement or by judicial order without referring to you.",
+      "cnonditions8": "All legal issues are resolved through the courts affiliated with the local authority.",
+      "cnonditions9": "We reserve the right to change or modify this agreement at any time, without the need to notify you, but to announce it in the manner we deem appropriate and your continued use of the program after making any changes or modifications to this agreement constitutes your acceptance of these changes or modifications."
+    },
+      "desc2": "This agreement explains the terms and conditions related to how you use our program, and it is legally binding between Sham Bank and the user. Please read this agreement carefully before using the program.",
+      "desc3": "We strive to provide a secure and reliable platform that allows users to send and receive cash transfers easily and conveniently. Our goal is to give users the ability to manage their money professionally and transparently.",
+      "thank": "Thank you for your trust in Sham Cash, and we look forward to providing you with exceptional financial service.",
+      "allert": "Your use of the program constitutes your acceptance of these terms and conditions, and if you do not agree to any part of this agreement, you must stop using the program immediately."
+    },
+
   "download": "download"
 }
