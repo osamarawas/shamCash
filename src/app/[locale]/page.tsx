@@ -1,7 +1,7 @@
-import FAQ from "./_components/FAQ";
 import Features from "./_components/Features";
 import Landing from "./_components/Landing";
 import About from "./_components/About";
+import FAQ from "./_components/FAQ";
 
 export default function Home() {
   return (

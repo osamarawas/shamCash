@@ -1,6 +1,7 @@
 "use client";
-import { usePathname, useRouter } from "next/navigation";
+import { usePathname } from "next/navigation";
 import { useLocale } from "next-intl";
+import { useRouter } from "@/i18n/routing";
 
 const LanguageSwitcher = () => {
   const router = useRouter();
@@ -9,7 +10,9 @@ const LanguageSwitcher = () => {
 
   const toggleLanguage = () => {
     const newLocale = locale === "ar" ? "en" : "ar";
-    router.push(`/${newLocale}${pathname.replace(/^\/(ar|en)/, "")}`);
+    const newPathUrl = `/${newLocale}${pathname.replace(/^\/(ar|en)/, "")}`;
+    console.log(newPathUrl);
+    window.location.replace(newPathUrl);
   };
 
   return (

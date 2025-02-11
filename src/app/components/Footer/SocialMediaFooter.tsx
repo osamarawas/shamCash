@@ -1,5 +1,5 @@
 "use client";
-import { useIsDark } from "@/app/utils/helper";
+import { useIsDark } from "@/app/utils/helperClient";
 import { SocialMedia as SocialMediaType } from "@/app/utils/types";
 import { useTheme } from "next-themes";
 import Image from "next/image";
