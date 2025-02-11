@@ -22,7 +22,7 @@ const ThemeBtn = () => {
       onClick={toggleTheme}
       width={19}
       height={25}
-      className="h-6 w-5 cursor-pointer "
+      className="h-6 w-5 cursor-pointer  hidden md:block"
       alt="Logo"
     />
   );
