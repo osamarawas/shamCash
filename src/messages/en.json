@@ -132,19 +132,272 @@
       },
       "category2": {
         "name": "Questions about Financial Services (Withdrawal, Deposit, Transfer)",
-        "questions": {}
+        "questions": {
+          "q1": {
+            "question": "How can I withdraw my money from ShamCash?",
+            "answer": "You can top up your ShamCash balance through the authorized exchange offices in the app or through approved banks."
+          },
+          "q2": {
+            "question": "How can I load my ShamCash balance?",
+            "answer": "You can top up your ShamCash balance from the authorized centers within the app or through banks."
+          },
+          "q3": {
+            "question": "Are there any fees charged during the transfer process?",
+            "answer": "No fees are charged during the transfer process."
+          },
+          "q4": {
+            "question": "Is receiving monthly payments only possible through the app, or can the bank card also be used?",
+            "answer": "It depends on how the payments are transferred to you. If the transfer is made to your bank account, you can use the bank card. If the transfer is made through Sham Cash, you can use Sham Cash. The Sham Cash electronic account is separate from the bank account."
+          },
+          "q5": {
+            "question": "How can I withdraw money from the app?",
+            "answer": "You can withdraw money through one of the bank branches or from the nearest authorized agent. You can find a list of authorized offices within the app."
+          },
+          "q6": {
+            "question": "How can I transfer money to another Sham Cash account?",
+            "answer": "You can transfer using the QR code of the other account or by the account address provided by the recipient."
+          },
+          "q7": {
+            "question": "How can I transfer money from my bank account to my Sham Cash account?",
+            "answer": "You cannot transfer directly. You can withdraw money from your bank account and then load your Sham Cash account."
+          },
+          "q8": {
+            "question": "Can I transfer money from my Binance wallet to my Sham Cash account?",
+            "answer": "This service is not available at the moment."
+          },
+          "q9": {
+            "question": "How can I recharge my Sham Cash account?",
+            "answer": "You can recharge your Sham Cash account through accredited centers. You can find a list of accredited offices within the app."
+          },
+          "q10": {
+            "question": "How can I withdraw or load money to and from my Sham Cash account?",
+            "answer": "Withdrawal and loading of money can only be done at accredited centers. A list of accredited centers is available within the app."
+          },
+          "q11": {
+            "question": "How can I transfer an amount to donate to non-liberated areas?",
+            "answer": "Through remittance offices in donation boxes."
+          },
+          "q12": {
+            "question": "How can I transfer an amount to someone's account if the QR code doesn't work?",
+            "answer": "To be able to transfer the amount to someone's account, make sure to grant the app permission to access the camera."
+          },
+          "q13": {
+            "question": "If I transfer a sum of money to a person's account in Damascus, how can they withdraw the amount? And can I transfer to Al-Haram Company, for example? Do the centers listed in the app accept cash withdrawals?",
+            "answer": "There is currently no external integration between ShamCash and any electronic payment application, and API integration has not been made available. If this happens in the future, it will be announced through our official channels. Stay tuned for the latest news: • Sham Cash support channel: https://t.me/ShamCash2 • Our Facebook page."
+          },
+          "q14": {
+            "question": "Can we deposit money in Cham banks inside Idlib?",
+            "answer": "To deposit or withdraw money from your Sham Cash account, you can go to the bank or the authorized exchange offices."
+          }
+        }
       },
       "category3": {
         "name": "Questions about Account Security and Money Protection",
-        "questions": {}
+        "questions": {
+          "q1": {
+            "question": "In case my phone is lost, can I recover my money before accessing the account from another phone? What security measures are in place to prevent someone else from withdrawing my money from the balance?",
+            "answer": "The account is linked to your Gmail account. You can open the account from another phone and recover the balance. You can also set a transfer code, which ensures protection from transfers and withdrawals by someone else."
+          },
+          "q2": {
+            "question": "Are transfer operations encrypted?",
+            "answer": "Yes, transfer operations are fully encrypted and do not appear to any third party."
+          },
+          "q3": {
+            "question": "How can I keep my money in the app safe from theft?",
+            "answer": "You can keep your money in the app by using only your email and password to access your account. Make sure to use a strong and unguessable password."
+          },
+          "q4": {
+            "question": "How can I ensure the security of my account if I lose the phone that contains the Sham Cash account?",
+            "answer": "To secure your account after losing the device, you can log in from your new phone, where you will be automatically logged out from the old device. It is also advisable to change your password to ensure complete protection for your account."
+          }
+        }
       },
       "category4": {
         "name": "Questions about Additional Services and Features",
-        "questions": {}
+        "questions": {
+          "q1": {
+            "question": "What services does the ShamCash app provide? Does it work in all provinces of Syria?",
+            "answer": "The app is available across Syria and offers a variety of services, including electronic payments, money transfers, and other services like paying electricity bills and higher education fees."
+          },
+          "q2": {
+            "question": "Can I receive money from the UAE through the app?",
+            "answer": "This service is currently unavailable."
+          },
+          "q3": {
+            "question": "Can I use the Syrian currency (SYP) in the app?",
+            "answer": "Currently, only US dollars are supported."
+          },
+          "q4": {
+            "question": "Can I receive money from abroad via ShamCash in Damascus?",
+            "answer": "There is currently no method to receive money from outside the country via the app."
+          },
+          "q5": {
+            "question": "Can I trade currencies through the Sham Cash app?",
+            "answer": "This service is not available at the moment."
+          },
+          "q6": {
+            "question": "Can I use my Sham Bank account through the app?",
+            "answer": "No, your Sham Cash account is separate from your bank account."
+          },
+          "q7": {
+            "question": "Are there any fees for transactions in Sham Cash?",
+            "answer": "Sham Cash services are free, and no fees are charged."
+          },
+          "q8": {
+            "question": "How can I search for an account using the account number?",
+            "answer": "You cannot search using the account number. The other person must send you their QR code."
+          },
+          "q9": {
+            "question": "Are there any fees for recharging the electricity meter?",
+            "answer": "There are no fees for recharging the electricity meter."
+          },
+          "q10": {
+            "question": "Can I recharge my Syria Phone balance through the app?",
+            "answer": "Various services, including this one, will be available soon in the app."
+          },
+          "q11": {
+            "question": "How many electricity meters can I recharge through the Sham Cash app?",
+            "answer": "You can register two meters on each Sham Cash account."
+          },
+          "q12": {
+            "question": "How can I benefit from Sham Cash services for international remittances?",
+            "answer": "International remittance services are currently not available within the Sham Cash app."
+          },
+          "q13": {
+            "question": "Can I link my Sham Cash account to my Sham Bank account?",
+            "answer": "You cannot link your Sham Cash account to your Sham Bank account at this time."
+          },
+          "q14": {
+            "question": "How long do I need to wait to change the electricity meter?",
+            "answer": "You can modify the electricity meter after 30 days."
+          },
+          "q15": {
+            "question": "How can I print my transaction history (transfers to and from my account)?",
+            "answer": "You can print any transaction from the transaction history by long-pressing the transaction you wish to print."
+          },
+          "q16": {
+            "question": "How can I set a profile picture in the app?",
+            "answer": "This feature has not been activated yet."
+          },
+          "q17": {
+            "question": "Adding the feature to pay for app subscriptions like YouTube Premium through Sham Cash will significantly contribute to the development of the app and expand its range of services. We hope this feature will be activated in the future to provide more convenience for users.",
+            "answer": "Currently, there is no connection between the Sham Cash app and any other electronic payment applications. Any future changes will be announced through our official channels: Telegram channel: https://t.me/ShamCash2 Facebook page: https://www.facebook.com/sham.cash1"
+          },
+          "q18": {
+            "question": "Can I link my bank account to my Cham Cash account?",
+            "answer": "There is no connection between bank accounts and Cham Cash accounts."
+          },
+          "q19": {
+            "question": "How can I link my Cham Cash account to my email?",
+            "answer": "If you choose to confirm later, you can log in without any issues for now. You will be prompted to enter the code later."
+          }
+        }
       },
       "category5": {
         "name": "Questions about Technical Issues and Technical Support",
-        "questions": {}
+        "questions": {
+          "q1": {
+            "question": "The verification code has not been sent.",
+            "answer": "Please enter the email you used to register so that the message can be sent to you."
+          },
+          "q2": {
+            "question": "Where can I find the security code?",
+            "answer": "This interface is dedicated to changing the password, and a verification code is sent when the account is created for the first time. If you have access to the account, you can generate a new security code."
+          },
+          "q3": {
+            "question": "I forgot my email address.",
+            "answer": "Please contact customer service and provide them with some information about your account to recover it."
+          },
+          "q4": {
+            "question": "I cannot change my account password, and I am unable to log in. I need to change the password.",
+            "answer": "Please contact customer service and provide them with the email address associated with your account."
+          },
+          "q5": {
+            "question": "I am trying to activate the app, but I haven’t received the verification code to my email.",
+            "answer": "Please contact customer service and provide them with the email address associated with your account."
+          },
+          "q6": {
+            "question": "I am using the app to receive my salary, but I get an error message in the account.",
+            "answer": "You need to be registered with an account on the app first."
+          },
+          "q7": {
+            "question": "What should I do if the app is not working and a black screen appears?",
+            "answer": "Clear the app data and then log in again."
+          },
+          "q8": {
+            "question": "How can I recover my Sham Cash account after resetting my mobile phone?",
+            "answer": "You can recover your account by logging in using your username and password from any device."
+          },
+          "q9": {
+            "question": "I didn't receive the verification code on my email when trying to activate my Sham Cash account. What should I do?",
+            "answer": "Open your Gmail app and check the 'Spam' folder for the verification code."
+          },
+          "q10": {
+            "question": "What is the solution if I get a message saying the app is not installed while downloading the app?",
+            "answer": "Try freeing up space on your phone and try downloading the app again."
+          },
+          "q11": {
+            "question": "When I try to change the account name, it shows me that the name is unavailable. What is the solution?",
+            "answer": "You can change the name to one that hasn't been used before. It is preferable to write the full name to avoid name similarities."
+          },
+          "q12": {
+            "question": "What should I do if a white screen appears when I open the app?",
+            "answer": "You can solve this problem by clearing the app data and reopening the app by going to Settings - Apps - Sham Cash - Data and Storage - Clear Data."
+          },
+          "q13": {
+            "question": "Why can't I access some names when searching in the app?",
+            "answer": "The search box only works with verified accounts, and unverified accounts cannot be found."
+          }
+        }
+      },
+      "category6": {
+        "name": "Questions about account creation and login",
+        "questions": {
+          "q1": {
+            "question": "I am trying to create a new account, but it is not accepting it.",
+            "answer": "Please enter your birth date in the correct format: year-month-day. Make sure the month and day are two digits."
+          },
+          "q2": {
+            "question": "I am facing difficulty in creating a ShamCash account; it shows a message saying the email or password is incorrect.",
+            "answer": "You need to create an account first before logging in."
+          },
+          "q3": {
+            "question": "I am trying to create an account, but I am encountering an issue with entering my birth date.",
+            "answer": "Please enter your birth date in the correct format: year-month-day. Make sure the month and day are two digits."
+          },
+          "q4": {
+            "question": "What does the account name consist of?",
+            "answer": "The account name should consist of your name, and it is preferred that it matches the name on your ID card."
+          },
+          "q5": {
+            "question": "I am trying to log in, but it shows that my password is incorrect.",
+            "answer": "Please contact customer service and provide them with the email address associated with your account."
+          },
+          "q6": {
+            "question": "Can I change the account number?",
+            "answer": "The account number is encrypted and cannot be accessed by anyone, as only the last four digits are displayed. If you insist on changing it, you must change the entire account."
+          },
+          "q7": {
+            "question": "How can I delete the account?",
+            "answer": "The account cannot be deleted directly, but you can contact us if you have any other inquiries regarding the account."
+          },
+          "q8": {
+            "question": "Can I create two accounts on the same device and the same application, especially if the other device does not support installing the application due to an old version?",
+            "answer": "The app does not support multiple accounts on the same device. You can log out of one account and log into another, or you can clone the app and use it on the same device."
+          },
+          "q9": {
+            "question": "How do I write the email?",
+            "answer": "You can use any of the accounts you have available, such as (Hotmail, Yahoo, Gmail), and write the email correctly when registering."
+          },
+          "q10": {
+            "question": "How can I change the account type from government to personal?",
+            "answer": "You can change the account type by accessing the account information and making the necessary adjustments."
+          },
+          "q11": {
+            "question": "Why does the app ask for a password when changing the account name?",
+            "answer": "The password is required to ensure the security of your account."
+          }
+        }
       }
     }
   },

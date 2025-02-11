@@ -192,6 +192,7 @@ export const faqCategories = async (): Promise<FaqCategorie[]> => {
     { id: "3", name: t("category3.name"), href: "faq/3" },
     { id: "4", name: t("category4.name"), href: "faq/4" },
     { id: "5", name: t("category5.name"), href: "faq/5" },
+    { id: "6", name: t("category6.name"), href: "faq/6" },
   ];
 };
 
@@ -269,6 +270,280 @@ export const faqWithCategories = async (): Promise<faqsWithCategorie[]> => {
         {
           question: t("category1.questions.q17.question"),
           answer: t("category1.questions.q17.answer"),
+        },
+      ],
+    },
+    {
+      categoryName: t("category2.name"),
+      categoryId: "2",
+      questions: [
+        {
+          question: t("category2.questions.q1.question"),
+          answer: t("category2.questions.q1.answer"),
+        },
+        {
+          question: t("category2.questions.q2.question"),
+          answer: t("category2.questions.q2.answer"),
+        },
+        {
+          question: t("category2.questions.q3.question"),
+          answer: t("category2.questions.q3.answer"),
+        },
+        {
+          question: t("category2.questions.q4.question"),
+          answer: t("category2.questions.q4.answer"),
+        },
+        {
+          question: t("category2.questions.q5.question"),
+          answer: t("category2.questions.q5.answer"),
+        },
+        {
+          question: t("category2.questions.q6.question"),
+          answer: t("category2.questions.q6.answer"),
+        },
+        {
+          question: t("category2.questions.q7.question"),
+          answer: t("category2.questions.q7.answer"),
+        },
+        {
+          question: t("category2.questions.q8.question"),
+          answer: t("category2.questions.q8.answer"),
+        },
+        {
+          question: t("category2.questions.q9.question"),
+          answer: t("category2.questions.q9.answer"),
+        },
+        {
+          question: t("category2.questions.q10.question"),
+          answer: t("category2.questions.q10.answer"),
+        },
+        {
+          question: t("category2.questions.q11.question"),
+          answer: t("category2.questions.q11.answer"),
+        },
+        {
+          question: t("category2.questions.q12.question"),
+          answer: t("category2.questions.q12.answer"),
+        },
+        {
+          question: t("category2.questions.q13.question"),
+          answer: t("category2.questions.q13.answer"),
+        },
+        {
+          question: t("category2.questions.q14.question"),
+          answer: t("category2.questions.q14.answer"),
+        },
+      ],
+    },
+    {
+      categoryName: t("category3.name"),
+      categoryId: "3",
+      questions: [
+        {
+          question: t("category3.questions.q1.question"),
+          answer: t("category3.questions.q1.answer"),
+        },
+        {
+          question: t("category3.questions.q2.question"),
+          answer: t("category3.questions.q2.answer"),
+        },
+        {
+          question: t("category3.questions.q3.question"),
+          answer: t("category3.questions.q3.answer"),
+        },
+        {
+          question: t("category3.questions.q4.question"),
+          answer: t("category3.questions.q4.answer"),
+        },
+      ],
+    },
+    {
+      categoryName: t("category4.name"),
+      categoryId: "4",
+      questions: [
+        {
+          question: t("category4.questions.q1.question"),
+          answer: t("category4.questions.q1.answer"),
+        },
+        {
+          question: t("category4.questions.q2.question"),
+          answer: t("category4.questions.q2.answer"),
+        },
+        {
+          question: t("category4.questions.q3.question"),
+          answer: t("category4.questions.q3.answer"),
+        },
+        {
+          question: t("category4.questions.q4.question"),
+          answer: t("category4.questions.q4.answer"),
+        },
+        {
+          question: t("category4.questions.q5.question"),
+          answer: t("category4.questions.q5.answer"),
+        },
+        {
+          question: t("category4.questions.q6.question"),
+          answer: t("category4.questions.q6.answer"),
+        },
+        {
+          question: t("category4.questions.q7.question"),
+          answer: t("category4.questions.q7.answer"),
+        },
+        {
+          question: t("category4.questions.q8.question"),
+          answer: t("category4.questions.q8.answer"),
+        },
+        {
+          question: t("category4.questions.q9.question"),
+          answer: t("category4.questions.q9.answer"),
+        },
+        {
+          question: t("category4.questions.q10.question"),
+          answer: t("category4.questions.q10.answer"),
+        },
+        {
+          question: t("category4.questions.q11.question"),
+          answer: t("category4.questions.q11.answer"),
+        },
+        {
+          question: t("category4.questions.q12.question"),
+          answer: t("category4.questions.q12.answer"),
+        },
+        {
+          question: t("category4.questions.q13.question"),
+          answer: t("category4.questions.q13.answer"),
+        },
+        {
+          question: t("category4.questions.q14.question"),
+          answer: t("category4.questions.q14.answer"),
+        },
+        {
+          question: t("category4.questions.q15.question"),
+          answer: t("category4.questions.q15.answer"),
+        },
+        {
+          question: t("category4.questions.q16.question"),
+          answer: t("category4.questions.q16.answer"),
+        },
+        {
+          question: t("category4.questions.q17.question"),
+          answer: t("category4.questions.q17.answer"),
+        },
+        {
+          question: t("category4.questions.q18.question"),
+          answer: t("category4.questions.q18.answer"),
+        },
+        {
+          question: t("category4.questions.q19.question"),
+          answer: t("category4.questions.q19.answer"),
+        },
+      ],
+    },
+    {
+      categoryName: t("category5.name"),
+      categoryId: "5",
+      questions: [
+        {
+          question: t("category5.questions.q1.question"),
+          answer: t("category5.questions.q1.answer"),
+        },
+        {
+          question: t("category5.questions.q2.question"),
+          answer: t("category5.questions.q2.answer"),
+        },
+        {
+          question: t("category5.questions.q3.question"),
+          answer: t("category5.questions.q3.answer"),
+        },
+        {
+          question: t("category5.questions.q4.question"),
+          answer: t("category5.questions.q4.answer"),
+        },
+        {
+          question: t("category5.questions.q5.question"),
+          answer: t("category5.questions.q5.answer"),
+        },
+        {
+          question: t("category5.questions.q6.question"),
+          answer: t("category5.questions.q6.answer"),
+        },
+        {
+          question: t("category5.questions.q7.question"),
+          answer: t("category5.questions.q7.answer"),
+        },
+        {
+          question: t("category5.questions.q8.question"),
+          answer: t("category5.questions.q8.answer"),
+        },
+        {
+          question: t("category5.questions.q9.question"),
+          answer: t("category5.questions.q9.answer"),
+        },
+        {
+          question: t("category5.questions.q10.question"),
+          answer: t("category5.questions.q10.answer"),
+        },
+        {
+          question: t("category5.questions.q11.question"),
+          answer: t("category5.questions.q11.answer"),
+        },
+        {
+          question: t("category5.questions.q12.question"),
+          answer: t("category5.questions.q12.answer"),
+        },
+        {
+          question: t("category5.questions.q13.question"),
+          answer: t("category5.questions.q13.answer"),
+        },
+      ],
+    },
+    {
+      categoryName: t("category6.name"),
+      categoryId: "6",
+      questions: [
+        {
+          question: "t('category6.questions.q1.question')",
+          answer: "t('category6.questions.q1.answer')",
+        },
+        {
+          question: "t('category6.questions.q2.question')",
+          answer: "t('category6.questions.q2.answer')",
+        },
+        {
+          question: "t('category6.questions.q3.question')",
+          answer: "t('category6.questions.q3.answer')",
+        },
+        {
+          question: "t('category6.questions.q4.question')",
+          answer: "t('category6.questions.q4.answer')",
+        },
+        {
+          question: "t('category6.questions.q5.question')",
+          answer: "t('category6.questions.q5.answer')",
+        },
+        {
+          question: "t('category6.questions.q6.question')",
+          answer: "t('category6.questions.q6.answer')",
+        },
+        {
+          question: "t('category6.questions.q7.question')",
+          answer: "t('category6.questions.q7.answer')",
+        },
+        {
+          question: "t('category6.questions.q8.question')",
+          answer: "t('category6.questions.q8.answer')",
+        },
+        {
+          question: "t('category6.questions.q9.question')",
+          answer: "t('category6.questions.q9.answer')",
+        },
+        {
+          question: "t('category6.questions.q10.question')",
+          answer: "t('category6.questions.q10.answer')",
+        },
+        {
+          question: "t('category6.questions.q11.question')",
+          answer: "t('category6.questions.q11.answer')",
         },
       ],
     },
