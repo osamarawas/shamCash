@@ -4,7 +4,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { fAnswerQuestion } from "../utils/siteData";
+import { fAnswerQuestion } from "../../utils/siteData";
 const FAQ = () => {
   return (
     <div
@@ -14,7 +14,8 @@ const FAQ = () => {
       <h3 className="text-primary font-bold text-2xl underLine relative ">
         الأسئلة الشائعة
       </h3>
-      <p className="w-[68%] text-center  text-xl text-muted leading-9 mt-10 font-medium">
+      <p className="w-[68%] text-center  text-xl text-muted leading-9 mt-10 font-medium"
+       data-aos="fade-up" data-aos-duration="800">
         نقدم لك إجابات على الأسئلة الأكثر شيوعًا التي قد تكون لديك حول استخدام
         التطبيق. هدفنا هو تزويدك بكل المعلومات التي تحتاجها لتجربة سلسة ومريحة.
         إذا كنت تواجه أي استفسار أو مشكلة لم يتم تناولها هنا، لا تتردد في
@@ -22,7 +23,10 @@ const FAQ = () => {
       </p>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10  w-4/5 ">
         {fAnswerQuestion.map((faq) => (
-          <div key={faq.id}>
+          <div key={faq.id}
+          data-aos="fade-up"
+          data-aos-duration="800">
+            
             <Accordion type="single" collapsible>
               <AccordionItem value="item-1">
                 <AccordionTrigger>{faq.question}</AccordionTrigger>

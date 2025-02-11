@@ -1,0 +1,86 @@
+{
+  "landing": {
+    "appName": "Sham Cash app",
+    "appAvalable": " is now available",
+    "downloadApp": "Download the app and enjoy our services",
+    "platformGoal": "We strive to provide a reliable and secure platform that enables users to carry out financial transactions easily and flexibly. Our goal is to empower individuals to manage their financial affairs efficiently and transparently."
+  },
+  "about": {
+    "title": "About",
+    "description": "Our application is the ultimate solution for managing your financial transactions easily and securely. It allows you to send and receive money quickly and seamlessly, with a simple user interface and a comfortable experience. We strive to provide innovative financial services that ensure transparency and reliability, giving you full control over your money anytime, anywhere.",
+    "sections": {
+      "support": {
+        "title": "Support",
+        "description": "Our support team is available 24/7 to answer your inquiries and resolve any issues you may encounter, ensuring a smooth and hassle-free experience."
+      },
+      "security": {
+        "title": "Security",
+        "description": "Our application is designed with the highest security standards to protect your data and financial transactions, ensuring a reliable and secure experience at every step."
+      },
+      "speed": {
+        "title": "Speed",
+        "description": "Our application offers high-speed transaction processing, providing you with an instant and seamless experience that meets your needs anytime."
+      }
+    }
+  },
+  "features":{
+    "title":"Features",
+    "desc":"Our application offers a set of features designed to meet your needs professionally Including speed in implementing operations ease of use and the highest levels Security, services and no hidden fees. Our goal is to provide a convenient and transparent financial experience Fits your daily lifestyle.",
+    "sections":{
+      "services":{
+        "title":"services",
+        "description":"We offer a variety of services that meet your daily needs and save you time and effort"
+      },
+      "convert":{
+        "title":"Ease of switching between users",
+        "description":"Send and receive money easily and seamlessly between app users."
+      },
+      "flash":{
+        "title":"Fast Transactions",
+        "description":"Execute your financial operations with exceptional speed and without delays."
+      },
+      "user":{
+        "title":"Ease of Use",
+        "description":"A simple and intuitive app interface makes conducting transactions hassle-free."
+      },
+      "shield":{
+        "title":"Funds Security",
+        "description":"We ensure complete protection for your funds and transactions using the latest security technologies."
+      },
+      "paper":{
+        "title":"No Fees",
+        "description":"Enjoy our financial services with no hidden fees, keeping all your transactions clear and transparent"
+      }
+    }
+  },
+  "navlinks": {
+    "home": "Home",
+    "terms": "Terms and Conditions",
+    "contact-us": "Contact us"
+  },
+  "footer": {
+    "title": "Contact us",
+    "description": "If you have any questions, comments, or encounter any problems, please feel free to contact us. Our support team is always here to provide assistance and ensure a smooth user experience."
+  },
+  "terms":{
+    "title":"Terms and Conditions",
+    "desc":"Welcome to Sham Cash service, we are proud to offer you the electronic payment service, by using this program, you agree to comply with the following terms and conditions:",
+    "cnonditions":{
+      "cnonditions1": "You are fully responsible for the accuracy of your account data and for protecting login data.",
+      "cnonditions2": "We disclaim any responsibility for any errors resulting from your misuse of the program.",
+      "cnonditions3": "You are responsible for all operations and transfers that take place in your account.",
+      "cnonditions4": "Your inappropriate and unethical use of the program and your attempt to circumvent the program makes you fully responsible and exposes you to the issue.",
+      "cnonditions5": "We are not responsible for any fraudulent operations that you are exposed to as a result of your use of counterfeit copies or other methods.",
+      "cnonditions6": "You are not entitled to use the program for illegal purposes or in violation of the systems and laws in force.",
+      "cnonditions7": "We have the right to suspend your account if you violate the agreement or by judicial order without referring to you.",
+      "cnonditions8": "All legal issues are resolved through the courts affiliated with the local authority.",
+      "cnonditions9": "We reserve the right to change or modify this agreement at any time, without the need to notify you, but to announce it in the manner we deem appropriate and your continued use of the program after making any changes or modifications to this agreement constitutes your acceptance of these changes or modifications."
+    },
+      "desc2": "This agreement explains the terms and conditions related to how you use our program, and it is legally binding between Sham Bank and the user. Please read this agreement carefully before using the program.",
+      "desc3": "We strive to provide a secure and reliable platform that allows users to send and receive cash transfers easily and conveniently. Our goal is to give users the ability to manage their money professionally and transparently.",
+      "thank": "Thank you for your trust in Sham Cash, and we look forward to providing you with exceptional financial service.",
+      "allert": "Your use of the program constitutes your acceptance of these terms and conditions, and if you do not agree to any part of this agreement, you must stop using the program immediately."
+    },
+
+  "download": "download"
+}

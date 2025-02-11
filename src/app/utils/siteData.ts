@@ -23,44 +23,27 @@ import {
   AboutCards,
   FAnswerQuestions,
   FeaturesCards as FeaturesCardsType,
-  NavLinks,
   socialMedias,
   terms as termsType,
 } from "./types";
+import { getTranslations } from "next-intl/server";
 
-export const navLinks: NavLinks = [
-  { id: crypto.randomUUID(), title: "الصفحة الرئيسية", Path: "/" },
-  { id: crypto.randomUUID(), title: "الأحكام والشروط", Path: "/terms" },
-  { id: crypto.randomUUID(), title: "تواصل معنا", Path: "#footer" },
-  // { id: crypto.randomUUID(), title: "ادخال", Path: "/form" },
-  
-];
 
-export const terms: termsType = [
-  { li: "تتحمل كامل المسؤولية عن صحة بيانات حسابك وعن حماية بيانات الدخول." },
-  { li: "نخلي مسؤوليتنا عن أي أخطاء نتيجة سوء استخدامك للبرنامج." },
-  {
-    li: "تعتبر مسؤول مسؤولية تامة عن كافة العمليات و التحويلات التي تتم في حسابك.",
-  },
-  {
-    li: "استخدامك البرنامج بشكل غير لائق وغير أخلاقي و محاولتك التحايل والإلتفاف على البرنامج يحملك كامل المسؤولية ويعرضك للمسألة.",
-  },
-  {
-    li: "نحن غير مسؤولين عن أي عمليات احتيال تتعرض لها نتيجة استخدامك النسخ المزورة أو بالطرق الأخرى.",
-  },
-  {
-    li: "لا يحق لك استخدام البرنامج في الأغراض الغير شرعية او المخالفة للأنظمة والقوانين المعمول بها.",
-  },
-  {
-    li: "يحق لنا ايقاف حسابك في حال مخالفتك للاتفاقية أو بموجب امر قضائي دون الرجوع إليك.",
-  },
-  {
-    li: "يتم حل كافة المسائل القضائية من خلال المحاكم التابعة للسلطة المحلية.",
-  },
-  {
-    li: "نحن نحتفظ بالحق في تغيير أو تعديل هذه الاتفاقية في أي وقت, دون ضرورة إبلاغك وإنما الإعلان عن ذلك بالطريقة التي نراها مناسبة ويعتبر استمرارك في استخدام البرنامج بعد إجراء أي تغييرات أو تعديلات على هذه الاتفاقية قبولاً منك لهذه التغييرات أو التعديلات.",
-  },
+
+export const term = async ():Promise<termsType> => {
+  const t = await getTranslations("terms.cnonditions");
+  return [
+  { li: t("cnonditions1") },
+  { li: t("cnonditions2") },
+  { li: t("cnonditions3") },
+  { li: t("cnonditions4") },
+  { li: t("cnonditions5") },
+  { li: t("cnonditions6") },
+  { li: t("cnonditions7") },
+  { li: t("cnonditions8") },
+  { li: t("cnonditions9") },
 ];
+}
 
 export const fAnswerQuestion: FAnswerQuestions = [
   {
@@ -86,26 +69,28 @@ export const fAnswerQuestion: FAnswerQuestions = [
       "قريباً بإذن الله سيتم تفعيل عدد من الخدمات ومنها الاتصالات والكهرباء والتسويق الإلكتروني",
   },
 ];
-export const aboutCards: AboutCards = [
-  {
-    image: headphones.src,
-    title: "الدعم",
-    description:
-      "فريق الدعم الخاص بنا متواجد على مدار الساعة للرد على استفساراتك وحل أي مشاكل قد تواجهها، لضمان تجربة استخدام سلسة وخالية من العقبات.",
-  },
-  {
-    image: shield.src,
-    title: "الأمان",
-    description:
-      "تطبيقنا مصمم بأعلى معايير الأمان لحماية بياناتك ومعاملاتك المالية، مما يضمن لك تجربة موثوقة وآمنة في كل خطوة.",
-  },
-  {
-    image: flash.src,
-    title: "السرعة",
-    description:
-      "تطبيقنا يتميز بالسرعة العالية لتنفيذ العمليات، مما يضمن تجربة فورية وسلسة تلبي احتياجاتك في أي وقت.",
-  },
-];
+
+export const aboutCards = async (): Promise<AboutCards> => {
+  const t = await getTranslations("about.sections");
+  return [
+    {
+      image: headphones.src,
+      title: t("support.title"),
+      description: t("support.description"),
+    },
+    {
+      image: shield.src,
+      title: t("security.title"),
+      description: t("security.description"),
+    },
+    {
+      image: flash.src,
+      title: t("speed.title"),
+      description: t("speed.description"),
+    },
+  ];
+};
+
 export const socialMedia: socialMedias = [
   {
     id: crypto.randomUUID(),
@@ -140,39 +125,38 @@ export const socialMedia: socialMedias = [
     imgLightHover: telegramHover.src,
   },
 ];
-export const featuresCards: FeaturesCardsType = [
-  {
-    image: services.src,
-    title: "الخدمات",
-    description:
-      "نوفر مجموعة من الخدمات المتنوعة التي تلبي احتياجاتك اليومية وتوفر عليك الوقت والجهد.",
-  },
-  {
-    image: convert.src,
-    title: "سهولة التحويل بين المستخدمين",
-    description: "أرسل واستقبل الأموال بسهولة وسلاسة بين مستخدمي التطبيق.",
-  },
-  {
-    image: flash.src,
-    title: "سرعة العمليات",
-    description: "نفّذ معاملاتك المالية بسرعة فائقة دون أي تأخير.",
-  },
-  {
-    image: user.src,
-    title: "سهولة الاستخدام",
-    description:
-      "واجهة تطبيق بسيطة ومباشرة تسهل عليك إجراء العمليات دون تعقيد.",
-  },
-  {
-    image: shield.src,
-    title: "أمان الأموال",
-    description:
-      "نضمن حماية كاملة لأموالك ومعاملاتك باستخدام أحدث تقنيات الأمان.",
-  },
-  {
-    image: paper.src,
-    title: "بدون رسوم",
-    description:
-      "استمتع بخدماتنا المالية بدون أي رسوم خفية، لتبقى كل معاملتك واضحة وشفافة.",
-  },
-];
+export const featuresCards = async () : Promise<FeaturesCardsType>=>{
+  const t = await getTranslations("features.sections");
+  return [
+    {
+      image: services.src,
+      title: t("services.title"),
+      description:t("services.description")    
+    },
+    {
+      image: convert.src,
+      title: t("convert.title"),
+      description:t("convert.description")  
+    },
+    {
+      image: flash.src,
+      title: t("flash.title"),
+      description:t("flash.description")  
+    },
+    {
+      image: user.src,
+      title: t("user.title"),
+      description:t("user.description")  
+    },
+    {
+      image: shield.src,
+      title: t("shield.title"),
+      description:t("shield.description")  
+    },
+    {
+      image: paper.src,
+      title: t("paper.title"),
+      description:t("paper.description")  
+    },
+  ];
+} 

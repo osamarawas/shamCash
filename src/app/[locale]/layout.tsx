@@ -1,7 +1,15 @@
 import type { Metadata } from "next";
 import { Noto_Kufi_Arabic } from "next/font/google";
-import "./globals.css";
-import { ThemeProvider } from "./components/theme-provider";
+import "../globals.css";
+import { NextIntlClientProvider } from "next-intl";
+import NavBar from "../components/header/NavBar";
+import { ThemeProvider } from "../components/theme-provider";
+import Footer from "../components/Footer/Footer";
+import AosInitializer from "../components/Aos"; // استيراد مكون AOS
+import { routing } from "@/i18n/routing";
+import { notFound } from "next/navigation";
+import { getMessages } from "next-intl/server";
+import { Languages } from "../utils/enums";
 
 const notoKufi = Noto_Kufi_Arabic({
   subsets: ["arabic"],
@@ -20,14 +28,21 @@ export const metadata: Metadata = {
   },
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
-}: Readonly<{
+  params: { locale },
+}: {
   children: React.ReactNode;
-}>) {
+  params: { locale: Languages };
+}) {
+  if (!routing.locales.includes(locale as Languages)) {
+    notFound();
+  }
+  const messages = await getMessages({ locale });
   return (
-    <html lang="ar" suppressHydrationWarning>
+    <html lang={locale} suppressHydrationWarning>
       <body className={`${notoKufi.className} antialiased`}>
+        <AosInitializer />
         <ThemeProvider
           attribute="class"
           defaultTheme="system"
@@ -35,7 +50,11 @@ export default function RootLayout({
           disableTransitionOnChange
           themes={["light", "dark"]}
         >
-          {children}
+          <NextIntlClientProvider messages={messages}>
+            <NavBar />
+            {children}
+            <Footer />
+          </NextIntlClientProvider>
         </ThemeProvider>
       </body>
     </html>

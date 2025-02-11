@@ -1,15 +1,11 @@
-"use client";
 import Image from "next/image";
 import React from "react";
 import Logo from "@/assets/icon/logo.svg";
-import Link from "next/link";
-import { navLinks } from "@/app/utils/siteData";
-import { usePathname } from "next/navigation";
+import { Link } from "@/i18n/routing";
 import ThemeBtn from "./ThemeBtn";
+import LanguageSwitcher from "./LanguageSwitcher";
+import NavLinks from "./NavLinks";
 const NavBar = () => {
-  const pathName = usePathname();
-  const isActive = (path: string) => pathName === path;
-  const activeStyle = " text-primary font-semibold ";
 
   return (
     <div className=" flex justify-between items-center shadow h-28 px-12 font-se">
@@ -24,19 +20,9 @@ const NavBar = () => {
           />
         </Link>
       </div>
-      <div className="md:flex items-center gap-8 hidden ">
-        {navLinks.map((link) => (
-          <Link
-            href={link.Path}
-            className={`${isActive(link.Path) ? activeStyle : ""}} text-lg`}
-            key={link.id}
-          >
-            {link.title}
-          </Link>
-        ))}
-      </div>
+        <NavLinks />
       <div className="flex gap-4 items-center">
-        <span className="cursor-pointer">العربية</span>
+        <LanguageSwitcher />
         <ThemeBtn />
       </div>
     </div>
