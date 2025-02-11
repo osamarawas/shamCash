@@ -1,38 +1,32 @@
 "use client";
-import React from 'react'
+import React from "react";
 import { Link } from "@/i18n/routing";
 import { usePathname } from "next/navigation";
-import { useTranslations } from 'next-intl';
-const navLinks = async () => {
-    const t = await useTranslations();
-    return [
-      { id: crypto.randomUUID(), title: t("navlinks.home"), Path: "/" },
-      { id: crypto.randomUUID(), title: t("navlinks.terms"), Path: "/terms" },
-      { id: crypto.randomUUID(), title: t("navlinks.contact-us"), Path: "#footer" },
-    // { id: crypto.randomUUID(), title: "ادخال", Path: "/form" },
-    ];
-  };
+import { useTranslations } from "next-intl";
 
+const NavLinks = () => {
+  const t = useTranslations();
+  const pathName = usePathname();
 
-
-const NavLinks =async () => {
-    const pathName = usePathname();
-    const isActive = (path: string) => pathName === path;
-    const activeStyle = "text-primary font-semibold ";
-    const aNav=await navLinks();
+  const navItems = [
+    { id: "home", title: t("navlinks.home"), Path: "/" },
+    { id: "terms", title: t("navlinks.terms"), Path: "/terms" },
+    { id: "contact", title: t("navlinks.contact-us"), Path: "#footer" },
+  ];
 
   return (
-    <div className="md:flex items-center gap-8 hidden ">
-    {aNav.map((link) => (
-      <Link
-        href={link.Path}
-        className={`${isActive(link.Path) ? activeStyle : ""}} text-lg`}
-        key={link.id}
-      >
-        {link.title}
-      </Link>
-    ))}
-  </div>  )
-}
+    <div className=" items-center gap-4 space-x-4 md:flex hidden">
+      {navItems.map((link) => (
+        <Link
+          href={link.Path}
+          key={link.id}
+          className={`text-lg ${pathName === link.Path ? "text-primary font-semibold" : ""}`}
+        >
+          {link.title}
+        </Link>
+      ))}
+    </div>
+  );
+};
 
-export default NavLinks
+export default NavLinks;

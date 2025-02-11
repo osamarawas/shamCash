@@ -15,7 +15,7 @@ const LanguageSwitcher = () => {
   return (
     <button
       onClick={toggleLanguage}
-      className="cursor-pointer hover:text-primary"
+      className="cursor-pointer hover:text-primary hidden md:block"
     >
       {locale === "ar" ? "English" : "العربية"}
     </button>
