@@ -30,6 +30,7 @@ const SocialMediaFooter = ({ socialMedia }: SocialMediaFooterprops) => {
   useEffect(() => {
     setSocialIcon(getSocialIcon);
     setSocialIconHover(getSocialIconHover);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [theme]);
 
   return (

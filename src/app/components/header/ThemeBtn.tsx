@@ -12,6 +12,7 @@ const ThemeBtn = () => {
   const isDark = useIsDark();
   useEffect(() => {
     setThemeIcon(isDark ? sun : moon);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [theme]);
 
   const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
@@ -22,7 +23,7 @@ const ThemeBtn = () => {
       onClick={toggleTheme}
       width={19}
       height={25}
-      className="h-6 w-5 cursor-pointer  hidden md:block"
+      className="h-6 w-5 cursor-pointer   md:block"
       alt="Logo"
     />
   );

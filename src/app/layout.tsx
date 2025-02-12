@@ -1,18 +1,7 @@
 import type { Metadata } from "next";
-import { Montserrat, Noto_Kufi_Arabic } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./components/theme-provider";
 
-const notoKufi = Noto_Kufi_Arabic({
-  subsets: ["arabic"],
-  weight: ["400", "500", "600", "700", "800"],
-});
-
-const montserrat = Montserrat({
-  subsets: ["latin"],
-  weight: ["400", "500", "600", "700", "800"],
-  variable: "--font-english",
-});
 export const metadata: Metadata = {
   title: "تطبيق شام كاش",
   description:
