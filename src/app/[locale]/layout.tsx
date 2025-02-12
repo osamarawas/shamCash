@@ -10,6 +10,7 @@ import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import { getMessages } from "next-intl/server";
 import { Languages } from "../utils/enums";
+import ThemeLoader from "./ThemeLoader";
 
 const notoKufi = Noto_Kufi_Arabic({
   subsets: ["arabic"],
@@ -30,11 +31,12 @@ export const metadata: Metadata = {
 
 export default async function RootLayout({
   children,
-  params: { locale },
+  params,
 }: {
   children: React.ReactNode;
   params: { locale: Languages };
 }) {
+  const { locale } = await params;
   if (!routing.locales.includes(locale as Languages)) {
     notFound();
   }
@@ -42,20 +44,21 @@ export default async function RootLayout({
   return (
     <html lang={locale} suppressHydrationWarning>
       <body className={`${notoKufi.className} antialiased`}>
-        <AosInitializer />
-        <ThemeProvider
-          attribute="class"
-          defaultTheme="system"
-          enableSystem
-          disableTransitionOnChange
-          themes={["light", "dark"]}
-        >
-          <NextIntlClientProvider messages={messages}>
+        <NextIntlClientProvider messages={messages}>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+            themes={["light", "dark"]}
+          >
+            <AosInitializer />
+
             <NavBar />
             {children}
             <Footer />
-          </NextIntlClientProvider>
-        </ThemeProvider>
+          </ThemeProvider>
+        </NextIntlClientProvider>
       </body>
     </html>
   );

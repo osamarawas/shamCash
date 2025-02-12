@@ -3,7 +3,7 @@ import { useTheme } from "next-themes";
 import Image from "next/image";
 import sun from "@/assets/icon/sun.svg";
 import moon from "@/assets/icon/moon.svg";
-import { useIsDark } from "@/app/utils/helper";
+import { useIsDark } from "@/app/utils/helperClient";
 import { useEffect, useState } from "react";
 const ThemeBtn = () => {
   const { theme, setTheme } = useTheme();
