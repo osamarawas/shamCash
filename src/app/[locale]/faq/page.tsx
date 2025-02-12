@@ -7,7 +7,7 @@ const FaqPage = async () => {
   const faqCategoriesArray = await faqCategories();
 
   return (
-    <div className="flex items-center justify-center container flex-col gap-5 mx-auto  my-8 lg:my-14 ">
+    <div className="flex items-center justify-center container flex-col gap-5 mx-auto  my-8 lg:my-14 w-4/5">
       <h2 className="text-primary text-center text-3xl font-bold mb-14 underLine relative mx-auto  ">
         {t("title")}
       </h2>

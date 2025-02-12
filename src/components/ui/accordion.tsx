@@ -20,17 +20,18 @@ const AccordionTrigger = React.forwardRef<
   React.ElementRef<typeof AccordionPrimitive.Trigger>,
   React.ComponentPropsWithoutRef<typeof AccordionPrimitive.Trigger>
 >(({ className, children, ...props }, ref) => (
-  <AccordionPrimitive.Header className="flex">
+  <AccordionPrimitive.Header className="flex ">
     <AccordionPrimitive.Trigger
       ref={ref}
+      //    use this for edit arrow width lg:w-auto
       className={cn(
-        "flex  items-center justify-between gap-6 py-4 text-lg w-full lg:w-auto   font-medium transition-all  [&[data-state=open]>svg]:rotate-180 text-triger",
+        "flex  flex-row-reverse items-center justify-end gap-4 py-4 text-lg w-full  font-medium transition-all  [&[data-state=open]>svg]:rotate-180 text-triger ",
         className
       )}
       {...props}
     >
       {children}
-      <ChevronDown className="h-4 w-4  shrink-0 text-muted-foreground transition-transform duration-200" />
+      <ChevronDown className="h-4 w-4  shrink-0 text-muted-foreground transition-transform duration-200 " />
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>
 ));
@@ -42,7 +43,7 @@ const AccordionContent = React.forwardRef<
 >(({ className, children, ...props }, ref) => (
   <AccordionPrimitive.Content
     ref={ref}
-    className="overflow-hidden  text-lg data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down text-content"
+    className="overflow-hidden px-8  text-lg data-[state=closed]:animate-accordion-up data-[state=open]:animate-accordion-down text-content"
     {...props}
   >
     <div className={cn("pb-4 pt-0", className)}>{children}</div>

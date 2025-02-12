@@ -6,12 +6,17 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 :root {
   --nav-height: 112px;
+  --font-arabic: "Noto Kufi Arabic", sans-serif;
+  --font-english: "Montserrat", sans-serif;
+}
+
+body {
+  font-family: var(--font-english);
+}
+body[lang="ar"] {
+  font-family: var(--font-arabic);
 }
 
 @layer base {

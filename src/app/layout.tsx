@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Noto_Kufi_Arabic } from "next/font/google";
+import { Montserrat, Noto_Kufi_Arabic } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "./components/theme-provider";
 
@@ -8,6 +8,11 @@ const notoKufi = Noto_Kufi_Arabic({
   weight: ["400", "500", "600", "700", "800"],
 });
 
+const montserrat = Montserrat({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700", "800"],
+  variable: "--font-english",
+});
 export const metadata: Metadata = {
   title: "تطبيق شام كاش",
   description:
@@ -26,8 +31,8 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ar" suppressHydrationWarning>
-      <body className={`${notoKufi.className} antialiased`}>
+    <html suppressHydrationWarning>
+      <body className={` antialiased`}>
         <ThemeProvider
           attribute="class"
           defaultTheme="system"

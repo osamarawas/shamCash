@@ -4,7 +4,6 @@ import Image from "next/image";
 import TermsCard from "./termsCards";
 import { getTranslations } from "next-intl/server";
 
-
 const Terms = async () => {
   const t = await getTranslations("");
 
@@ -17,9 +16,9 @@ const Terms = async () => {
         dir="auto"
         className="mx-auto text-center text-lg font-semibold max-w-lg"
       >
-             {t("terms.desc")}
+        {t("terms.desc")}
       </p>
-      <TermsCard term={Terms}/>
+      <TermsCard term={Terms} />
       <div
         dir="auto"
         className="flex border-solid border-2 border-red-700 rounded-lg p-6 w-3/4 mx-auto mt-14"
@@ -31,9 +30,7 @@ const Terms = async () => {
           width={64}
           height={64}
         />
-        <p className="text-lg mx-14">
-          {t("terms.allert")}
-        </p>
+        <p className="text-lg mx-14">{t("terms.allert")}</p>
       </div>
     </div>
   );
