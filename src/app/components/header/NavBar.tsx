@@ -11,7 +11,7 @@ export default async function NavBar({ locale }: { locale: string }) {
   unstable_setRequestLocale(locale); // ضبط اللغة للترجمة
 
   return (
-    <div className="flex justify-between items-center shadow h-28 px-12 font-se">
+    <div className="flex justify-between items-center shadow h-24 px-12 ">
       <div>
         <Link href="/">
           <Image
