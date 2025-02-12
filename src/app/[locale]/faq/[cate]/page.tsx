@@ -10,12 +10,13 @@ import {
 import PathCete from "./PathCete";
 
 interface FaqPageProps {
-  params: { cate: string; locale: Languages };
+  params: Promise<{ cate: string; locale: Languages }>;
 }
 
 const FaqPage = async ({ params }: FaqPageProps) => {
-  const { locale } = await params;
-  const categoryId = params.cate;
+  const resolvedParams = await params;
+  const { locale } = resolvedParams;
+  const categoryId = resolvedParams.cate;
   const faqWithCategorieArray = await faqWithCategories();
   const faqWithCategorie = faqWithCategorieArray.find(
     (category) => category.categoryId === categoryId

@@ -24,7 +24,7 @@ export default async function NavBar({ locale }: { locale: string }) {
         </Link>
       </div>
       {/* تمرير locale إلى NavLinks لأنه Server Component */}
-      <NavLinks locale={locale} />
+      <NavLinks />
       <div className="flex gap-4 items-center">
         <LanguageSwitcher /> {/* Client Component */}
         <ThemeBtn /> {/* Client Component */}

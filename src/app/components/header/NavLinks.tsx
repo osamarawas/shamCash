@@ -3,18 +3,6 @@ import React from "react";
 import { Link } from "@/i18n/routing";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
-const navLinks = () => {
-  return [
-    { id: crypto.randomUUID(), title: t("navlinks.home"), Path: "/" },
-    { id: crypto.randomUUID(), title: t("navlinks.terms"), Path: "/terms" },
-    {
-      id: crypto.randomUUID(),
-      title: t("navlinks.contact-us"),
-      Path: "#footer",
-    },
-    // { id: crypto.randomUUID(), title: "ادخال", Path: "/form" },
-  ];
-};
 
 const NavLinks = () => {
   const t = useTranslations();

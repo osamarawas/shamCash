@@ -18,7 +18,7 @@ const Terms = async () => {
       >
         {t("terms.desc")}
       </p>
-      <TermsCard term={Terms} />
+      <TermsCard />
       <div
         dir="auto"
         className="flex border-solid border-2 border-red-700 rounded-lg p-6 w-3/4 mx-auto mt-14"
