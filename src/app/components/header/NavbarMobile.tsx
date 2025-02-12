@@ -28,12 +28,11 @@ const NavbarMobile = () => {
         onClick={toggleNavbar}
         className="text-3xl md:hidden cursor-pointer mx-2 inline-flex items-center justify-center rounded-md"
       >
-
         {isOpen ? (
-             <X className="h-8 w-8" />):
-             <AlignJustify className="h-8 w-8" />
-        }
-        
+          <X className="h-8 w-8" />
+        ) : (
+          <AlignJustify className="h-8 w-8" />
+        )}
       </button>
 
       {/* القائمة الجانبية */}
@@ -43,7 +42,9 @@ const NavbarMobile = () => {
             <Link
               href={link.Path}
               key={link.id}
-              className={`text-lg block ${pathName === link.Path ? "text-primary font-semibold" : ""}`}
+              className={`text-lg block ${
+                pathName === link.Path ? "text-primary font-semibold" : ""
+              }`}
             >
               {link.title}
             </Link>

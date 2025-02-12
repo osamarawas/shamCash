@@ -33,7 +33,7 @@ const SocialMediaFooter = ({ socialMedia }: SocialMediaFooterprops) => {
   }, [theme]);
 
   return (
-    <div className="group m-2">
+    <div className="group ">
       <Image
         src={socialIcon}
         alt="social icon"
