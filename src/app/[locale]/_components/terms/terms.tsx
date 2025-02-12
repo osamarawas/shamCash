@@ -10,7 +10,7 @@ const Terms = async () => {
 
   return (
     <div className="h-full py-10 background-terms bg-[url(../assets/images/bg-light.svg)] dark:bg-[url(../assets/images/bg-dark.svg)]">
-      <h1 className="text-primary text-2xl text-center max-w-72 font-bold underLine mx-auto relative mb-8">
+      <h1 className="-z-10 text-primary text-2xl text-center max-w-72 font-bold underLine mx-auto relative mb-8">
         {t("terms.title")}
       </h1>
       <p

@@ -26,10 +26,6 @@ const Landing = async () => {
         </p>
         <div className="flex justify-center mt-16">
           <DownloadBtn />
-          {/* <Button
-            className="py-2 px-12 mt-8 text-white bg-blue-500 hover:bg-blue-600 rounded-lg shadow-lg"  >
-            {t("download")}
-          </Button> */}
         </div>
       </div>
     </div>

@@ -1,35 +1,76 @@
+"use client";
 import Image from "next/image";
 import Logo from "@/assets/icon/logo.svg";
 import { Link } from "@/i18n/routing";
-import NavLinks from "./NavLinks"; // Client Component
-import NavbarMobile from "./NavbarMobile"; // Client Component
-import ThemeBtn from "./ThemeBtn"; // Client Component
-import LanguageSwitcher from "./LanguageSwitcher"; // Client Component
-import { unstable_setRequestLocale } from "next-intl/server";
+import { useState } from "react";
+import { Menu, X } from "lucide-react";
+import Links from "./Links";
+import { usePathname } from "next/navigation";
+import LanguageSwitcher from "./LanguageSwitcher";
+import ThemeBtn from "./ThemeBtn";
 
-export default async function NavBar({ locale }: { locale: string }) {
-  unstable_setRequestLocale(locale); // ضبط اللغة للترجمة
+export default function NavBar() {
+  const [isOpen, setIsOpen] = useState(false);
+  const navLinks = Links();
+  const pathName = usePathname();
 
   return (
-    <div className="flex justify-between items-center shadow h-28 px-12 font-se">
-      <div>
-        <Link href="/">
-          <Image
-            src={Logo}
-            width={86}
-            height={99}
-            className="h-20 w-20"
-            alt="Logo"
-          />
+<nav className="flex justify-between p-4 md:justify-around  items-center shadow h-24">
+  <Link href="/">
+    <Image src={Logo} width={86} height={90} className="h-20 w-20" alt="Logo" />
+  </Link>
+  <ul className="hidden md:flex gap-8">
+    {navLinks.map((link) => (
+      <Link
+        key={link.id}
+        href={link.Path}
+        className={`text-lg transition-colors ${
+          pathName === link.Path ? "text-primary font-semibold" : "text-gray-700 hover:text-primary"
+        }`}
+      >
+        {link.title}
+      </Link>
+    ))}
+  </ul>
+
+  {/* Language & Theme Buttons - Visible Only on Large Screens */}
+  <div className="hidden md:flex gap-4 items-center">
+    <LanguageSwitcher />
+    <ThemeBtn />
+  </div>
+
+  {/* Mobile Menu Button */}
+  <button className="md:hidden text-2xl focus:outline-none" onClick={() => setIsOpen(!isOpen)}>
+    {isOpen ? <X size={24} /> : <Menu size={24} />}
+  </button>
+
+  {/* Mobile Menu - Opens from Top */}
+  <div
+    className={`md:hidden absolute top-16 left-0 w-full transition-all duration-500 ease-in-out transform ${
+      isOpen ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
+    }`}
+  >
+    <ul className="absolute top-8 bg-background shadow-lg rounded-lg flex flex-col gap-4 items-center w-screen">
+      {navLinks.map((link) => (
+        <Link
+          key={link.id}
+          href={link.Path}
+          className={`text-lg transition-colors ${
+            pathName === link.Path ? "text-primary font-semibold" : "text-gray-700 hover:text-primary"
+          }`}
+        >
+          {link.title}
         </Link>
-      </div>
-      {/* تمرير locale إلى NavLinks لأنه Server Component */}
-      <NavLinks locale={locale} />
+      ))}
+
+      {/* Language & Theme Buttons - Only in Mobile Sidebar */}
       <div className="flex gap-4 items-center">
-        <LanguageSwitcher /> {/* Client Component */}
-        <ThemeBtn /> {/* Client Component */}
+        <LanguageSwitcher />
+        <ThemeBtn />
       </div>
-      <NavbarMobile /> {/* Client Component */}
-    </div>
+    </ul>
+  </div>
+</nav>
+
   );
 }

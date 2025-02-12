@@ -26,8 +26,6 @@ body {
     --popover-foreground: 222.2 84% 4.9%;
     --primary: 204 65% 44%;
     --primary-foreground: 204 8% 13%;
-    --light-primary: 201 50% 95%;
-    --light-primary-hover: 201 11% 73%;
     --hover: 204 56% 95%;
     --secondary: 126 26% 58%;
     --secondary-foreground: 222.2 47.4% 11.2%;
@@ -62,8 +60,6 @@ body {
     --hover: 205.71 18.42% 14.9%;
     --primary: 204 65% 44%;
     --primary-foreground: 222.2 47.4% 11.2%;
-    --light-primary: 206 38% 11%;
-    --light-primary-hover: 201 11% 73%;
     --secondary: 126 26% 58%;
     --secondary-foreground: 210 40% 98%;
     --muted: 200 7% 67%;
@@ -155,9 +151,8 @@ body {
     overflow: hidden;
     border-radius: 5px;
     box-sizing: border-box;
-    background: hsl(204 65% 44%);
-    border: 1px solid hsl(204 65% 44%);
-    color: white;
+    border: 1px solid #66a7d2;
+    color: #277eb8;
     padding: 26px 0 26px 28px;
     width: 150px;
     height: 0.1rem;
@@ -176,8 +171,8 @@ body {
   .download span:before {
     content: '';
     width: 1px;
-    height: 16px;
-    background: hsl(204 65% 44%);
+    height: 10px;
+    background: white;
     opacity: 0;
     position: absolute;
     left: 50%;
@@ -190,7 +185,7 @@ body {
 
   .download svg {
     z-index: 0;
-    fill: rgba(255, 255, 255, 1);
+    fill: #277eb8;
     position: absolute;
     left: 20%;
     top: 50%;
@@ -202,7 +197,7 @@ body {
 
   .download:hover {
     padding: 26px 0;
-    color: rgba(0, 124, 205, 1);
+    color: white;
   }
 
   .download:hover svg {

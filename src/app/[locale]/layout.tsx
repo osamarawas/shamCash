@@ -10,7 +10,6 @@ import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
 import { getMessages } from "next-intl/server";
 import { Languages } from "../utils/enums";
-import ThemeLoader from "./ThemeLoader";
 
 const notoKufi = Noto_Kufi_Arabic({
   subsets: ["arabic"],
