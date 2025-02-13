@@ -10,7 +10,6 @@ const ThemeBtn = () => {
 
   useEffect(() => {
     setThemeIcon(theme === "dark" ? sun : moon);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [theme]);
 
   const toggleTheme = () => {
