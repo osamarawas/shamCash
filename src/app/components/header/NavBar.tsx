@@ -15,7 +15,7 @@ export default function NavBar() {
   const pathName = usePathname();
 
   return (
-    <nav className="flex justify-between p-4 md:justify-around  items-center shadow h-24">
+    <nav className="flex justify-between p-4 md:justify-around items-center nav-shadow  dark:nav-shadow-dark relative h-24">
       <Link href="/">
         <Image
           src={Logo}
@@ -67,6 +67,7 @@ export default function NavBar() {
               className={`text-lg transition-colors  hover:text-primary" ${
                 pathName === link.Path ? "text-primary font-semibold" : ""
               }`}
+              onClick={() => setIsOpen(false)}
             >
               {link.title}
             </Link>
