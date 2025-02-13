@@ -13,9 +13,7 @@ const Landing = async () => {
       <div className="">
         {/* المحتوى */}
         <h1 className="text-2xl lg:text-4xl font-bold leading-tight">
-          <span className="text-gradiant text-transparent bg-clip-text">
-            {t("landing.appName") + " "}
-          </span>
+          <span className="text-gradiant ">{t("landing.appName") + " "}</span>
           {t("landing.appAvalable")}
         </h1>
         <h2 className="text-xl font-semibold leading-9 mt-4 ">

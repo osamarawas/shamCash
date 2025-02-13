@@ -114,6 +114,9 @@ body[lang="ar"] {
 
   .text-gradiant {
     background: linear-gradient(21.45deg, #277eb8 32.36%, #fff 110.94%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 
   .bg-landing {
