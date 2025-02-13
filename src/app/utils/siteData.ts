@@ -22,7 +22,6 @@ import paper from "@/assets/icon/paper.svg";
 import {
   AboutCards,
   FaqCategorie,
-  FAnswerQuestions,
   FeaturesCards as FeaturesCardsType,
   socialMedias,
   terms as termsType,
@@ -98,6 +97,7 @@ export const socialMedia: socialMedias = [
     imgLight: facebookLight.src,
     imgDarkHover: facebookHover.src,
     imgLightHover: facebookHover.src,
+
   },
   {
     id: crypto.randomUUID(),
