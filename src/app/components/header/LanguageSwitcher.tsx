@@ -9,7 +9,7 @@ const LanguageSwitcher = () => {
   const [loading, setLoading] = useState(false);
 
   const toggleLanguage = () => {
-    setLoading(true);
+    // setLoading(true);
     const newLocale = locale === "ar" ? "en" : "ar";
     const newPathUrl = `/${newLocale}${pathname.replace(/^\/(ar|en)/, "")}`;
     window.location.replace(newPathUrl);

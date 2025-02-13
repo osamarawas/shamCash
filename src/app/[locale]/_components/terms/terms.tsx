@@ -21,16 +21,16 @@ const Terms = async () => {
       <TermsCard />
       <div
         dir="auto"
-        className="flex border-solid border-2 border-red-700 rounded-lg p-6 w-3/4 mx-auto mt-14"
+        className="flex flex-wrap sm:flex-nowrap border-solid border-2 border-red-700 rounded-lg p-6 w-3/4 mx-auto mt-14"
       >
         <Image
           src={allert.src}
           alt="allert"
-          className="h-16 w-16"
+          className="h-16 w-16 m-5"
           width={64}
           height={64}
         />
-        <p className="text-lg mx-14">{t("terms.allert")}</p>
+        <p className="text-lg m-auto">{t("terms.allert")}</p>
       </div>
     </div>
   );
