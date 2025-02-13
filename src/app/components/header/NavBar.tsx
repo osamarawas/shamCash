@@ -35,7 +35,7 @@ export default function NavBar() {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [lastScrollY]);
-  console.log(isOpen);
+
   return (
     <nav
       className={`sticky top-0 left-0 w-full bg-background  shadow-md transition-transform duration-300 z-50 px-10 py-2 md:justify-around items-center nav-shadow dark:nav-shadow-dark pointer-events-none ${
@@ -53,7 +53,7 @@ export default function NavBar() {
           />
         </Link>
 
-        <ul className={`hidden md:flex gap-8${isOpen ? "hidden" : "hidden"}`}>
+        <ul className="hidden md:flex gap-8">
           {navLinks.map((link) => (
             <Link
               key={link.id}
@@ -85,9 +85,7 @@ export default function NavBar() {
       {/* Mobile Menu */}
       <div
         className={`md:hidden absolute top-16 left-0 w-full transition-all duration-500 ease-in-out transform ${
-          isOpen
-            ? "translate-y-0 opacity-100 pointer-events-auto"
-            : "translate-y-full opacity-0 pointer-events-none"
+          isOpen ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
         }`}
       >
         <ul className="absolute top-8 bg-background shadow-lg rounded-lg flex flex-col gap-4 items-center w-screen ">
