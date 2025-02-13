@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Logo from "@/assets/icon/logo.svg";
 import { Link } from "@/i18n/routing";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import Links from "./Links";
 import { usePathname } from "next/navigation";
@@ -11,31 +11,14 @@ import ThemeBtn from "./ThemeBtn";
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
+
   const navLinks = Links();
   const pathName = usePathname();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > lastScrollY) {
-        setIsVisible(false); // إخفاء الـ Navbar عند التمرير لأسفل
-      } else {
-        setIsVisible(true); // إظهار الـ Navbar عند التمرير لأعلى
-      }
-      setLastScrollY(window.scrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [lastScrollY]);
-
   return (
     <nav
-      className={`fixed top-0 left-0 w-full bg-white shadow-md transition-transform duration-300 z-50 px-10 py-2 md:justify-around items-center  ${
-        isVisible ? "translate-y-0" : "-translate-y-full"
+      className={`relative top-0 left-0 w-full bg-white shadow-md transition-transform duration-300 z-50 px-10 py-2 md:justify-around items-center nav-shadow  dark:nav-shadow-dark 
+       
       }`}
     >
       <div className="flex justify-between items-center">
@@ -92,6 +75,7 @@ export default function NavBar() {
               className={`text-lg transition-colors hover:text-primary ${
                 pathName === link.Path ? "text-primary font-semibold" : ""
               }`}
+              onClick={() => setIsOpen(false)}
             >
               {link.title}
             </Link>

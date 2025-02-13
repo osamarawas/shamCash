@@ -8,7 +8,8 @@ const Features = async () => {
   const featuresCardsArray = await featuresCards();
   return (
     <div className="flex items-center justify-center container flex-col gap-5 mx-auto  my-8 lg:my-14  bg-landing    md:bg-feature md:dark:bg-feature-dark  bg-[url(../assets/images/applogoMidum.png)]">
-      <h2 className="text-primary text-center text-3xl font-bold mb-14 underLine relative mx-auto  ">
+      <h2 className="text-primary text-center text-3xl font-bold mb-14 underLine relative mx-auto" data-aos="fade-up"
+        data-aos-duration="800">
         {t("features.title")}
       </h2>
       <p
