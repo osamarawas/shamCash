@@ -16,7 +16,6 @@ export default function NavBar() {
   const navLinks = Links();
   const pathName = usePathname();
 
-  // مراقبة التمرير لتحديد ما إذا كان يجب إخفاء الـ Navbar
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > lastScrollY) {

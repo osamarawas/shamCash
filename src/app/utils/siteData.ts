@@ -45,32 +45,29 @@ export const term = async ():Promise<termsType> => {
   { li: t("cnonditions8") },
   { li: t("cnonditions9") },
 ];
-}
+};
 
-export const fAnswerQuestion: FAnswerQuestions = [
-  {
-    id: crypto.randomUUID(),
-    question: "اديش عمولة التحويل؟",
-    answer: "الخدمة مجانية ولا يوجد عمولة تحويل حالياً.",
-  },
-  {
-    id: crypto.randomUUID(),
-    question: "شو ضمان المنصة أنه ماتسكر فجأة ؟",
-    answer: "بنك شام هو الضامن",
-  },
-  {
-    id: crypto.randomUUID(),
-    question: "هل يوجد من يقوم بحماية المنصة من الاختراق ؟",
-    answer: "صحيح يوجد عدد من الإخوة المبرمجين قائمين على حماية البرنامج.",
-  },
-  {
-    id: crypto.randomUUID(),
-    question:
-      "هل يمكن الاستفاده من برنامج شام كاش من اجل تعبئه رصيد في سيريافون او تعبئه الكهرباء ؟",
-    answer:
-      "قريباً بإذن الله سيتم تفعيل عدد من الخدمات ومنها الاتصالات والكهرباء والتسويق الإلكتروني",
-  },
-];
+export const fAnswerQuestion = async () =>{
+  const t = await getTranslations("fAnswerQuestions.questions");
+  return[
+    {
+      question: t("q1.question"),
+      answer: t("q1.answer")
+    },
+    {
+      question: t("q2.question"),
+      answer: t("q2.answer")
+    },
+    {
+      question: t("q3.question"),
+      answer: t("q3.answer")
+    },
+    {
+      question: t("q4.question"),
+      answer: t("q4.answer")
+    },
+  ];
+};
 
 export const aboutCards = async (): Promise<AboutCards> => {
   const t = await getTranslations("about.sections");
