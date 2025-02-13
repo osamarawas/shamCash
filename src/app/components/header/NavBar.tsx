@@ -38,7 +38,7 @@ export default function NavBar() {
 
   return (
     <nav
-      className={`sticky top-0 left-0 w-full bg-background  shadow-md transition-transform duration-300 z-50 px-10 py-2 md:justify-around items-center nav-shadow dark:nav-shadow-dark ${
+      className={`sticky top-0 left-0 w-full bg-background  shadow-md transition-transform duration-300 z-50 px-10 py-2 md:justify-around items-center nav-shadow dark:nav-shadow-dark pointer-events-none ${
         isVisible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
