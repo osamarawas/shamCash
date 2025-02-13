@@ -11,7 +11,11 @@ const Footer = async () => {
       id="footer"
       className=" bg-footer text-center items-center pt-8 pb-3  px-7 "
     >
-      <h1 className="text-white dark:text-primary font-bold text-2xl underLine relative w-48 text-center mx-auto">
+      <h1
+        className="text-white dark:text-primary font-bold text-2xl underLine relative w-48 text-center mx-auto"
+        data-aos="fade-up"
+        data-aos-duration="800"
+      >
         {t("footer.title")}
       </h1>
       <p

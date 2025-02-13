@@ -12,7 +12,8 @@ const FAQ = () => {
   const locale = useLocale() as Languages;
   return (
     <div className="flex items-center justify-center container flex-col gap-5 mx-auto  my-8 lg:my-14 ">
-      <h3 className="text-primary font-bold text-2xl underLine relative ">
+      <h3 className="text-primary font-bold text-2xl underLine relative"  data-aos="fade-up"
+        data-aos-duration="800">
         الأسئلة الشائعة
       </h3>
       <p
