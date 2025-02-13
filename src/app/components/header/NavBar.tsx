@@ -12,8 +12,6 @@ import { removeLanguageFromPath } from "@/app/utils/helperClient";
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isVisible, setIsVisible] = useState(true);
-  const [lastScrollY, setLastScrollY] = useState(0);
   const navLinks = Links();
   const pathName = usePathname();
 
