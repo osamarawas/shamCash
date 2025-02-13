@@ -34,6 +34,7 @@ export type SocialMedia = {
   imgLight: HTMLImageElement;
   imgDarkHover: HTMLImageElement;
   imgLightHover: HTMLImageElement;
+  path?:string
 };
 export type socialMedias = SocialMedia[];
 
