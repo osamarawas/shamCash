@@ -2,23 +2,44 @@
 import Image from "next/image";
 import Logo from "@/assets/icon/logo.svg";
 import { Link } from "@/i18n/routing";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Menu, X } from "lucide-react";
 import Links from "./Links";
 import { usePathname } from "next/navigation";
 import LanguageSwitcher from "./LanguageSwitcher";
 import ThemeBtn from "./ThemeBtn";
+import { removeLanguageFromPath } from "@/app/utils/helperClient";
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
-
+  const [isVisible, setIsVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const navLinks = Links();
   const pathName = usePathname();
 
+  function isActive(path: string): boolean {
+    return removeLanguageFromPath(pathName) === path;
+  }
+  useEffect(() => {
+    const handleScroll = () => {
+      if (window.scrollY > lastScrollY) {
+        setIsVisible(false); // إخفاء الـ Navbar عند التمرير للأسفل
+      } else {
+        setIsVisible(true); // إظهاره عند التمرير للأعلى
+      }
+      setLastScrollY(window.scrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY]);
+
   return (
     <nav
-      className={`relative top-0 left-0 w-full shadow-md transition-transform duration-300 z-50 px-10 py-2 md:justify-around items-center nav-shadow  dark:nav-shadow-dark 
-       
+      className={`sticky top-0 left-0 w-full bg-background  shadow-md transition-transform duration-300 z-50 px-10 py-2 md:justify-around items-center nav-shadow dark:nav-shadow-dark ${
+        isVisible ? "translate-y-0" : "-translate-y-full"
       }`}
     >
       <div className="flex justify-between items-center">
@@ -38,7 +59,7 @@ export default function NavBar() {
               key={link.id}
               href={link.Path}
               className={`text-lg transition-colors hover:text-primary ${
-                pathName === link.Path ? "text-primary font-semibold" : ""
+                isActive(link.Path) ? "text-primary font-semibold" : ""
               }`}
             >
               {link.title}
