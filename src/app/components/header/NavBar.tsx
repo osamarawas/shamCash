@@ -11,13 +11,12 @@ import ThemeBtn from "./ThemeBtn";
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
-
   const navLinks = Links();
   const pathName = usePathname();
 
   return (
     <nav
-      className={`relative top-0 left-0 w-full bg-white shadow-md transition-transform duration-300 z-50 px-10 py-2 md:justify-around items-center nav-shadow  dark:nav-shadow-dark 
+      className={`relative top-0 left-0 w-full shadow-md transition-transform duration-300 z-50 px-10 py-2 md:justify-around items-center nav-shadow  dark:nav-shadow-dark 
        
       }`}
     >
