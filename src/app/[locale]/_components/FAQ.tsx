@@ -7,12 +7,16 @@ import {
 import { fAnswerQuestion } from "../../utils/siteData";
 import { getTranslations } from "next-intl/server";
 import { setDirction, setTextDirection } from "@/app/utils/helperServer";
+import { Languages } from "@/app/utils/enums";
 
+interface FAQProps {
+  locale: Languages;
+}
 
-const FAQ = async ({locale}) => {
+const FAQ = async ({ locale }: FAQProps) => {
   const t = await getTranslations(""); //  استخدام `useTranslations` بدلاً من `getTranslations`
   const faqArray = await fAnswerQuestion();
-  console.log(faqArray)
+  console.log(faqArray);
   return (
     <div className="flex items-center justify-center container flex-col gap-5 mx-auto my-8 lg:my-14">
       <h3 className="text-primary font-bold text-2xl underLine relative">
@@ -26,11 +30,13 @@ const FAQ = async ({locale}) => {
         {t("fAnswerQuestions.desc")}
       </p>
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 w-4/5">
-        {faqArray.map((faq,index) => (
+        {faqArray.map((faq, index) => (
           <div key={index} data-aos="fade-up" data-aos-duration="800">
             <Accordion type="single" collapsible>
-              <AccordionItem value={`item-${index}`}  dir={setDirction(locale)}>
-                <AccordionTrigger className={setTextDirection(locale)}>{faq.question}</AccordionTrigger>
+              <AccordionItem value={`item-${index}`} dir={setDirction(locale)}>
+                <AccordionTrigger className={setTextDirection(locale)}>
+                  {faq.question}
+                </AccordionTrigger>
                 <AccordionContent>{faq.answer}</AccordionContent>
               </AccordionItem>
             </Accordion>
