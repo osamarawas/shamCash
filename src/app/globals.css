@@ -163,8 +163,18 @@ body[lang="ar"] {
     to {
       transform: translateY(0px) rotate(-50deg);
     }
+    
   }
-
+  .spinner {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    border-top: 5px solid hsl(204 65% 44%);  /* اللون الأزرق للحد العلوي */
+    border-bottom: 5px solid hsl(126 26% 58%); /* اللون الأخضر للحد السفلي */
+    border-left: 1px solid transparent;  /* حد شفاف على اليسار */
+    border-right: 1px solid transparent; /* حد شفاف على اليمين */
+    animation: spin 1s linear infinite; /* إضافة الحركة */
+  }
   .download {
     /* Rounded corner overflow mask fix */
     -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
