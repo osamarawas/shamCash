@@ -430,8 +430,8 @@
     "thank": "Thank you for your trust in Sham Cash, and we look forward to providing you with exceptional financial service.",
     "allert": "Your use of the program constitutes your acceptance of these terms and conditions, and if you do not agree to any part of this agreement, you must stop using the program immediately."
   },
-  
-  "fAnswerQuestions" :{
+
+  "fAnswerQuestions": {
     "title": "Frequently Asked Questions",
     "desc": "We provide you with answers to the most common questions you may have about using the app. Our goal is to equip you with all the information you need for a smooth and comfortable experience.",
     "questions": {
@@ -453,6 +453,7 @@
       }
     }
   },
-    "Android": "Android",
-    "download": "download"
+  "Android": "Android",
+  "download": "download",
+  "search": "Search"
 }
