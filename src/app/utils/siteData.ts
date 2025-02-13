@@ -22,7 +22,6 @@ import paper from "@/assets/icon/paper.svg";
 import {
   AboutCards,
   FaqCategorie,
-  FAnswerQuestions,
   FeaturesCards as FeaturesCardsType,
   socialMedias,
   terms as termsType,
@@ -98,6 +97,8 @@ export const socialMedia: socialMedias = [
     imgLight: facebookLight.src,
     imgDarkHover: facebookHover.src,
     imgLightHover: facebookHover.src,
+    path:"https://www.facebook.com/sham.cash1"
+
   },
   {
     id: crypto.randomUUID(),
@@ -106,6 +107,7 @@ export const socialMedia: socialMedias = [
     imgLight: xLight.src,
     imgDarkHover: xHoverDark,
     imgLightHover: xHoverLight,
+    path:"https://x.com/ShamCashX"
   },
   {
     id: crypto.randomUUID(),
@@ -114,6 +116,7 @@ export const socialMedia: socialMedias = [
     imgLight: whatsappLight.src,
     imgDarkHover: whatsupHover.src,
     imgLightHover: whatsupHover.src,
+    path:"https://wa.me/+963983115119"
   },
   {
     id: crypto.randomUUID(),
@@ -122,6 +125,7 @@ export const socialMedia: socialMedias = [
     imgLight: telegramLight.src,
     imgDarkHover: telegramHover.src,
     imgLightHover: telegramHover.src,
+    path:"https://t.me/shamcashapp"
   },
 ];
 export const featuresCards = async (): Promise<FeaturesCardsType> => {
