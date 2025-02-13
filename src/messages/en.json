@@ -131,7 +131,7 @@
         }
       },
       "category2": {
-        "name": "Questions about Financial Services (Withdraw, Deposit, Transfer)",
+        "name": "Questions about Financial Services",
         "questions": {
           "q1": {
             "question": "How can I withdraw my money from ShamCash?",
@@ -403,6 +403,7 @@
   },
   "navlinks": {
     "home": "Home",
+    "faqs": "FAQ",
     "terms": "Terms and Conditions",
     "contact-us": "Contact us"
   },
@@ -429,6 +430,29 @@
     "thank": "Thank you for your trust in Sham Cash, and we look forward to providing you with exceptional financial service.",
     "allert": "Your use of the program constitutes your acceptance of these terms and conditions, and if you do not agree to any part of this agreement, you must stop using the program immediately."
   },
-
-  "download": "download"
+  
+  "fAnswerQuestions" :{
+    "title": "Frequently Asked Questions",
+    "desc": "We provide you with answers to the most common questions you may have about using the app. Our goal is to equip you with all the information you need for a smooth and comfortable experience.",
+    "questions": {
+      "q1": {
+        "question": "How much is the transfer fee?",
+        "answer": "The service is free, and there is currently no transfer fee."
+      },
+      "q2": {
+        "question": "What guarantees does the platform have to ensure it doesn't shut down suddenly? Is there a guarantor like Sham Bank, for example?",
+        "answer": "Sham Bank is the guarantor."
+      },
+      "q3": {
+        "question": "Is there anyone protecting the platform from hacking? And what is the likelihood of it being hacked?",
+        "answer": "Yes, there is a team of programmers dedicated to protecting the platform."
+      },
+      "q4": {
+        "question": "Can Sham Cash be used to top up credit in SyriaPhone or recharge electricity?",
+        "answer": "Soon, several services will be activated, including mobile credit, electricity, and e-commerce."
+      }
+    }
+  },
+    "Android": "Android",
+    "download": "download"
 }

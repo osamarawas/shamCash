@@ -9,14 +9,13 @@ const LanguageSwitcher = () => {
   const toggleLanguage = () => {
     const newLocale = locale === "ar" ? "en" : "ar";
     const newPathUrl = `/${newLocale}${pathname.replace(/^\/(ar|en)/, "")}`;
-    console.log(newPathUrl);
     window.location.replace(newPathUrl);
   };
 
   return (
     <button
       onClick={toggleLanguage}
-      className="cursor-pointer hover:text-primary hidden md:block"
+      className="cursor-pointer hover:text-primary  md:block"
     >
       {locale === "ar" ? "English" : "العربية"}
     </button>

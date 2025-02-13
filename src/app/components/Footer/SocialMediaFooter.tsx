@@ -30,10 +30,11 @@ const SocialMediaFooter = ({ socialMedia }: SocialMediaFooterprops) => {
   useEffect(() => {
     setSocialIcon(getSocialIcon);
     setSocialIconHover(getSocialIconHover);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [theme]);
 
   return (
-    <div className="group m-2">
+    <div className="group ">
       <Image
         src={socialIcon}
         alt="social icon"
