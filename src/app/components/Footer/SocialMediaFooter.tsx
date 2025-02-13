@@ -33,6 +33,7 @@ const SocialMediaFooter = ({ socialMedia }: SocialMediaFooterprops) => {
 
   return (
     <div className="group ">
+      <a href={socialMedia.path} target="_blank"> 
       <Image
         src={socialIcon}
         alt="social icon"
@@ -47,6 +48,7 @@ const SocialMediaFooter = ({ socialMedia }: SocialMediaFooterprops) => {
         width={30}
         className="hidden group-hover:block cursor-pointer"
       />
+      </a>
     </div>
   );
 };
