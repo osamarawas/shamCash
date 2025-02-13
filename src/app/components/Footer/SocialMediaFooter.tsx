@@ -38,15 +38,15 @@ const SocialMediaFooter = ({ socialMedia }: SocialMediaFooterprops) => {
       <Image
         src={socialIcon}
         alt="social icon"
-        height={42}
-        width={42}
+        height={30}
+        width={30}
         className="group-hover:hidden"
       />
       <Image
         src={socialIconHover}
         alt="social icon hover"
-        height={42}
-        width={42}
+        height={30}
+        width={30}
         className="hidden group-hover:block cursor-pointer"
       />
     </div>
