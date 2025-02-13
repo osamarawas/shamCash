@@ -3,19 +3,19 @@ import { useTheme } from "next-themes";
 import Image from "next/image";
 import sun from "@/assets/icon/sun.svg";
 import moon from "@/assets/icon/moon.svg";
-import { useIsDark } from "@/app/utils/helperClient";
 import { useEffect, useState } from "react";
 const ThemeBtn = () => {
   const { theme, setTheme } = useTheme();
-  const [themeIcon, setThemeIcon] = useState(moon);
+  const [themeIcon, setThemeIcon] = useState(sun);
 
-  const isDark = useIsDark();
   useEffect(() => {
-    setThemeIcon(isDark ? sun : moon);
+    setThemeIcon(theme === "dark" ? sun : moon);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [theme]);
 
-  const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
 
   return (
     <Image
