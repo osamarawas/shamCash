@@ -6,10 +6,11 @@ import { useState } from "react";
 const LanguageSwitcher = () => {
   const pathname = usePathname();
   const locale = useLocale();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [loading, setLoading] = useState(false);
 
   const toggleLanguage = () => {
-    setLoading(true);
+    // setLoading(true);
     const newLocale = locale === "ar" ? "en" : "ar";
     const newPathUrl = `/${newLocale}${pathname.replace(/^\/(ar|en)/, "")}`;
     window.location.replace(newPathUrl);
