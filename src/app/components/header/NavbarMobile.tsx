@@ -50,7 +50,7 @@ const NavbarMobile = () => {
           ))}
 
           {/* زر تغيير اللغة والثيم */}
-          <div className="flex gap-4 items-center bg-white">
+          <div className=" gap-4 items-center md:hidden absolute">
             <LanguageSwitcher />
             <ThemeBtn />
           </div>

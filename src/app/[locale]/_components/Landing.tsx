@@ -1,8 +1,9 @@
-import { Button } from "@/components/ui/button";
+import DownloadBtn from "@/app/components/DownloadBtn";
 import { getTranslations } from "next-intl/server";
 
 const Landing = async () => {
   const t = await getTranslations("");
+
   return (
     <div
       className="h-screen
@@ -23,12 +24,12 @@ const Landing = async () => {
         <p className="w-3/5 mx-auto font-medium text-lg text-gray-600 leading-relaxed">
           {t("landing.platformGoal")}
         </p>
-
-        {/* زر التحميل */}
         <div>
-          <Button className="py-2 px-12 mt-8 text-white bg-blue-500 hover:bg-blue-600 rounded-lg shadow-lg">
+          <DownloadBtn />
+          {/* <Button
+            className="py-2 px-12 mt-8 text-white bg-blue-500 hover:bg-blue-600 rounded-lg shadow-lg"  >
             {t("download")}
-          </Button>
+          </Button> */}
         </div>
       </div>
     </div>
