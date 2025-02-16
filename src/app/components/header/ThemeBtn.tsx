@@ -4,14 +4,13 @@ import Image from "next/image";
 import sun from "@/assets/icon/sun.svg";
 import moon from "@/assets/icon/moon.svg";
 import { useEffect, useState } from "react";
-const ThemeBtn = () => {
-  const { theme, setTheme } = useTheme();
-  const [themeIcon, setThemeIcon] = useState(sun);
 
+const ThemeBtn = () => {
+  const { theme, setTheme, systemTheme } = useTheme();
+  const [themeIcon, setThemeIcon] = useState(sun);
   useEffect(() => {
-    setThemeIcon(theme === "dark" ? sun : moon);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [theme]);
+    setThemeIcon(theme === "dark" || systemTheme === "dark" ? sun : moon);
+  }, [theme, systemTheme]);
 
   const toggleTheme = () => {
     setTheme(theme === "dark" ? "light" : "dark");
@@ -23,8 +22,8 @@ const ThemeBtn = () => {
       onClick={toggleTheme}
       width={19}
       height={25}
-      className="h-6 w-5 cursor-pointer   md:block"
-      alt="Logo"
+      className="h-6 w-5 cursor-pointer md:block"
+      alt="Theme icon"
     />
   );
 };

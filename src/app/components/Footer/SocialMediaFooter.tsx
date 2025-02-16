@@ -9,14 +9,14 @@ interface SocialMediaFooterprops {
 }
 
 const SocialMediaFooter = ({ socialMedia }: SocialMediaFooterprops) => {
-  const { theme } = useTheme();
+  const { theme, systemTheme } = useTheme();
   const [socialIcon, setSocialIcon] = useState(socialMedia.imgDark);
   const [socialIconHover, setSocialIconHover] = useState(
     socialMedia.imgDarkHover
   );
 
   function getSocialIcon() {
-    if (theme === "dark") return socialMedia.imgDark;
+    if (theme === "dark" || systemTheme === "dark") return socialMedia.imgDark;
     else return socialMedia.imgLight;
   }
   function getSocialIconHover() {
@@ -29,7 +29,7 @@ const SocialMediaFooter = ({ socialMedia }: SocialMediaFooterprops) => {
     setSocialIcon(getSocialIcon);
     setSocialIconHover(getSocialIconHover);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [theme]);
+  }, [theme, systemTheme]);
 
   return (
     <div className="group ">
