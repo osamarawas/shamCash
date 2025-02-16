@@ -48,7 +48,7 @@ export default function NavBar() {
             src={Logo}
             width={86}
             height={90}
-            className="h-20 w-20"
+            className="h-16 w-16 "
             alt="Logo"
           />
         </Link>
@@ -103,7 +103,7 @@ export default function NavBar() {
           ))}
 
           {/* Language & Theme Buttons - Only in Mobile Sidebar */}
-          <div className="flex gap-4 items-center">
+          <div className="flex gap-4 items-center pb-5">
             <LanguageSwitcher />
             <ThemeBtn />
           </div>
