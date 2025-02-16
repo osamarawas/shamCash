@@ -1,10 +1,10 @@
 import { faqCategories } from "@/app/utils/siteData";
 import Category from "./_components/Category";
 import { getTranslations } from "next-intl/server";
-import { Search } from "lucide-react";
-import { Input } from "@/components/ui/input";
+
 import { setDirction } from "@/app/utils/helperServer";
 import { Languages } from "@/app/utils/enums";
+import FAQSearchBtn from "./_components/FAQSearchBtn";
 interface FaqPageProps {
   params: Promise<{ locale: Languages }>;
 }
@@ -25,26 +25,7 @@ const FaqPage = async ({ params }: FaqPageProps) => {
       </p>
 
       <div className="w-80  mx-auto">
-        <form>
-          <label
-            htmlFor="default-search"
-            className="mb-2 text-sm font-medium  sr-only "
-          >
-            {t("search")}
-          </label>
-          <div className="relative" dir={setDirction(locale)}>
-            <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-              <Search size={20} className="text-muted" />
-            </div>
-
-            <Input
-              type="search"
-              id="default-search"
-              placeholder={t("search")}
-              className=" block p-4 ps-10 "
-            />
-          </div>
-        </form>
+        <FAQSearchBtn locale={locale} diraction={setDirction(locale)} />
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2  text-center gap-6">
         {faqCategoriesArray.map((category) => (

@@ -1,22 +1,33 @@
 import { Languages } from "@/app/utils/enums";
-import { setDirction, setTextDirection } from "@/app/utils/helperServer";
 import { faqWithCategories } from "@/app/utils/siteData";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
-import PathCete from "../../[cate]/PathCete";
+// import {
+//   Accordion,
+//   AccordionContent,
+//   AccordionItem,
+//   AccordionTrigger,
+// } from "@/components/ui/accordion";
+import PathCete from "../[cate]/PathCete";
 
 interface FaqPageProps {
   params: Promise<{ cate: string; locale: Languages }>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  searchParams: any;
 }
 
-const SearchPage = async ({ params }: FaqPageProps) => {
+const SearchPage = async ({ params, searchParams }: FaqPageProps) => {
   const resolvedParams = await params;
   const { locale } = resolvedParams;
-
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const searchTerm = await searchParams.q;
+  const faqWithCategoriesArray = await faqWithCategories();
+  const ResultSearch = faqWithCategoriesArray.map((category) => {
+    console.log(category.questions);
+    category.questions.filter((questions) => {
+      console.log(questions.question.includes("Are there"));
+      return questions.question.includes("Are there");
+    });
+  });
+  console.log(ResultSearch);
   return (
     <div className="container mx-auto pt-5">
       <PathCete locale={locale} categoryName={"نتائج البحث"} />
