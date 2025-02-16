@@ -6,14 +6,15 @@ import moon from "@/assets/icon/moon.svg";
 import { useEffect, useState } from "react";
 
 const ThemeBtn = () => {
-  const { theme, setTheme, systemTheme } = useTheme();
+  const { resolvedTheme, setTheme } = useTheme();
   const [themeIcon, setThemeIcon] = useState(sun);
+
   useEffect(() => {
-    setThemeIcon(theme === "dark" || systemTheme === "dark" ? sun : moon);
-  }, [theme, systemTheme]);
+    setThemeIcon(resolvedTheme === "dark" ? sun : moon);
+  }, [resolvedTheme]);
 
   const toggleTheme = () => {
-    setTheme(theme === "dark" ? "light" : "dark");
+    setTheme(resolvedTheme === "dark" ? "light" : "dark");
   };
 
   return (
