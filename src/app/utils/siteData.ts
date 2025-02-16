@@ -29,41 +29,39 @@ import {
 } from "./types";
 import { getTranslations } from "next-intl/server";
 
-
-
-export const term = async ():Promise<termsType> => {
+export const term = async (): Promise<termsType> => {
   const t = await getTranslations("terms.cnonditions");
   return [
-  { li: t("cnonditions1") },
-  { li: t("cnonditions2") },
-  { li: t("cnonditions3") },
-  { li: t("cnonditions4") },
-  { li: t("cnonditions5") },
-  { li: t("cnonditions6") },
-  { li: t("cnonditions7") },
-  { li: t("cnonditions8") },
-  { li: t("cnonditions9") },
-];
+    { li: t("cnonditions1") },
+    { li: t("cnonditions2") },
+    { li: t("cnonditions3") },
+    { li: t("cnonditions4") },
+    { li: t("cnonditions5") },
+    { li: t("cnonditions6") },
+    { li: t("cnonditions7") },
+    { li: t("cnonditions8") },
+    { li: t("cnonditions9") },
+  ];
 };
 
-export const fAnswerQuestion = async () =>{
+export const fAnswerQuestion = async () => {
   const t = await getTranslations("fAnswerQuestions.questions");
-  return[
+  return [
     {
       question: t("q1.question"),
-      answer: t("q1.answer")
+      answer: t("q1.answer"),
     },
     {
       question: t("q2.question"),
-      answer: t("q2.answer")
+      answer: t("q2.answer"),
     },
     {
       question: t("q3.question"),
-      answer: t("q3.answer")
+      answer: t("q3.answer"),
     },
     {
       question: t("q4.question"),
-      answer: t("q4.answer")
+      answer: t("q4.answer"),
     },
   ];
 };
@@ -486,48 +484,48 @@ export const faqWithCategories = async (): Promise<faqsWithCategorie[]> => {
       categoryId: "6",
       questions: [
         {
-          question: "t('category6.questions.q1.question')",
-          answer: "t('category6.questions.q1.answer')",
+          question: t("category6.questions.q1.question"),
+          answer: t("category6.questions.q1.answer"),
         },
         {
-          question: "t('category6.questions.q2.question')",
-          answer: "t('category6.questions.q2.answer')",
+          question: t("category6.questions.q2.question"),
+          answer: t("category6.questions.q2.answer"),
         },
         {
-          question: "t('category6.questions.q3.question')",
-          answer: "t('category6.questions.q3.answer')",
+          question: t("category6.questions.q3.question"),
+          answer: t("category6.questions.q3.answer"),
         },
         {
-          question: "t('category6.questions.q4.question')",
-          answer: "t('category6.questions.q4.answer')",
+          question: t("category6.questions.q4.question"),
+          answer: t("category6.questions.q4.answer"),
         },
         {
-          question: "t('category6.questions.q5.question')",
-          answer: "t('category6.questions.q5.answer')",
+          question: t("category6.questions.q5.question"),
+          answer: t("category6.questions.q5.answer'"),
         },
         {
-          question: "t('category6.questions.q6.question')",
-          answer: "t('category6.questions.q6.answer')",
+          question: t("category6.questions.q6.question"),
+          answer: t("category6.questions.q6.answer"),
         },
         {
-          question: "t('category6.questions.q7.question')",
-          answer: "t('category6.questions.q7.answer')",
+          question: t("category6.questions.q7.question"),
+          answer: t("category6.questions.q7.answer"),
         },
         {
-          question: "t('category6.questions.q8.question')",
-          answer: "t('category6.questions.q8.answer')",
+          question: t("category6.questions.q8.question"),
+          answer: t("category6.questions.q8.answer"),
         },
         {
-          question: "t('category6.questions.q9.question')",
-          answer: "t('category6.questions.q9.answer')",
+          question: t("category6.questions.q9.question"),
+          answer: t("category6.questions.q9.answer"),
         },
         {
-          question: "t('category6.questions.q10.question')",
-          answer: "t('category6.questions.q10.answer')",
+          question: t("category6.questions.q10.question"),
+          answer: t("category6.questions.q10.answer"),
         },
         {
-          question: "t('category6.questions.q11.question')",
-          answer: "t('category6.questions.q11.answer')",
+          question: t("category6.questions.q11.question"),
+          answer: t("category6.questions.q11.answer"),
         },
       ],
     },
