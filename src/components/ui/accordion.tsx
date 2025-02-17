@@ -25,13 +25,13 @@ const AccordionTrigger = React.forwardRef<
       ref={ref}
       //    use this for edit arrow width lg:w-auto
       className={cn(
-        "flex  flex-row-reverse items-center justify-end gap-4 py-4 text-lg w-full  font-medium transition-all  [&[data-state=open]>svg]:rotate-180 text-triger ",
+        "flex  flex-row-reverse items-start justify-end gap-4 py-4 text-lg w-full   font-medium transition-all  [&[data-state=open]>svg]:rotate-180 text-triger ",
         className
       )}
       {...props}
     >
       {children}
-      <ChevronDown className="h-4 w-4  shrink-0 text-muted-foreground transition-transform duration-200 " />
+      <ChevronDown className="h-4 w-4  mt-1 shrink-0 text-muted-foreground transition-transform duration-500 " />
     </AccordionPrimitive.Trigger>
   </AccordionPrimitive.Header>
 ));

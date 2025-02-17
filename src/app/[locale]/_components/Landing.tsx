@@ -7,7 +7,7 @@ const Landing = async () => {
   return (
     <div
       className="h-screen
-      flex justify-center items-center text-center mx-auto overflow-hidden bg-landing
+      flex justify-center items-center text-center mx-auto overflow-hidden bg-fullsize
       bg-no-repeat bg-[url(../assets/images/landing-light.png)] dark:bg-[url(../assets/images/landing-dark.png)]"
     >
       <div className="">
@@ -19,7 +19,7 @@ const Landing = async () => {
         <h2 className="text-xl font-semibold leading-9 mt-4 ">
           {t("landing.downloadApp")}
         </h2>
-        <p className="w-3/5 mx-auto font-medium text-lg text-muted leading-relaxed mt-4">
+        <p className="md:w-3/5 mx-auto font-medium text-lg text-muted leading-relaxed mt-4">
           {t("landing.platformGoal")}
         </p>
         <div className="flex justify-center mt-16">

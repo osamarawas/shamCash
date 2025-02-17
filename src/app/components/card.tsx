@@ -15,7 +15,7 @@ const Card = ({ item }: CardProps) => {
         <Image
           src={item.image}
           alt={item.title}
-          className=" h-24 w-24  text-center p-5 bg-landing"
+          className=" h-24 w-24  text-center p-5 bg-fullsize"
           width={96}
           height={96}
         />

@@ -56,7 +56,7 @@ export default function NavBar() {
           />
         </Link>
 
-        <ul className="hidden md:flex gap-8" dir={setDirction(locale)}>
+        <ul className="hidden lg:flex gap-8" dir={setDirction(locale)}>
           {navLinks.map((link) => (
             <Link
               key={link.id}
@@ -71,14 +71,14 @@ export default function NavBar() {
         </ul>
 
         {/* Language & Theme Buttons - Visible Only on Large Screens */}
-        <div className="hidden md:flex gap-4 items-center">
+        <div className="hidden lg:flex gap-4 items-center">
           <LanguageSwitcher />
           <ThemeBtn />
         </div>
 
         {/* Mobile Menu Button */}
         <button
-          className="md:hidden text-2xl focus:outline-none"
+          className="lg:hidden text-2xl focus:outline-none"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -87,13 +87,13 @@ export default function NavBar() {
 
       {/* Mobile Menu */}
       <div
-        className={`md:hidden absolute top-16 left-0 w-full transition-all duration-500 ease-in-out transform ${
+        className={`lg:hidden absolute top-16 left-0 w-full transition-all duration-500 ease-in-out transform ${
           isOpen
             ? "translate-y-0 opacity-100 pointer-events-auto"
             : "translate-y-full opacity-0 pointer-events-none "
         }`}
       >
-        <ul className="absolute top-8 bg-background shadow-lg rounded-lg flex flex-col gap-4 items-center w-screen ">
+        <ul className="absolute top-2 bg-background shadow-lg rounded-lg flex flex-col gap-4 items-center w-screen ">
           {navLinks.map((link) => (
             <Link
               key={link.id}
