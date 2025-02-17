@@ -8,8 +8,11 @@ const Features = async () => {
   const featuresCardsArray = await featuresCards();
   return (
     <div className="flex items-center justify-center container flex-col gap-5 mx-auto  my-8 lg:my-14  bg-landing    md:bg-feature md:dark:bg-feature-dark  bg-[url(../assets/images/applogoMidum.png)]">
-      <h2 className="text-primary text-center text-3xl font-bold mb-14 underLine relative mx-auto" data-aos="fade-up"
-        data-aos-duration="800">
+      <h2
+        className="text-primary text-center text-3xl font-bold mb-14 underLine relative mx-auto"
+        data-aos="fade-up"
+        data-aos-duration="800"
+      >
         {t("features.title")}
       </h2>
       <p
@@ -19,7 +22,7 @@ const Features = async () => {
       >
         {t("features.desc")}
       </p>
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 text-center overflow-hidden">
+      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 text-center ">
         {Array.isArray(featuresCardsArray) && featuresCardsArray.length > 0 ? (
           featuresCardsArray.map((feature, index) => (
             <Card item={feature} key={index} />

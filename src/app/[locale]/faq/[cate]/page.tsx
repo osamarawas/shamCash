@@ -33,6 +33,7 @@ const FaqPage = async ({ params }: FaqPageProps) => {
           {faqWithCategorie?.categoryName}
         </h2>
 
+        {/* <div className=" grid grid-cols-1 lg:grid-cols-2 gap-6 w-11/12"> */}
         <div className=" grid grid-cols-1 lg:grid-cols-2 gap-6 w-11/12">
           {faqWithCategorie?.questions.map((aq, index) => (
             <div key={index}>

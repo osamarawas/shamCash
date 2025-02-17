@@ -62,7 +62,7 @@ body[lang="ar"] {
     --footer: 0 0% 100%;
     --footer-foreground: 203 4% 36%;
     --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card-foreground: 203 4% 36%;
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
     --hover: 205.71 18.42% 14.9%;
@@ -163,15 +163,14 @@ body[lang="ar"] {
     to {
       transform: translateY(0px) rotate(-50deg);
     }
-    
   }
   .spinner {
     width: 3rem;
     height: 3rem;
     border-radius: 50%;
-    border-top: 5px solid hsl(204 65% 44%);  /* اللون الأزرق للحد العلوي */
+    border-top: 5px solid hsl(204 65% 44%); /* اللون الأزرق للحد العلوي */
     border-bottom: 5px solid hsl(126 26% 58%); /* اللون الأخضر للحد السفلي */
-    border-left: 1px solid transparent;  /* حد شفاف على اليسار */
+    border-left: 1px solid transparent; /* حد شفاف على اليسار */
     border-right: 1px solid transparent; /* حد شفاف على اليمين */
     animation: spin 1s linear infinite; /* إضافة الحركة */
   }
@@ -235,7 +234,7 @@ body[lang="ar"] {
   }
 
   .download:hover span {
-    transform: translate(0, -10px) scale(1.1);
+    transform: translate(0, -7px) scale(1.1);
     transition: transform 400ms ease-out 400ms;
   }
 

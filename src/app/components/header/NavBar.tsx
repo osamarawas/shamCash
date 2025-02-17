@@ -9,6 +9,8 @@ import { usePathname } from "next/navigation";
 import LanguageSwitcher from "./LanguageSwitcher";
 import ThemeBtn from "./ThemeBtn";
 import { removeLanguageFromPath } from "@/app/utils/helperClient";
+import { useLocale } from "next-intl";
+import { setDirction } from "@/app/utils/helperServer";
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,7 +18,8 @@ export default function NavBar() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const navLinks = Links();
   const pathName = usePathname();
-
+  const locale = useLocale();
+  console.log(locale);
   function isActive(path: string): boolean {
     return removeLanguageFromPath(pathName) === path;
   }
@@ -53,7 +56,7 @@ export default function NavBar() {
           />
         </Link>
 
-        <ul className="hidden md:flex gap-8">
+        <ul className="hidden md:flex gap-8" dir={setDirction(locale)}>
           {navLinks.map((link) => (
             <Link
               key={link.id}

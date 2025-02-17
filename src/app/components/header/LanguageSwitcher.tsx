@@ -31,7 +31,9 @@ const LanguageSwitcher = () => {
 
       <button
         onClick={toggleLanguage}
-        className="cursor-pointer hover:text-primary md:block"
+        className={`cursor-pointer hover:text-primary md:block ${
+          locale === "en" ? "font-arabic" : "font-english"
+        }`}
         disabled={loading}
       >
         {locale === "ar" ? "English" : "العربية"}
