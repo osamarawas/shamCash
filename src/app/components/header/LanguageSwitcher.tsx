@@ -8,11 +8,15 @@ const LanguageSwitcher = () => {
   const locale = useLocale();
 
   const [loading, setLoading] = useState(false);
+  const cleanPath = pathname
+    .split("/") // تقسيم المسار إلى أجزاء
+    .filter((segment) => !segment.includes("search")) // حذف أي جزء يحتوي على "search"
+    .join("/"); // إعادة تجميع المسار
 
   const toggleLanguage = () => {
     setLoading(true);
     const newLocale = locale === "ar" ? "en" : "ar";
-    const newPathUrl = `/${newLocale}${pathname.replace(/^\/(ar|en)/, "")}`;
+    const newPathUrl = `/${newLocale}${cleanPath.replace(/^\/(ar|en)/, "")}`;
     window.location.replace(newPathUrl);
   };
 

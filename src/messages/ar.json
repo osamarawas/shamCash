@@ -455,5 +455,7 @@
   },
   "download": "تنزيل",
   "Android": "اندرويد",
-  "search": "بحث"
+  "search": "بحث",
+  "searchResults": "نتائج البحث",
+  "noresults": "لا توجد نتائج"
 }

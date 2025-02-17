@@ -85,7 +85,9 @@ export default function NavBar() {
       {/* Mobile Menu */}
       <div
         className={`md:hidden absolute top-16 left-0 w-full transition-all duration-500 ease-in-out transform ${
-          isOpen ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"
+          isOpen
+            ? "translate-y-0 opacity-100 pointer-events-auto"
+            : "translate-y-full opacity-0 pointer-events-none "
         }`}
       >
         <ul className="absolute top-8 bg-background shadow-lg rounded-lg flex flex-col gap-4 items-center w-screen ">

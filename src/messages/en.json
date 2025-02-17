@@ -455,5 +455,7 @@
   },
   "Android": "Android",
   "download": "download",
-  "search": "Search"
+  "search": "Search",
+  "searchResults": "Search Results",
+  "noresults": "No results"
 }
