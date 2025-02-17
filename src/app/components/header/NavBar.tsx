@@ -11,6 +11,7 @@ import ThemeBtn from "./ThemeBtn";
 import { removeLanguageFromPath } from "@/app/utils/helperClient";
 import { useLocale } from "next-intl";
 import { setDirction } from "@/app/utils/helperServer";
+import { Languages } from "@/app/utils/enums";
 
 export default function NavBar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -18,8 +19,7 @@ export default function NavBar() {
   const [lastScrollY, setLastScrollY] = useState(0);
   const navLinks = Links();
   const pathName = usePathname();
-  const locale = useLocale();
-  console.log(locale);
+  const locale = useLocale() as Languages;
   function isActive(path: string): boolean {
     return removeLanguageFromPath(pathName) === path;
   }
