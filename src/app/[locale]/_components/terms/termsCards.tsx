@@ -2,10 +2,9 @@ import React from "react";
 import { getTranslations } from "next-intl/server";
 import { term } from "@/app/utils/siteData";
 
-
 const TermsCard = async () => {
   const t = await getTranslations("");
-  const aTerm=await term();
+  const aTerm = await term();
   return (
     <div className="relative terms-card dark:terms-card-dark w-3/4 mx-auto py-12 px-12 rounded-3xl my-10">
       <ol dir="auto" className="text-lg mb-12 list-decimal space-y-4">
