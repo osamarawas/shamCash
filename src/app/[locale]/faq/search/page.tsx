@@ -26,7 +26,7 @@ const searchFaqs = (faqs: faqsWithCategorie[], searchTerm: string) => {
           q.answer.toLowerCase().includes(searchTerm.toLowerCase())
       ),
     }))
-    .filter((category) => category.questions.length > 0); // إزالة الفئات الفارغة
+    .filter((category) => category.questions.length > 0);
 };
 
 const SearchPage = async ({ params, searchParams }: FaqPageProps) => {

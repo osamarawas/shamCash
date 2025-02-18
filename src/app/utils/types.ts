@@ -34,7 +34,7 @@ export type SocialMedia = {
   imgLight: HTMLImageElement;
   imgDarkHover: HTMLImageElement;
   imgLightHover: HTMLImageElement;
-  path?:string
+  path?: string;
 };
 export type socialMedias = SocialMedia[];
 
@@ -43,7 +43,7 @@ export type FeaturesCards = Card[];
 export type FaqCategorie = {
   id: string;
   name: string;
-  href: string;
+  path: string;
 };
 
 export type faqsWithCategorie = {
@@ -56,4 +56,10 @@ export type faqsWithCategorie = {
     resources?: { type: resourceType; url: string }[];
     lastUpdated?: string;
   }[];
+};
+
+export type verificationCategory = {
+  id: string;
+  name: string;
+  path: string;
 };

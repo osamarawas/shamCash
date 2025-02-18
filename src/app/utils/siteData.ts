@@ -26,6 +26,7 @@ import {
   socialMedias,
   terms as termsType,
   faqsWithCategorie,
+  verificationCategory,
 } from "./types";
 import { getTranslations } from "next-intl/server";
 
@@ -95,8 +96,7 @@ export const socialMedia: socialMedias = [
     imgLight: facebookLight.src,
     imgDarkHover: facebookHover.src,
     imgLightHover: facebookHover.src,
-    path:"https://www.facebook.com/sham.cash1"
-
+    path: "https://www.facebook.com/sham.cash1",
   },
   {
     id: crypto.randomUUID(),
@@ -105,7 +105,7 @@ export const socialMedia: socialMedias = [
     imgLight: xLight.src,
     imgDarkHover: xHoverDark,
     imgLightHover: xHoverLight,
-    path:"https://x.com/ShamCashX"
+    path: "https://x.com/ShamCashX",
   },
   {
     id: crypto.randomUUID(),
@@ -114,7 +114,7 @@ export const socialMedia: socialMedias = [
     imgLight: whatsappLight.src,
     imgDarkHover: whatsupHover.src,
     imgLightHover: whatsupHover.src,
-    path:"https://wa.me/+963983115119"
+    path: "https://wa.me/+963983115119",
   },
   {
     id: crypto.randomUUID(),
@@ -123,7 +123,7 @@ export const socialMedia: socialMedias = [
     imgLight: telegramLight.src,
     imgDarkHover: telegramHover.src,
     imgLightHover: telegramHover.src,
-    path:"https://t.me/shamcashapp"
+    path: "https://t.me/shamcashapp",
   },
 ];
 export const featuresCards = async (): Promise<FeaturesCardsType> => {
@@ -165,16 +165,16 @@ export const featuresCards = async (): Promise<FeaturesCardsType> => {
 export const faqCategories = async (): Promise<FaqCategorie[]> => {
   const t = await getTranslations("faqPage.category");
   return [
-    { id: "1", name: t("category1.name"), href: "faq/1" },
+    { id: "1", name: t("category1.name"), path: "faq/1" },
     {
       id: "2",
       name: t("category2.name"),
-      href: "faq/2",
+      path: "faq/2",
     },
-    { id: "3", name: t("category3.name"), href: "faq/3" },
-    { id: "4", name: t("category4.name"), href: "faq/4" },
-    { id: "5", name: t("category5.name"), href: "faq/5" },
-    { id: "6", name: t("category6.name"), href: "faq/6" },
+    { id: "3", name: t("category3.name"), path: "faq/3" },
+    { id: "4", name: t("category4.name"), path: "faq/4" },
+    { id: "5", name: t("category5.name"), path: "faq/5" },
+    { id: "6", name: t("category6.name"), path: "faq/6" },
   ];
 };
 
@@ -529,5 +529,18 @@ export const faqWithCategories = async (): Promise<faqsWithCategorie[]> => {
         },
       ],
     },
+  ];
+};
+
+export const verificationCategoryData = async (): Promise<
+  verificationCategory[]
+> => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const t = await getTranslations("");
+  return [
+    { id: "1", name: "حساب شخصي", path: "/verification/1" },
+    { id: "2", name: "حساب تجاري", path: "/verification/2" },
+    { id: "3", name: "حساب حكومي", path: "/verification/3" },
+    { id: "4", name: "حساب المنظمة", path: "/verification/4" },
   ];
 };

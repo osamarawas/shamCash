@@ -152,7 +152,6 @@ body[lang="ar"] {
     background-image: url("../assets/images/bg-applogo-light.png");
     background-repeat: no-repeat;
   }
-
   @keyframes downloadBounce {
     to {
       transform: translateY(0px) rotate(50deg);

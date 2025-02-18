@@ -8,7 +8,7 @@ import Footer from "../components/Footer/Footer";
 import AosInitializer from "../components/Aos";
 import { routing } from "@/i18n/routing";
 import { notFound } from "next/navigation";
-import { getMessages } from "next-intl/server";
+import { getMessages, getTranslations } from "next-intl/server";
 import { Languages } from "../utils/enums";
 import clsx from "clsx";
 import NavBar from "../components/header/NavBar";
@@ -24,15 +24,21 @@ const montserrat = Montserrat({
   variable: "--font-english",
 });
 
-export const metadata: Metadata = {
-  title: "تطبيق شام كاش",
-  description: "...",
-  keywords: "...",
-  applicationName: "ِشام كاش",
-  icons: {
-    icon: "/logo.svg",
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const t = await getTranslations("");
+  console.log(t("appName"));
+  return {
+    title: t("appName"),
+    description:
+      "تطبيق شام كاش - الحل الأمثل لإدارة معاملاتك المالية بسهولة وأمان. أرسل واستلم الأموال بسرعة، مع تجربة استخدام مرنة وآمنة تضمن الشفافية والمصداقية. حمل التطبيق الآن واستمتع بخدماتنا المالية المبتكرة!",
+    keywords:
+      "تطبيق شام كاش, إرسال الأموال, استلام الأموال, إدارة المعاملات المالية, تحويل الأموال, تطبيق مالي, دفع إلكتروني, خدمات مالية رقمية, أمان مالي",
+    applicationName: "شام كاش",
+    icons: {
+      icon: "/logo.svg", // تحديد أيقونة التطبيق
+    },
+  };
+}
 
 export default async function RootLayout({
   children,

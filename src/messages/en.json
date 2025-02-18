@@ -405,6 +405,7 @@
     "home": "Home",
     "faqs": "FAQ",
     "terms": "Terms and Conditions",
+    "verification": "Verification Account",
     "contact-us": "Contact us"
   },
   "footer": {
@@ -453,9 +454,20 @@
       }
     }
   },
+  "verification": {
+    "title": "verification Account",
+    "choseType": "Select Account Type",
+    "categories": {
+      "personal": "Personal Account",
+      "business": "Business account",
+      "government": "Government account",
+      "organization": "Organization account"
+    }
+  },
   "Android": "Android",
   "download": "download",
   "search": "Search",
   "searchResults": "Search Results",
-  "noresults": "No results"
+  "noresults": "No results",
+  "appName": "Sham Cash App"
 }

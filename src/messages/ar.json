@@ -405,6 +405,7 @@
     "home": "الصفحة الرئيسية",
     "faqs": "الاسئلة الشائعة",
     "terms": "الأحكام والشروط",
+    "verification": "توثيق الحساب",
     "contact-us": "تواصل معنا"
   },
   "footer": {
@@ -453,9 +454,20 @@
       }
     }
   },
+  "verification": {
+    "title": "توثيق الحساب",
+    "choseType": "اختر نوع الحساب",
+    "categories": {
+      "personal": "حساب شخصي",
+      "business": "حساب تجاري",
+      "government": "حساب حكومي",
+      "organization": "حساب المنظمة"
+    }
+  },
   "download": "تنزيل",
   "Android": "اندرويد",
   "search": "بحث",
   "searchResults": "نتائج البحث",
-  "noresults": "لا توجد نتائج"
+  "noresults": "لا توجد نتائج",
+  "appName": "تطبيق شام كاش"
 }
