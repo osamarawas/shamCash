@@ -19,7 +19,7 @@ const Landing = async () => {
         <h2 className="text-xl font-semibold leading-9 mt-4 ">
           {t("landing.downloadApp")}
         </h2>
-        <p className="md:w-3/5 mx-auto font-medium text-lg text-muted leading-relaxed mt-4">
+        <p className="md:w-3/5 mx-auto font-medium text-lg text-muted leading-relaxed mt-4" dir="auto">
           {t("landing.platformGoal")}
         </p>
         <div className="flex justify-center mt-16">
