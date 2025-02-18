@@ -20,7 +20,7 @@ const FaqPage = async ({ params }: FaqPageProps) => {
       <h2 className="-z-10 text-primary text-center text-3xl font-bold mb-14 underLine relative mx-auto  ">
         {t("faqPage.title")}
       </h2>
-      <p className="w-2/3 text-center  text-lg text-muted leading-9 font-medium ">
+      <p dir="auto" className="w-2/3 text-center  text-lg text-muted leading-9 font-medium ">
         {t("faqPage.description")}
       </p>
 

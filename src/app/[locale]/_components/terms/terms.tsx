@@ -21,12 +21,12 @@ const Terms = async () => {
       <TermsCard />
       <div
         dir="auto"
-        className="flex flex-wrap sm:flex-nowrap border-solid border-2 border-red-700 rounded-lg p-6 w-3/4 mx-auto mt-14"
+        className="flex flex-wrap sm:flex-nowrap justify-center  sm:left-0 border-solid border-2 border-red-700 rounded-lg p-6 w-3/4 mx-auto mt-14"
       >
         <Image
           src={allert.src}
           alt="allert"
-          className="h-16 w-16 m-5"
+          className="m-5 left-2/4"
           width={64}
           height={64}
         />
