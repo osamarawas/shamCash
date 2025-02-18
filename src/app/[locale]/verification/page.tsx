@@ -18,13 +18,13 @@ const FaqPage = async ({ params }: FaqPageProps) => {
       <h2 className="-z-10 text-primary text-center text-3xl font-bold mb-14 underLine relative mx-auto  ">
         {t("verification.title")}
       </h2>
-      <p
-        className="md:self-end font-semibold text-2xl text-primary leading-10 "
-        dir="auto"
-      >
+      <p className="md:self-end font-semibold text-2xl text-primary leading-10 ">
         {t("verification.choseType")}
       </p>
-      <div className="grid grid-cols-1 md:grid-cols-2  text-center gap-6">
+      <div
+        className="grid grid-cols-1 md:grid-cols-2  text-center gap-6"
+        dir="auto"
+      >
         {verificationCategory.map((category) => (
           <Category {...category} key={category.id} />
         ))}

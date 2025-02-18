@@ -34,7 +34,10 @@ const FaqPage = async ({ params }: FaqPageProps) => {
         </h2>
 
         {/* <div className=" grid grid-cols-1 lg:grid-cols-2 gap-6 w-11/12"> */}
-        <div className=" grid grid-cols-1 lg:grid-cols-2 gap-6 w-11/12">
+        <div
+          className=" grid grid-cols-1 lg:grid-cols-2 gap-6 w-11/12"
+          dir="rtl"
+        >
           {faqWithCategorie?.questions.map((aq, index) => (
             <div key={index}>
               <Accordion type="single" collapsible>

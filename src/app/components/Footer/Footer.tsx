@@ -20,7 +20,7 @@ const Footer = async () => {
       </h1>
       <p
         dir="auto"
-        className="text-footer-foreground text-lg mx-auto w-3/4 mt-10"
+        className="text-white  dark:text-footer-foreground text-lg mx-auto w-3/4 mt-10"
         data-aos="fade-up"
         data-aos-duration="800"
       >
