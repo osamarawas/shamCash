@@ -538,8 +538,16 @@ export const verificationCategoryData = async (): Promise<
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const t = await getTranslations("");
   return [
-    { id: "1", name: "حساب تجاري", path: "/verification/1" },
+    {
+      id: "1",
+      name: t("verification.categories.business"),
+      path: "/verification/1",
+    },
     // { id: "2", name: "حساب حكومي", path: "/verification/2" },
-    { id: "2", name: "حساب المنظمة", path: "/verification/2" },
+    {
+      id: "2",
+      name: t("verification.categories.organization"),
+      path: "/verification/2",
+    },
   ];
 };

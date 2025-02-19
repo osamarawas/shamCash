@@ -6,7 +6,7 @@ const TermsCard = async () => {
   const t = await getTranslations("");
   const aTerm = await term();
   return (
-    <div className="relative terms-card dark:terms-card-dark w-3/4 mx-auto py-12 px-10 rounded-3xl my-10">
+    <div className="relative terms-card dark:terms-card-dark w-3/4 mx-auto py-12 md:px-10 px-5 rounded-3xl my-10">
       <ol dir="auto" className="text-lg mb-12 list-decimal space-y-4 px-6">
         {Array.isArray(aTerm) && aTerm.length > 0 ? (
           aTerm.map((term, index) => <li key={index}>{term.li}</li>)

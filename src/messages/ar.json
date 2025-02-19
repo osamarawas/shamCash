@@ -458,7 +458,6 @@
     "title": "توثيق الحساب",
     "choseType": "اختر نوع الحساب",
     "categories": {
-      "personal": "حساب شخصي",
       "business": "حساب تجاري",
       "government": "حساب حكومي",
       "organization": "حساب المنظمة"
