@@ -6,3 +6,4 @@ export enum resourceType {
   video = "video",
   image = "image",
 }
+export type FormType = "stipper" | "main";
