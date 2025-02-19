@@ -458,10 +458,12 @@
     "title": "verification Account",
     "choseType": "Select Account Type",
     "categories": {
-      "personal": "Personal Account",
-      "business": "Business account",
-      "government": "Government account",
-      "organization": "Organization account"
+      "category1": {
+        "name": "Business account"
+      },
+      "category2": {
+        "name": "Organization account"
+      }
     }
   },
   "Android": "Android",

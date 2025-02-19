@@ -7,7 +7,8 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import PathCete from "./PathCete";
+import { getTranslations } from "next-intl/server";
+import PathLine from "../../../components/PathLine";
 
 interface FaqPageProps {
   params: Promise<{ cate: string; locale: Languages }>;
@@ -18,22 +19,23 @@ const FaqPage = async ({ params }: FaqPageProps) => {
   const { locale } = resolvedParams;
   const categoryId = resolvedParams.cate;
   const faqWithCategorieArray = await faqWithCategories();
+  const t = await getTranslations("");
+
   const faqWithCategorie = faqWithCategorieArray.find(
     (category) => category.categoryId === categoryId
   );
 
   return (
     <div className="container mx-auto pt-5">
-      <PathCete
-        locale={locale}
-        categoryName={faqWithCategorie?.categoryName || ""}
+      <PathLine
+        pagename={t(`faqPage.category.category${categoryId}.name`)}
+        backname={t("faqPage.title")}
       />
       <div className="container flex flex-col items-center gap-5 mx-auto my-6 lg:my-10">
         <h2 className="text-primary text-center text-3xl font-bold mb-10 underLine relative mx-auto">
           {faqWithCategorie?.categoryName}
         </h2>
 
-        {/* <div className=" grid grid-cols-1 lg:grid-cols-2 gap-6 w-11/12"> */}
         <div
           className=" grid grid-cols-1 lg:grid-cols-2 gap-6 w-11/12"
           dir="rtl"

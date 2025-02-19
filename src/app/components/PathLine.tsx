@@ -1,3 +1,4 @@
+"use client";
 import { ArrowLeft, ArrowRight, Slash } from "lucide-react";
 import {
   Breadcrumb,
@@ -7,14 +8,20 @@ import {
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
 import { Languages } from "@/app/utils/enums";
-import { getTranslations } from "next-intl/server";
 import { setDirction } from "@/app/utils/helperServer";
 import { Link } from "@/i18n/routing";
-interface PathCeteProps {
-  locale: Languages;
-  categoryName: string | "";
+import { usePathname } from "next/navigation";
+import { getSecondLastPath } from "@/app/utils/helperClient";
+import { useLocale } from "next-intl";
+
+interface PathLineProps {
+  pagename: string | "";
+  backname: string;
 }
-const PathCete = async ({ locale, categoryName }: PathCeteProps) => {
+const PathLine = ({ pagename, backname }: PathLineProps) => {
+  const pathname = usePathname();
+  const newUrl = getSecondLastPath(pathname);
+  const locale = useLocale() as Languages;
   function setArrowDirction() {
     return locale === Languages.ARABIC ? (
       <ArrowRight className="w-8 h-5" />
@@ -23,25 +30,24 @@ const PathCete = async ({ locale, categoryName }: PathCeteProps) => {
     );
   }
   const nexturl = () => {
-    return `/${locale}/faq`;
+    return `/${locale}/${newUrl}`;
   };
-  const t = await getTranslations("faqPage");
   return (
     <div className="flex  items-center" dir={setDirction(locale)}>
-      <Link href={"/faq"}>{setArrowDirction()}</Link>
+      <Link href={`/${newUrl}`}>{setArrowDirction()}</Link>
 
       <div>
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
-              <BreadcrumbLink href={nexturl()}> {t("title")}</BreadcrumbLink>
+              <BreadcrumbLink href={nexturl()}> {backname}</BreadcrumbLink>
             </BreadcrumbItem>
             <BreadcrumbSeparator>
               <Slash />
             </BreadcrumbSeparator>
             <BreadcrumbItem>
               <BreadcrumbLink className="font-bold cursor-default">
-                {categoryName}
+                {pagename}
               </BreadcrumbLink>
             </BreadcrumbItem>
           </BreadcrumbList>
@@ -51,4 +57,4 @@ const PathCete = async ({ locale, categoryName }: PathCeteProps) => {
   );
 };
 
-export default PathCete;
+export default PathLine;
