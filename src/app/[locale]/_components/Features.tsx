@@ -12,6 +12,7 @@ const Features = async () => {
         className="text-primary text-center text-3xl font-bold mb-14 underLine relative mx-auto"
         data-aos="fade-up"
         data-aos-duration="800"
+        dir="auto"
       >
         {t("features.title")}
       </h2>
@@ -19,6 +20,7 @@ const Features = async () => {
         className="w-2/3 text-center  text-lg text-muted leading-9 font-medium "
         data-aos="fade-up"
         data-aos-duration="800"
+        dir="auto"
       >
         {t("features.desc")}
       </p>
