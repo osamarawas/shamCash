@@ -10,6 +10,7 @@ const About = async () => {
       <h2
         className="text-primary text-center text-3xl font-bold mb-14 underLine relative mx-auto  "
         data-aos="zoom-out"
+        dir="auto"
       >
         {t("about.title")}
       </h2>
@@ -17,7 +18,7 @@ const About = async () => {
         data-aos="fade-up"
         data-aos-duration="800"
         className="text-center justify-center w-8/12 mx-auto mb-8 text-lg text-muted"
-        dir="rtl"
+        dir="auto"
       >
         {t("about.description")}
       </p>
