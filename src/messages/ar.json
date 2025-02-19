@@ -458,9 +458,12 @@
     "title": "توثيق الحساب",
     "choseType": "اختر نوع الحساب",
     "categories": {
-      "business": "حساب تجاري",
-      "government": "حساب حكومي",
-      "organization": "حساب المنظمة"
+      "category1": {
+        "name": "حساب تجاري"
+      },
+      "category2": {
+        "name": "حساب منظمة"
+      }
     }
   },
   "download": "تنزيل",

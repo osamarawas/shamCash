@@ -252,4 +252,5 @@ body[lang="ar"] {
     transform: translateY(7px) rotate(-50deg);
     animation: downloadBounce2 800ms linear alternate infinite;
   }
+
 }
