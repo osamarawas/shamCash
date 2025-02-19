@@ -3,18 +3,19 @@ import { useTheme } from "next-themes";
 import Image from "next/image";
 import sun from "@/assets/icon/sun.svg";
 import moon from "@/assets/icon/moon.svg";
-import { useIsDark } from "@/app/utils/helper";
 import { useEffect, useState } from "react";
+
 const ThemeBtn = () => {
-  const { theme, setTheme } = useTheme();
-  const [themeIcon, setThemeIcon] = useState(moon);
+  const { resolvedTheme, setTheme } = useTheme();
+  const [themeIcon, setThemeIcon] = useState(sun);
 
-  const isDark = useIsDark();
   useEffect(() => {
-    setThemeIcon(isDark ? sun : moon);
-  }, [theme]);
+    setThemeIcon(resolvedTheme === "dark" ? sun : moon);
+  }, [resolvedTheme]);
 
-  const toggleTheme = () => setTheme(theme === "dark" ? "light" : "dark");
+  const toggleTheme = () => {
+    setTheme(resolvedTheme === "dark" ? "light" : "dark");
+  };
 
   return (
     <Image
@@ -22,8 +23,8 @@ const ThemeBtn = () => {
       onClick={toggleTheme}
       width={19}
       height={25}
-      className="h-6 w-5 cursor-pointer "
-      alt="Logo"
+      className="h-6 w-5 cursor-pointer md:block"
+      alt="Theme icon"
     />
   );
 };

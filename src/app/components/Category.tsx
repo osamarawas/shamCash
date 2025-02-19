@@ -4,15 +4,15 @@ import React from "react";
 
 interface CategoryProps {
   name: string;
-  href: string;
+  path: string;
 }
-const Category = ({ name, href }: CategoryProps) => {
+const Category = ({ name, path }: CategoryProps) => {
   return (
     <Link
-      className={badgeVariants({
+      className={`${badgeVariants({
         variant: "soft",
-      })}
-      href={href}
+      })} min-w-[320px] lg:min-w-[500px]`}
+      href={path}
     >
       {name}
     </Link>

@@ -6,12 +6,18 @@ html {
   scroll-behavior: smooth;
 }
 
-body {
-  font-family: Arial, Helvetica, sans-serif;
-}
-
 :root {
   --nav-height: 112px;
+  --font-arabic: "Noto Kufi Arabic", sans-serif;
+  --font-english: "Montserrat", sans-serif;
+}
+
+body {
+  font-family: var(--font-english);
+}
+
+body[lang="ar"] {
+  font-family: var(--font-arabic);
 }
 
 @layer base {
@@ -56,7 +62,7 @@ body {
     --footer: 0 0% 100%;
     --footer-foreground: 203 4% 36%;
     --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
+    --card-foreground: 203 4% 36%;
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
     --hover: 205.71 18.42% 14.9%;
@@ -108,15 +114,27 @@ body {
 
   .text-gradiant {
     background: linear-gradient(21.45deg, #277eb8 32.36%, #fff 110.94%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
   }
 
-  .bg-landing {
+  .bg-fullsize {
     background-size: 100% 100%;
+  }
+
+  .nav-shadow {
+    box-shadow: 0px 2px 16px 0px rgba(25, 60, 83, 0.25);
+  }
+
+  .nav-shadow-dark {
+    box-shadow: 0px 2px 16px 0px rgba(49, 67, 79, 0.25);
   }
 
   .background-terms {
     @apply bg-cover bg-center bg-no-repeat;
   }
+
   .terms-card {
     background-color: rgba(217, 217, 217, 0.3);
   }
@@ -124,12 +142,114 @@ body {
   .terms-card-dark {
     background-color: rgba(217, 217, 217, 0.2);
   }
+
   .bg-feature-dark {
     background-image: url("../assets/images/bg-applogo-dark.png");
     background-repeat: no-repeat;
   }
+
   .bg-feature {
     background-image: url("../assets/images/bg-applogo-light.png");
     background-repeat: no-repeat;
+  }
+  @keyframes downloadBounce {
+    to {
+      transform: translateY(0px) rotate(50deg);
+    }
+  }
+
+  @keyframes downloadBounce2 {
+    to {
+      transform: translateY(0px) rotate(-50deg);
+    }
+  }
+  .spinner {
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    border-top: 5px solid hsl(204 65% 44%); /* اللون الأزرق للحد العلوي */
+    border-bottom: 5px solid hsl(126 26% 58%); /* اللون الأخضر للحد السفلي */
+    border-left: 1px solid transparent; /* حد شفاف على اليسار */
+    border-right: 1px solid transparent; /* حد شفاف على اليمين */
+    animation: spin 1s linear infinite; /* إضافة الحركة */
+  }
+  .download {
+    /* Rounded corner overflow mask fix */
+    -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
+    overflow: hidden;
+    border-radius: 5px;
+    box-sizing: border-box;
+    border: 1px solid #66a7d2;
+    color: #277eb8;
+    padding: 26px 0 26px 28px;
+    width: 150px;
+    height: 0.1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    transition: all 300ms ease;
+  }
+
+  .download span {
+    display: block;
+  }
+
+  .download span:after,
+  .download span:before {
+    content: "";
+    width: 1px;
+    height: 10px;
+    background: white;
+    opacity: 0;
+    position: absolute;
+    left: 50%;
+    top: 100%;
+    transition: all 10ms ease-out;
+    transform-origin: center bottom;
+    transform: translateY(0) rotate(0deg);
+    animation: none;
+  }
+
+  .download svg {
+    z-index: 0;
+    fill: #277eb8;
+    position: absolute;
+    left: 20%;
+    top: 50%;
+    transform: translate(-50%, -50%) rotate(0deg) scale(0.04857);
+    transition: all 350ms ease-out;
+    height: 600px;
+  }
+
+  .download:hover {
+    padding: 26px 0;
+    color: white;
+  }
+
+  .download:hover svg {
+    left: 50%;
+    transform: translate(-50%, -50%) rotate(60deg) scale(1);
+  }
+
+  .download:hover span {
+    transform: translate(0, -7px) scale(1.1);
+    transition: transform 400ms ease-out 400ms;
+  }
+
+  .download:hover span:after,
+  .download:hover span:before {
+    opacity: 1;
+    transition: all 400ms ease-out 400ms, transform 300ms ease-in 100ms;
+  }
+
+  .download:hover span:after {
+    transform: translateY(7px) rotate(50deg);
+    animation: downloadBounce 800ms linear alternate infinite;
+  }
+
+  .download:hover span:before {
+    transform: translateY(7px) rotate(-50deg);
+    animation: downloadBounce2 800ms linear alternate infinite;
   }
 }

@@ -22,55 +22,50 @@ import paper from "@/assets/icon/paper.svg";
 import {
   AboutCards,
   FaqCategorie,
-  FAnswerQuestions,
   FeaturesCards as FeaturesCardsType,
   socialMedias,
   terms as termsType,
   faqsWithCategorie,
+  verificationCategory,
 } from "./types";
 import { getTranslations } from "next-intl/server";
 
-
-
-export const term = async ():Promise<termsType> => {
+export const term = async (): Promise<termsType> => {
   const t = await getTranslations("terms.cnonditions");
   return [
-  { li: t("cnonditions1") },
-  { li: t("cnonditions2") },
-  { li: t("cnonditions3") },
-  { li: t("cnonditions4") },
-  { li: t("cnonditions5") },
-  { li: t("cnonditions6") },
-  { li: t("cnonditions7") },
-  { li: t("cnonditions8") },
-  { li: t("cnonditions9") },
-];
-}
+    { li: t("cnonditions1") },
+    { li: t("cnonditions2") },
+    { li: t("cnonditions3") },
+    { li: t("cnonditions4") },
+    { li: t("cnonditions5") },
+    { li: t("cnonditions6") },
+    { li: t("cnonditions7") },
+    { li: t("cnonditions8") },
+    { li: t("cnonditions9") },
+  ];
+};
 
-export const fAnswerQuestion: FAnswerQuestions = [
-  {
-    id: crypto.randomUUID(),
-    question: "اديش عمولة التحويل؟",
-    answer: "الخدمة مجانية ولا يوجد عمولة تحويل حالياً.",
-  },
-  {
-    id: crypto.randomUUID(),
-    question: "شو ضمان المنصة أنه ماتسكر فجأة ؟",
-    answer: "بنك شام هو الضامن",
-  },
-  {
-    id: crypto.randomUUID(),
-    question: "هل يوجد من يقوم بحماية المنصة من الاختراق ؟",
-    answer: "صحيح يوجد عدد من الإخوة المبرمجين قائمين على حماية البرنامج.",
-  },
-  {
-    id: crypto.randomUUID(),
-    question:
-      "هل يمكن الاستفاده من برنامج شام كاش من اجل تعبئه رصيد في سيريافون او تعبئه الكهرباء ؟",
-    answer:
-      "قريباً بإذن الله سيتم تفعيل عدد من الخدمات ومنها الاتصالات والكهرباء والتسويق الإلكتروني",
-  },
-];
+export const fAnswerQuestion = async () => {
+  const t = await getTranslations("fAnswerQuestions.questions");
+  return [
+    {
+      question: t("q1.question"),
+      answer: t("q1.answer"),
+    },
+    {
+      question: t("q2.question"),
+      answer: t("q2.answer"),
+    },
+    {
+      question: t("q3.question"),
+      answer: t("q3.answer"),
+    },
+    {
+      question: t("q4.question"),
+      answer: t("q4.answer"),
+    },
+  ];
+};
 
 export const aboutCards = async (): Promise<AboutCards> => {
   const t = await getTranslations("about.sections");
@@ -101,6 +96,7 @@ export const socialMedia: socialMedias = [
     imgLight: facebookLight.src,
     imgDarkHover: facebookHover.src,
     imgLightHover: facebookHover.src,
+    path: "https://www.facebook.com/sham.cash1",
   },
   {
     id: crypto.randomUUID(),
@@ -109,6 +105,7 @@ export const socialMedia: socialMedias = [
     imgLight: xLight.src,
     imgDarkHover: xHoverDark,
     imgLightHover: xHoverLight,
+    path: "https://x.com/ShamCashX",
   },
   {
     id: crypto.randomUUID(),
@@ -117,6 +114,7 @@ export const socialMedia: socialMedias = [
     imgLight: whatsappLight.src,
     imgDarkHover: whatsupHover.src,
     imgLightHover: whatsupHover.src,
+    path: "https://wa.me/+963983115119",
   },
   {
     id: crypto.randomUUID(),
@@ -125,6 +123,7 @@ export const socialMedia: socialMedias = [
     imgLight: telegramLight.src,
     imgDarkHover: telegramHover.src,
     imgLightHover: telegramHover.src,
+    path: "https://t.me/shamcashapp",
   },
 ];
 export const featuresCards = async (): Promise<FeaturesCardsType> => {
@@ -166,16 +165,16 @@ export const featuresCards = async (): Promise<FeaturesCardsType> => {
 export const faqCategories = async (): Promise<FaqCategorie[]> => {
   const t = await getTranslations("faqPage.category");
   return [
-    { id: "1", name: t("category1.name"), href: "faq/1" },
+    { id: "1", name: t("category1.name"), path: "faq/1" },
     {
       id: "2",
       name: t("category2.name"),
-      href: "faq/2",
+      path: "faq/2",
     },
-    { id: "3", name: t("category3.name"), href: "faq/3" },
-    { id: "4", name: t("category4.name"), href: "faq/4" },
-    { id: "5", name: t("category5.name"), href: "faq/5" },
-    { id: "6", name: t("category6.name"), href: "faq/6" },
+    { id: "3", name: t("category3.name"), path: "faq/3" },
+    { id: "4", name: t("category4.name"), path: "faq/4" },
+    { id: "5", name: t("category5.name"), path: "faq/5" },
+    { id: "6", name: t("category6.name"), path: "faq/6" },
   ];
 };
 
@@ -485,50 +484,70 @@ export const faqWithCategories = async (): Promise<faqsWithCategorie[]> => {
       categoryId: "6",
       questions: [
         {
-          question: "t('category6.questions.q1.question')",
-          answer: "t('category6.questions.q1.answer')",
+          question: t("category6.questions.q1.question"),
+          answer: t("category6.questions.q1.answer"),
         },
         {
-          question: "t('category6.questions.q2.question')",
-          answer: "t('category6.questions.q2.answer')",
+          question: t("category6.questions.q2.question"),
+          answer: t("category6.questions.q2.answer"),
         },
         {
-          question: "t('category6.questions.q3.question')",
-          answer: "t('category6.questions.q3.answer')",
+          question: t("category6.questions.q3.question"),
+          answer: t("category6.questions.q3.answer"),
         },
         {
-          question: "t('category6.questions.q4.question')",
-          answer: "t('category6.questions.q4.answer')",
+          question: t("category6.questions.q4.question"),
+          answer: t("category6.questions.q4.answer"),
         },
         {
-          question: "t('category6.questions.q5.question')",
-          answer: "t('category6.questions.q5.answer')",
+          question: t("category6.questions.q5.question"),
+          answer: t("category6.questions.q5.answer'"),
         },
         {
-          question: "t('category6.questions.q6.question')",
-          answer: "t('category6.questions.q6.answer')",
+          question: t("category6.questions.q6.question"),
+          answer: t("category6.questions.q6.answer"),
         },
         {
-          question: "t('category6.questions.q7.question')",
-          answer: "t('category6.questions.q7.answer')",
+          question: t("category6.questions.q7.question"),
+          answer: t("category6.questions.q7.answer"),
         },
         {
-          question: "t('category6.questions.q8.question')",
-          answer: "t('category6.questions.q8.answer')",
+          question: t("category6.questions.q8.question"),
+          answer: t("category6.questions.q8.answer"),
         },
         {
-          question: "t('category6.questions.q9.question')",
-          answer: "t('category6.questions.q9.answer')",
+          question: t("category6.questions.q9.question"),
+          answer: t("category6.questions.q9.answer"),
         },
         {
-          question: "t('category6.questions.q10.question')",
-          answer: "t('category6.questions.q10.answer')",
+          question: t("category6.questions.q10.question"),
+          answer: t("category6.questions.q10.answer"),
         },
         {
-          question: "t('category6.questions.q11.question')",
-          answer: "t('category6.questions.q11.answer')",
+          question: t("category6.questions.q11.question"),
+          answer: t("category6.questions.q11.answer"),
         },
       ],
+    },
+  ];
+};
+
+export const verificationCategoryData = async (): Promise<
+  verificationCategory[]
+> => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const t = await getTranslations("");
+  return [
+    {
+      id: "1",
+      name: t("verification.categories.business"),
+      path: "/verification/1",
+    },
+    // { id: "2", name: "حساب حكومي", path: "/verification/2" },
+    {
+      id: "2",
+      name: t("verification.categories.organization"),
+      path: "/verification/2",
     },
   ];
 };

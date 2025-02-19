@@ -7,14 +7,20 @@ const Features = async () => {
   const t = await getTranslations("");
   const featuresCardsArray = await featuresCards();
   return (
-    <div className="flex items-center justify-center container flex-col gap-5 mx-auto  my-8 lg:my-14  bg-landing  bg-feature dark:bg-feature-dark  ">
-      <h2 className="text-primary text-center text-3xl font-bold mb-14 underLine relative mx-auto  ">
+    <div className="flex items-center justify-center container flex-col gap-5 mx-auto  my-8 lg:my-14  bg-fullsize    md:bg-feature md:dark:bg-feature-dark  bg-[url(../assets/images/applogoMidum.png)] bg-center      ">
+      <h2
+        className="text-primary text-center text-3xl font-bold mb-14 underLine relative mx-auto"
+        data-aos="fade-up"
+        data-aos-duration="800"
+        dir="auto"
+      >
         {t("features.title")}
       </h2>
       <p
         className="w-2/3 text-center  text-lg text-muted leading-9 font-medium "
         data-aos="fade-up"
         data-aos-duration="800"
+        dir="auto"
       >
         {t("features.desc")}
       </p>

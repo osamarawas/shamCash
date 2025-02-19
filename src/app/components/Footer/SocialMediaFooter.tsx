@@ -1,5 +1,4 @@
 "use client";
-import { useIsDark } from "@/app/utils/helper";
 import { SocialMedia as SocialMediaType } from "@/app/utils/types";
 import { useTheme } from "next-themes";
 import Image from "next/image";
@@ -10,19 +9,18 @@ interface SocialMediaFooterprops {
 }
 
 const SocialMediaFooter = ({ socialMedia }: SocialMediaFooterprops) => {
-  const { theme } = useTheme();
-  const [socialIcon, setSocialIcon] = useState(socialMedia.imgLight);
+  const { resolvedTheme } = useTheme();
+  const [socialIcon, setSocialIcon] = useState(socialMedia.imgDark);
   const [socialIconHover, setSocialIconHover] = useState(
-    socialMedia.imgLightHover
+    socialMedia.imgDarkHover
   );
-  const isDark = useIsDark();
 
   function getSocialIcon() {
-    if (isDark) return socialMedia.imgDark;
+    if (resolvedTheme === "dark") return socialMedia.imgDark;
     else return socialMedia.imgLight;
   }
   function getSocialIconHover() {
-    if (isDark) return socialMedia.imgDarkHover;
+    if (resolvedTheme === "dark") return socialMedia.imgDarkHover;
     else {
       return socialMedia.imgLightHover;
     }
@@ -30,24 +28,27 @@ const SocialMediaFooter = ({ socialMedia }: SocialMediaFooterprops) => {
   useEffect(() => {
     setSocialIcon(getSocialIcon);
     setSocialIconHover(getSocialIconHover);
-  }, [theme]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [resolvedTheme]);
 
   return (
-    <div className="group m-2">
+    <div className="group ">
+      <a href={socialMedia.path} target="_blank"> 
       <Image
         src={socialIcon}
         alt="social icon"
-        height={42}
-        width={42}
+        height={30}
+        width={30}
         className="group-hover:hidden"
       />
       <Image
         src={socialIconHover}
         alt="social icon hover"
-        height={42}
-        width={42}
+        height={30}
+        width={30}
         className="hidden group-hover:block cursor-pointer"
       />
+      </a>
     </div>
   );
 };

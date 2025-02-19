@@ -7,7 +7,7 @@ export default async function middleware(request: NextRequest) {
 
   const defaultLocale =
     (request.headers.get("locale") as Languages) || Languages.ARABIC;
-  // Step 2: Create and call the next-intl middleware (example)
+  // Step 2: Create and call the next-intl middleware (example)o
   const handleI18nRouting = createMiddleware({
     locales: [Languages.ARABIC, Languages.ENGLISH],
     defaultLocale: Languages.ARABIC,
@@ -22,5 +22,5 @@ export default async function middleware(request: NextRequest) {
 
 export const config = {
   // Match only internationalized pathnames
-  matcher: ["/", "/(ar|en)/:path*"],
+  matcher: ["/((?!api|_next|.*\\..*).*)"],
 };
