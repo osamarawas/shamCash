@@ -59,12 +59,6 @@ export function AlertDialogDemo(props) {
             </div>
           </AlertDialogDescription>
         </AlertDialogHeader>
-<<<<<<< HEAD
-        <AlertDialogFooter>
-          <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction onClick={props.sure}>Continue</AlertDialogAction>
-        </AlertDialogFooter>
-=======
         <div className="">
           <AlertDialogFooter dir="auto" className="mb-6">
             <AlertDialogCancel className="text-gray-600 bg-gray-200 font-semibold">
@@ -79,7 +73,6 @@ export function AlertDialogDemo(props) {
             </AlertDialogAction>
           </AlertDialogFooter>
         </div>
->>>>>>> e22ef6b7a61faf1983071f95b404699cfc935b65
       </AlertDialogContent>
     </AlertDialog>
   );

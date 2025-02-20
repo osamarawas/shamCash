@@ -138,24 +138,6 @@ const MultiStepForm = () => {
       const otpData = { ...data, otpCode: otp }; // إضافة قيمة otp إلى الكائن
       console.log(otpData);
       const response = await postData(
-        `/api/Authentication/checkVerifications`,
-        otpData
-      ); // إرسال البيانات عبر API succeeded
-      if (true) {
-        setOpenAlert(true);
-      } else {
-      }
-    } catch (error) {
-      setOpenAlert(true);
-      console.error("❌ فشل الإرسال:", error);
-    }
-  };
-
-  const onSubmit = async (data: FormData) => {
-    try {
-      const otpData = { ...data, otpCode: otp }; // إضافة قيمة otp إلى الكائن
-      console.log(otpData);
-      const response = await postData(
         "/api/CommercialAccounts/verifyAccount",
         otpData
       ); // إرسال البيانات عبر API succeeded
@@ -201,7 +183,10 @@ const MultiStepForm = () => {
   };
 
   return (
-    <div className=" container mx-auto pt-5 lg:bg-none bg-[url(../assets/images/verification-bg.svg)]">
+    <div
+      className=" container mx-auto pt-5 lg:bg-none bg-[url(../assets/images/verification-bg.svg)]"
+      dir="auto"
+    >
       <PathLine
         pagename={t("verification.categories.category1.name")}
         backname={t("verification.title")}
