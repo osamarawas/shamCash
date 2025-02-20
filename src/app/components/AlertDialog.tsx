@@ -46,9 +46,7 @@ export function AlertDialogDemo(props) {
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Cancel</AlertDialogCancel>
-          <AlertDialogAction >
-            Continue
-          </AlertDialogAction>
+          <AlertDialogAction type="submit" onClick={props.sure} >Continue</AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
