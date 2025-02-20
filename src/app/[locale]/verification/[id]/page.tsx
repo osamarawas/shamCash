@@ -14,6 +14,7 @@ import PathLine from "@/app/components/PathLine";
 import { useLocale, useTranslations } from "next-intl";
 import { postData } from "@/app/utils/apiService";
 import Resizer from "react-image-file-resizer";
+import axios from "axios";
 
 // ✅ تعريف مخطط التحقق باستخدام Zod
 const formSchema = z.object({
@@ -114,14 +115,16 @@ const MultiStepForm = () => {
   const onCheckOtp = async (data: FormData) => {
     try {
       const otpData = getOtpBody(data); // الحصول على البيانات من getOtpBody
-      const response = await postData(
-        `/api/Authentication/checkVerifications`,
+      const response = await axios.post(
+        `http://test.bokla.me/api/Authentication/checkVerifications`,
         otpData
-      ); // إرسال البيانات عبر API succeeded
+      );
+      console.log(response) // إرسال البيانات عبر API succeeded
       if (true) {
         setOpenAlert(true);
       } else {
       }
+
     } catch (error) {
       setOpenAlert(true);
       console.error("❌ فشل الإرسال:", error);

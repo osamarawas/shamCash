@@ -7,7 +7,9 @@ const axiosInstance = axios.create({
   headers: {
     "Content-Type": "application/json",
     "Accept":"application/json",
-    "x-Requested-with":"XMLHttpRequest"
+    "x-Requested-with":"XMLHttpRequest",
+    "Access-Control-Allow-Origin":"*"
+    
   },
 });
 
