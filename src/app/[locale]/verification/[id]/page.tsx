@@ -115,7 +115,7 @@ const MultiStepForm = () => {
     try {
       const otpData = getOtpBody(data); // الحصول على البيانات من getOtpBody
       const response = await postData(
-        "/api/Authentication/checkVerifications",
+        `/api/Authentication/checkVerifications`,
         otpData
       ); // إرسال البيانات عبر API succeeded
       if (true) {
@@ -163,7 +163,7 @@ const MultiStepForm = () => {
       );
     });
 
-  const onChange = async (event, fieldName) => {
+  const onChangeFile = async (event, fieldName) => {
     try {
       const file = event.target.files[0];
       const image = await resizeFile(file);
@@ -311,7 +311,8 @@ const MultiStepForm = () => {
                   <div className="flex flex-col" dir={uploadDirection}>
                     <label className="justify-between flex items-center gap-2 border border-gray-300 dark:border-gray-700 rounded-lg p-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800">
                       <span className="text-sm text-gray-500 dark:text-gray-400">
-                        {fileNames.commercialRegisterPhoto ||"صورة السجل التجاري"}
+                        {fileNames.commercialRegisterPhoto ||
+                          "صورة السجل التجاري"}
                       </span>
                       <Upload className="w-5 h-5 text-gray-500" />
                       <Input
@@ -320,7 +321,7 @@ const MultiStepForm = () => {
                         accept="image/*"
                         {...register("commercialRegisterPhoto", {
                           onChange: (e) =>
-                            onChange(e, "commercialRegisterPhoto"), // تمرير الدالة هنا
+                            onChangeFile(e, "commercialRegisterPhoto"), // تمرير الدالة هنا
                         })}
                       />
                     </label>
@@ -346,7 +347,7 @@ const MultiStepForm = () => {
                         className="hidden"
                         accept="image/*"
                         {...register("licensePhoto", {
-                          onChange: (e) => onChange(e, "licensePhoto"), // تمرير الدالة هنا
+                          onChange: (e) => onChangeFile(e, "licensePhoto"), // تمرير الدالة هنا
                         })}
                       />{" "}
                     </label>
@@ -364,7 +365,8 @@ const MultiStepForm = () => {
                   <div className="flex flex-col" dir={uploadDirection}>
                     <label className="justify-between flex items-center gap-2 border border-gray-300 dark:border-gray-700 rounded-lg p-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800">
                       <span className="text-sm text-gray-500 dark:text-gray-400">
-                        {fileNames.physicalAddressImage || "صورة وثيقة تحمل الرقم الفيزيائي"}
+                        {fileNames.physicalAddressImage ||
+                          "صورة وثيقة تحمل الرقم الفيزيائي"}
                       </span>
                       <Upload className="w-5 h-5 text-gray-500" />
                       <Input
@@ -372,7 +374,8 @@ const MultiStepForm = () => {
                         className="hidden"
                         accept="image/*"
                         {...register("physicalAddressImage", {
-                          onChange: (e) => onChange(e, "physicalAddressImage"), // تمرير الدالة هنا
+                          onChange: (e) =>
+                            onChangeFile(e, "physicalAddressImage"), // تمرير الدالة هنا
                         })}
                       />
                     </label>
@@ -398,7 +401,8 @@ const MultiStepForm = () => {
                         className="hidden"
                         accept="image/*"
                         {...register("ownerIdentityImageFS", {
-                          onChange: (e) => onChange(e, "ownerIdentityImageFS"), // تمرير الدالة هنا
+                          onChange: (e) =>
+                            onChangeFile(e, "ownerIdentityImageFS"), // تمرير الدالة هنا
                         })}
                       />
                     </label>
@@ -419,7 +423,8 @@ const MultiStepForm = () => {
                         className="hidden"
                         accept="image/*"
                         {...register("ownerIdentityImageBS", {
-                          onChange: (e) => onChange(e, "ownerIdentityImageBS"), // تمرير الدالة هنا
+                          onChange: (e) =>
+                            onChangeFile(e, "ownerIdentityImageBS"), // تمرير الدالة هنا
                         })}
                       />
                     </label>
@@ -447,7 +452,7 @@ const MultiStepForm = () => {
                         accept="image/*"
                         {...register("commissionerIdentityImageFS", {
                           onChange: (e) =>
-                            onChange(e, "commissionerIdentityImageFS"), // تمرير الدالة هنا
+                            onChangeFile(e, "commissionerIdentityImageFS"), // تمرير الدالة هنا
                         })}
                       />
                     </label>
@@ -470,7 +475,7 @@ const MultiStepForm = () => {
                         accept="image/*"
                         {...register("commissionerIdentityImageBS", {
                           onChange: (e) =>
-                            onChange(e, "commissionerIdentityImageBS"), // تمرير الدالة هنا
+                            onChangeFile(e, "commissionerIdentityImageBS"), // تمرير الدالة هنا
                         })}
                       />{" "}
                     </label>
