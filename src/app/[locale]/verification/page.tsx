@@ -13,11 +13,18 @@ const VerificationPage = async ({ params }: FaqPageProps) => {
   const t = await getTranslations("");
   const verificationCategory = await verificationCategoryData();
   return (
-    <div className="flex items-center justify-center container flex-col gap-5 mx-auto  my-8 lg:my-14 ">
-      <h2 className="-z-10 text-primary text-center text-3xl font-bold mb-14 underLine relative mx-auto  ">
+    <div className="h-full flex items-center justify-center container flex-col gap-5 mx-auto  my-8 lg:my-14 ">
+      <h2 className="-z-10 text-primary text-center text-3xl font-bold mb-14 underLine relative mx-auto w-60 sm:w-fit ">
         {t("verification.title")}
       </h2>
-      <p className="md:self-start  font-semibold start-10 text-2xl text-primary leading-10 ">
+      <p 
+      dir="auto"
+      className="mx-5 sm:mx-auto text-muted text-center text-lg font-semibold max-w-3xl">
+        {t("verification.desc")}
+      </p>
+      <p 
+      dir="auto"
+      className="font-semibold mt-6 mb-12 text-2xl text-primary leading-10 text-center ">
         {t("verification.choseType")}
       </p>
       <div

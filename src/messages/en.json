@@ -457,6 +457,7 @@
   "verification": {
     "title": "verification Account",
     "choseType": "Select Account Type",
+    "desc": "The account verification interface allows you to quickly and securely confirm your identity to use all the features of the e-wallet. You will need to enter some basic information, such as your full name and ID number, and then upload the required documents, such as your ID card or passport.",
     "categories": {
       "category1": {
         "name": "Business account"
