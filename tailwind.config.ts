@@ -48,6 +48,12 @@ export default {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
         },
+        border_input: {
+          DEFAULT: "hsl(var(--border-input))",
+        },
+        border_focus_input: {
+          DEFAULT: "hsl(var(--border-focus-input))",
+        },
         triger: {
           DEFAULT: "hsl(var(--triger))",
         },

@@ -1,3 +1,4 @@
+import { FieldError, FieldErrorsImpl, Merge } from "react-hook-form";
 import { FormType, resourceType } from "./enums";
 
 export type NavLink = {
@@ -64,10 +65,13 @@ export type verificationCategory = {
   path: string;
 };
 
-export interface IOption {
-  label: string;
-  value: string;
-}
+type Endpoint = Record<
+  string,
+  {
+    url: string;
+    method: "POST" | "GET" | "PUT" | "DELETE";
+  }
+>;
 export interface IFormField {
   name: string;
   label?: string;
@@ -83,6 +87,7 @@ export interface IFormField {
     | "radio"
     | "select"
     | "hidden"
+    | "file"
     | "textarea";
   placeholder?: string;
   disabled?: boolean;
@@ -91,14 +96,14 @@ export interface IFormField {
   id?: string;
   defaultValue?: string;
   readOnly?: boolean;
+  error?: ValidationErrors;
+  maxLength?: number;
 }
-type Endpoint = Record<
-  string,
-  {
-    url: string;
-    method: "POST" | "GET" | "PUT" | "DELETE";
-  }
->;
+
+export interface IOption {
+  label: string;
+  value: string;
+}
 
 export type DynamicForm = {
   id?: string; // معرف فريد للنموذج
@@ -125,6 +130,11 @@ export type DynamicForm = {
     rolesAllowed?: string[]; // الأدوار المسموح لها باستخدام النموذج
     authenticationRequired?: boolean; // هل يتطلب تسجيل الدخول؟
   };
-  fields: IFormField[];
+  fields: Record<string, IFormField>;
   endpoint: Endpoint;
 };
+
+export type ValidationErrors = Record<
+  string,
+  FieldError | Merge<FieldError, FieldErrorsImpl<any>> | undefined
+>;

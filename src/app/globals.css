@@ -38,7 +38,9 @@ body[lang="ar"] {
     --secondary: 126 26% 58%;
     --secondary-foreground: 222.2 47.4% 11.2%;
     --muted: 203 4% 36%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --muted-foreground: 215 20% 65%;
+    --border-input: 213 27% 84%;
+    --border-focus-input: 215 20% 65%;
     --triger: 204 48% 8%;
     --content: 203 4% 36%;
     --accent: 210 40% 96.1%;
@@ -74,6 +76,8 @@ body[lang="ar"] {
     --secondary-foreground: 210 40% 98%;
     --muted: 200 7% 67%;
     --muted-foreground: 215 20.2% 65.1%;
+    --border-input: 215 20% 65%;
+    --border-focus-input: 203 63% 89%;
     --triger: 203 63% 89%;
     --content: 200 7% 67%;
     --accent: 217.2 32.6% 17.5%;
@@ -252,5 +256,4 @@ body[lang="ar"] {
     transform: translateY(7px) rotate(-50deg);
     animation: downloadBounce2 800ms linear alternate infinite;
   }
-
 }
