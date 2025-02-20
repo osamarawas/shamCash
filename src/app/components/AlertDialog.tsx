@@ -52,7 +52,10 @@ export function AlertDialogDemo(props) {
         <div className="">
           <AlertDialogFooter dir="auto" className="mb-6">
             <AlertDialogCancel className="text-gray-600 bg-gray-200 font-semibold">إغلاق</AlertDialogCancel>
-            <AlertDialogAction className="text-white">تأكيد</AlertDialogAction>
+            <AlertDialogAction 
+            type="submit" 
+            onClick={props.sure}
+            className="text-white">تأكيد</AlertDialogAction>
           </AlertDialogFooter>
         </div>
       </AlertDialogContent>
