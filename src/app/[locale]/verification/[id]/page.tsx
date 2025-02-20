@@ -76,7 +76,6 @@ const MultiStepForm = () => {
   const [otp, setOtp] = useState<string>("");
   const locale = useLocale();
   const t = useTranslations("");
-  const uploadDirection = locale === "ar" ? "ltr" : "rtl";
   const [base64Image, setBase64Image] = useState<string | null>(null);
   const formData = businessForm();
   const [fileNames, setFileNames] = useState({
@@ -202,7 +201,7 @@ const MultiStepForm = () => {
   };
 
   return (
-    <div className=" container mx-auto pt-5">
+    <div className=" container mx-auto pt-5 lg:bg-none bg-[url(../assets/images/verification-bg.svg)]">
       <PathLine
         pagename={t("verification.categories.category1.name")}
         backname={t("verification.title")}
@@ -215,7 +214,7 @@ const MultiStepForm = () => {
       />
       <div className="container mx-auto px-6 lg:px-16 flex flex-col lg:flex-row items-center justify-between">
         {/* الصورة على اليسار */}
-        <div className="hidden lg:block w-1/2">
+        <div className="hidden lg:block lg:w-1/2">
           <Image
             src={imgVrfication}
             alt="توثيق الحساب"
@@ -225,7 +224,7 @@ const MultiStepForm = () => {
           />
         </div>
         {/* الفورم على اليمين */}
-        <div className="w-1/3 p-8">
+        <div className="lg:w-1/3 p-8">
           <form onSubmit={handleSubmit(onCheckOtp)}>
             {/* القسم الأول */}
             {step === 1 && (
@@ -353,7 +352,7 @@ const MultiStepForm = () => {
             <div className="flex justify-between mt-4">
               {step === 2 && (
                 <Button
-                  className="mt-3 bg-inherit text-primary font-semibold hover:bg-gray-300"
+                  className="mt-3 font-semibold text-md bg-inherit border-none shadow-none text-primary hover:bg-gray-200"
                   type="submit"
                 >
                   تأكيد
@@ -361,17 +360,17 @@ const MultiStepForm = () => {
               )}
               {step === 1 ? (
                 <span
-                  className="mt-3 bg-inherit text-primary font-semibold hover:bg-gray-300"
+                  className="font-semibold mt-3 bg-none text-primary cursor-pointer"
                   onClick={() => setStep(2)}
                 >
                   التالي
                 </span>
               ) : (
                 <span
-                  className="mt-3 bg-inherit text-primary font-semibold hover:bg-gray-300"
+                  className="font-semibold mt-3 bg-inherit text-primary cursor-pointer"
                   onClick={() => setStep(1)}
                 >
-                  السابق
+                  رجوع
                 </span>
               )}
             </div>

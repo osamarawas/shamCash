@@ -8,13 +8,13 @@ const Terms = async () => {
   const t = await getTranslations("");
 
   return (
-    <div className="h-full py-10 background-terms bg-[url(../assets/images/bg-light.svg)] dark:bg-[url(../assets/images/bg-dark.svg)]">
-      <h1 className="-z-10 text-primary text-2xl text-center max-w-72 font-bold underLine mx-auto relative mb-8">
+    <div className="py-14 background-terms bg-[url(../assets/images/bg-light.svg)] dark:bg-[url(../assets/images/bg-dark.svg)]">
+      <h2 className="-z-10 text-primary text-center text-3xl font-bold mb-14 underLine relative mx-auto w-64 sm:w-fit">
         {t("terms.title")}
-      </h1>
+      </h2>
       <p
         dir="auto"
-        className="mx-5 sm:mx-auto text-center text-lg font-semibold max-w-lg"
+        className="mx-5 sm:mx-auto text-muted text-center text-lg font-semibold max-w-xl"
       >
         {t("terms.desc")}
       </p>
