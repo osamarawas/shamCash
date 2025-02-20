@@ -12,11 +12,8 @@ import { useTranslations } from "next-intl";
 import { verificationCategoryData } from "@/app/utils/siteData";
 
 
-    const MultiStepForm = async ({ locale ,params } : any) => {
+    const MultiStepForm = async ({ locale } : any) => {
     const [step, setStep] = useState(1);
-    const resolvedParams = params;
-    const categoryId = resolvedParams.cate;
-    const verificationCategory = verificationCategoryData();
     const t = useTranslations("");
   
 
