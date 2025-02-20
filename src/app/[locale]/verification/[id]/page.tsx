@@ -28,13 +28,9 @@ const formSchema = z.object({
     .string()
     .max(2048, "الملخص يجب أن يكون أكثر تفصيلاً")
     .min(1),
-  document: z.any().refine((file) => file?.length > 0, "يجب رفع ملف مستندات"),
+  // document: z.any().refine((file) => file?.length > 0, "يجب رفع ملف مستندات"),
 });
 
-    const MultiStepForm = ({ locale } : any) => {
-    const [step, setStep] = useState(1);
-    const t = useTranslations("");
-  
 interface FormData {
   phoneNumber: string;
   userName: string;
@@ -52,7 +48,7 @@ const MultiStepForm = () => {
   const locale = useLocale();
   const t = useTranslations("");
   const uploadDirection = locale === "ar" ? "ltr" : "rtl";
-console.log("Asdasdasd")
+
   // ✅ استخدام React Hook Form مع Zod للتحقق
   const {
     register,
@@ -79,12 +75,11 @@ console.log("Asdasdasd")
   }
 
   // ✅ إرسال البيانات عند التأكيد
-  const onSubmit = (data: FormData) => {
+  const onSubmit = async (data: FormData) => {
     console.log("Form submitted:", data);
     try {
       const otpData = getOtpBody(data); // الحصول على البيانات من getOtpBody
-      const response = postData(
-        "/api/Authentication/checkVerifications",otpData); // إرسال البيانات عبر API succeeded
+      const response = await postData("/api/Authentication/checkVerifications",otpData ); // إرسال البيانات عبر API succeeded
       if (true) {
         // setOpenAlert(true);
       } else {
@@ -133,12 +128,6 @@ console.log("Asdasdasd")
                       {errors.email.message}
                     </p>
                   )}
-                </div>
-                <div className="mb-4">
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    اسم الحساب
-                  </label>
-                  <Input type="text" placeholder="اسم الحساب" />
                 </div>
                 <div className="mb-4">
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -333,20 +322,20 @@ console.log("Asdasdasd")
                 </Button>
               )}
               {step === 1 ? (
-                <Button
+                <span
                   className="mt-3 bg-inherit text-primary font-semibold hover:bg-gray-300"
                   onClick={() => setStep(2)}
                 >
                   التالي
-                </Button>
+                </span>
               ) : (
-                <Button
+                <span
                   className="mt-3 bg-inherit text-primary font-semibold hover:bg-gray-300"
                   variant="outline"
                   onClick={() => setStep(1)}
                 >
                   السابق
-                </Button>
+                </span>
               )}
             </div>
           </form>
@@ -355,5 +344,5 @@ console.log("Asdasdasd")
     </div>
   );
 };
-    };
+
 export default MultiStepForm;
