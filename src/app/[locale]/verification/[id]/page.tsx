@@ -1,5 +1,4 @@
 "use client";
-
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -10,8 +9,9 @@ import { Textarea } from "@/components/ui/textarea";
 import Image from "next/image";
 import { Upload } from "lucide-react";
 import imgVrfication from "@/assets/images/verficationimage.svg";
-import { postData } from "@/app/utils/apiService";
 import { AlertDialogDemo } from "@/app/components/AlertDialog";
+import PathLine from "@/app/components/PathLine";
+import { useLocale, useTranslations } from "next-intl";
 
 // ✅ تعريف مخطط التحقق باستخدام Zod
 const formSchema = z.object({
@@ -42,24 +42,20 @@ interface FormData {
 
 const MultiStepForm = () => {
   const [step, setStep] = useState(1);
-	const [openalert, setOpenAlert] = useState(false);
+  const [openalert, setOpenAlert] = useState(false);
   const [otp, setOtp] = useState<string>("");
+  const locale = useLocale();
+  const t = useTranslations("");
+  const uploadDirection = locale === "ar" ? "ltr" : "rtl";
 
   // ✅ استخدام React Hook Form مع Zod للتحقق
   const {
     register,
     handleSubmit,
-    setValue,
     formState: { errors },
   } = useForm<FormData>({
     resolver: zodResolver(formSchema),
   });
-  // ✅ التقاط الملفات المرفوعة وتحديث القيمة يدويًا
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files) {
-      setValue("document", event.target.files);
-    }
-  };
 
   function getOtpBody(data: FormData): Record<string, any> {
     const oData: Record<string, any> = {}; // تحديد نوع الكائن بشكل دقيق
@@ -76,15 +72,19 @@ const MultiStepForm = () => {
 
     return oData; // إرجاع البيانات بعد المعالجة
   }
+
   // ✅ إرسال البيانات عند التأكيد
   const onSubmit = async (data: FormData) => {
+    console.log("Form submitted:", data);
     try {
       const otpData = getOtpBody(data); // الحصول على البيانات من getOtpBody
-      const response = await postData("/api/Authentication/checkVerifications", otpData); // إرسال البيانات عبر API succeeded
-      if(true){
+      const response = await postData(
+        "/api/Authentication/checkVerifications",
+        otpData
+      ); // إرسال البيانات عبر API succeeded
+      if (true) {
         // setOpenAlert(true);
-      }else{
-        
+      } else {
       }
     } catch (error) {
       setOpenAlert(true);
@@ -92,10 +92,12 @@ const MultiStepForm = () => {
     }
   };
 
-console.log(otp)
-
   return (
-    <div className="flex items-center justify-center min-h-screen bg-gray-50 dark:bg-gray-900">
+    <div className=" container mx-auto pt-5">
+      <PathLine
+        pagename={t("verification.categories.category1.name")}
+        backname={t("verification.title")}
+      />
       <AlertDialogDemo open={openalert} setOtp={setOtp} otp={otp} />
       <div className="container mx-auto px-6 lg:px-16 flex flex-col lg:flex-row items-center justify-between">
         {/* الصورة على اليسار */}
@@ -103,18 +105,17 @@ console.log(otp)
           <Image
             src={imgVrfication}
             alt="توثيق الحساب"
-            width={500}
-            height={500}
+            width={600}
+            height={600}
             className="max-w-full h-auto"
           />
         </div>
-
         {/* الفورم على اليمين */}
-        <div className="w-full lg:w-1/2 bg-white dark:bg-gray-800 p-8 rounded-lg shadow-md">
+        <div className="w-1/3 p-8">
           <form onSubmit={handleSubmit(onSubmit)}>
             {/* القسم الأول */}
             {step === 1 && (
-              <div>
+              <div dir="auto">
                 <div className="mb-4">
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                     البريد الإلكتروني
@@ -129,6 +130,12 @@ console.log(otp)
                       {errors.email.message}
                     </p>
                   )}
+                </div>
+                <div className="mb-4">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                    اسم الحساب
+                  </label>
+                  <Input type="text" placeholder="اسم الحساب" />
                 </div>
                 <div className="mb-4">
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -196,8 +203,9 @@ console.log(otp)
                     ملخص عن أنشطة الحساب
                   </label>
                   <Textarea
-                    {...register("accountSummary")}
                     placeholder="اكتب هنا"
+                    {...register("accountSummary")}
+                    className="w-full mt-1 bg-transparent border-[1px] border-gray-400 p-3 rounded-md outline-none capitalize focus:border-gray-600"
                   />
                   {errors.accountSummary && (
                     <p className="text-red-500 text-sm">
@@ -210,27 +218,103 @@ console.log(otp)
 
             {/* القسم الثاني */}
             {step === 2 && (
-              <div>
+              <div dir="auto">
                 <div className="mb-4">
-                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
-                    رفع المستندات الداعمة
+                  <label className="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">
+                    صورة السجل التجاري
                   </label>
-                  <label className="flex items-center gap-2 border border-gray-300 dark:border-gray-700 rounded-lg p-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800">
-                    <Upload className="w-5 h-5 text-gray-500" />
-                    <span className="text-sm text-gray-500 dark:text-gray-400">
-                      رفع الملف
-                    </span>
-                    <Input
-                      type="file"
-                      className="hidden"
-                      onChange={handleFileChange}
-                    />
+                  <div className="flex flex-col" dir={uploadDirection}>
+                    <label className="justify-between flex items-center gap-2 border border-gray-300 dark:border-gray-700 rounded-lg p-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800">
+                      <span className="text-sm text-gray-500 dark:text-gray-400">
+                        صورة السجل التجاري
+                      </span>
+                      <Upload className="w-5 h-5 text-gray-500" />
+                      <Input
+                        type="file"
+                        className="hidden"
+                        {...register("document")}
+                      />
+                    </label>
+                    {errors.document && (
+                      <p className="text-red-500 text-sm">
+                        {errors.document.message}
+                      </p>
+                    )}
+                  </div>
+                </div>
+                <div className="mb-4">
+                  <label className="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">
+                    صورة رخصة مزاولة مهنة
                   </label>
-                  {errors.document && (
-                    <p className="text-red-500 text-sm">
-                      {errors.document.message}
-                    </p>
-                  )}
+                  <div className="flex flex-col" dir={uploadDirection}>
+                    <label className="justify-between flex items-center gap-2 border border-gray-300 dark:border-gray-700 rounded-lg p-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800">
+                      <span className="text-sm text-gray-500 dark:text-gray-400">
+                        صورة رخصة مزاولة مهنة
+                      </span>
+                      <Upload className="w-5 h-5 text-gray-500" />
+                      <Input type="file" className="hidden" />
+                    </label>
+                  </div>
+                </div>
+                <div className="mb-4">
+                  <label className="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">
+                    صورة وثيقة تحمل الرقم الفيزيائي
+                  </label>
+                  <div className="flex flex-col" dir={uploadDirection}>
+                    <label className="justify-between flex items-center gap-2 border border-gray-300 dark:border-gray-700 rounded-lg p-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800">
+                      <span className="text-sm text-gray-500 dark:text-gray-400">
+                        صورة وثيقة تحمل الرقم الفيزيائي
+                      </span>
+                      <Upload className="w-5 h-5 text-gray-500" />
+                      <Input type="file" className="hidden" />
+                    </label>
+                  </div>
+                </div>
+                <div className="mb-4">
+                  <label className="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">
+                    صورة هوية المالك
+                  </label>
+                  <div className="flex flex-col" dir={uploadDirection}>
+                    <label className="justify-between flex items-center gap-2 border border-gray-300 dark:border-gray-700 rounded-lg p-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800">
+                      <span className="text-sm text-gray-500 dark:text-gray-400">
+                        صورة الوجه الأمامي
+                      </span>
+                      <Upload className="w-5 h-5 text-gray-500" />
+                      <Input type="file" className="hidden" />
+                    </label>
+                  </div>
+                  <div className="flex flex-col mt-2" dir={uploadDirection}>
+                    <label className="justify-between flex items-center gap-2 border border-gray-300 dark:border-gray-700 rounded-lg p-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800">
+                      <span className="text-sm text-gray-500 dark:text-gray-400">
+                        الوجه الخلفي
+                      </span>
+                      <Upload className="w-5 h-5 text-gray-500" />
+                      <Input type="file" className="hidden" />
+                    </label>
+                  </div>
+                </div>
+                <div className="mb-4">
+                  <label className="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">
+                    صورة هوية المفوض
+                  </label>
+                  <div className="flex flex-col" dir={uploadDirection}>
+                    <label className="justify-between flex items-center gap-2 border border-gray-300 dark:border-gray-700 rounded-lg p-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800">
+                      <span className="text-sm text-gray-500 dark:text-gray-400">
+                        الوجه الأمامي
+                      </span>
+                      <Upload className="w-5 h-5 text-gray-500" />
+                      <Input type="file" className="hidden" />
+                    </label>
+                  </div>
+                  <div className="flex flex-col mt-2" dir={uploadDirection}>
+                    <label className="justify-between flex items-center gap-2 border border-gray-300 dark:border-gray-700 rounded-lg p-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800">
+                      <span className="text-sm text-gray-500 dark:text-gray-400">
+                        الوجه الخلفي
+                      </span>
+                      <Upload className="w-5 h-5 text-gray-500" />
+                      <Input type="file" className="hidden" />
+                    </label>
+                  </div>
                 </div>
               </div>
             )}
@@ -239,19 +323,27 @@ console.log(otp)
             <div className="flex justify-between mt-4">
               {step === 2 && (
                 <Button
-                  type="button"
+                  className="mt-3 bg-inherit text-primary font-semibold hover:bg-gray-300"
+                  type="submit"
+                >
+                  تأكيد
+                </Button>
+              )}
+              {step === 1 ? (
+                <Button
+                  className="mt-3 bg-inherit text-primary font-semibold hover:bg-gray-300"
+                  onClick={() => setStep(2)}
+                >
+                  التالي
+                </Button>
+              ) : (
+                <Button
+                  className="mt-3 bg-inherit text-primary font-semibold hover:bg-gray-300"
                   variant="outline"
                   onClick={() => setStep(1)}
                 >
                   السابق
                 </Button>
-              )}
-              {step === 1 ? (
-                <span onClick={() => setStep(2)}>
-                  التالي
-                </span>
-              ) : (
-                <Button type="submit">تأكيد</Button>
               )}
             </div>
           </form>
