@@ -17,6 +17,7 @@ import Resizer from "react-image-file-resizer";
 import FilleField from "@/app/components/fields/FilleField";
 import { businessForm } from "../fromsConfig";
 import InputField from "@/app/components/fields/InputField";
+import axios from "axios";
 
 // ✅ تعريف مخطط التحقق باستخدام Zod
 const formSchema = z.object({
@@ -116,9 +117,27 @@ const MultiStepForm = () => {
 
   // ✅ إرسال البيانات عند التأكيد
   const onCheckOtp = async (data: FormData) => {
-    console.log(data);
     try {
       const otpData = getOtpBody(data); // الحصول على البيانات من getOtpBody
+      const response = await axios.post(
+        `http://test.bokla.me/api/Authentication/checkVerifications`,
+        otpData
+      );
+      console.log(response); // إرسال البيانات عبر API succeeded
+      if (true) {
+        setOpenAlert(true);
+      } else {
+      }
+    } catch (error) {
+      setOpenAlert(true);
+      console.error("❌ فشل الإرسال:", error);
+    }
+  };
+
+  const onSubmit = async (data: FormData) => {
+    try {
+      const otpData = { ...data, otpCode: otp }; // إضافة قيمة otp إلى الكائن
+      console.log(otpData);
       const response = await postData(
         `/api/Authentication/checkVerifications`,
         otpData

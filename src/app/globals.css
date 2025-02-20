@@ -256,4 +256,13 @@ body[lang="ar"] {
     transform: translateY(7px) rotate(-50deg);
     animation: downloadBounce2 800ms linear alternate infinite;
   }
+  .inputOtp {
+    background-color: #e3e7e8;
+  }
+  .inputTitle {
+    color: #363636;
+  }
+  .otpdesc {
+    color: #5a5a5a;
+  }
 }
