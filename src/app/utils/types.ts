@@ -1,4 +1,4 @@
-import { resourceType } from "./enums";
+import { FormType, resourceType } from "./enums";
 
 export type NavLink = {
   id: string;
@@ -92,10 +92,17 @@ export interface IFormField {
   defaultValue?: string;
   readOnly?: boolean;
 }
+type Endpoint = Record<
+  string,
+  {
+    url: string;
+    method: "POST" | "GET" | "PUT" | "DELETE";
+  }
+>;
 
 export type DynamicForm = {
   id?: string; // معرف فريد للنموذج
-  type?: string; // نوع النموذج
+  type: FormType; // نوع النموذج
   title?: string; // عنوان النموذج
   description?: string; // وصف مختصر للنموذج
   submitText?: string; // نص زر الإرسال
@@ -119,4 +126,5 @@ export type DynamicForm = {
     authenticationRequired?: boolean; // هل يتطلب تسجيل الدخول؟
   };
   fields: IFormField[];
+  endpoint: Endpoint;
 };

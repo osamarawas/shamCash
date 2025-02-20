@@ -1,34 +1,108 @@
 "use client";
-
 import { useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import * as z from "zod";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import imgVrfication from "@/assets/images/verficationimage.svg";
 import Image from "next/image";
 import { Upload } from "lucide-react";
+import imgVrfication from "@/assets/images/verficationimage.svg";
+import { AlertDialogDemo } from "@/app/components/AlertDialog";
 import PathLine from "@/app/components/PathLine";
-import { useTranslations } from "next-intl";
-import { verificationCategoryData } from "@/app/utils/siteData";
+import { useLocale, useTranslations } from "next-intl";
+import { postData } from "@/app/utils/apiService";
 
+// ✅ تعريف مخطط التحقق باستخدام Zod
+const formSchema = z.object({
+  email: z.string().email("البريد الإلكتروني غير صالح"),
+  accountNumber: z.string().min(1, "رقم الحساب يجب أن يكون 5 أحرف على الأقل"),
+  userName: z.string().min(1, "الحقل مطلوب"),
+  phoneNumber: z
+    .string()
+    .regex(/^09\d{8}$/, "رقم الهاتف يجب أن يبدأ بـ 09 ويتكون من 10 أرقام فقط")
+    .length(10, "رقم الهاتف يجب أن يحتوي على 10 أرقام فقط"),
+  taxId: z.string().min(5, "رقم التعريف الضريبي غير صالح"),
+  accountSummary: z
+    .string()
+    .max(2048, "الملخص يجب أن يكون أكثر تفصيلاً")
+    .min(1),
+  document: z.any().refine((file) => file?.length > 0, "يجب رفع ملف مستندات"),
+});
 
-    const MultiStepForm = async ({ locale } : any) => {
+    const MultiStepForm = ({ locale } : any) => {
     const [step, setStep] = useState(1);
     const t = useTranslations("");
   
+interface FormData {
+  phoneNumber: string;
+  userName: string;
+  accountNumber: string;
+  email: string;
+  taxId: string;
+  accountSummary: string;
+  document: FileList;
+}
 
-
-  // تحديد اتجاه النص بناءً على اللغة
+const MultiStepForm = () => {
+  const [step, setStep] = useState(1);
+  const [openalert, setOpenAlert] = useState(false);
+  const [otp, setOtp] = useState<string>("");
+  const locale = useLocale();
+  const t = useTranslations("");
   const uploadDirection = locale === "ar" ? "ltr" : "rtl";
+console.log("Asdasdasd")
+  // ✅ استخدام React Hook Form مع Zod للتحقق
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<FormData>({
+    resolver: zodResolver(formSchema),
+  });
+
+  function getOtpBody(data: FormData): Record<string, any> {
+    const oData: Record<string, any> = {}; // تحديد نوع الكائن بشكل دقيق
+    const fieldData: (keyof FormData)[] = [
+      "phoneNumber",
+      "userName",
+      "accountNumber",
+      "email",
+    ];
+
+    for (let i = 0; i < fieldData.length; i++) {
+      oData[fieldData[i]] = data[fieldData[i]];
+    }
+
+    return oData; // إرجاع البيانات بعد المعالجة
+  }
+
+  // ✅ إرسال البيانات عند التأكيد
+  const onSubmit = (data: FormData) => {
+    console.log("Form submitted:", data);
+    try {
+      const otpData = getOtpBody(data); // الحصول على البيانات من getOtpBody
+      const response = postData(
+        "/api/Authentication/checkVerifications",otpData); // إرسال البيانات عبر API succeeded
+      if (true) {
+        // setOpenAlert(true);
+      } else {
+      }
+    } catch (error) {
+      setOpenAlert(true);
+      console.error("❌ فشل الإرسال:", error);
+    }
+  };
 
   return (
-    <div className="items-center justify-center container mx-auto pt-5">
+    <div className=" container mx-auto pt-5">
       <PathLine
-        pagename={t(`verification.categories.category1.name`)}
+        pagename={t("verification.categories.category1.name")}
         backname={t("verification.title")}
       />
+      <AlertDialogDemo open={openalert} setOtp={setOtp} otp={otp} />
       <div className="container mx-auto px-6 lg:px-16 flex flex-col lg:flex-row items-center justify-between">
-      
         {/* الصورة على اليسار */}
         <div className="hidden lg:block w-1/2">
           <Image
@@ -39,10 +113,9 @@ import { verificationCategoryData } from "@/app/utils/siteData";
             className="max-w-full h-auto"
           />
         </div>
-
         {/* الفورم على اليمين */}
         <div className="w-1/3 p-8">
-          <div>
+          <form onSubmit={handleSubmit(onSubmit)}>
             {/* القسم الأول */}
             {step === 1 && (
               <div dir="auto">
@@ -50,7 +123,16 @@ import { verificationCategoryData } from "@/app/utils/siteData";
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                     البريد الإلكتروني
                   </label>
-                  <Input type="email" placeholder="البريد الإلكتروني" />
+                  <Input
+                    {...register("email")}
+                    type="email"
+                    placeholder="البريد الإلكتروني"
+                  />
+                  {errors.email && (
+                    <p className="text-red-500 text-sm">
+                      {errors.email.message}
+                    </p>
+                  )}
                 </div>
                 <div className="mb-4">
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
@@ -62,27 +144,77 @@ import { verificationCategoryData } from "@/app/utils/siteData";
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                     رقم الحساب
                   </label>
-                  <Input type="text" placeholder="رقم الحساب" />
+                  <Input
+                    {...register("accountNumber")}
+                    type="text"
+                    placeholder="رقم الحساب"
+                  />
+                  {errors.accountNumber && (
+                    <p className="text-red-500 text-sm">
+                      {errors.accountNumber.message}
+                    </p>
+                  )}
+                </div>
+                <div className="mb-4">
+                  <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
+                    اسم الحساب
+                  </label>
+                  <Input
+                    {...register("userName")}
+                    type="text"
+                    placeholder="اسم الحساب"
+                  />
+                  {errors.userName && (
+                    <p className="text-red-500 text-sm">
+                      {errors.userName.message}
+                    </p>
+                  )}
                 </div>
                 <div className="mb-4">
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                     رقم الهاتف
                   </label>
-                  <Input type="text" placeholder="رقم الهاتف" />
+                  <Input
+                    {...register("phoneNumber")}
+                    type="text"
+                    placeholder="رقم الهاتف"
+                    maxLength={10}
+                  />
+                  {errors.phoneNumber && (
+                    <p className="text-red-500 text-sm">
+                      {errors.phoneNumber.message}
+                    </p>
+                  )}
                 </div>
                 <div className="mb-4">
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                     رقم التعريف الضريبي
                   </label>
-                  <Input type="text" placeholder="رقم التعريف الضريبي" />
+                  <Input
+                    {...register("taxId")}
+                    type="text"
+                    placeholder="رقم التعريف الضريبي"
+                  />
+                  {errors.taxId && (
+                    <p className="text-red-500 text-sm">
+                      {errors.taxId.message}
+                    </p>
+                  )}
                 </div>
                 <div className="mb-4">
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300">
                     ملخص عن أنشطة الحساب
                   </label>
-                  <Textarea placeholder="اكتب هنا" 
-                  className="w-full mt-1 bg-transparent border-[1px] border-gray-400 p-3 rounded-md outline-none capitalize focus:border-gray-600"
+                  <Textarea
+                    placeholder="اكتب هنا"
+                    {...register("accountSummary")}
+                    className="w-full mt-1 bg-transparent border-[1px] border-gray-400 p-3 rounded-md outline-none capitalize focus:border-gray-600"
                   />
+                  {errors.accountSummary && (
+                    <p className="text-red-500 text-sm">
+                      {errors.accountSummary.message}
+                    </p>
+                  )}
                 </div>
               </div>
             )}
@@ -96,10 +228,21 @@ import { verificationCategoryData } from "@/app/utils/siteData";
                   </label>
                   <div className="flex flex-col" dir={uploadDirection}>
                     <label className="justify-between flex items-center gap-2 border border-gray-300 dark:border-gray-700 rounded-lg p-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800">
-                      <span className="text-sm text-gray-500 dark:text-gray-400">صورة السجل التجاري</span>
+                      <span className="text-sm text-gray-500 dark:text-gray-400">
+                        صورة السجل التجاري
+                      </span>
                       <Upload className="w-5 h-5 text-gray-500" />
-                      <Input type="file" className="hidden" />
+                      <Input
+                        type="file"
+                        className="hidden"
+                        {...register("document")}
+                      />
                     </label>
+                    {errors.document && (
+                      <p className="text-red-500 text-sm">
+                        {errors.document.message}
+                      </p>
+                    )}
                   </div>
                 </div>
                 <div className="mb-4">
@@ -108,7 +251,9 @@ import { verificationCategoryData } from "@/app/utils/siteData";
                   </label>
                   <div className="flex flex-col" dir={uploadDirection}>
                     <label className="justify-between flex items-center gap-2 border border-gray-300 dark:border-gray-700 rounded-lg p-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800">
-                      <span className="text-sm text-gray-500 dark:text-gray-400">صورة رخصة مزاولة مهنة</span>
+                      <span className="text-sm text-gray-500 dark:text-gray-400">
+                        صورة رخصة مزاولة مهنة
+                      </span>
                       <Upload className="w-5 h-5 text-gray-500" />
                       <Input type="file" className="hidden" />
                     </label>
@@ -120,7 +265,9 @@ import { verificationCategoryData } from "@/app/utils/siteData";
                   </label>
                   <div className="flex flex-col" dir={uploadDirection}>
                     <label className="justify-between flex items-center gap-2 border border-gray-300 dark:border-gray-700 rounded-lg p-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800">
-                      <span className="text-sm text-gray-500 dark:text-gray-400">صورة وثيقة تحمل الرقم الفيزيائي</span>
+                      <span className="text-sm text-gray-500 dark:text-gray-400">
+                        صورة وثيقة تحمل الرقم الفيزيائي
+                      </span>
                       <Upload className="w-5 h-5 text-gray-500" />
                       <Input type="file" className="hidden" />
                     </label>
@@ -132,14 +279,18 @@ import { verificationCategoryData } from "@/app/utils/siteData";
                   </label>
                   <div className="flex flex-col" dir={uploadDirection}>
                     <label className="justify-between flex items-center gap-2 border border-gray-300 dark:border-gray-700 rounded-lg p-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800">
-                      <span className="text-sm text-gray-500 dark:text-gray-400">صورة الوجه الأمامي</span>
+                      <span className="text-sm text-gray-500 dark:text-gray-400">
+                        صورة الوجه الأمامي
+                      </span>
                       <Upload className="w-5 h-5 text-gray-500" />
                       <Input type="file" className="hidden" />
                     </label>
                   </div>
                   <div className="flex flex-col mt-2" dir={uploadDirection}>
                     <label className="justify-between flex items-center gap-2 border border-gray-300 dark:border-gray-700 rounded-lg p-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800">
-                      <span className="text-sm text-gray-500 dark:text-gray-400">الوجه الخلفي</span>
+                      <span className="text-sm text-gray-500 dark:text-gray-400">
+                        الوجه الخلفي
+                      </span>
                       <Upload className="w-5 h-5 text-gray-500" />
                       <Input type="file" className="hidden" />
                     </label>
@@ -151,14 +302,18 @@ import { verificationCategoryData } from "@/app/utils/siteData";
                   </label>
                   <div className="flex flex-col" dir={uploadDirection}>
                     <label className="justify-between flex items-center gap-2 border border-gray-300 dark:border-gray-700 rounded-lg p-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800">
-                      <span className="text-sm text-gray-500 dark:text-gray-400">الوجه الأمامي</span>
+                      <span className="text-sm text-gray-500 dark:text-gray-400">
+                        الوجه الأمامي
+                      </span>
                       <Upload className="w-5 h-5 text-gray-500" />
                       <Input type="file" className="hidden" />
                     </label>
-                  </div>  
+                  </div>
                   <div className="flex flex-col mt-2" dir={uploadDirection}>
                     <label className="justify-between flex items-center gap-2 border border-gray-300 dark:border-gray-700 rounded-lg p-2 cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-800">
-                      <span className="text-sm text-gray-500 dark:text-gray-400">الوجه الخلفي</span>
+                      <span className="text-sm text-gray-500 dark:text-gray-400">
+                        الوجه الخلفي
+                      </span>
                       <Upload className="w-5 h-5 text-gray-500" />
                       <Input type="file" className="hidden" />
                     </label>
@@ -194,10 +349,11 @@ import { verificationCategoryData } from "@/app/utils/siteData";
                 </Button>
               )}
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>
   );
 };
+    };
 export default MultiStepForm;
