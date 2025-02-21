@@ -175,7 +175,7 @@ const MultiStepForm = () => {
   };
 
   return (
-    <div className=" container mx-auto pt-5 lg:bg-none bg-[url(../assets/images/verification-bg.svg)]">
+    <div className="mx-auto pt-5 lg:bg-none bg-cover bg-center bg-[url(../assets/images/verification-bg.svg)]">
       <PathLine
         pagename={t("verification.categories.category1.name")}
         backname={t("verification.title")}
