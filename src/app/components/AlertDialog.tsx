@@ -16,7 +16,6 @@ import {
 import icon from "@/assets/icon/alertDialog.svg";
 import Image from "next/image";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { FormBusinessType } from "../[locale]/verification/fromsConfig";
 
 interface AlertDialogDemoProps {
   open: boolean;
@@ -24,8 +23,9 @@ interface AlertDialogDemoProps {
   otp: string;
   setOtp: Dispatch<SetStateAction<string>>;
   sure: (e?: React.BaseSyntheticEvent) => Promise<void>;
-  resend_otp: () => (data: FormBusinessType) => Promise<void>;
+  resend_otp: () => Promise<void>;
 }
+
 export function AlertDialogDemo(props: AlertDialogDemoProps) {
   const [timer, setTimer] = useState(0);
 
@@ -40,6 +40,7 @@ export function AlertDialogDemo(props: AlertDialogDemoProps) {
     let interval: NodeJS.Timeout;
     if (timer > 0) {
       interval = setInterval(() => setTimer((prev) => prev - 1), 1000);
+      console.log(timer);
     }
     return () => clearInterval(interval);
   }, [timer]);

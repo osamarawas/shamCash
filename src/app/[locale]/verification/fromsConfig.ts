@@ -1,7 +1,21 @@
 import { DynamicForm } from "@/app/utils/types";
 import { z } from "zod";
 
-export const businessForm = (): DynamicForm => {
+export const businessForm = (): DynamicForm<{
+  email: string;
+  accountNumber: string;
+  userName: string;
+  phoneNumber: string;
+  taxNumber: string;
+  summary: string;
+  commercialRegisterPhoto?: string;
+  licensePhoto?: string;
+  ownerIdentityImageFS?: string;
+  ownerIdentityImageBS?: string;
+  commissionerIdentityImageFS?: string;
+  commissionerIdentityImageBS?: string;
+  physicalAddressImage?: string;
+}> => {
   return {
     id: "business",
     title: "Business Account Documentation",
@@ -91,7 +105,6 @@ export const businessForm = (): DynamicForm => {
   };
 };
 
-
 // ✅ تعريف مخطط التحقق باستخدام Zod
 export const formSchema = z.object({
   email: z.string().email("البريد الإلكتروني غير صالح"),
@@ -103,6 +116,7 @@ export const formSchema = z.object({
     .length(10, "رقم الهاتف يجب أن يحتوي على 10 أرقام فقط"),
   taxNumber: z.string().min(5, "رقم التعريف الضريبي غير صالح"),
   summary: z.string().max(2048, "الملخص يجب أن يكون أكثر تفصيلاً").min(1),
+
   commercialRegisterPhoto: z
     .any()
     .refine((file) => file?.length > 0, "يجب رفع ملف مستندات"),
@@ -125,4 +139,4 @@ export const formSchema = z.object({
     .any()
     .refine((file) => file?.length > 0, "يجب رفع ملف مستندات"),
 });
-export type FormBusinessType=z.infer<typeof formSchema>
+export type FormBusinessType = z.infer<typeof formSchema>;

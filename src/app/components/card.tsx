@@ -7,7 +7,7 @@ interface CardProps {
 const Card = ({ item }: CardProps) => {
   return (
     <div
-      className="flex flex-col items-center justify-center h-96 w-80 p-10 space-y-6 hover:bg-hover transition  rounded-full hover:cursor-default "
+      className="flex flex-col items-center h-96 w-80 p-10 space-y-6 hover:bg-hover transition  rounded-full hover:cursor-default "
       data-aos="fade-up"
       data-aos-duration="800"
     >

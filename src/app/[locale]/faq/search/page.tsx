@@ -6,10 +6,10 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import PathCete from "../[cate]/PathCete";
 import { faqsWithCategorie } from "@/app/utils/types";
 import { setDirction, setTextDirection } from "@/app/utils/helperServer";
 import { getTranslations } from "next-intl/server";
+import PathLine from "@/app/components/PathLine";
 
 interface FaqPageProps {
   params: Promise<{ cate: string; locale: Languages }>;
@@ -41,7 +41,7 @@ const SearchPage = async ({ params, searchParams }: FaqPageProps) => {
   const t = await getTranslations("");
   return (
     <div className="container mx-auto pt-5">
-      <PathCete locale={locale} categoryName={t("searchResults")} />
+      <PathLine pagename={t("searchResults")} backname={t("faqPage.title")} />
       <div className="container flex flex-col items-center gap-5 mx-auto my-6 lg:my-10">
         <h2 className="text-primary text-center text-3xl font-bold mb-10 underLine relative mx-auto">
           {t("searchResults")}
