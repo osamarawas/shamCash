@@ -67,13 +67,13 @@ const MultiStepForm = () => {
         `http://test.bokla.me/api/Authentication/checkVerifications`,
         otpData
       );
-      console.log(response); // إرسال البيانات عبر API succeeded
+      // إرسال البيانات عبر API succeeded
       if (true) {
         setOpenAlert(true);
       } else {
       }
+      console.log(response);
     } catch (error) {
-      console.log("ssssssss");
       setOpenAlert(true);
       console.error("❌ فشل الإرسال:", error);
     }

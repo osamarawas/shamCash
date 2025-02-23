@@ -15,7 +15,7 @@ import {
 } from "@/components/ui/input-otp";
 import icon from "@/assets/icon/alertDialog.svg";
 import Image from "next/image";
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
 interface AlertDialogDemoProps {
   open: boolean;
@@ -25,7 +25,25 @@ interface AlertDialogDemoProps {
   sure: (e?: React.BaseSyntheticEvent) => Promise<void>;
   resend_otp: () => Promise<void>;
 }
+
 export function AlertDialogDemo(props: AlertDialogDemoProps) {
+  const [timer, setTimer] = useState(0);
+
+  const handleResend = () => {
+    if (timer === 0) {
+      props.resend_otp();
+      setTimer(5); // مدة المؤقت بالثواني
+    }
+  };
+
+  useEffect(() => {
+    let interval: NodeJS.Timeout;
+    if (timer > 0) {
+      interval = setInterval(() => setTimer((prev) => prev - 1), 1000);
+    }
+    return () => clearInterval(interval);
+  }, [timer]);
+
   return (
     <AlertDialog open={props.open}>
       <AlertDialogContent>
@@ -63,12 +81,18 @@ export function AlertDialogDemo(props: AlertDialogDemoProps) {
             <div dir="auto" className="text-center text-sm my-6">
               <p>
                 إذا لم تستلم الرمز، يمكنك طلب{" "}
-                <span
-                  className="text-primary font-semibold cursor-pointer"
-                  onClick={props.resend_otp}
-                >
-                  إرساله مرة أخرى.
-                </span>
+                {timer > 0 ? (
+                  <span className="text-gray-500 font-semibold">
+                    يمكنك إعادة الإرسال بعد {timer} ثانية.
+                  </span>
+                ) : (
+                  <span
+                    className="text-primary font-semibold cursor-pointer"
+                    onClick={handleResend}
+                  >
+                    إرساله مرة أخرى.
+                  </span>
+                )}
               </p>
             </div>
           </AlertDialogDescription>
