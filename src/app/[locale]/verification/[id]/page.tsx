@@ -30,6 +30,10 @@ const MultiStepForm = () => {
   const { theme } = useTheme();
   const t = useTranslations("");
   const formData = businessForm();
+  const [errorsApi,setErrorsApi]=useState({
+    accountError:false,
+    otpError:false
+  })
   const [fileNames, setFileNames] = useState({
     commercialRegisterPhoto: "",
     licensePhoto: "",
@@ -69,17 +73,28 @@ const MultiStepForm = () => {
     try {
       const otpData = getOtpBody(data); // الحصول على البيانات من getOtpBody
       const response = await postData(
-        `http://test.bokla.me/api/Authentication/checkVerifications`,
+        `https://192.168.10.90:7089/api/Authentication/checkVerifications`,
         otpData
       );
+      console.log(response)
       // إرسال البيانات عبر API succeeded
-      if (true) {
+      if (response.succeeded) {
         setOpenAlert(true);
+        
+        setErrorsApi((prev) => ({
+          ...prev,
+          accountError: false,
+        })); 
       } else {
-      }
-      console.log(response);
+        setOpenAlert(false);
+       
+        setStep(1)
+        setErrorsApi((prev) => ({
+          ...prev,
+          accountError: true,
+        })); 
+        console.log(errorsApi.accountError)     }
     } catch (error) {
-      setOpenAlert(true);
       console.error("❌ فشل الإرسال:", error);
     }
   };
@@ -88,7 +103,7 @@ const MultiStepForm = () => {
     try {
       const otpBody = { ...data, otpCode: otp }; // إضافة قيمة otp إلى الكائن
       const response = await postData(
-        "/api/CommercialAccounts/verifyAccount",
+        `https://192.168.10.90:7089/api/CommercialAccounts/verifyAccount`,
         otpBody
       ); // إرسال البيانات عبر API succeeded
       if (true) {
@@ -123,7 +138,6 @@ const MultiStepForm = () => {
     fieldName: string
   ) => {
     try {
-      console.log(typeof fieldName);
       const file = event.target.files?.[0];
       if (!file) return; // التحقق من وجود الملف
       const image = await resizeFile(file);
@@ -191,13 +205,15 @@ const MultiStepForm = () => {
                     {...formData.fields.email}
                     register={register}
                     error={errors?.email}
-                  />
+                    classNameExtra={`${errorsApi.accountError&& "!border-destructive "}`}
+/>
                 </div>
                 <div className="mb-4">
                   <InputField<FormBusinessType>
                     {...formData.fields.accountNumber}
                     register={register}
                     error={errors?.accountNumber}
+                    classNameExtra={`${errorsApi.accountError&& "!border-destructive  "}`}
                   />
                 </div>
                 <div className="mb-4">
@@ -205,6 +221,7 @@ const MultiStepForm = () => {
                     {...formData.fields.userName}
                     register={register}
                     error={errors?.userName}
+                    classNameExtra={`${errorsApi.accountError&& "!border-destructive  "}`}
                   />
                 </div>
                 <div className="mb-4">
@@ -212,6 +229,7 @@ const MultiStepForm = () => {
                     {...formData.fields.phoneNumber}
                     register={register}
                     error={errors?.phoneNumber}
+                    classNameExtra={`${errorsApi.accountError&& "!border-destructive  "}`}
                   />
                 </div>
                 <div className="mb-4">

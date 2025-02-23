@@ -26,6 +26,7 @@ interface InputFieldProps<T extends Record<string, any>> {
   defaultValue?: string;
   maxLength?: number;
   readOnly?: boolean;
+  classNameExtra?:string
 }
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const InputField = <T extends Record<string, any>>({
@@ -40,6 +41,7 @@ const InputField = <T extends Record<string, any>>({
   readOnly,
   register,
   maxLength,
+  classNameExtra
 }: InputFieldProps<T>) => {
   const locale = useLocale() as Languages;
 
@@ -63,7 +65,7 @@ const InputField = <T extends Record<string, any>>({
           defaultValue={defaultValue}
           readOnly={readOnly}
           maxLength={maxLength}
-          className="placeholder-muted-foreground !border-border_input focus:!border-border_focus_input w-full"
+          className={`placeholder-muted-foreground !border-border_input focus:!border-border_focus_input w-full ${classNameExtra}`}
         />
       ) : (
         <Textarea
@@ -74,7 +76,7 @@ const InputField = <T extends Record<string, any>>({
           name={String(name)}
           id={String(name)}
           defaultValue={defaultValue}
-          className="placeholder-muted-foreground !border-border_input focus:!border-border_focus_input w-full"
+          className={`placeholder-muted-foreground !border-border_input focus:!border-border_focus_input w-full ${classNameExtra}` }
         />
       )}
 
