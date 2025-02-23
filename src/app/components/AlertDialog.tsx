@@ -30,6 +30,7 @@ export function AlertDialogDemo(props: AlertDialogDemoProps) {
   const [timer, setTimer] = useState(0);
 
   const handleResend = () => {
+    console.log("ahamd");
     if (timer === 0) {
       props.resend_otp();
       setTimer(5); // مدة المؤقت بالثواني
@@ -40,6 +41,7 @@ export function AlertDialogDemo(props: AlertDialogDemoProps) {
     let interval: NodeJS.Timeout;
     if (timer > 0) {
       interval = setInterval(() => setTimer((prev) => prev - 1), 1000);
+      console.log(timer);
     }
     return () => clearInterval(interval);
   }, [timer]);
