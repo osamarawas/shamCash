@@ -18,6 +18,8 @@ import FilleField from "@/app/components/fields/FilleField";
 import { businessForm } from "../fromsConfig";
 import InputField from "@/app/components/fields/InputField";
 import axios from "axios";
+import { setDirction, setDirctionReverse } from "@/app/utils/helperServer";
+import { Languages } from "@/app/utils/enums";
 
 // ✅ تعريف مخطط التحقق باستخدام Zod
 const formSchema = z.object({
@@ -74,7 +76,7 @@ const MultiStepForm = () => {
   const [step, setStep] = useState(1);
   const [openalert, setOpenAlert] = useState(false);
   const [otp, setOtp] = useState<string>("");
-  const locale = useLocale();
+  const locale = useLocale() as Languages;
   const t = useTranslations("");
   const [base64Image, setBase64Image] = useState<string | null>(null);
   const formData = businessForm();
@@ -185,7 +187,7 @@ const MultiStepForm = () => {
   return (
     <div
       className="mx-auto pt-5 lg:bg-none bg-cover bg-center bg-[url(../assets/images/verification-bg.svg)]"
-      dir="auto"
+      dir={setDirctionReverse(locale)}
     >
       <PathLine
         pagename={t("verification.categories.category1.name")}
@@ -197,7 +199,7 @@ const MultiStepForm = () => {
         otp={otp}
         sure={handleSubmit(onSubmit)}
       />
-      <div className="container mx-auto px-6 lg:px-16 flex flex-col lg:flex-row items-center justify-between">
+      <div className="container mx-auto px-6 lg:px-16 flex flex-col lg:flex-row items-center justify-between ">
         {/* الصورة على اليسار */}
         <div className="hidden lg:block lg:w-1/2">
           <Image
@@ -213,7 +215,7 @@ const MultiStepForm = () => {
           <form onSubmit={handleSubmit(onCheckOtp)}>
             {/* القسم الأول */}
             {step === 1 && (
-              <div dir="auto">
+              <div>
                 <div className="mb-4">
                   <InputField
                     {...formData.fields.email}
@@ -261,8 +263,11 @@ const MultiStepForm = () => {
 
             {/* القسم الثاني */}
             {step === 2 && (
-              <div dir="auto">
+              <div>
                 <div className="mb-4">
+                  <label className="block mb-1 text-sm font-medium text-foreground ">
+                    {formData.fields.commercialRegisterPhoto.label}
+                  </label>
                   <FilleField
                     {...formData.fields.commercialRegisterPhoto}
                     register={register}
@@ -272,6 +277,9 @@ const MultiStepForm = () => {
                   />
                 </div>
                 <div className="mb-4">
+                  <label className="block mb-1 text-sm font-medium text-foreground ">
+                    {formData.fields.licensePhoto.label}
+                  </label>
                   <FilleField
                     {...formData.fields.licensePhoto}
                     register={register}
@@ -281,6 +289,9 @@ const MultiStepForm = () => {
                   />
                 </div>
                 <div className="mb-4">
+                  <label className="block mb-1 text-sm font-medium text-foreground ">
+                    {formData.fields.physicalAddressImage.label}
+                  </label>
                   <FilleField
                     {...formData.fields.physicalAddressImage}
                     register={register}
@@ -289,7 +300,7 @@ const MultiStepForm = () => {
                     fileName={fileNames.physicalAddressImage}
                   />
                 </div>
-                <div className="mb-4" dir="">
+                <div className="mb-4">
                   <label className="block mb-1 text-sm font-medium text-foreground ">
                     {formData.fields.ownerIdentityImageFS.label}
                   </label>

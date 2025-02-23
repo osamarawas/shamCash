@@ -1,5 +1,8 @@
+import { Languages } from "@/app/utils/enums";
+import { setDirction } from "@/app/utils/helperServer";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
+import { useLocale } from "next-intl";
 import React from "react";
 import {
   FieldError,
@@ -36,8 +39,10 @@ const InputField = ({
   register,
   maxLength,
 }: InputFieldProps) => {
+  const locale = useLocale() as Languages;
+
   return (
-    <div>
+    <div dir={setDirction(locale)}>
       <label
         className="block text-sm font-medium text-foreground  "
         htmlFor={name}
