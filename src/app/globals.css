@@ -259,10 +259,19 @@ body[lang="ar"] {
   .inputOtp {
     background-color: #e3e7e8;
   }
-  .inputTitle {
+  .otpTitle {
     color: #363636;
+  }
+  .otpTitleDark {
+    color: #D3E8F5;
   }
   .otpdesc {
     color: #5a5a5a;
+  }
+  .otpdescDark {
+    color: #A5ADB1;
+  }
+  .success {
+    color: #0CBC8B;
   }
 }

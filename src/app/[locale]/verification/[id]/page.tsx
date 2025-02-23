@@ -1,14 +1,14 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
 import Image from "next/image";
-import { Upload } from "lucide-react";
-import imgVrfication from "@/assets/images/verficationimage.svg";
+import imgLightAr from "@/assets/images/verficationimage.svg";
+import imgDarkAr from "@/assets/images/verficationimage-dark.svg"
+import imgDarkEn from "@/assets/images/imgVrfication-darkEn.svg"
+import imgLightEn from "@/assets/images/imgVrfication-lightEn.svg"
 import { AlertDialogDemo } from "@/app/components/AlertDialog";
 import PathLine from "@/app/components/PathLine";
 import { useLocale, useTranslations } from "next-intl";
@@ -18,8 +18,9 @@ import FilleField from "@/app/components/fields/FilleField";
 import { businessForm } from "../fromsConfig";
 import InputField from "@/app/components/fields/InputField";
 import axios from "axios";
-import { setDirction, setDirctionReverse } from "@/app/utils/helperServer";
+import { setDirctionReverse } from "@/app/utils/helperServer";
 import { Languages } from "@/app/utils/enums";
+import { useTheme } from "next-themes";
 
 // ✅ تعريف مخطط التحقق باستخدام Zod
 const formSchema = z.object({
@@ -77,6 +78,7 @@ const MultiStepForm = () => {
   const [openalert, setOpenAlert] = useState(false);
   const [otp, setOtp] = useState<string>("");
   const locale = useLocale() as Languages;
+  const { theme } = useTheme();
   const t = useTranslations("");
   const [base64Image, setBase64Image] = useState<string | null>(null);
   const formData = businessForm();
@@ -184,6 +186,22 @@ const MultiStepForm = () => {
     }
   };
 
+  // تحديد الصورة بناءً على اللغة والثيم
+  const [currentTheme, setCurrentTheme] = useState<string | undefined>();
+
+  useEffect(() => {
+    setCurrentTheme(theme); // تحديث الثيم بعد التحميل
+  }, [theme]);
+  
+  const getImageSrc = () => {
+    if (locale === Languages.ARABIC) {
+      return currentTheme === "dark" ? imgDarkAr : imgLightAr;
+    } else {
+      return currentTheme === "dark" ? imgDarkEn : imgLightEn;
+    }
+  };
+
+
   return (
     <div
       className="mx-auto pt-5 lg:bg-none bg-cover bg-center bg-[url(../assets/images/verification-bg.svg)]"
@@ -202,13 +220,14 @@ const MultiStepForm = () => {
       <div className="container mx-auto px-6 lg:px-16 flex flex-col lg:flex-row items-center justify-between ">
         {/* الصورة على اليسار */}
         <div className="hidden lg:block lg:w-1/2">
-          <Image
-            src={imgVrfication}
-            alt="توثيق الحساب"
-            width={600}
-            height={600}
-            className="max-w-full h-auto"
-          />
+        <Image
+          src={getImageSrc()}
+          alt="توثيق الحساب"
+          width={600}
+          height={600}
+          className="max-w-full h-auto"
+        />
+
         </div>
         {/* الفورم على اليمين */}
         <div className="lg:w-1/3 p-8">
@@ -263,7 +282,7 @@ const MultiStepForm = () => {
 
             {/* القسم الثاني */}
             {step === 2 && (
-              <div>
+              <div dir="auto">
                 <div className="mb-4">
                   <label className="block mb-1 text-sm font-medium text-foreground ">
                     {formData.fields.commercialRegisterPhoto.label}
@@ -322,7 +341,7 @@ const MultiStepForm = () => {
                   </div>
                 </div>
                 <div className="mb-4">
-                  <label className="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <label className="block mb-1 text-sm font-medium text-foreground">
                     {formData.fields.ownerIdentityImageFS.label}
                   </label>
                   <div className="flex flex-col  gap-2">
@@ -345,7 +364,7 @@ const MultiStepForm = () => {
               </div>
             )}
 
-            <div className="flex justify-between mt-4">
+            <div className="flex justify-between">
               {step === 2 && (
                 <Button
                   className="mt-3 font-semibold text-md bg-inherit border-none shadow-none text-primary hover:bg-gray-200"
