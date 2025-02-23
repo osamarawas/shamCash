@@ -17,7 +17,6 @@ import axios from "axios";
 import { FormBusinessType } from "../fromsConfig";
 import { formSchema } from "../fromsConfig";
 
-
 const MultiStepForm = () => {
   const [step, setStep] = useState(1);
   const [openalert, setOpenAlert] = useState(false);
@@ -61,18 +60,18 @@ const MultiStepForm = () => {
   // ✅ إرسال البيانات عند التأكيد
   const onCheckOtp = async (data: FormBusinessType) => {
     try {
-      const otpData = getOtpBody(data); // الحصول على البيانات من getOtpBody
+      const otpData = getOtpBody(data);
+      console.log(otpData);
       const response = await axios.post(
         `http://test.bokla.me/api/Authentication/checkVerifications`,
         otpData
       );
-      console.log(response); // إرسال البيانات عبر API succeeded
+      // إرسال البيانات عبر API succeeded
       if (true) {
         setOpenAlert(true);
       } else {
       }
     } catch (error) {
-      console.log("ssssssss")
       setOpenAlert(true);
       console.error("❌ فشل الإرسال:", error);
     }
@@ -80,13 +79,14 @@ const MultiStepForm = () => {
 
   const onSubmit = async (data: FormBusinessType) => {
     try {
-      const otpBody = { ...data, otpCode: otp } ; // إضافة قيمة otp إلى الكائن
+      const otpBody = { ...data, otpCode: otp }; // إضافة قيمة otp إلى الكائن
+      console.log(otpBody);
       const response = await postData(
         "/api/CommercialAccounts/verifyAccount",
-        otpBody 
+        otpBody
       ); // إرسال البيانات عبر API succeeded
       if (true) {
-         setOpenAlert(false);
+        setOpenAlert(false);
       } else {
       }
     } catch (error) {
@@ -110,13 +110,13 @@ const MultiStepForm = () => {
         "base64"
       );
     });
-  
+
   const onChangeFile = async (
     event: React.ChangeEvent<HTMLInputElement>,
-    fieldName:string
+    fieldName: string
   ) => {
     try {
-      console.log(typeof(fieldName))
+      console.log(typeof fieldName);
       const file = event.target.files?.[0];
       if (!file) return; // التحقق من وجود الملف
       const image = await resizeFile(file);
@@ -144,7 +144,7 @@ const MultiStepForm = () => {
         setOtp={setOtp}
         otp={otp}
         sure={handleSubmit(onSubmit)}
-        resend_otp={onCheckOtp}
+        resend_otp={handleSubmit(onCheckOtp)}
       />
       <div className="container mx-auto px-6 lg:px-16 flex flex-col lg:flex-row items-center justify-between">
         {/* الصورة على اليسار */}
