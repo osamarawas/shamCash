@@ -7,16 +7,17 @@ import React from "react";
 import {
   FieldError,
   FieldErrorsImpl,
-  FieldValues,
   Merge,
+  Path,
   UseFormRegister,
 } from "react-hook-form";
 
-interface InputFieldProps {
-  register: UseFormRegister<FieldValues>;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+interface InputFieldProps<T extends Record<string, any>> {
+  register: UseFormRegister<T>;
   label?: string;
   type: string;
-  name: string;
+  name: keyof T;
   placeholder?: string;
   disabled?: boolean;
   autoFocus?: boolean;
@@ -26,7 +27,8 @@ interface InputFieldProps {
   maxLength?: number;
   readOnly?: boolean;
 }
-const InputField = ({
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const InputField = <T extends Record<string, any>>({
   label,
   name,
   type,
@@ -38,26 +40,26 @@ const InputField = ({
   readOnly,
   register,
   maxLength,
-}: InputFieldProps) => {
+}: InputFieldProps<T>) => {
   const locale = useLocale() as Languages;
 
   return (
     <div dir={setDirction(locale)}>
       <label
         className="block text-sm font-medium text-foreground  "
-        htmlFor={name}
+        htmlFor={String(name)}
       >
         {label}
       </label>
       {type === "text" || type === "email" || type === "password" ? (
         <Input
-          {...register(name)}
+          {...register(name as Path<T>)}
           type={type}
           placeholder={placeholder}
           disabled={disabled}
           autoFocus={autoFocus}
-          name={name}
-          id={name}
+          name={String(name)}
+          id={String(name)}
           defaultValue={defaultValue}
           readOnly={readOnly}
           maxLength={maxLength}
@@ -65,12 +67,12 @@ const InputField = ({
         />
       ) : (
         <Textarea
-          {...register(name)}
+          {...register(name as Path<T>)}
           placeholder={placeholder}
           disabled={disabled}
           autoFocus={autoFocus}
-          name={name}
-          id={name}
+          name={String(name)}
+          id={String(name)}
           defaultValue={defaultValue}
           className="placeholder-muted-foreground !border-border_input focus:!border-border_focus_input w-full"
         />

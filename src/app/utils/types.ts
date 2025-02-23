@@ -72,8 +72,9 @@ type Endpoint = Record<
     method: "POST" | "GET" | "PUT" | "DELETE";
   }
 >;
-export interface IFormField {
-  name: string;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export interface IFormField<T extends Record<string, any>> {
+  name: keyof T;
   label?: string;
   type:
     | "text"
@@ -100,12 +101,8 @@ export interface IFormField {
   maxLength?: number;
 }
 
-export interface IOption {
-  label: string;
-  value: string;
-}
-
-export type DynamicForm = {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type DynamicForm<T extends Record<string, any>> = {
   id?: string; // معرف فريد للنموذج
   type: FormType; // نوع النموذج
   title?: string; // عنوان النموذج
@@ -130,11 +127,16 @@ export type DynamicForm = {
     rolesAllowed?: string[]; // الأدوار المسموح لها باستخدام النموذج
     authenticationRequired?: boolean; // هل يتطلب تسجيل الدخول؟
   };
-  fields: Record<string, IFormField>;
+  fields: Record<string, IFormField<T>>;
   endpoint: Endpoint;
 };
 
 export type ValidationErrors = Record<
   string,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   FieldError | Merge<FieldError, FieldErrorsImpl<any>> | undefined
 >;
+export interface IOption {
+  label: string;
+  value: string;
+}
