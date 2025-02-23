@@ -184,7 +184,7 @@ const MultiStepForm = () => {
 
   return (
     <div
-      className=" container mx-auto pt-5 lg:bg-none bg-[url(../assets/images/verification-bg.svg)]"
+      className="mx-auto pt-5 lg:bg-none bg-cover bg-center bg-[url(../assets/images/verification-bg.svg)]"
       dir="auto"
     >
       <PathLine
