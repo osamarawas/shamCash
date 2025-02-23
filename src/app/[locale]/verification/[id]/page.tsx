@@ -154,193 +154,195 @@ const MultiStepForm = () => {
 
   return (
     <div
-      className="mx-auto pt-5 lg:bg-none bg-cover bg-center bg-[url(../assets/images/verification-bg.svg)]"
+      className="mx-auto pt-5 lg:bg-none bg-cover bg-center bg-[url(../assets/images/verification-bg.svg)] "
       dir={setDirctionReverse(locale)}
     >
-      <PathLine
-        pagename={t("verification.categories.category1.name")}
-        backname={t("verification.title")}
-      />
-      <AlertDialogDemo
-        open={openalert}
-        setOpen={setOpenAlert}
-        setOtp={setOtp}
-        otp={otp}
-        sure={handleSubmit(onSubmit)}
-        resend_otp={handleSubmit(onCheckOtp)}
-      />
-      <div className="container mx-auto px-6 lg:px-16 flex flex-col lg:flex-row items-center justify-between ">
-        {/* الصورة على اليسار */}
-        <div className="hidden lg:block lg:w-1/2">
-          <Image
-            src={getImageSrc()}
-            alt="توثيق الحساب"
-            width={600}
-            height={600}
-            className="max-w-full h-auto"
-          />
-        </div>
-        {/* الفورم على اليمين */}
-        <div className="lg:w-1/3 p-8">
-          <form onSubmit={handleSubmit(onCheckOtp)}>
-            {/* القسم الأول */}
-            {step === 1 && (
-              <div>
-                <div className="mb-4">
-                  <InputField<FormBusinessType>
-                    {...formData.fields.email}
-                    register={register}
-                    error={errors?.email}
-                  />
-                </div>
-                <div className="mb-4">
-                  <InputField<FormBusinessType>
-                    {...formData.fields.accountNumber}
-                    register={register}
-                    error={errors?.accountNumber}
-                  />
-                </div>
-                <div className="mb-4">
-                  <InputField<FormBusinessType>
-                    {...formData.fields.userName}
-                    register={register}
-                    error={errors?.userName}
-                  />
-                </div>
-                <div className="mb-4">
-                  <InputField<FormBusinessType>
-                    {...formData.fields.phoneNumber}
-                    register={register}
-                    error={errors?.phoneNumber}
-                  />
-                </div>
-                <div className="mb-4">
-                  <InputField<FormBusinessType>
-                    {...formData.fields.taxNumber}
-                    register={register}
-                    error={errors?.taxNumber}
-                  />
-                </div>
-                <div className="mb-4">
-                  <InputField<FormBusinessType>
-                    {...formData.fields.summary}
-                    register={register}
-                    error={errors?.summary}
-                  />
-                </div>
-              </div>
-            )}
-
-            {/* القسم الثاني */}
-            {step === 2 && (
-              <div dir="auto">
-                <div className="mb-4">
-                  <label className="block mb-1 text-sm font-medium text-foreground ">
-                    {formData.fields.commercialRegisterPhoto.label}
-                  </label>
-                  <FilleField<FormBusinessType>
-                    {...formData.fields.commercialRegisterPhoto}
-                    register={register}
-                    onchangeFile={onChangeFile}
-                    error={errors.commercialRegisterPhoto}
-                    fileName={fileNames.commercialRegisterPhoto}
-                  />
-                </div>
-                <div className="mb-4">
-                  <label className="block mb-1 text-sm font-medium text-foreground ">
-                    {formData.fields.licensePhoto.label}
-                  </label>
-                  <FilleField<FormBusinessType>
-                    {...formData.fields.licensePhoto}
-                    register={register}
-                    onchangeFile={onChangeFile}
-                    error={errors.licensePhoto}
-                    fileName={fileNames.licensePhoto}
-                  />
-                </div>
-                <div className="mb-4">
-                  <label className="block mb-1 text-sm font-medium text-foreground ">
-                    {formData.fields.physicalAddressImage.label}
-                  </label>
-                  <FilleField<FormBusinessType>
-                    {...formData.fields.physicalAddressImage}
-                    register={register}
-                    onchangeFile={onChangeFile}
-                    error={errors.physicalAddressImage}
-                    fileName={fileNames.physicalAddressImage}
-                  />
-                </div>
-                <div className="mb-4">
-                  <label className="block mb-1 text-sm font-medium text-foreground ">
-                    {formData.fields.ownerIdentityImageFS.label}
-                  </label>
-                  <FilleField<FormBusinessType>
-                    {...formData.fields.ownerIdentityImageFS}
-                    register={register}
-                    onchangeFile={onChangeFile}
-                    error={errors.ownerIdentityImageFS}
-                    fileName={fileNames.ownerIdentityImageFS}
-                  />
-                  <div className="flex flex-col mt-2">
-                    <FilleField<FormBusinessType>
-                      {...formData.fields.ownerIdentityImageBS}
+      <div className="container">
+        <PathLine
+          pagename={t("verification.categories.category1.name")}
+          backname={t("verification.title")}
+        />
+        <AlertDialogDemo
+          open={openalert}
+          setOpen={setOpenAlert}
+          setOtp={setOtp}
+          otp={otp}
+          sure={handleSubmit(onSubmit)}
+          resend_otp={handleSubmit(onCheckOtp)}
+        />
+        <div className="container mx-auto px-6 lg:px-16 flex flex-col lg:flex-row items-center justify-between ">
+          {/* الصورة على اليسار */}
+          <div className="hidden lg:block lg:w-1/2">
+            <Image
+              src={getImageSrc()}
+              alt="توثيق الحساب"
+              width={600}
+              height={600}
+              className="max-w-full h-auto"
+            />
+          </div>
+          {/* الفورم على اليمين */}
+          <div className="lg:w-1/3 p-8">
+            <form onSubmit={handleSubmit(onCheckOtp)}>
+              {/* القسم الأول */}
+              {step === 1 && (
+                <div>
+                  <div className="mb-4">
+                    <InputField<FormBusinessType>
+                      {...formData.fields.email}
                       register={register}
-                      onchangeFile={onChangeFile}
-                      error={errors.ownerIdentityImageBS}
-                      fileName={fileNames.ownerIdentityImageBS}
+                      error={errors?.email}
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <InputField<FormBusinessType>
+                      {...formData.fields.accountNumber}
+                      register={register}
+                      error={errors?.accountNumber}
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <InputField<FormBusinessType>
+                      {...formData.fields.userName}
+                      register={register}
+                      error={errors?.userName}
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <InputField<FormBusinessType>
+                      {...formData.fields.phoneNumber}
+                      register={register}
+                      error={errors?.phoneNumber}
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <InputField<FormBusinessType>
+                      {...formData.fields.taxNumber}
+                      register={register}
+                      error={errors?.taxNumber}
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <InputField<FormBusinessType>
+                      {...formData.fields.summary}
+                      register={register}
+                      error={errors?.summary}
                     />
                   </div>
                 </div>
-                <div className="mb-4">
-                  <label className="block mb-1 text-sm font-medium text-foreground">
-                    {formData.fields.ownerIdentityImageFS.label}
-                  </label>
-                  <div className="flex flex-col  gap-2">
-                    <FilleField
-                      {...formData.fields.commissionerIdentityImageFS}
-                      register={register}
-                      onchangeFile={onChangeFile}
-                      error={errors.commissionerIdentityImageFS}
-                      fileName={fileNames.commissionerIdentityImageFS}
-                    />
-                    <FilleField
-                      {...formData.fields.commissionerIdentityImageBS}
-                      register={register}
-                      onchangeFile={onChangeFile}
-                      error={errors.commissionerIdentityImageBS}
-                      fileName={fileNames.commissionerIdentityImageBS}
-                    />
-                  </div>
-                </div>
-              </div>
-            )}
+              )}
 
-            <div className="flex justify-between">
+              {/* القسم الثاني */}
               {step === 2 && (
-                <Button
-                  className="mt-3 font-semibold text-md bg-inherit border-none shadow-none text-primary hover:bg-gray-200"
-                  type="submit"
-                >
-                  تأكيد
-                </Button>
+                <div dir="auto">
+                  <div className="mb-4">
+                    <label className="block mb-1 text-sm font-medium text-foreground ">
+                      {formData.fields.commercialRegisterPhoto.label}
+                    </label>
+                    <FilleField<FormBusinessType>
+                      {...formData.fields.commercialRegisterPhoto}
+                      register={register}
+                      onchangeFile={onChangeFile}
+                      error={errors.commercialRegisterPhoto}
+                      fileName={fileNames.commercialRegisterPhoto}
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label className="block mb-1 text-sm font-medium text-foreground ">
+                      {formData.fields.licensePhoto.label}
+                    </label>
+                    <FilleField<FormBusinessType>
+                      {...formData.fields.licensePhoto}
+                      register={register}
+                      onchangeFile={onChangeFile}
+                      error={errors.licensePhoto}
+                      fileName={fileNames.licensePhoto}
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label className="block mb-1 text-sm font-medium text-foreground ">
+                      {formData.fields.physicalAddressImage.label}
+                    </label>
+                    <FilleField<FormBusinessType>
+                      {...formData.fields.physicalAddressImage}
+                      register={register}
+                      onchangeFile={onChangeFile}
+                      error={errors.physicalAddressImage}
+                      fileName={fileNames.physicalAddressImage}
+                    />
+                  </div>
+                  <div className="mb-4">
+                    <label className="block mb-1 text-sm font-medium text-foreground ">
+                      {formData.fields.ownerIdentityImageFS.label}
+                    </label>
+                    <FilleField<FormBusinessType>
+                      {...formData.fields.ownerIdentityImageFS}
+                      register={register}
+                      onchangeFile={onChangeFile}
+                      error={errors.ownerIdentityImageFS}
+                      fileName={fileNames.ownerIdentityImageFS}
+                    />
+                    <div className="flex flex-col mt-2">
+                      <FilleField<FormBusinessType>
+                        {...formData.fields.ownerIdentityImageBS}
+                        register={register}
+                        onchangeFile={onChangeFile}
+                        error={errors.ownerIdentityImageBS}
+                        fileName={fileNames.ownerIdentityImageBS}
+                      />
+                    </div>
+                  </div>
+                  <div className="mb-4">
+                    <label className="block mb-1 text-sm font-medium text-foreground">
+                      {formData.fields.ownerIdentityImageFS.label}
+                    </label>
+                    <div className="flex flex-col  gap-2">
+                      <FilleField
+                        {...formData.fields.commissionerIdentityImageFS}
+                        register={register}
+                        onchangeFile={onChangeFile}
+                        error={errors.commissionerIdentityImageFS}
+                        fileName={fileNames.commissionerIdentityImageFS}
+                      />
+                      <FilleField
+                        {...formData.fields.commissionerIdentityImageBS}
+                        register={register}
+                        onchangeFile={onChangeFile}
+                        error={errors.commissionerIdentityImageBS}
+                        fileName={fileNames.commissionerIdentityImageBS}
+                      />
+                    </div>
+                  </div>
+                </div>
               )}
-              {step === 1 ? (
-                <span
-                  className="font-semibold mt-3 bg-none text-primary cursor-pointer"
-                  onClick={() => setStep(2)}
-                >
-                  التالي
-                </span>
-              ) : (
-                <span
-                  className="font-semibold mt-3 bg-inherit text-primary cursor-pointer"
-                  onClick={() => setStep(1)}
-                >
-                  رجوع
-                </span>
-              )}
-            </div>
-          </form>
+
+              <div className="flex justify-between">
+                {step === 2 && (
+                  <Button
+                    className="mt-3 font-semibold text-md bg-inherit border-none shadow-none text-primary hover:bg-gray-200"
+                    type="submit"
+                  >
+                    تأكيد
+                  </Button>
+                )}
+                {step === 1 ? (
+                  <span
+                    className="font-semibold mt-3 bg-none text-primary cursor-pointer"
+                    onClick={() => setStep(2)}
+                  >
+                    التالي
+                  </span>
+                ) : (
+                  <span
+                    className="font-semibold mt-3 bg-inherit text-primary cursor-pointer"
+                    onClick={() => setStep(1)}
+                  >
+                    رجوع
+                  </span>
+                )}
+              </div>
+            </form>
+          </div>
         </div>
       </div>
     </div>
