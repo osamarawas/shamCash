@@ -247,6 +247,7 @@ const MultiStepForm = () => {
                 </div>
               )}
 
+
               {/* القسم الثاني */}
               {step === 2 && (
                 <div dir="auto">
@@ -332,34 +333,39 @@ const MultiStepForm = () => {
               )}
 
               <div className="flex justify-between">
-                {step === 2 && (
-                  <Button
-                    className="mt-3 font-semibold text-md bg-inherit border-none shadow-none text-primary hover:bg-gray-200"
-                    type="submit"
-                  >
-                    تأكيد
-                  </Button>
-                )}
-                {step === 1 ? (
-                  <span
-                    className="font-semibold mt-3 bg-none text-primary cursor-pointer"
-                    onClick={() => setStep(2)}
-                  >
-                    التالي
-                  </span>
-                ) : (
-                  <span
-                    className="font-semibold mt-3 bg-inherit text-primary cursor-pointer"
-                    onClick={() => setStep(1)}
-                  >
-                    رجوع
-                  </span>
-                )}
-              </div>
-            </form>
-          </div>
+              {step === 2 && (
+                <Button
+                  className="w-16 mt-3 font-semibold text-md bg-inherit border-none shadow-none text-primary hover:bg-gray-200"
+                  type="submit"
+                >
+                  تأكيد
+                </Button>
+              )}
+              {step === 1 ? (
+                <span
+                  className="w-16 h-9 inline-flex mt-3 py-2 px-4 font-semibold text-md bg-inherit border-none shadow-none text-primary rounded-md white justify-center items-center hover:bg-gray-200 cursor-pointer"
+                  onClick={() => setStep(2)}
+                >
+                  التالي
+                </span>
+              ) : (
+                <span
+                  className="w-16 h-9 inline-flex mt-3 py-2 px-4 font-semibold text-md bg-inherit border-none shadow-none text-primary rounded-md white justify-center items-center hover:bg-gray-200 cursor-pointer"
+                  onClick={() => setStep(1)}
+                >
+                  رجوع
+                </span>
+              )}
+            </div>
+    
+
+          {/*الأزرار*/}
+           
+          </form>
+
         </div>
       </div>
+    </div>
     </div>
   );
 };
