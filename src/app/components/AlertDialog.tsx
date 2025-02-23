@@ -14,12 +14,23 @@ import {
   InputOTPSlot,
 } from "@/components/ui/input-otp";
 import icon from "@/assets/icon/alertDialog.svg";
-export function AlertDialogDemo(props) {
+import Image from "next/image";
+import { Dispatch, SetStateAction } from "react";
+
+interface AlertDialogDemoProps{
+  open:boolean,
+  setOpen: Dispatch<SetStateAction<boolean>>,
+  otp:string,
+  setOtp:Dispatch<SetStateAction<string>>,
+  sure:(e?: React.BaseSyntheticEvent) => Promise<void>
+  resend_otp:() => Promise<void>;
+}
+export function AlertDialogDemo(props :AlertDialogDemoProps) {
   return (
     <AlertDialog open={props.open}>
       <AlertDialogContent>
         <AlertDialogHeader>
-          <img
+          <Image
             src={icon.src}
             alt=""
             className="mb-3 mx-auto mt-6"
@@ -52,7 +63,7 @@ export function AlertDialogDemo(props) {
             <div dir="auto" className="text-center text-sm my-6">
               <p>
                 إذا لم تستلم الرمز، يمكنك طلب{" "}
-                <span className="text-primary font-semibold">
+                <span className="text-primary font-semibold cursor-pointer" onClick={props.resend_otp}>
                   إرساله مرة أخرى.
                 </span>
               </p>
@@ -61,7 +72,7 @@ export function AlertDialogDemo(props) {
         </AlertDialogHeader>
         <div className="">
           <AlertDialogFooter dir="auto" className="mb-6">
-            <AlertDialogCancel className="text-gray-600 bg-gray-200 font-semibold">
+            <AlertDialogCancel className="text-gray-600 bg-gray-200 font-semibold" onClick={()=>props.setOpen(false)}>
               إغلاق
             </AlertDialogCancel>
             <AlertDialogAction

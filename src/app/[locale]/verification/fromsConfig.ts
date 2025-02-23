@@ -1,4 +1,5 @@
 import { DynamicForm } from "@/app/utils/types";
+import { z } from "zod";
 
 export const businessForm = (): DynamicForm => {
   return {
@@ -89,3 +90,39 @@ export const businessForm = (): DynamicForm => {
     endpoint: { sendOtp: { url: "exapmle.com", method: "POST" } },
   };
 };
+
+
+// ✅ تعريف مخطط التحقق باستخدام Zod
+export const formSchema = z.object({
+  email: z.string().email("البريد الإلكتروني غير صالح"),
+  accountNumber: z.string().min(1, "رقم الحساب يجب أن يكون 5 أحرف على الأقل"),
+  userName: z.string().min(1, "الحقل مطلوب"),
+  phoneNumber: z
+    .string()
+    .regex(/^09\d{8}$/, "رقم الهاتف يجب أن يبدأ بـ 09 ويتكون من 10 أرقام فقط")
+    .length(10, "رقم الهاتف يجب أن يحتوي على 10 أرقام فقط"),
+  taxNumber: z.string().min(5, "رقم التعريف الضريبي غير صالح"),
+  summary: z.string().max(2048, "الملخص يجب أن يكون أكثر تفصيلاً").min(1),
+  commercialRegisterPhoto: z
+    .any()
+    .refine((file) => file?.length > 0, "يجب رفع ملف مستندات"),
+  licensePhoto: z
+    .any()
+    .refine((file) => file?.length > 0, "يجب رفع ملف مستندات"),
+  ownerIdentityImageFS: z
+    .any()
+    .refine((file) => file?.length > 0, "يجب رفع ملف مستندات"),
+  ownerIdentityImageBS: z
+    .any()
+    .refine((file) => file?.length > 0, "يجب رفع ملف مستندات"),
+  commissionerIdentityImageFS: z
+    .any()
+    .refine((file) => file?.length > 0, "يجب رفع ملف مستندات"),
+  commissionerIdentityImageBS: z
+    .any()
+    .refine((file) => file?.length > 0, "يجب رفع ملف مستندات"),
+  physicalAddressImage: z
+    .any()
+    .refine((file) => file?.length > 0, "يجب رفع ملف مستندات"),
+});
+export type FormBusinessType=z.infer<typeof formSchema>
