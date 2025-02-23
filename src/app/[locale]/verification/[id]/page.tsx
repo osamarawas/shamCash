@@ -30,6 +30,10 @@ const MultiStepForm = () => {
   const { theme } = useTheme();
   const t = useTranslations("");
   const formData = businessForm();
+  const [errorsApi, setErrorsApi] = useState({
+    accountError: false,
+    otpError: false,
+  });
   const [fileNames, setFileNames] = useState({
     commercialRegisterPhoto: "",
     licensePhoto: "",
@@ -69,17 +73,29 @@ const MultiStepForm = () => {
     try {
       const otpData = getOtpBody(data); // الحصول على البيانات من getOtpBody
       const response = await postData(
-        `http://test.bokla.me/api/Authentication/checkVerifications`,
+        `https://192.168.10.90:7089/api/Authentication/checkVerifications`,
         otpData
       );
-      // إرسال البيانات عبر API succeeded
-      if (true) {
-        setOpenAlert(true);
-      } else {
-      }
       console.log(response);
+      // إرسال البيانات عبر API succeeded
+      if (response.succeeded) {
+        setOpenAlert(true);
+
+        setErrorsApi((prev) => ({
+          ...prev,
+          accountError: false,
+        }));
+      } else {
+        setOpenAlert(false);
+
+        setStep(1);
+        setErrorsApi((prev) => ({
+          ...prev,
+          accountError: true,
+        }));
+        console.log(errorsApi.accountError);
+      }
     } catch (error) {
-      setOpenAlert(true);
       console.error("❌ فشل الإرسال:", error);
     }
   };
@@ -88,7 +104,7 @@ const MultiStepForm = () => {
     try {
       const otpBody = { ...data, otpCode: otp }; // إضافة قيمة otp إلى الكائن
       const response = await postData(
-        "/api/CommercialAccounts/verifyAccount",
+        `https://192.168.10.90:7089/api/CommercialAccounts/verifyAccount`,
         otpBody
       ); // إرسال البيانات عبر API succeeded
       if (true) {
@@ -123,7 +139,6 @@ const MultiStepForm = () => {
     fieldName: string
   ) => {
     try {
-      console.log(typeof fieldName);
       const file = event.target.files?.[0];
       if (!file) return; // التحقق من وجود الملف
       const image = await resizeFile(file);
