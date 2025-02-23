@@ -1,9 +1,10 @@
 import { Languages } from "@/app/utils/enums";
 import { setDirction } from "@/app/utils/helperServer";
 import { Input } from "@/components/ui/input";
-import { Upload } from "lucide-react";
+import { AiOutlineUpload } from "react-icons/ai"; // استيراد الأيقونات من react-icons
+import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 import { useLocale } from "next-intl";
-import React from "react";
+import React, { useState } from "react";
 import {
   FieldError,
   FieldErrorsImpl,
@@ -45,14 +46,30 @@ const FilleField = <T extends FieldValues>({
   fileName,
 }: FilleFieldProps<T>) => {
   const locale = useLocale() as Languages;
+  const [isUploaded, setIsUploaded] = useState(false);
 
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files && e.target.files.length > 0) {
+      setIsUploaded(true);
+    } else {
+      setIsUploaded(false);
+    }
+
+    if (onchangeFile) {
+      onchangeFile(e, name);
+    }
+  };
   return (
-    <div dir={setDirction(locale)}>
+    <div className="flex flex-col" dir={setDirction(locale)}>
       <label className="justify-between flex items-center gap-2 border !border-border_input rounded-lg p-2 cursor-pointer hover:bg-hover">
         <span className="text-sm text-muted-foreground">
           {fileName || placeholder}
         </span>
-        <Upload className="w-5 h-5 text-muted-foreground" />
+        {isUploaded ? (
+          <IoIosCheckmarkCircleOutline className="w-5 h-5 success" />
+        ) : (
+          <AiOutlineUpload className="w-5 h-5 text-muted-foreground" />
+        )}
 
         {/* If it's a file input */}
         {type === "file" ? (
@@ -60,7 +77,7 @@ const FilleField = <T extends FieldValues>({
             type={type}
             className="hidden"
             {...register(name as Path<T>, {
-              onChange: (e) => onchangeFile && onchangeFile(e, name),
+              onChange: handleFileChange,
             })}
             disabled={disabled}
             autoFocus={autoFocus}

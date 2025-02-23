@@ -1,10 +1,13 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
-import imgVrfication from "@/assets/images/verficationimage.svg";
+import imgLightAr from "@/assets/images/verficationimage.svg";
+import imgDarkAr from "@/assets/images/verficationimage-dark.svg";
+import imgDarkEn from "@/assets/images/imgVrfication-darkEn.svg";
+import imgLightEn from "@/assets/images/imgVrfication-lightEn.svg";
 import { AlertDialogDemo } from "@/app/components/AlertDialog";
 import PathLine from "@/app/components/PathLine";
 import { useLocale, useTranslations } from "next-intl";
@@ -17,12 +20,14 @@ import { setDirctionReverse } from "@/app/utils/helperServer";
 import { Languages } from "@/app/utils/enums";
 import { FormBusinessType } from "../fromsConfig";
 import { formSchema } from "../fromsConfig";
+import { useTheme } from "next-themes";
 
 const MultiStepForm = () => {
   const [step, setStep] = useState(1);
   const [openalert, setOpenAlert] = useState(false);
   const [otp, setOtp] = useState<string>("");
   const locale = useLocale() as Languages;
+  const { theme } = useTheme();
   const t = useTranslations("");
   const formData = businessForm();
   const [fileNames, setFileNames] = useState({
@@ -131,6 +136,22 @@ const MultiStepForm = () => {
       console.log(err);
     }
   };
+
+  // تحديد الصورة بناءً على اللغة والثيم
+  const [currentTheme, setCurrentTheme] = useState<string | undefined>();
+
+  useEffect(() => {
+    setCurrentTheme(theme); // تحديث الثيم بعد التحميل
+  }, [theme]);
+
+  const getImageSrc = () => {
+    if (locale === Languages.ARABIC) {
+      return currentTheme === "dark" ? imgDarkAr : imgLightAr;
+    } else {
+      return currentTheme === "dark" ? imgDarkEn : imgLightEn;
+    }
+  };
+
   return (
     <div
       className="mx-auto pt-5 lg:bg-none bg-cover bg-center bg-[url(../assets/images/verification-bg.svg)]"
@@ -152,7 +173,7 @@ const MultiStepForm = () => {
         {/* الصورة على اليسار */}
         <div className="hidden lg:block lg:w-1/2">
           <Image
-            src={imgVrfication}
+            src={getImageSrc()}
             alt="توثيق الحساب"
             width={600}
             height={600}
@@ -212,7 +233,7 @@ const MultiStepForm = () => {
 
             {/* القسم الثاني */}
             {step === 2 && (
-              <div>
+              <div dir="auto">
                 <div className="mb-4">
                   <label className="block mb-1 text-sm font-medium text-foreground ">
                     {formData.fields.commercialRegisterPhoto.label}
@@ -271,7 +292,7 @@ const MultiStepForm = () => {
                   </div>
                 </div>
                 <div className="mb-4">
-                  <label className="block mb-1 text-sm font-medium text-gray-700 dark:text-gray-300">
+                  <label className="block mb-1 text-sm font-medium text-foreground">
                     {formData.fields.ownerIdentityImageFS.label}
                   </label>
                   <div className="flex flex-col  gap-2">
@@ -294,7 +315,7 @@ const MultiStepForm = () => {
               </div>
             )}
 
-            <div className="flex justify-between mt-4">
+            <div className="flex justify-between">
               {step === 2 && (
                 <Button
                   className="mt-3 font-semibold text-md bg-inherit border-none shadow-none text-primary hover:bg-gray-200"
