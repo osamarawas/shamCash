@@ -23,11 +23,10 @@ const VerificationPage = async ({ params }: FaqPageProps) => {
       <p className="mx-5 sm:mx-auto text-muted text-center text-lg font-semibold max-w-3xl">
         {t("verification.desc")}
       </p>
-
+      <p className="font-semibold mt-4 text-2xl text-primary leading-10 text-center">
+        {t("verification.choseType")}
+      </p>
       <div className="grid grid-cols-1 md:grid-cols-2  gap-6">
-        <p className="font-semibold mt-4 text-xl text-primary leading-10  col-span-full">
-          {t("verification.choseType")}
-        </p>
         {verificationCategory.map((category) => (
           <Category {...category} key={category.id} />
         ))}

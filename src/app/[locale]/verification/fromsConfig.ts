@@ -63,45 +63,61 @@ export const businessForm = (): DynamicForm<{
         label: "صورة السجل التجاري",
         placeholder: "صورة السجل التجاري",
         name: "commercialRegisterPhoto",
+        accept: "image/.jpg, .jpeg, .png",
       },
       licensePhoto: {
         type: "file",
         label: "صورة رخصة مزاولة مهنة",
         placeholder: "صورة رخصة مزاولة مهنة",
         name: "licensePhoto",
+        accept: "image/.jpg, .jpeg, .png",
       },
       physicalAddressImage: {
         type: "file",
         label: "صورة وثيقة تحمل الرقم الفيزيائي",
         placeholder: "صورة وثيقة تحمل الرقم الفيزيائي",
         name: "physicalAddressImage",
+        accept: "image/.jpg, .jpeg, .png",
       },
       ownerIdentityImageFS: {
         type: "file",
         label: "صورة هوية المالك",
         placeholder: "الوجه الامامي",
         name: "ownerIdentityImageFS",
+        accept: "image/.jpg, .jpeg, .png",
       },
       ownerIdentityImageBS: {
         type: "file",
         label: "صورة هوية المالك",
         placeholder: "الوجه الخلفي",
         name: "ownerIdentityImageBS",
+        accept: "image/.jpg, .jpeg, .png",
       },
       commissionerIdentityImageFS: {
         type: "file",
         label: "صورة هوية المفوض",
         placeholder: "الوجه الامامي",
         name: "commissionerIdentityImageFS",
+        accept: "image/.jpg, .jpeg, .png",
       },
       commissionerIdentityImageBS: {
         type: "file",
         label: "صورة هوية المفوض",
         placeholder: "الوجه الخلفي",
         name: "commissionerIdentityImageBS",
+        accept: "image/.jpg, .jpeg, .png",
       },
     },
-    endpoint: { sendOtp: { url: "exapmle.com", method: "POST" } },
+    endpoint: {
+      sendOtp: {
+        url: "/api/Authentication/checkVerifications",
+        method: "POST",
+      },
+      verificationAccount: {
+        url: "/api/CommercialAccounts/verifyAccount",
+        method: "POST",
+      },
+    },
   };
 };
 
@@ -141,7 +157,21 @@ export const formSchema = z.object({
 });
 export type FormBusinessType = z.infer<typeof formSchema>;
 
-export const organizationForm = (): DynamicForm => {
+export const organizationForm = (): DynamicForm<{
+  email: string;
+  accountNumber: string;
+  userName: string;
+  phoneNumber: string;
+  taxNumber: string;
+  summary: string;
+  commercialRegisterPhoto?: string;
+  licensePhoto?: string;
+  ownerIdentityImageFS?: string;
+  ownerIdentityImageBS?: string;
+  commissionerIdentityImageFS?: string;
+  commissionerIdentityImageBS?: string;
+  physicalAddressImage?: string;
+}> => {
   return {
     id: "organization",
     title: "Organization Account Documentation",
@@ -184,11 +214,11 @@ export const organizationForm = (): DynamicForm => {
         placeholder: "اكتب هنا",
         name: "summary",
       },
-      commercialRegisterPhoto: {
+      CopyOfTheLicense: {
         type: "file",
         label: "صورة الترخيص الممنوح",
         placeholder: "صورة الترخيص الممنوح",
-        name: "commercialRegisterPhoto",
+        name: "CopyOfTheLicense",
       },
       physicalAddressImage: {
         type: "file",

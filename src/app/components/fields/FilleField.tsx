@@ -31,6 +31,8 @@ interface FilleFieldProps<T extends FieldValues> {
     name: keyof T
   ) => void;
   fileName?: string;
+  accept?: string;
+  multiple?: boolean;
 }
 
 const FilleField = <T extends FieldValues>({
@@ -44,6 +46,8 @@ const FilleField = <T extends FieldValues>({
   onchangeFile,
   placeholder,
   fileName,
+  accept,
+  multiple,
 }: FilleFieldProps<T>) => {
   const locale = useLocale() as Languages;
   const [isUploaded, setIsUploaded] = useState(false);
@@ -76,19 +80,21 @@ const FilleField = <T extends FieldValues>({
         {type === "file" ? (
           <Input
             type={type}
-            className="hidden"
+            className={`hidden  ${error?.message && "border-destructive"}`}
             {...register(name as Path<T>, {
               onChange: handleFileChange,
             })}
             disabled={disabled}
             autoFocus={autoFocus}
             readOnly={readOnly}
+            accept={accept}
+            multiple={multiple}
           />
         ) : (
           // You can handle other types like text, password, etc., here
           <Input
             type={type}
-            className="hidden"
+            className={`hidden  ${error?.message && "border-destructive"}`}
             {...register(name as Path<T>, {
               onChange: (e) => onchangeFile && onchangeFile(e, name),
             })}
