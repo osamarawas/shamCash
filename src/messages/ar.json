@@ -515,7 +515,7 @@
       "placeholder": "الوجه الأمامي",
       "placeholder1": "الوجه الخلفي"
     },
-    "granted_license_image": {
+    "licensePhotoOrganization": {
       "label": "صورة الترخيص الممنوح",
       "placeholder": "صورة الترخيص"
     }

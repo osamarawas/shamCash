@@ -170,9 +170,7 @@ export const organizationformSchema = z.object({
     .max(2048, "الملخص يجب أن يكون أكثر تفصيلاً")
     .min(1, "الحقل مطلوب"),
 
-  CopyOfTheLicense: z
-    .any()
-    .refine((file) => file?.length > 0, "يجب رفع الصورة"),
+  licensePhoto: z.any().refine((file) => file?.length > 0, "يجب رفع الصورة"),
   ownerIdentityImageFS: z
     .any()
     .refine((file) => file?.length > 0, "يجب رفع الصورة"),
@@ -197,7 +195,6 @@ export const organizationForm = (): DynamicForm<{
   phoneNumber: string;
   taxNumber: string;
   summary: string;
-  CopyOfTheLicense?: string;
   licensePhoto?: string;
   ownerIdentityImageFS?: string;
   ownerIdentityImageBS?: string;
@@ -247,11 +244,11 @@ export const organizationForm = (): DynamicForm<{
         placeholder: "اكتب هنا",
         name: "summary",
       },
-      CopyOfTheLicense: {
+      licensePhoto: {
         type: "file",
         label: "صورة الترخيص الممنوح",
         placeholder: "صورة الترخيص الممنوح",
-        name: "CopyOfTheLicense",
+        name: "licensePhoto",
       },
       physicalAddressImage: {
         type: "file",
@@ -297,10 +294,15 @@ export const organizationForm = (): DynamicForm<{
   };
 };
 
+export type FormBusinessType = z.infer<typeof businessformSchema>;
+export type FormOrganizationType = z.infer<typeof organizationformSchema>;
+
 export function getFormSchema(accoutType: AccoutType) {
   if (accoutType === "organization") {
+    console.log("organization");
     return organizationformSchema;
   } else if (accoutType === "business") {
+    console.log("business");
     return businessformSchema;
   }
   throw new Error("Invalid form type");

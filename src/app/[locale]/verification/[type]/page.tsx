@@ -21,14 +21,15 @@ import { Languages } from "@/app/utils/enums";
 import { useTheme } from "next-themes";
 import { z } from "zod";
 import { AccoutType } from "@/app/utils/types";
-type ParamsType = {
-  [key: string]: string;
-};
-const MultiStepForm = ({ params }: { params: ParamsType }) => {
+import { useParams } from "next/navigation";
+
+const MultiStepForm = () => {
+  const params = useParams();
   const accountType = params.type as AccoutType;
   const schema = getFormSchema(accountType);
   const formData = getFormData(accountType);
   type formType = z.infer<typeof schema>;
+
   const [step, setStep] = useState(1);
   const [openalert, setOpenAlert] = useState(false);
   const [otp, setOtp] = useState<string>("");
@@ -265,13 +266,13 @@ const MultiStepForm = ({ params }: { params: ParamsType }) => {
 
               {step === 2 && (
                 <div dir="auto">
-                  {formData.fields.CopyOfTheLicense && (
+                  {formData.fields.licensePhoto && (
                     <div className="mb-4">
                       <label className="block mb-1 text-sm font-medium text-foreground ">
-                        {formData.fields.CopyOfTheLicense.label}
+                        {formData.fields.licensePhoto.label}
                       </label>
                       <FilleField<formType>
-                        {...formData.fields.CopyOfTheLicense}
+                        {...formData.fields.licensePhoto}
                         register={register}
                         onchangeFile={onChangeFile}
                         // error={errors.CopyOfTheLicense}

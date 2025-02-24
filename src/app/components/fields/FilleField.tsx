@@ -18,7 +18,7 @@ interface FilleFieldProps<T extends FieldValues> {
   register: UseFormRegister<T>;
   label?: string;
   type: string;
-  name: keyof T;
+  name: Path<T>;
   placeholder?: string;
   disabled?: boolean;
   autoFocus?: boolean;

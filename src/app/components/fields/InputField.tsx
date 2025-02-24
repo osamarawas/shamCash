@@ -17,7 +17,7 @@ interface InputFieldProps<T extends Record<string, any>> {
   register: UseFormRegister<T>;
   label?: string;
   type: string;
-  name: keyof T;
+  name: Path<T>;
   placeholder?: string;
   disabled?: boolean;
   autoFocus?: boolean;
@@ -55,7 +55,7 @@ const InputField = <T extends Record<string, any>>({
       </label>
       {type === "text" || type === "email" || type === "password" ? (
         <Input
-          {...register(name as Path<T>)}
+          {...register(name)}
           type={type}
           placeholder={placeholder}
           disabled={disabled}
@@ -71,7 +71,7 @@ const InputField = <T extends Record<string, any>>({
         />
       ) : (
         <Textarea
-          {...register(name as Path<T>)}
+          {...register(name)}
           placeholder={placeholder}
           disabled={disabled}
           autoFocus={autoFocus}
