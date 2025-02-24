@@ -33,7 +33,7 @@ const MultiStepForm = () => {
   const [openalert, setOpenAlert] = useState(false);
   const [otp, setOtp] = useState<string>("");
   const locale = useLocale() as Languages;
-  const { theme } = useTheme();
+  const { resolvedTheme } = useTheme();
   const t = useTranslations("");
   const [errorsApi, setErrorsApi] = useState({
     accountError: false,
@@ -160,8 +160,8 @@ const MultiStepForm = () => {
   const [currentTheme, setCurrentTheme] = useState<string | undefined>();
 
   useEffect(() => {
-    setCurrentTheme(theme); // تحديث الثيم بعد التحميل
-  }, [theme]);
+    setCurrentTheme(resolvedTheme); // تحديث الثيم بعد التحميل
+  }, [resolvedTheme]);
 
   const getImageSrc = () => {
     if (locale === Languages.ARABIC) {
