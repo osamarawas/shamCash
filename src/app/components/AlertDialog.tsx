@@ -40,7 +40,6 @@ export function AlertDialogDemo(props: AlertDialogDemoProps) {
     let interval: NodeJS.Timeout;
     if (timer > 0) {
       interval = setInterval(() => setTimer((prev) => prev - 1), 1000);
-      console.log(timer);
     }
     return () => clearInterval(interval);
   }, [timer]);

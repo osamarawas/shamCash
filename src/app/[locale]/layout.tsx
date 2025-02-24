@@ -26,7 +26,6 @@ const montserrat = Montserrat({
 
 export async function generateMetadata(): Promise<Metadata> {
   const t = await getTranslations("");
-  console.log(t("appName"));
   return {
     title: t("appName"),
     description:

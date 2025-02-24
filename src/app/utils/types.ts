@@ -99,6 +99,12 @@ export interface IFormField<T extends Record<string, any>> {
   readOnly?: boolean;
   error?: ValidationErrors;
   maxLength?: number;
+  accept?:
+    | "image/.jpg, .jpeg, .png"
+    | "video/.mp4,"
+    | ".doc,.docx,.xml"
+    | ".pdf";
+  multiple?: boolean;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

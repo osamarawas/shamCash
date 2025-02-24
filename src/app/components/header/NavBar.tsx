@@ -21,8 +21,12 @@ export default function NavBar() {
   const pathName = usePathname();
   const locale = useLocale() as Languages;
   function isActive(path: string): boolean {
-    return removeLanguageFromPath(pathName) === path;
+    if (path === "/") {
+      return removeLanguageFromPath(pathName) === path;
+    }
+    return removeLanguageFromPath(pathName).includes(path);
   }
+
   useEffect(() => {
     const handleScroll = () => {
       if (window.scrollY > lastScrollY) {
