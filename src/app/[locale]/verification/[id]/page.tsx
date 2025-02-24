@@ -172,7 +172,7 @@ const MultiStepForm = () => {
       className="mx-auto pt-5 lg:bg-none bg-cover bg-center bg-[url(../assets/images/verification-bg.svg)] "
       dir={setDirctionReverse(locale)}
     >
-      <div className="container">
+      <div className="container mx-auto">
         <PathLine
           pagename={t("verification.categories.category1.name")}
           backname={t("verification.title")}
@@ -185,7 +185,7 @@ const MultiStepForm = () => {
           sure={handleSubmit(onSubmit)}
           resend_otp={handleSubmit(onCheckOtp)}
         />
-        <div className="container mx-auto px-6 lg:px-16 flex flex-col lg:flex-row items-center justify-between ">
+        <div className="mx-auto px-6 lg:px-16 flex flex-col lg:flex-row items-center justify-between">
           {/* الصورة على اليسار */}
           <div className="hidden lg:block lg:w-1/2">
             <Image
