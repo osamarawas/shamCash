@@ -1,5 +1,9 @@
 import { DynamicForm } from "@/app/utils/types";
 import { z } from "zod";
+import { getTranslations } from "next-intl/server";
+
+const t = getTranslations();
+
 
 export const businessForm = (): DynamicForm<{
   email: string;
