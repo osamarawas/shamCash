@@ -19,6 +19,8 @@ import InputField from "@/app/components/fields/InputField";
 import { setDirctionReverse } from "@/app/utils/helperServer";
 import { Languages } from "@/app/utils/enums";
 import { useTheme } from "next-themes";
+import { Toaster } from "@/components/ui/sonner";
+import { toast } from "sonner";
 import { z } from "zod";
 import { AccoutType } from "@/app/utils/types";
 import { useParams } from "next/navigation";
@@ -78,26 +80,25 @@ const MultiStepForm = () => {
       const otpData = getOtpBody(data);
       const response = await postData(
         `https://192.168.10.90:7089/api/Authentication/checkVerifications`,
-        data
+        otpData
       );
-      console.log(response);
-
       if (response.succeeded) {
         setOpenAlert(true);
-
         setErrorsApi((prev) => ({
           ...prev,
           accountError: false,
         }));
       } else {
-        setOpenAlert(false);
-
-        setStep(1);
-        setErrorsApi((prev) => ({
-          ...prev,
-          accountError: true,
-        }));
-        console.log(errorsApi.accountError);
+        if (+response.result === 1107) {
+          toast("تم ارسال الطلب سابقا.");
+        } else {
+          setOpenAlert(false);
+          setStep(1);
+          setErrorsApi((prev) => ({
+            ...prev,
+            accountError: true,
+          }));
+        }
       }
     } catch (error) {
       console.error("❌ فشل الإرسال:", error);
@@ -111,13 +112,19 @@ const MultiStepForm = () => {
         `https://192.168.10.90:7089/api/CommercialAccounts/verifyAccount`,
         otpBody
       ); // إرسال البيانات عبر API succeeded
-      if (true) {
+      if (response.succeeded) {
+        console.log("تم ارسال الطلب بنجاح");
+        toast(" تم ارسال الطلب  بنجاح.");
         setOpenAlert(false);
       } else {
+        if (+response.result === 1306) {
+          console.log("otp is invalid ");
+        } else {
+          console.log("حصل حذث غير متوقع");
+          toast("حصل حدث غير متوقع");
+        }
       }
-      console.log(response);
     } catch (error) {
-      setOpenAlert(true);
       console.error("❌ فشل الإرسال:", error);
     }
   };
@@ -177,6 +184,7 @@ const MultiStepForm = () => {
       dir={setDirctionReverse(locale)}
     >
       <div className="container mx-auto">
+        <Toaster />
         <PathLine
           pagename={t(`verification.categories.${accountType}.name`)}
           backname={t("verification.title")}
@@ -212,6 +220,9 @@ const MultiStepForm = () => {
                         {...formData.fields.email}
                         register={register}
                         error={errors?.email}
+                        classNameExtra={`${
+                          errorsApi.accountError && "!border-destructive "
+                        }`}
                       />
                     </div>
                   )}
@@ -221,6 +232,9 @@ const MultiStepForm = () => {
                         {...formData.fields.accountNumber}
                         register={register}
                         error={errors?.accountNumber}
+                        classNameExtra={`${
+                          errorsApi.accountError && "!border-destructive "
+                        }`}
                       />
                     </div>
                   )}
@@ -230,6 +244,9 @@ const MultiStepForm = () => {
                         {...formData.fields.userName}
                         register={register}
                         error={errors?.userName}
+                        classNameExtra={`${
+                          errorsApi.accountError && "!border-destructive "
+                        }`}
                       />
                     </div>
                   )}
@@ -239,6 +256,9 @@ const MultiStepForm = () => {
                         {...formData.fields.phoneNumber}
                         register={register}
                         error={errors?.phoneNumber}
+                        classNameExtra={`${
+                          errorsApi.accountError && "!border-destructive "
+                        }`}
                       />
                     </div>
                   )}
