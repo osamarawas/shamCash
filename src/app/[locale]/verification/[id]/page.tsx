@@ -21,6 +21,8 @@ import { Languages } from "@/app/utils/enums";
 import { FormBusinessType } from "../fromsConfig";
 import { formSchema } from "../fromsConfig";
 import { useTheme } from "next-themes";
+import { Toaster } from "@/components/ui/sonner";
+import { toast } from "sonner";
 
 const MultiStepForm = () => {
   const [step, setStep] = useState(1);
@@ -42,9 +44,7 @@ const MultiStepForm = () => {
     commissionerIdentityImageFS: "",
     commissionerIdentityImageBS: "",
     physicalAddressImage: "",
-    // أضف هنا المزيد من الحقول إذا كنت بحاجة إلى ذلك
   });
-  // ✅ استخدام React Hook Form مع Zod للتحقق
   const {
     register,
     handleSubmit,
@@ -55,7 +55,7 @@ const MultiStepForm = () => {
   });
 
   function getOtpBody(data: FormBusinessType): Record<string, string> {
-    const oData: Record<string, string> = {}; // تحديد نوع الكائن بشكل دقيق
+    const oData: Record<string, string> = {}; 
     const fieldData: (keyof FormBusinessType)[] = [
       "phoneNumber",
       "userName",
@@ -65,19 +65,16 @@ const MultiStepForm = () => {
     for (let i = 0; i < fieldData.length; i++) {
       oData[fieldData[i]] = data[fieldData[i]];
     }
-    return oData; // إرجاع البيانات بعد المعالجة
+    return oData; 
   }
 
-  // ✅ إرسال البيانات عند التأكيد
   const onCheckOtp = async (data: FormBusinessType) => {
     try {
-      const otpData = getOtpBody(data); // الحصول على البيانات من getOtpBody
+      const otpData = getOtpBody(data); 
       const response = await postData(
         `https://192.168.10.90:7089/api/Authentication/checkVerifications`,
         otpData
       );
-      console.log(response);
-      // إرسال البيانات عبر API succeeded
       if (response.succeeded) {
         setOpenAlert(true);
         setErrorsApi((prev) => ({
@@ -85,8 +82,8 @@ const MultiStepForm = () => {
           accountError: false,
         }));
       } else {
-        if (+response.result===1107) {
-          console.log("تم ارسال الطلب سابقا");
+        if (+response.result === 1107) {
+          toast("تم ارسال الطلب سابقا.");
         } else {
           setOpenAlert(false);
           setStep(1);
@@ -103,19 +100,22 @@ const MultiStepForm = () => {
 
   const onSubmit = async (data: FormBusinessType) => {
     try {
-      const otpBody = { ...data, otpCode: otp }; // إضافة قيمة otp إلى الكائن
+      const otpBody = { ...data, otpCode: otp };
       const response = await postData(
         `https://192.168.10.90:7089/api/CommercialAccounts/verifyAccount`,
         otpBody
       ); // إرسال البيانات عبر API succeeded
       if (response.succeeded) {
-        console.log("تم ارسال الطلب بنجاح")
+        console.log("تم ارسال الطلب بنجاح");
+        toast(" تم ارسال الطلب  بنجاح.");
         setOpenAlert(false);
       } else {
-        if (+response.result===1306) {
-          console.log("otp is invalid ")
-        }else{
-          console.log("حصل حذث غير متوقع")
+        if (+response.result === 1306) {
+          console.log("otp is invalid ");
+        } else {
+          console.log("حصل حذث غير متوقع");
+          toast("حصل حدث غير متوقع");
+
         }
       }
     } catch (error) {
@@ -145,9 +145,9 @@ const MultiStepForm = () => {
   ) => {
     try {
       const file = event.target.files?.[0];
-      if (!file) return; // التحقق من وجود الملف
+      if (!file) return; 
       const image = await resizeFile(file);
-      setValue(fieldName as keyof FormBusinessType, image); // تحديث قيمة `useForm` بالحقل المناسب
+      setValue(fieldName as keyof FormBusinessType, image); 
       setFileNames((prev) => ({
         ...prev,
         [fieldName]: file.name,
@@ -157,11 +157,10 @@ const MultiStepForm = () => {
     }
   };
 
-  // تحديد الصورة بناءً على اللغة والثيم
   const [currentTheme, setCurrentTheme] = useState<string | undefined>();
 
   useEffect(() => {
-    setCurrentTheme(theme); // تحديث الثيم بعد التحميل
+    setCurrentTheme(theme); 
   }, [theme]);
 
   const getImageSrc = () => {
@@ -177,6 +176,7 @@ const MultiStepForm = () => {
       className="mx-auto pt-5 lg:bg-none bg-cover bg-center bg-[url(../assets/images/verification-bg.svg)] "
       dir={setDirctionReverse(locale)}
     >
+      <Toaster />
       <PathLine
         pagename={t("verification.categories.category1.name")}
         backname={t("verification.title")}
