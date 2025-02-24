@@ -1,4 +1,4 @@
-import { DynamicForm } from "@/app/utils/types";
+import { AccoutType, DynamicForm } from "@/app/utils/types";
 import { z } from "zod";
 
 export const businessForm = (): DynamicForm<{
@@ -122,8 +122,8 @@ export const businessForm = (): DynamicForm<{
 };
 
 // ✅ تعريف مخطط التحقق باستخدام Zod
-export const formSchema = z.object({
-  email: z.string().email("البريد الإلكتروني غير صالح"),
+export const businessformSchema = z.object({
+  email: z.string().email("البريد الإلكتروني غير صالح").min(1, "الحقل مطلوب"),
   accountNumber: z.string().min(1, "رقم الحساب يجب أن يكون 5 أحرف على الأقل"),
   userName: z.string().min(1, "الحقل مطلوب"),
   phoneNumber: z
@@ -131,31 +131,64 @@ export const formSchema = z.object({
     .regex(/^09\d{8}$/, "رقم الهاتف يجب أن يبدأ بـ 09 ويتكون من 10 أرقام فقط")
     .length(10, "رقم الهاتف يجب أن يحتوي على 10 أرقام فقط"),
   taxNumber: z.string().min(5, "رقم التعريف الضريبي غير صالح"),
-  summary: z.string().max(2048, "الملخص يجب أن يكون أكثر تفصيلاً").min(1),
+  summary: z
+    .string()
+    .max(2048, "الملخص يجب أن يكون أكثر تفصيلاً")
+    .min(1, "الحقل مطلوب"),
 
   commercialRegisterPhoto: z
     .any()
-    .refine((file) => file?.length > 0, "يجب رفع ملف مستندات"),
-  licensePhoto: z
-    .any()
-    .refine((file) => file?.length > 0, "يجب رفع ملف مستندات"),
+    .refine((file) => file?.length > 0, "يجب رفع الصورة"),
+  licensePhoto: z.any().refine((file) => file?.length > 0, "يجب رفع الصورة"),
   ownerIdentityImageFS: z
     .any()
-    .refine((file) => file?.length > 0, "يجب رفع ملف مستندات"),
+    .refine((file) => file?.length > 0, "يجب رفع الصورة"),
   ownerIdentityImageBS: z
     .any()
-    .refine((file) => file?.length > 0, "يجب رفع ملف مستندات"),
+    .refine((file) => file?.length > 0, "يجب رفع الصورة"),
   commissionerIdentityImageFS: z
     .any()
-    .refine((file) => file?.length > 0, "يجب رفع ملف مستندات"),
+    .refine((file) => file?.length > 0, "يجب رفع الصورة"),
   commissionerIdentityImageBS: z
     .any()
-    .refine((file) => file?.length > 0, "يجب رفع ملف مستندات"),
+    .refine((file) => file?.length > 0, "يجب رفع الصورة"),
   physicalAddressImage: z
     .any()
-    .refine((file) => file?.length > 0, "يجب رفع ملف مستندات"),
+    .refine((file) => file?.length > 0, "يجب رفع الصورة"),
 });
-export type FormBusinessType = z.infer<typeof formSchema>;
+export const organizationformSchema = z.object({
+  email: z.string().email("البريد الإلكتروني غير صالح").min(1, "الحقل مطلوب"),
+  accountNumber: z.string().min(1, "رقم الحساب يجب أن يكون 5 أحرف على الأقل"),
+  userName: z.string().min(1, "الحقل مطلوب"),
+  phoneNumber: z
+    .string()
+    .regex(/^09\d{8}$/, "رقم الهاتف يجب أن يبدأ بـ 09 ويتكون من 10 أرقام فقط")
+    .length(10, "رقم الهاتف يجب أن يحتوي على 10 أرقام فقط"),
+  taxNumber: z.string().min(5, "رقم التعريف الضريبي غير صالح"),
+  summary: z
+    .string()
+    .max(2048, "الملخص يجب أن يكون أكثر تفصيلاً")
+    .min(1, "الحقل مطلوب"),
+
+  CopyOfTheLicense: z
+    .any()
+    .refine((file) => file?.length > 0, "يجب رفع الصورة"),
+  ownerIdentityImageFS: z
+    .any()
+    .refine((file) => file?.length > 0, "يجب رفع الصورة"),
+  ownerIdentityImageBS: z
+    .any()
+    .refine((file) => file?.length > 0, "يجب رفع الصورة"),
+  commissionerIdentityImageFS: z
+    .any()
+    .refine((file) => file?.length > 0, "يجب رفع الصورة"),
+  commissionerIdentityImageBS: z
+    .any()
+    .refine((file) => file?.length > 0, "يجب رفع الصورة"),
+  physicalAddressImage: z
+    .any()
+    .refine((file) => file?.length > 0, "يجب رفع الصورة"),
+});
 
 export const organizationForm = (): DynamicForm<{
   email: string;
@@ -251,6 +284,32 @@ export const organizationForm = (): DynamicForm<{
         name: "commissionerIdentityImageBS",
       },
     },
-    endpoint: { sendOtp: { url: "exapmle.com", method: "POST" } },
+    endpoint: {
+      sendOtp: {
+        url: "/api/Authentication/checkVerifications",
+        method: "POST",
+      },
+      verificationAccount: {
+        url: "/api/OrganizationAccount/verifyAccount",
+        method: "POST",
+      },
+    },
   };
 };
+
+export function getFormSchema(accoutType: AccoutType) {
+  if (accoutType === "organization") {
+    return organizationformSchema;
+  } else if (accoutType === "business") {
+    return businessformSchema;
+  }
+  throw new Error("Invalid form type");
+}
+export function getFormData(accoutType: AccoutType) {
+  if (accoutType === "organization") {
+    return organizationForm();
+  } else if (accoutType === "business") {
+    return businessForm();
+  }
+  throw new Error("Invalid form type");
+}

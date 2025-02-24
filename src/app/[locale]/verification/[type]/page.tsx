@@ -14,26 +14,32 @@ import { useLocale, useTranslations } from "next-intl";
 import { postData } from "@/app/utils/apiService";
 import Resizer from "react-image-file-resizer";
 import FilleField from "@/app/components/fields/FilleField";
-import { businessForm } from "../fromsConfig";
+import { getFormData, getFormSchema } from "../fromsConfig";
 import InputField from "@/app/components/fields/InputField";
 import { setDirctionReverse } from "@/app/utils/helperServer";
 import { Languages } from "@/app/utils/enums";
-import { FormBusinessType } from "../fromsConfig";
-import { formSchema } from "../fromsConfig";
 import { useTheme } from "next-themes";
-
-const MultiStepForm = () => {
+import { z } from "zod";
+import { AccoutType } from "@/app/utils/types";
+type ParamsType = {
+  [key: string]: string;
+};
+const MultiStepForm = ({ params }: { params: ParamsType }) => {
+  const accountType = params.type as AccoutType;
+  const schema = getFormSchema(accountType);
+  const formData = getFormData(accountType);
+  type formType = z.infer<typeof schema>;
   const [step, setStep] = useState(1);
   const [openalert, setOpenAlert] = useState(false);
   const [otp, setOtp] = useState<string>("");
   const locale = useLocale() as Languages;
   const { theme } = useTheme();
   const t = useTranslations("");
-  const formData = businessForm();
   const [errorsApi, setErrorsApi] = useState({
     accountError: false,
     otpError: false,
   });
+
   const [fileNames, setFileNames] = useState({
     commercialRegisterPhoto: "",
     licensePhoto: "",
@@ -42,21 +48,20 @@ const MultiStepForm = () => {
     commissionerIdentityImageFS: "",
     commissionerIdentityImageBS: "",
     physicalAddressImage: "",
-    // أضف هنا المزيد من الحقول إذا كنت بحاجة إلى ذلك
   });
-  // ✅ استخدام React Hook Form مع Zod للتحقق
+
   const {
     register,
     handleSubmit,
     setValue,
     formState: { errors },
-  } = useForm<FormBusinessType>({
-    resolver: zodResolver(formSchema),
+  } = useForm<formType>({
+    resolver: zodResolver(schema),
   });
 
-  function getOtpBody(data: FormBusinessType): Record<string, string> {
+  function getOtpBody(data: formType): Record<string, string> {
     const oData: Record<string, string> = {}; // تحديد نوع الكائن بشكل دقيق
-    const fieldData: (keyof FormBusinessType)[] = [
+    const fieldData: (keyof formType)[] = [
       "phoneNumber",
       "userName",
       "accountNumber",
@@ -65,19 +70,18 @@ const MultiStepForm = () => {
     for (let i = 0; i < fieldData.length; i++) {
       oData[fieldData[i]] = data[fieldData[i]];
     }
-    return oData; // إرجاع البيانات بعد المعالجة
+    return oData;
   }
 
-  // ✅ إرسال البيانات عند التأكيد
-  const onCheckOtp = async (data: FormBusinessType) => {
+  const onCheckOtp = async (data: formType) => {
     try {
-      const otpData = getOtpBody(data); // الحصول على البيانات من getOtpBody
+      const otpData = getOtpBody(data);
       const response = await postData(
         `https://192.168.10.90:7089/api/Authentication/checkVerifications`,
         otpData
       );
       console.log(response);
-      // إرسال البيانات عبر API succeeded
+
       if (response.succeeded) {
         setOpenAlert(true);
 
@@ -100,9 +104,9 @@ const MultiStepForm = () => {
     }
   };
 
-  const onSubmit = async (data: FormBusinessType) => {
+  const onSubmit = async (data: formType) => {
     try {
-      const otpBody = { ...data, otpCode: otp }; // إضافة قيمة otp إلى الكائن
+      const otpBody = { ...data, otpCode: otp };
       const response = await postData(
         `https://192.168.10.90:7089/api/CommercialAccounts/verifyAccount`,
         otpBody
@@ -142,7 +146,7 @@ const MultiStepForm = () => {
       const file = event.target.files?.[0];
       if (!file) return; // التحقق من وجود الملف
       const image = await resizeFile(file);
-      setValue(fieldName as keyof FormBusinessType, image); // تحديث قيمة `useForm` بالحقل المناسب
+      setValue(fieldName as keyof formType, image); // تحديث قيمة `useForm` بالحقل المناسب
       setFileNames((prev) => ({
         ...prev,
         [fieldName]: file.name,
@@ -174,7 +178,7 @@ const MultiStepForm = () => {
     >
       <div className="container mx-auto">
         <PathLine
-          pagename={t("verification.categories.category1.name")}
+          pagename={t(`verification.categories.${accountType}.name`)}
           backname={t("verification.title")}
         />
         <AlertDialogDemo
@@ -204,7 +208,7 @@ const MultiStepForm = () => {
                 <div>
                   {formData.fields.email && (
                     <div className="mb-4">
-                      <InputField<FormBusinessType>
+                      <InputField<formType>
                         {...formData.fields.email}
                         register={register}
                         error={errors?.email}
@@ -213,7 +217,7 @@ const MultiStepForm = () => {
                   )}
                   {formData.fields.accountNumber && (
                     <div className="mb-4">
-                      <InputField<FormBusinessType>
+                      <InputField<formType>
                         {...formData.fields.accountNumber}
                         register={register}
                         error={errors?.accountNumber}
@@ -222,7 +226,7 @@ const MultiStepForm = () => {
                   )}
                   {formData.fields.userName && (
                     <div className="mb-4">
-                      <InputField<FormBusinessType>
+                      <InputField<formType>
                         {...formData.fields.userName}
                         register={register}
                         error={errors?.userName}
@@ -231,7 +235,7 @@ const MultiStepForm = () => {
                   )}
                   {formData.fields.phoneNumber && (
                     <div className="mb-4">
-                      <InputField<FormBusinessType>
+                      <InputField<formType>
                         {...formData.fields.phoneNumber}
                         register={register}
                         error={errors?.phoneNumber}
@@ -240,7 +244,7 @@ const MultiStepForm = () => {
                   )}
                   {formData.fields.taxNumber && (
                     <div className="mb-4">
-                      <InputField<FormBusinessType>
+                      <InputField<formType>
                         {...formData.fields.taxNumber}
                         register={register}
                         error={errors?.taxNumber}
@@ -249,7 +253,7 @@ const MultiStepForm = () => {
                   )}
                   {formData.fields.summary && (
                     <div className="mb-4">
-                      <InputField<FormBusinessType>
+                      <InputField<formType>
                         {...formData.fields.summary}
                         register={register}
                         error={errors?.summary}
@@ -266,7 +270,7 @@ const MultiStepForm = () => {
                       <label className="block mb-1 text-sm font-medium text-foreground ">
                         {formData.fields.CopyOfTheLicense.label}
                       </label>
-                      <FilleField<FormBusinessType>
+                      <FilleField<formType>
                         {...formData.fields.CopyOfTheLicense}
                         register={register}
                         onchangeFile={onChangeFile}
@@ -280,7 +284,7 @@ const MultiStepForm = () => {
                       <label className="block mb-1 text-sm font-medium text-foreground ">
                         {formData.fields.commercialRegisterPhoto.label}
                       </label>
-                      <FilleField<FormBusinessType>
+                      <FilleField<formType>
                         {...formData.fields.commercialRegisterPhoto}
                         register={register}
                         onchangeFile={onChangeFile}
@@ -294,7 +298,7 @@ const MultiStepForm = () => {
                       <label className="block mb-1 text-sm font-medium text-foreground ">
                         {formData.fields.licensePhoto.label}
                       </label>
-                      <FilleField<FormBusinessType>
+                      <FilleField<formType>
                         {...formData.fields.licensePhoto}
                         register={register}
                         onchangeFile={onChangeFile}
@@ -308,7 +312,7 @@ const MultiStepForm = () => {
                       <label className="block mb-1 text-sm font-medium text-foreground ">
                         {formData.fields.physicalAddressImage.label}
                       </label>
-                      <FilleField<FormBusinessType>
+                      <FilleField<formType>
                         {...formData.fields.physicalAddressImage}
                         register={register}
                         onchangeFile={onChangeFile}
@@ -322,7 +326,7 @@ const MultiStepForm = () => {
                       <label className="block mb-1 text-sm font-medium text-foreground ">
                         {formData.fields.ownerIdentityImageFS.label}
                       </label>
-                      <FilleField<FormBusinessType>
+                      <FilleField<formType>
                         {...formData.fields.ownerIdentityImageFS}
                         register={register}
                         onchangeFile={onChangeFile}
@@ -331,7 +335,7 @@ const MultiStepForm = () => {
                       />
                       <div className="flex flex-col mt-2">
                         {formData.fields.ownerIdentityImageBS && (
-                          <FilleField<FormBusinessType>
+                          <FilleField<formType>
                             {...formData.fields.ownerIdentityImageBS}
                             register={register}
                             onchangeFile={onChangeFile}
@@ -348,7 +352,7 @@ const MultiStepForm = () => {
                         {formData.fields.commissionerIdentityImageFS.label}
                       </label>
                       <div className="flex flex-col  gap-2">
-                        <FilleField
+                        <FilleField<formType>
                           {...formData.fields.commissionerIdentityImageFS}
                           register={register}
                           onchangeFile={onChangeFile}
@@ -356,7 +360,7 @@ const MultiStepForm = () => {
                           fileName={fileNames.commissionerIdentityImageFS}
                         />
                         {formData.fields.commissionerIdentityImageBS && (
-                          <FilleField
+                          <FilleField<formType>
                             {...formData.fields.commissionerIdentityImageBS}
                             register={register}
                             onchangeFile={onChangeFile}
