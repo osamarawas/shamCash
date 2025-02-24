@@ -185,7 +185,7 @@ const MultiStepForm = () => {
           sure={handleSubmit(onSubmit)}
           resend_otp={handleSubmit(onCheckOtp)}
         />
-        <div className="container mx-auto px-6 lg:px-16 flex flex-col lg:flex-row items-center justify-between ">
+        <div className="mx-auto px-6 lg:px-16 flex flex-col lg:flex-row items-center justify-between">
           {/* الصورة على اليسار */}
           <div className="hidden lg:block lg:w-1/2">
             <Image

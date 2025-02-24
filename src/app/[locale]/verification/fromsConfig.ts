@@ -164,7 +164,7 @@ export const organizationForm = (): DynamicForm<{
   phoneNumber: string;
   taxNumber: string;
   summary: string;
-  commercialRegisterPhoto?: string;
+  CopyOfTheLicense?: string;
   licensePhoto?: string;
   ownerIdentityImageFS?: string;
   ownerIdentityImageBS?: string;

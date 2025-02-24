@@ -468,6 +468,59 @@
       }
     }
   },
+  "verificationForm": {
+    "email": {
+      "label": "البريد الإلكتروني",
+      "placeholder": "البريد الإلكتروني"
+    },
+    "account_number": {
+      "label": "رقم الحساب",
+      "placeholder": "رقم الحساب"
+    },
+    "account_name": {
+      "label": "اسم الحساب",
+      "placeholder": "اسم الحساب"
+    },
+    "account_phone_number": {
+      "label": "رقم الهاتف المربوط بالحساب",
+      "placeholder": "رقم الهاتف"
+    },
+    "tax_identification_number": {
+      "label": "رقم التعريف الضريبي",
+      "placeholder": "رقم التعريف الضريبي"
+    },
+    "account_activity_summary": {
+      "label": "ملخص عن أنشطة الحساب",
+      "placeholder": "اكتب هنا.."
+    },
+    "commercial_register_image": {
+      "label": "صورة السجل التجاري",
+      "placeholder": "صورة السجل التجاري"
+    },
+    "practice_license_image": {
+      "label": "صورة رخصة مزاولة مهنة",
+      "placeholder": "صورة الرخصة"
+    },
+    "physical_address_document": {
+      "label": "صورة وثيقة تحمل الرقم الفيزيائي",
+      "placeholder": "صورة الوثيقة"
+    },
+    "owner_id_image": {
+      "label": "صورة هوية المالك",
+      "placeholder": "الوجه الأمامي",
+      "placeholder1": "الوجه الخلفي"
+
+    },
+    "delegate_id_image": {
+      "label": "صورة هوية المفوض",
+      "placeholder": "الوجه الأمامي",
+      "placeholder1": "الوجه الخلفي"
+    },
+    "granted_license_image": {
+      "label": "صورة الترخيص الممنوح",
+      "placeholder": "صورة الترخيص"
+    }
+},
   "download": "تنزيل",
   "Android": "اندرويد",
   "search": "بحث",
