@@ -24,11 +24,11 @@ const VerificationPage = async ({ params }: FaqPageProps) => {
       </p>
       <p 
       dir="auto"
-      className="font-semibold mt-6 mb-12 text-2xl text-primary leading-10 text-center ">
+      className="font-semibold mt-6 mb-8 text-2xl text-primary leading-10 text-center ">
         {t("verification.choseType")}
       </p>
       <div
-        className="grid grid-cols-1 md:grid-cols-2  text-center gap-6"
+        className="grid grid-cols-1 md:grid-cols-2 mb-10 text-center gap-6"
         dir="auto"
       >
         {verificationCategory.map((category) => (

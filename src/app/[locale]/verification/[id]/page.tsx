@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
-import { Button } from "@/components/ui/button";
+import { Button, buttonVariants } from "@/components/ui/button";
 import Image from "next/image";
 import imgLightAr from "@/assets/images/verficationimage.svg";
 import imgDarkAr from "@/assets/images/verficationimage-dark.svg"
@@ -15,12 +15,13 @@ import { useLocale, useTranslations } from "next-intl";
 import { postData } from "@/app/utils/apiService";
 import Resizer from "react-image-file-resizer";
 import FilleField from "@/app/components/fields/FilleField";
-import { businessForm } from "../fromsConfig";
+import { businessForm, organizationForm } from "../fromsConfig";
 import InputField from "@/app/components/fields/InputField";
 import axios from "axios";
 import { setDirctionReverse } from "@/app/utils/helperServer";
 import { Languages } from "@/app/utils/enums";
 import { useTheme } from "next-themes";
+import { usePathname } from "next/navigation";
 
 // ✅ تعريف مخطط التحقق باستخدام Zod
 const formSchema = z.object({
@@ -81,7 +82,16 @@ const MultiStepForm = () => {
   const { theme } = useTheme();
   const t = useTranslations("");
   const [base64Image, setBase64Image] = useState<string | null>(null);
-  const formData = businessForm();
+ 
+
+  const pathname=usePathname()
+  let formData; 
+  console.log(pathname)
+  if(pathname==="/ar/verification/2"){
+     formData = organizationForm();
+  }else{
+     formData = businessForm();
+  }
   const [fileNames, setFileNames] = useState({
     commercialRegisterPhoto: "",
     licensePhoto: "",
@@ -204,7 +214,7 @@ const MultiStepForm = () => {
 
   return (
     <div
-      className="mx-auto pt-5 lg:bg-none bg-cover bg-center bg-[url(../assets/images/verification-bg.svg)]"
+      className="mx-auto pt-5 md:px-8 lg:bg-none bg-cover bg-center bg-[url(../assets/images/verification-bg.svg)]"
       dir={setDirctionReverse(locale)}
     >
       <PathLine
@@ -364,10 +374,11 @@ const MultiStepForm = () => {
               </div>
             )}
 
+          {/*الأزرار*/}
             <div className="flex justify-between">
               {step === 2 && (
                 <Button
-                  className="mt-3 font-semibold text-md bg-inherit border-none shadow-none text-primary hover:bg-gray-200"
+                  className="w-16 mt-3 font-semibold text-md bg-inherit border-none shadow-none text-primary hover:bg-gray-200"
                   type="submit"
                 >
                   تأكيد
@@ -375,14 +386,14 @@ const MultiStepForm = () => {
               )}
               {step === 1 ? (
                 <span
-                  className="font-semibold mt-3 bg-none text-primary cursor-pointer"
+                  className="w-16 h-9 inline-flex mt-3 py-2 px-4 font-semibold text-md bg-inherit border-none shadow-none text-primary rounded-md white justify-center items-center hover:bg-gray-200 cursor-pointer"
                   onClick={() => setStep(2)}
                 >
                   التالي
                 </span>
               ) : (
                 <span
-                  className="font-semibold mt-3 bg-inherit text-primary cursor-pointer"
+                  className="w-16 h-9 inline-flex mt-3 py-2 px-4 font-semibold text-md bg-inherit border-none shadow-none text-primary rounded-md white justify-center items-center hover:bg-gray-200 cursor-pointer"
                   onClick={() => setStep(1)}
                 >
                   رجوع

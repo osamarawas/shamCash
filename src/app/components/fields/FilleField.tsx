@@ -1,7 +1,6 @@
 import { Languages } from "@/app/utils/enums";
 import { setDirction } from "@/app/utils/helperServer";
 import { Input } from "@/components/ui/input";
-import { AiOutlineUpload } from "react-icons/ai"; // استيراد الأيقونات من react-icons
 import { IoIosCheckmarkCircleOutline } from "react-icons/io";
 import { useLocale } from "next-intl";
 import React, { useState } from "react";
@@ -12,6 +11,7 @@ import {
   Merge,
   UseFormRegister,
 } from "react-hook-form";
+import { Upload } from "lucide-react";
 
 interface FilleFieldProps {
   register: UseFormRegister<FieldValues>;
@@ -61,13 +61,13 @@ const FilleField = ({
       <div className="flex flex-col" dir={setDirction(locale)}>
         <label className="justify-between flex items-center gap-2 border !border-border_input rounded-lg p-2 cursor-pointer hover:bg-hover">
           <span className="text-sm text-muted-foreground">
-            {fileName || placeholder || "اختر ملفًا"}
+            {fileName || placeholder}
           </span>
 
           {isUploaded ? (
             <IoIosCheckmarkCircleOutline  className="w-5 h-5 success" />
           ) : (
-            <AiOutlineUpload className="w-5 h-5 text-muted-foreground" />
+            <Upload className="w-5 h-5 text-muted-foreground" />
           )}
 
           <Input
