@@ -29,7 +29,6 @@ const MultiStepForm = () => {
   const schema = getFormSchema(accountType);
   const formData = getFormData(accountType);
   type formType = z.infer<typeof schema>;
-
   const [step, setStep] = useState(1);
   const [openalert, setOpenAlert] = useState(false);
   const [otp, setOtp] = useState<string>("");
@@ -79,7 +78,7 @@ const MultiStepForm = () => {
       const otpData = getOtpBody(data);
       const response = await postData(
         `https://192.168.10.90:7089/api/Authentication/checkVerifications`,
-        otpData
+        data
       );
       console.log(response);
 
@@ -266,20 +265,6 @@ const MultiStepForm = () => {
 
               {step === 2 && (
                 <div dir="auto">
-                  {formData.fields.licensePhoto && (
-                    <div className="mb-4">
-                      <label className="block mb-1 text-sm font-medium text-foreground ">
-                        {formData.fields.licensePhoto.label}
-                      </label>
-                      <FilleField<formType>
-                        {...formData.fields.licensePhoto}
-                        register={register}
-                        onchangeFile={onChangeFile}
-                        // error={errors.CopyOfTheLicense}
-                        // fileName={fileNames.CopyOfTheLicense}
-                      />
-                    </div>
-                  )}
                   {formData.fields.commercialRegisterPhoto && (
                     <div className="mb-4">
                       <label className="block mb-1 text-sm font-medium text-foreground ">

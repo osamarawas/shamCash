@@ -156,6 +156,7 @@ export const businessformSchema = z.object({
     .any()
     .refine((file) => file?.length > 0, "يجب رفع الصورة"),
 });
+
 export const organizationformSchema = z.object({
   email: z.string().email("البريد الإلكتروني غير صالح").min(1, "الحقل مطلوب"),
   accountNumber: z.string().min(1, "رقم الحساب يجب أن يكون 5 أحرف على الأقل"),
