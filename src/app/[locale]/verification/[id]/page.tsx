@@ -80,19 +80,21 @@ const MultiStepForm = () => {
       // إرسال البيانات عبر API succeeded
       if (response.succeeded) {
         setOpenAlert(true);
-
         setErrorsApi((prev) => ({
           ...prev,
           accountError: false,
         }));
       } else {
-        console.log("wwwwww")
-        setOpenAlert(false);
-        setStep(1);
-        setErrorsApi((prev) => ({
-          ...prev,
-          accountError: true,
-        }));
+        if (+response.result===1107) {
+          console.log("تم ارسال الطلب سابقا");
+        } else {
+          setOpenAlert(false);
+          setStep(1);
+          setErrorsApi((prev) => ({
+            ...prev,
+            accountError: true,
+          }));
+        }
       }
     } catch (error) {
       console.error("❌ فشل الإرسال:", error);
@@ -106,13 +108,17 @@ const MultiStepForm = () => {
         `https://192.168.10.90:7089/api/CommercialAccounts/verifyAccount`,
         otpBody
       ); // إرسال البيانات عبر API succeeded
-      if (true) {
+      if (response.succeeded) {
+        console.log("تم ارسال الطلب بنجاح")
         setOpenAlert(false);
       } else {
+        if (+response.result===1306) {
+          console.log("otp is invalid ")
+        }else{
+          console.log("حصل حذث غير متوقع")
+        }
       }
-      console.log(response);
     } catch (error) {
-      setOpenAlert(true);
       console.error("❌ فشل الإرسال:", error);
     }
   };
@@ -168,7 +174,7 @@ const MultiStepForm = () => {
 
   return (
     <div
-      className="mx-auto pt-5 lg:bg-none bg-cover bg-center bg-[url(../assets/images/verification-bg.svg)]"
+      className="mx-auto pt-5 lg:bg-none bg-cover bg-center bg-[url(../assets/images/verification-bg.svg)] "
       dir={setDirctionReverse(locale)}
     >
       <PathLine
@@ -344,7 +350,7 @@ const MultiStepForm = () => {
             <div className="flex justify-between">
               {step === 2 && (
                 <Button
-                  className="mt-3 font-semibold text-md bg-inherit border-none shadow-none text-primary hover:bg-gray-200"
+                  className="w-16 mt-3 font-semibold text-md bg-inherit border-none shadow-none text-primary hover:bg-gray-200"
                   type="submit"
                 >
                   تأكيد
@@ -352,20 +358,22 @@ const MultiStepForm = () => {
               )}
               {step === 1 ? (
                 <span
-                  className="font-semibold mt-3 bg-none text-primary cursor-pointer"
+                  className="w-16 h-9 inline-flex mt-3 py-2 px-4 font-semibold text-md bg-inherit border-none shadow-none text-primary rounded-md white justify-center items-center hover:bg-gray-200 cursor-pointer"
                   onClick={() => setStep(2)}
                 >
                   التالي
                 </span>
               ) : (
                 <span
-                  className="font-semibold mt-3 bg-inherit text-primary cursor-pointer"
+                  className="w-16 h-9 inline-flex mt-3 py-2 px-4 font-semibold text-md bg-inherit border-none shadow-none text-primary rounded-md white justify-center items-center hover:bg-gray-200 cursor-pointer"
                   onClick={() => setStep(1)}
                 >
                   رجوع
                 </span>
               )}
             </div>
+
+            {/*الأزرار*/}
           </form>
         </div>
       </div>

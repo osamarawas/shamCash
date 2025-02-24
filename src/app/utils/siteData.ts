@@ -539,13 +539,13 @@ export const verificationCategoryData = async (): Promise<
   const t = await getTranslations("");
   return [
     {
-      id: "1",
+      id: "business",
       name: t("verification.categories.category1.name"),
       path: "/verification/1",
     },
     // { id: "2", name: "حساب حكومي", path: "/verification/2" },
     {
-      id: "2",
+      id: "organization",
       name: t("verification.categories.category2.name"),
       path: "/verification/2",
     },
