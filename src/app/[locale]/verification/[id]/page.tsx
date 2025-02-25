@@ -53,7 +53,6 @@ const MultiStepForm = () => {
   } = useForm<FormBusinessType>({
     resolver: zodResolver(formSchema),
   });
-
   function getOtpBody(data: FormBusinessType): Record<string, string> {
     const oData: Record<string, string> = {}; // تحديد نوع الكائن بشكل دقيق
     const fieldData: (keyof FormBusinessType)[] = [
@@ -156,8 +155,11 @@ const MultiStepForm = () => {
   const [currentTheme, setCurrentTheme] = useState<string | undefined>();
 
   useEffect(() => {
-    setCurrentTheme(resolvedTheme); // تحديث الثيم بعد التحميل
+    if (typeof window !== "undefined") {
+      setCurrentTheme(resolvedTheme);
+    }
   }, [resolvedTheme]);
+  
 
   const getImageSrc = () => {
     if (locale === Languages.ARABIC) {
@@ -194,6 +196,7 @@ const MultiStepForm = () => {
               width={600}
               height={600}
               className="max-w-full h-auto"
+              suppressHydrationWarning
             />
           </div>
           {/* الفورم على اليمين */}
