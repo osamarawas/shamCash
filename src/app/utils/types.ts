@@ -146,4 +146,4 @@ export interface IOption {
   label: string;
   value: string;
 }
-export type AccoutType = "organization" | "business";
+export type AccountType = "organization" | "business";
