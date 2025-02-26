@@ -2,14 +2,13 @@ import axios from "axios";
 
 // ✅ إنشاء instance لـ axios مع الإعدادات الافتراضية
 const axiosInstance = axios.create({
-  baseURL:"http://test.bokla.me", // يمكن ضبطه من env
-  withCredentials:true,
+  baseURL: "https://test.bokla.me", // يمكن ضبطه من env
+  withCredentials: true,
   headers: {
     "Content-Type": "application/json",
-    "Accept":"application/json",
-    "x-Requested-with":"XMLHttpRequest",
-    "Access-Control-Allow-Origin":"*"
-    
+    Accept: "application/json",
+    "x-Requested-with": "XMLHttpRequest",
+    "Access-Control-Allow-Origin": "*",
   },
 });
 

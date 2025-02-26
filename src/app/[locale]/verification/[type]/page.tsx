@@ -38,6 +38,7 @@ const MultiStepForm = () => {
   >;
   type formType = z.infer<typeof schema>;
   const formData = getFormData(accountType);
+  console.log(formData.endpoint.sendOtp.url);
   const [step, setStep] = useState(1);
   const [openalert, setOpenAlert] = useState(false);
   const [otp, setOtp] = useState<string>("");
@@ -84,11 +85,13 @@ const MultiStepForm = () => {
 
   const onCheckOtp = async (data: formType) => {
     try {
+      // https://192.168.10.90:7089
       const otpData = getOtpBody(data);
       const response = await postData(
-        `https://192.168.10.90:7089/api/Authentication/checkVerifications`,
+        `${formData.endpoint.sendOtp.url}`,
         otpData
       );
+      console.log(response);
       if (response.succeeded) {
         setOpenAlert(true);
         setErrorsApi((prev) => ({
@@ -114,11 +117,12 @@ const MultiStepForm = () => {
 
   const onSubmit = async (data: formType) => {
     try {
+      // https://192.168.10.90:7089
       const otpBody = { ...data, otpCode: otp };
       const response = await postData(
-        `https://192.168.10.90:7089/api/CommercialAccounts/verifyAccount`,
+        `${formData.endpoint.verificationAccount.url}`,
         otpBody
-      ); // إرسال البيانات عبر API succeeded
+      );
       if (response.succeeded) {
         console.log("تم ارسال الطلب بنجاح");
         toast(" تم ارسال الطلب  بنجاح.");

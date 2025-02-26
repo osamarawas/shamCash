@@ -227,14 +227,13 @@ export const organizationForm = (): DynamicForm<{
         method: "POST",
       },
       verificationAccount: {
-        url: "/api/CommercialAccounts/verifyAccount",
+        url: "/api/OrganizationAccount/verifyAccount",
         method: "POST",
       },
     },
   };
 };
 
-// ✅ تعريف مخطط التحقق باستخدام Zod
 export const businessformSchema = z.object({
   email: z.string().email("البريد الإلكتروني غير صالح").min(1, "الحقل مطلوب"),
   accountNumber: z.string().min(1, "رقم الحساب يجب أن يكون 5 أحرف على الأقل"),
@@ -320,7 +319,6 @@ export function getFormData(accountType: AccountType) {
     case "organization":
       return organizationForm();
     case "business":
-      console.log("business");
       return businessForm();
     default:
       throw new Error(`Invalid account type: ${accountType}`);
