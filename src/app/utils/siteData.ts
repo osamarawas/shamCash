@@ -540,14 +540,14 @@ export const verificationCategoryData = async (): Promise<
   return [
     {
       id: "business",
-      name: t("verification.categories.category1.name"),
-      path: "/verification/1",
+      name: t("verification.categories.business.name"),
+      path: "/verification/business",
     },
     // { id: "2", name: "حساب حكومي", path: "/verification/2" },
     {
       id: "organization",
-      name: t("verification.categories.category2.name"),
-      path: "/verification/2",
+      name: t("verification.categories.organization.name"),
+      path: "/verification/organization",
     },
   ];
 };
