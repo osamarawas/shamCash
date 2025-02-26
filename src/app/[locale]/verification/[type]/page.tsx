@@ -19,8 +19,6 @@ import {
   FormOrganizationType,
   getFormData,
   getFormSchema,
-  organizationForm,
-  organizationformSchema,
 } from "../fromsConfig";
 import InputField from "@/app/components/fields/InputField";
 import { setDirctionReverse } from "@/app/utils/helperServer";
@@ -28,18 +26,18 @@ import { Languages } from "@/app/utils/enums";
 import { useTheme } from "next-themes";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
-import { z } from "zod";
+import { z, ZodSchema } from "zod";
 import { AccountType } from "@/app/utils/types";
 import { useParams } from "next/navigation";
 
 const MultiStepForm = () => {
   const params = useParams();
   const accountType = params.type as AccountType;
-  const schema = getFormSchema(accountType);
-  // const formData = organizationForm();
+  const schema = getFormSchema(accountType) as unknown as ZodSchema<
+    FormBusinessType | FormOrganizationType
+  >;
   type formType = z.infer<typeof schema>;
   const formData = getFormData(accountType);
-  // type formType = FormOrganizationType;
   const [step, setStep] = useState(1);
   const [openalert, setOpenAlert] = useState(false);
   const [otp, setOtp] = useState<string>("");
@@ -305,6 +303,7 @@ const MultiStepForm = () => {
                             {...formData.fields.commercialRegisterPhoto}
                             register={register}
                             onchangeFile={onChangeFile}
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
                             error={(errors as any)?.commercialRegisterPhoto}
                             fileName={fileNames.commercialRegisterPhoto}
                           />
