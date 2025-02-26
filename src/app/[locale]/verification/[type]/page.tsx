@@ -24,7 +24,6 @@ import InputField from "@/app/components/fields/InputField";
 import { setDirctionReverse } from "@/app/utils/helperServer";
 import { Languages } from "@/app/utils/enums";
 import { useTheme } from "next-themes";
-import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
 import { z, ZodSchema } from "zod";
 import { AccountType } from "@/app/utils/types";
@@ -97,7 +96,7 @@ const MultiStepForm = () => {
         }));
       } else {
         if (+response.result === 1107) {
-          toast("تم ارسال الطلب سابقاً.");
+          toast.error("تم ارسال الطلب سابقاً.");
         } else if (+response.result === 1206)
           setErrorsApi((prev) => ({
             ...prev,
@@ -119,7 +118,7 @@ const MultiStepForm = () => {
       );
       console.log(response);
       if (response.succeeded) {
-        toast(" تم ارسال الطلب  بنجاح.");
+        toast.success(" تم ارسال الطلب  بنجاح.");
         setOpenAlert(false);
       } else {
         if (+response.result === 1306) {
@@ -188,7 +187,6 @@ const MultiStepForm = () => {
       dir={setDirctionReverse(locale)}
     >
       <div className="container mx-auto">
-        <Toaster />
         <PathLine
           pagename={t(`verification.categories.${accountType}.name`)}
           backname={t("verification.title")}
