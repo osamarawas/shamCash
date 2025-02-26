@@ -84,33 +84,44 @@ const MultiStepForm = () => {
 
   const onCheckOtp = async (data: formType) => {
     try {
-      const otpData = getOtpBody(data);
-      const response = await postData(
-        `https://192.168.10.90:7089/api/Authentication/checkVerifications`,
-        otpData
-      );
-      if (response.succeeded) {
-        setOpenAlert(true);
-        setErrorsApi((prev) => ({
-          ...prev,
-          accountError: false,
-        }));
-      } else {
-        if (+response.result === 1107) {
-          toast("تم ارسال الطلب سابقا.");
+        const otpData = getOtpBody(data);
+        const response = await postData(
+            `https://192.168.10.90:7089/api/Authentication/checkVerifications`,
+            otpData
+        );
+
+        if (response.succeeded) {
+            setOpenAlert(true);
+            setErrorsApi((prev) => ({
+                ...prev,
+                accountError: false,
+            }));
         } else {
-          setOpenAlert(false);
-          setStep(1);
-          setErrorsApi((prev) => ({
-            ...prev,
-            accountError: true,
-          }));
+            if (+response.result === 1107) {
+                toast("تم ارسال الطلب سابقاً.");
+            }
+             else(+response.result === 1206) 
+                // إضافة رسالة توضح أن الحساب غير موجود
+                toast.error("الحساب غير موجود. يرجى التحقق من البيانات.",{
+                  style:{
+                    backgroundColor: "#f8d7da",  // أحمر فاتح
+                    color: "#721c24",
+                    borderRadius: "8px",
+                    padding: "10px 15px",
+                  }
+                });
+                setErrorsApi((prev) => ({
+                    ...prev,
+                    accountError: true,
+                }));
+            
         }
-      }
     } catch (error) {
-      console.error("❌ فشل الإرسال:", error);
+        console.error("❌ فشل الإرسال:", error);
+        toast.error("فشل في الاتصال بالخادم. يرجى المحاولة لاحقاً.");
     }
-  };
+};
+
 
   const onSubmit = async (data: formType) => {
     try {

@@ -515,7 +515,7 @@
       "placeholder": "front side of ID",
       "placeholder1": "back side of ID"
     },
-    "granted_license_image": {
+    "licensePhotoOrganization": {
       "label": "Granted License Image",
       "placeholder": "granted license image"
     }

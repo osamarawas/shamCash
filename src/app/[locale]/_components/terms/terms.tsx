@@ -8,7 +8,7 @@ const Terms = async () => {
   const t = await getTranslations("");
 
   return (
-    <div className="py-14 background-terms bg-[url(../assets/images/bg-light.svg)] dark:bg-[url(../assets/images/bg-dark.svg)]">
+    <div className="py-8 lg:py-14 background-terms bg-[url(../assets/images/bg-light.svg)] dark:bg-[url(../assets/images/bg-dark.svg)]">
       <h2 className="-z-10 text-primary text-center text-3xl font-bold mb-14 underLine relative mx-auto w-64 sm:w-fit">
         {t("terms.title")}
       </h2>
