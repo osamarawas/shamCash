@@ -77,7 +77,6 @@ export default async function RootLayout({
                 success: <CircleCheck className="text-white w-6 h-6 " />,
                 error: <CircleX className="text-white w-6 h-6 " />,
               }}
-              duration={1000000}
               className={"!flex !items-center !gap-10"}
               toastOptions={{
                 classNames: {
