@@ -69,7 +69,7 @@ const MultiStepForm = () => {
   });
 
   function getOtpBody(data: formType): Record<string, string> {
-    const oData: Record<string, string> = {}; // تحديد نوع الكائن بشكل دقيق
+    const oData: Record<string, string> = {};
     const fieldData: (keyof formType)[] = [
       "phoneNumber",
       "userName",

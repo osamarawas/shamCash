@@ -2,7 +2,7 @@
 import Image from "next/image";
 import Logo from "@/assets/icon/logo.svg";
 import { Link } from "@/i18n/routing";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Menu, X } from "lucide-react";
 import Links from "./Links";
 import { usePathname } from "next/navigation";
@@ -14,6 +14,7 @@ import { setDirction } from "@/app/utils/helperServer";
 import { Languages } from "@/app/utils/enums";
 
 export default function NavBar() {
+  const sidebarRef = useRef<HTMLDivElement | null>(null);
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(true);
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -28,21 +29,36 @@ export default function NavBar() {
   }
 
   useEffect(() => {
-    const handleScroll = () => {
+    const handleScroll = (): void => {
       if (window.scrollY > lastScrollY) {
-        setIsVisible(false); // إخفاء الـ Navbar عند التمرير للأسفل
+        setIsVisible(false);
       } else {
-        setIsVisible(true); // إظهاره عند التمرير للأعلى
+        setIsVisible(true);
       }
       setLastScrollY(window.scrollY);
     };
 
+    const handleClickOutside = (event: MouseEvent): void => {
+      if (
+        sidebarRef.current &&
+        !sidebarRef.current.contains(event.target as Node)
+      ) {
+        setIsOpen(false);
+      }
+    };
+
+    // إضافة الأحداث
     window.addEventListener("scroll", handleScroll);
+    if (isOpen) {
+      document.addEventListener("mousedown", handleClickOutside);
+    }
+
+    // تنظيف الأحداث عند التفريغ
     return () => {
       window.removeEventListener("scroll", handleScroll);
+      document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [lastScrollY]);
-
+  }, [lastScrollY, isOpen]);
   return (
     <nav
       className={`sticky top-0 left-0 w-full bg-background  shadow-md transition-transform duration-300 z-50 px-10 py-2 md:justify-around items-center nav-shadow dark:nav-shadow-dark pointer-events-none ${
@@ -91,6 +107,7 @@ export default function NavBar() {
 
       {/* Mobile Menu */}
       <div
+        ref={sidebarRef}
         className={`lg:hidden absolute top-16 left-0 w-full transition-all duration-500 ease-in-out transform ${
           isOpen
             ? "translate-y-0 opacity-100 pointer-events-auto"
@@ -103,7 +120,7 @@ export default function NavBar() {
               key={link.id}
               href={link.Path}
               className={`text-lg transition-colors hover:text-primary ${
-                pathName === link.Path ? "text-primary font-semibold" : ""
+                isActive(link.Path) ? "text-primary font-semibold" : ""
               }`}
               onClick={() => setIsOpen(false)}
             >
