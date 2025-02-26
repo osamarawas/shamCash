@@ -14,23 +14,30 @@ import { useLocale, useTranslations } from "next-intl";
 import { postData } from "@/app/utils/apiService";
 import Resizer from "react-image-file-resizer";
 import FilleField from "@/app/components/fields/FilleField";
-import { getFormData, getFormSchema } from "../fromsConfig";
+import {
+  FormBusinessType,
+  FormOrganizationType,
+  getFormData,
+  getFormSchema,
+} from "../fromsConfig";
 import InputField from "@/app/components/fields/InputField";
 import { setDirctionReverse } from "@/app/utils/helperServer";
 import { Languages } from "@/app/utils/enums";
 import { useTheme } from "next-themes";
 import { Toaster } from "@/components/ui/sonner";
 import { toast } from "sonner";
-import { z } from "zod";
-import { AccoutType } from "@/app/utils/types";
+import { z, ZodSchema } from "zod";
+import { AccountType } from "@/app/utils/types";
 import { useParams } from "next/navigation";
 
 const MultiStepForm = () => {
   const params = useParams();
-  const accountType = params.type as AccoutType;
-  const schema = getFormSchema(accountType);
-  const formData = getFormData(accountType);
+  const accountType = params.type as AccountType;
+  const schema = getFormSchema(accountType) as unknown as ZodSchema<
+    FormBusinessType | FormOrganizationType
+  >;
   type formType = z.infer<typeof schema>;
+  const formData = getFormData(accountType);
   const [step, setStep] = useState(1);
   const [openalert, setOpenAlert] = useState(false);
   const [otp, setOtp] = useState<string>("");
@@ -222,202 +229,207 @@ const MultiStepForm = () => {
           {/* الفورم على اليمين */}
           <div className="lg:w-1/3 p-8">
             <form onSubmit={handleSubmit(onCheckOtp)}>
-              {/* القسم الأول */}
-              {step === 1 && (
-                <div>
-                  {formData.fields.email && (
-                    <div className="mb-4">
-                      <InputField<formType>
-                        {...formData.fields.email}
-                        register={register}
-                        error={errors?.email}
-                        classNameExtra={`${
-                          errorsApi.accountError && "!border-destructive "
-                        }`}
-                      />
+              {Object.keys(formData.fields).length > 0 ? (
+                <>
+                  {/* القسم الأول */}
+                  {step === 1 && (
+                    <div>
+                      {formData.fields.email && (
+                        <div className="mb-4">
+                          <InputField<formType>
+                            {...formData.fields.email}
+                            register={register}
+                            error={errors?.email}
+                            classNameExtra={`${
+                              errorsApi.accountError && "!border-destructive "
+                            }`}
+                          />
+                        </div>
+                      )}
+                      {formData.fields.accountNumber && (
+                        <div className="mb-4">
+                          <InputField<formType>
+                            {...formData.fields.accountNumber}
+                            register={register}
+                            error={errors?.accountNumber}
+                            classNameExtra={`${
+                              errorsApi.accountError && "!border-destructive "
+                            }`}
+                          />
+                        </div>
+                      )}
+                      {formData.fields.userName && (
+                        <div className="mb-4">
+                          <InputField<formType>
+                            {...formData.fields.userName}
+                            register={register}
+                            error={errors?.userName}
+                            classNameExtra={`${
+                              errorsApi.accountError && "!border-destructive "
+                            }`}
+                          />
+                        </div>
+                      )}
+                      {formData.fields.phoneNumber && (
+                        <div className="mb-4">
+                          <InputField<formType>
+                            {...formData.fields.phoneNumber}
+                            register={register}
+                            error={errors?.phoneNumber}
+                            classNameExtra={`${
+                              errorsApi.accountError && "!border-destructive "
+                            }`}
+                          />
+                        </div>
+                      )}
+                      {formData.fields.taxNumber && (
+                        <div className="mb-4">
+                          <InputField<formType>
+                            {...formData.fields.taxNumber}
+                            register={register}
+                            error={errors?.taxNumber}
+                          />
+                        </div>
+                      )}
+                      {formData.fields.summary && (
+                        <div className="mb-4">
+                          <InputField<formType>
+                            {...formData.fields.summary}
+                            register={register}
+                            error={errors?.summary}
+                          />
+                        </div>
+                      )}
                     </div>
                   )}
-                  {formData.fields.accountNumber && (
-                    <div className="mb-4">
-                      <InputField<formType>
-                        {...formData.fields.accountNumber}
-                        register={register}
-                        error={errors?.accountNumber}
-                        classNameExtra={`${
-                          errorsApi.accountError && "!border-destructive "
-                        }`}
-                      />
-                    </div>
-                  )}
-                  {formData.fields.userName && (
-                    <div className="mb-4">
-                      <InputField<formType>
-                        {...formData.fields.userName}
-                        register={register}
-                        error={errors?.userName}
-                        classNameExtra={`${
-                          errorsApi.accountError && "!border-destructive "
-                        }`}
-                      />
-                    </div>
-                  )}
-                  {formData.fields.phoneNumber && (
-                    <div className="mb-4">
-                      <InputField<formType>
-                        {...formData.fields.phoneNumber}
-                        register={register}
-                        error={errors?.phoneNumber}
-                        classNameExtra={`${
-                          errorsApi.accountError && "!border-destructive "
-                        }`}
-                      />
-                    </div>
-                  )}
-                  {formData.fields.taxNumber && (
-                    <div className="mb-4">
-                      <InputField<formType>
-                        {...formData.fields.taxNumber}
-                        register={register}
-                        error={errors?.taxNumber}
-                      />
-                    </div>
-                  )}
-                  {formData.fields.summary && (
-                    <div className="mb-4">
-                      <InputField<formType>
-                        {...formData.fields.summary}
-                        register={register}
-                        error={errors?.summary}
-                      />
-                    </div>
-                  )}
-                </div>
-              )}
 
-              {step === 2 && (
-                <div dir="auto">
-                  {formData.fields.commercialRegisterPhoto && (
-                    <div className="mb-4">
-                      <label className="block mb-1 text-sm font-medium text-foreground ">
-                        {formData.fields.commercialRegisterPhoto.label}
-                      </label>
-                      <FilleField<formType>
-                        {...formData.fields.commercialRegisterPhoto}
-                        register={register}
-                        onchangeFile={onChangeFile}
-                        error={errors.commercialRegisterPhoto}
-                        fileName={fileNames.commercialRegisterPhoto}
-                      />
-                    </div>
-                  )}
-                  {formData.fields.licensePhoto && (
-                    <div className="mb-4">
-                      <label className="block mb-1 text-sm font-medium text-foreground ">
-                        {formData.fields.licensePhoto.label}
-                      </label>
-                      <FilleField<formType>
-                        {...formData.fields.licensePhoto}
-                        register={register}
-                        onchangeFile={onChangeFile}
-                        error={errors.licensePhoto}
-                        fileName={fileNames.licensePhoto}
-                      />
-                    </div>
-                  )}
-                  {formData.fields.physicalAddressImage && (
-                    <div className="mb-4">
-                      <label className="block mb-1 text-sm font-medium text-foreground ">
-                        {formData.fields.physicalAddressImage.label}
-                      </label>
-                      <FilleField<formType>
-                        {...formData.fields.physicalAddressImage}
-                        register={register}
-                        onchangeFile={onChangeFile}
-                        error={errors.physicalAddressImage}
-                        fileName={fileNames.physicalAddressImage}
-                      />
-                    </div>
-                  )}
-                  {formData.fields.ownerIdentityImageFS && (
-                    <div className="mb-4">
-                      <label className="block mb-1 text-sm font-medium text-foreground ">
-                        {formData.fields.ownerIdentityImageFS.label}
-                      </label>
-                      <FilleField<formType>
-                        {...formData.fields.ownerIdentityImageFS}
-                        register={register}
-                        onchangeFile={onChangeFile}
-                        error={errors.ownerIdentityImageFS}
-                        fileName={fileNames.ownerIdentityImageFS}
-                      />
-                      <div className="flex flex-col mt-2">
-                        {formData.fields.ownerIdentityImageBS && (
+                  {step === 2 && (
+                    <div dir="auto">
+                      {formData.fields.commercialRegisterPhoto && (
+                        <div className="mb-4">
+                          <label className="block mb-1 text-sm font-medium text-foreground ">
+                            {formData.fields.commercialRegisterPhoto.label}
+                          </label>
                           <FilleField<formType>
-                            {...formData.fields.ownerIdentityImageBS}
+                            {...formData.fields.commercialRegisterPhoto}
                             register={register}
                             onchangeFile={onChangeFile}
-                            error={errors.ownerIdentityImageBS}
-                            fileName={fileNames.ownerIdentityImageBS}
+                            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+                            error={(errors as any)?.commercialRegisterPhoto}
+                            fileName={fileNames.commercialRegisterPhoto}
                           />
-                        )}
-                      </div>
-                    </div>
-                  )}
-                  {formData.fields.commissionerIdentityImageFS && (
-                    <div className="mb-4">
-                      <label className="block mb-1 text-sm font-medium text-foreground">
-                        {formData.fields.commissionerIdentityImageFS.label}
-                      </label>
-                      <div className="flex flex-col  gap-2">
-                        <FilleField<formType>
-                          {...formData.fields.commissionerIdentityImageFS}
-                          register={register}
-                          onchangeFile={onChangeFile}
-                          error={errors.commissionerIdentityImageFS}
-                          fileName={fileNames.commissionerIdentityImageFS}
-                        />
-                        {formData.fields.commissionerIdentityImageBS && (
+                        </div>
+                      )}
+                      {formData.fields.licensePhoto && (
+                        <div className="mb-4">
+                          <label className="block mb-1 text-sm font-medium text-foreground ">
+                            {formData.fields.licensePhoto.label}
+                          </label>
                           <FilleField<formType>
-                            {...formData.fields.commissionerIdentityImageBS}
+                            {...formData.fields.licensePhoto}
                             register={register}
                             onchangeFile={onChangeFile}
-                            error={errors.commissionerIdentityImageBS}
-                            fileName={fileNames.commissionerIdentityImageBS}
+                            error={errors.licensePhoto}
+                            fileName={fileNames.licensePhoto}
                           />
-                        )}
-                      </div>
+                        </div>
+                      )}
+                      {formData.fields.physicalAddressImage && (
+                        <div className="mb-4">
+                          <label className="block mb-1 text-sm font-medium text-foreground ">
+                            {formData.fields.physicalAddressImage.label}
+                          </label>
+                          <FilleField<formType>
+                            {...formData.fields.physicalAddressImage}
+                            register={register}
+                            onchangeFile={onChangeFile}
+                            error={errors.physicalAddressImage}
+                            fileName={fileNames.physicalAddressImage}
+                          />
+                        </div>
+                      )}
+                      {formData.fields.ownerIdentityImageFS && (
+                        <div className="mb-4">
+                          <label className="block mb-1 text-sm font-medium text-foreground ">
+                            {formData.fields.ownerIdentityImageFS.label}
+                          </label>
+                          <FilleField<formType>
+                            {...formData.fields.ownerIdentityImageFS}
+                            register={register}
+                            onchangeFile={onChangeFile}
+                            error={errors.ownerIdentityImageFS}
+                            fileName={fileNames.ownerIdentityImageFS}
+                          />
+                          <div className="flex flex-col mt-2">
+                            {formData.fields.ownerIdentityImageBS && (
+                              <FilleField<formType>
+                                {...formData.fields.ownerIdentityImageBS}
+                                register={register}
+                                onchangeFile={onChangeFile}
+                                error={errors.ownerIdentityImageBS}
+                                fileName={fileNames.ownerIdentityImageBS}
+                              />
+                            )}
+                          </div>
+                        </div>
+                      )}
+                      {formData.fields.commissionerIdentityImageFS && (
+                        <div className="mb-4">
+                          <label className="block mb-1 text-sm font-medium text-foreground">
+                            {formData.fields.commissionerIdentityImageFS.label}
+                          </label>
+                          <div className="flex flex-col  gap-2">
+                            <FilleField<formType>
+                              {...formData.fields.commissionerIdentityImageFS}
+                              register={register}
+                              onchangeFile={onChangeFile}
+                              error={errors.commissionerIdentityImageFS}
+                              fileName={fileNames.commissionerIdentityImageFS}
+                            />
+                            {formData.fields.commissionerIdentityImageBS && (
+                              <FilleField<formType>
+                                {...formData.fields.commissionerIdentityImageBS}
+                                register={register}
+                                onchangeFile={onChangeFile}
+                                error={errors.commissionerIdentityImageBS}
+                                fileName={fileNames.commissionerIdentityImageBS}
+                              />
+                            )}
+                          </div>
+                        </div>
+                      )}
                     </div>
                   )}
-                </div>
+
+                  <div className="flex justify-between">
+                    {step === 2 && (
+                      <Button
+                        className="w-16 mt-3 font-semibold text-md bg-inherit border-none shadow-none text-primary hover:bg-gray-200"
+                        type="submit"
+                      >
+                        تأكيد
+                      </Button>
+                    )}
+                    {step === 1 ? (
+                      <span
+                        className="w-16 h-9 inline-flex mt-3 py-2 px-4 font-semibold text-md bg-inherit border-none shadow-none text-primary rounded-md white justify-center items-center hover:bg-gray-200 cursor-pointer"
+                        onClick={() => setStep(2)}
+                      >
+                        التالي
+                      </span>
+                    ) : (
+                      <span
+                        className="w-16 h-9 inline-flex mt-3 py-2 px-4 font-semibold text-md bg-inherit border-none shadow-none text-primary rounded-md white justify-center items-center hover:bg-gray-200 cursor-pointer"
+                        onClick={() => setStep(1)}
+                      >
+                        رجوع
+                      </span>
+                    )}
+                  </div>
+                </>
+              ) : (
+                <p>لا توجد بيانات لعرضها.</p>
               )}
-
-              <div className="flex justify-between">
-                {step === 2 && (
-                  <Button
-                    className="w-16 mt-3 font-semibold text-md bg-inherit border-none shadow-none text-primary hover:bg-gray-200"
-                    type="submit"
-                  >
-                    تأكيد
-                  </Button>
-                )}
-                {step === 1 ? (
-                  <span
-                    className="w-16 h-9 inline-flex mt-3 py-2 px-4 font-semibold text-md bg-inherit border-none shadow-none text-primary rounded-md white justify-center items-center hover:bg-gray-200 cursor-pointer"
-                    onClick={() => setStep(2)}
-                  >
-                    التالي
-                  </span>
-                ) : (
-                  <span
-                    className="w-16 h-9 inline-flex mt-3 py-2 px-4 font-semibold text-md bg-inherit border-none shadow-none text-primary rounded-md white justify-center items-center hover:bg-gray-200 cursor-pointer"
-                    onClick={() => setStep(1)}
-                  >
-                    رجوع
-                  </span>
-                )}
-              </div>
-
-              {/*الأزرار*/}
             </form>
           </div>
         </div>
