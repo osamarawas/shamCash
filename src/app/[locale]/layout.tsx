@@ -35,7 +35,7 @@ export async function generateMetadata(): Promise<Metadata> {
     applicationName: "شام كاش",
     icons: {
       icon: "/logo.svg", // تحديد أيقونة التطبيق
-    },
+    },  
   };
 }
 
@@ -59,6 +59,7 @@ export default async function RootLayout({
           "antialiased"
         )}
         lang={locale}
+        suppressHydrationWarning={true}
       >
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider
