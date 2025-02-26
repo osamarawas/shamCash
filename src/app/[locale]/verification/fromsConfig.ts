@@ -236,13 +236,19 @@ export const organizationForm = (): DynamicForm<{
 
 export const businessformSchema = z.object({
   email: z.string().email("البريد الإلكتروني غير صالح").min(1, "الحقل مطلوب"),
-  accountNumber: z.string().min(1, "رقم الحساب يجب أن يكون 5 أحرف على الأقل"),
+  accountNumber: z
+    .string()
+    .regex(/^\d+$/, "رقم الحساب يجب أن يحتوي على أرقام فقط (0-9).")
+    .min(16, "رقم الحساب يجب أن يكون 5 أحرف على الأقل"),
   userName: z.string().min(1, "الحقل مطلوب"),
   phoneNumber: z
     .string()
     .regex(/^09\d{8}$/, "رقم الهاتف يجب أن يبدأ بـ 09 ويتكون من 10 أرقام فقط")
     .length(10, "رقم الهاتف يجب أن يحتوي على 10 أرقام فقط"),
-  taxNumber: z.string().min(5, "رقم التعريف الضريبي غير صالح"),
+  taxNumber: z
+    .string()
+    .regex(/^\d+$/, "رقم التعريف الضريبي يجب أن يحتوي على أرقام فقط (0-9).")
+    .min(5, "رقم التعريف الضريبي غير صالح"),
   summary: z
     .string()
     .max(2048, "الملخص يجب أن يكون أكثر تفصيلاً")
@@ -271,13 +277,19 @@ export const businessformSchema = z.object({
 
 export const organizationformSchema = z.object({
   email: z.string().email("البريد الإلكتروني غير صالح").min(1, "الحقل مطلوب"),
-  accountNumber: z.string().min(1, "رقم الحساب يجب أن يكون 5 أحرف على الأقل"),
+  accountNumber: z
+    .string()
+    .regex(/^\d+$/, "رقم الحساب يجب أن يحتوي على أرقام فقط (0-9).")
+    .min(16, "رقم الحساب يجب أن يكون 5 أحرف على الأقل"),
   userName: z.string().min(1, "الحقل مطلوب"),
   phoneNumber: z
     .string()
     .regex(/^09\d{8}$/, "رقم الهاتف يجب أن يبدأ بـ 09 ويتكون من 10 أرقام فقط")
     .length(10, "رقم الهاتف يجب أن يحتوي على 10 أرقام فقط"),
-  taxNumber: z.string().min(5, "رقم التعريف الضريبي غير صالح"),
+  taxNumber: z
+    .string()
+    .regex(/^\d+$/, "رقم التعريف الضريبي يجب أن يحتوي على أرقام فقط (0-9).")
+    .min(5, "رقم التعريف الضريبي غير صالح"),
   summary: z
     .string()
     .max(2048, "الملخص يجب أن يكون أكثر تفصيلاً")

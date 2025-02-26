@@ -51,15 +51,13 @@ export function AlertDialogDemo(props: AlertDialogDemoProps) {
           <Image
             src={icon.src}
             alt=""
-            className="mb-3 mx-auto mt-6"
+            className="mb-3 mx-auto mt-2"
             width={60}
             height={60}
           />
-          <AlertDialogTitle className="text-center inputTitle">
-            رمز التأكيد
-          </AlertDialogTitle>
+          <AlertDialogTitle className="">رمز التأكيد</AlertDialogTitle>
           <AlertDialogDescription>
-            <p dir="auto" className="text-center mb-6">
+            <p dir="auto" className="text-center  mb-4 text-foreground">
               أدخل رمز التحقق المرسل إلى بريدك الإلكتروني لإكمال العملية.
             </p>
             <InputOTP
@@ -68,7 +66,7 @@ export function AlertDialogDemo(props: AlertDialogDemoProps) {
               onChange={(value) => props.setOtp(value)}
             >
               <div className="text-center items-center mx-auto">
-                <InputOTPGroup className="gap-2">
+                <InputOTPGroup className="gap-3">
                   <InputOTPSlot className="inputOtp rounded-md" index={0} />
                   <InputOTPSlot className="inputOtp rounded-md" index={1} />
                   <InputOTPSlot className="inputOtp rounded-md" index={2} />
@@ -78,16 +76,19 @@ export function AlertDialogDemo(props: AlertDialogDemoProps) {
                 </InputOTPGroup>
               </div>
             </InputOTP>
-            <div dir="auto" className="text-center text-sm my-6">
+            <div
+              dir="auto"
+              className="text-center text-sm my-3 font-medium text-foreground"
+            >
               <p>
                 إذا لم تستلم الرمز، يمكنك طلب{" "}
                 {timer > 0 ? (
-                  <span className="text-gray-500 font-semibold">
+                  <span className=" font-semibold">
                     يمكنك إعادة الإرسال بعد {timer} ثانية.
                   </span>
                 ) : (
                   <span
-                    className="text-primary font-semibold cursor-pointer"
+                    className="text-primary font-semibold cursor-pointer "
                     onClick={handleResend}
                   >
                     إرساله مرة أخرى.
@@ -98,18 +99,14 @@ export function AlertDialogDemo(props: AlertDialogDemoProps) {
           </AlertDialogDescription>
         </AlertDialogHeader>
         <div className="">
-          <AlertDialogFooter dir="auto" className="mb-6">
+          <AlertDialogFooter dir="auto" className="">
             <AlertDialogCancel
-              className="text-gray-600 bg-gray-200 font-semibold"
+              className="  "
               onClick={() => props.setOpen(false)}
             >
               إغلاق
             </AlertDialogCancel>
-            <AlertDialogAction
-              type="submit"
-              onClick={props.sure}
-              className="text-white"
-            >
+            <AlertDialogAction type="submit" onClick={props.sure} className="">
               تأكيد
             </AlertDialogAction>
           </AlertDialogFooter>

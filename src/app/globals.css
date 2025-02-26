@@ -45,7 +45,7 @@ body[lang="ar"] {
     --content: 203 4% 36%;
     --accent: 210 40% 96.1%;
     --accent-foreground: 222.2 47.4% 11.2%;
-    --destructive: 0 52% 56% ;
+    --destructive: 0 52% 56%;
     --destructive-foreground: 210 40% 98%;
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
@@ -82,7 +82,7 @@ body[lang="ar"] {
     --content: 200 7% 67%;
     --accent: 217.2 32.6% 17.5%;
     --accent-foreground: 210 40% 98%;
-    --destructive: 0 62.8% 30.6%;
+    --destructive: 0 68.8% 35.6%;
     --destructive-foreground: 210 40% 98%;
     --border: 217.2 32.6% 17.5%;
     --input: 217.2 32.6% 17.5%;
@@ -263,20 +263,18 @@ body[lang="ar"] {
     color: #363636;
   }
   .otpTitleDark {
-    color: #D3E8F5;
+    color: #d3e8f5;
   }
   .otpdesc {
     color: #5a5a5a;
   }
   .otpdescDark {
-    color: #A5ADB1;
+    color: #a5adb1;
   }
   .success {
-    color: #0CBC8B;
+    color: #0cbc8b;
   }
 }
-
-
 
 @layer base {
   * {

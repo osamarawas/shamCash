@@ -38,7 +38,6 @@ const MultiStepForm = () => {
   >;
   type formType = z.infer<typeof schema>;
   const formData = getFormData(accountType);
-  console.log(formData.endpoint.sendOtp.url);
   const [step, setStep] = useState(1);
   const [openalert, setOpenAlert] = useState(false);
   const [otp, setOtp] = useState<string>("");
@@ -82,16 +81,14 @@ const MultiStepForm = () => {
     }
     return oData;
   }
-
   const onCheckOtp = async (data: formType) => {
     try {
-      // https://192.168.10.90:7089
       const otpData = getOtpBody(data);
       const response = await postData(
         `${formData.endpoint.sendOtp.url}`,
         otpData
       );
-      console.log(response);
+
       if (response.succeeded) {
         setOpenAlert(true);
         setErrorsApi((prev) => ({
@@ -100,31 +97,28 @@ const MultiStepForm = () => {
         }));
       } else {
         if (+response.result === 1107) {
-          toast("تم ارسال الطلب سابقا.");
-        } else {
-          setOpenAlert(false);
-          setStep(1);
+          toast("تم ارسال الطلب سابقاً.");
+        } else if (+response.result === 1206)
           setErrorsApi((prev) => ({
             ...prev,
             accountError: true,
           }));
-        }
       }
     } catch (error) {
       console.error("❌ فشل الإرسال:", error);
+      toast.error("فشل في الاتصال بالخادم. يرجى المحاولة لاحقاً.");
     }
   };
 
   const onSubmit = async (data: formType) => {
     try {
-      // https://192.168.10.90:7089
-      const otpBody = { ...data, otpCode: otp };
+      const otpWithData = { ...data, otpCode: otp };
       const response = await postData(
         `${formData.endpoint.verificationAccount.url}`,
-        otpBody
+        otpWithData
       );
+      console.log(response);
       if (response.succeeded) {
-        console.log("تم ارسال الطلب بنجاح");
         toast(" تم ارسال الطلب  بنجاح.");
         setOpenAlert(false);
       } else {
@@ -132,7 +126,6 @@ const MultiStepForm = () => {
           console.log("otp is invalid ");
         } else {
           console.log("حصل حذث غير متوقع");
-          toast("حصل حدث غير متوقع");
         }
       }
     } catch (error) {
