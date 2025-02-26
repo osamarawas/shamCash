@@ -47,13 +47,12 @@ export default function NavBar() {
       }
     };
 
-    // إضافة الأحداث
     window.addEventListener("scroll", handleScroll);
     if (isOpen) {
       document.addEventListener("mousedown", handleClickOutside);
     }
 
-    // تنظيف الأحداث عند التفريغ
+    // Cleanup event listeners on component unmount
     return () => {
       window.removeEventListener("scroll", handleScroll);
       document.removeEventListener("mousedown", handleClickOutside);
