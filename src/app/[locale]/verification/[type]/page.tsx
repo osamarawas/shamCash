@@ -398,8 +398,9 @@ const MultiStepForm = () => {
                     )}
                     {step === 1 ? (
                       <span
-                        className="w-16 h-9 inline-flex mt-3 py-2 px-4 font-semibold text-md bg-inherit border-none shadow-none text-primary rounded-md white justify-center items-center hover:bg-gray-200 cursor-pointer"
+                        className="w-16 h-9 inline-flex mt-3 py-2 px-4 font-semibold text-md bg-inherit border-none shadow-none text-primary rounded-md white justify-center items-center hover:bg-gray-200 cursor-pointer "
                         onClick={() => setStep(2)}
+                        // onClick={() => toast.success("تم ارسال الطلب سابقاً.")}
                       >
                         التالي
                       </span>

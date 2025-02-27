@@ -239,7 +239,7 @@ export const businessformSchema = z.object({
   accountNumber: z
     .string()
     .regex(/^\d+$/, "رقم الحساب يجب أن يحتوي على أرقام فقط (0-9).")
-    .min(16, "رقم الحساب يجب أن يكون 5 أحرف على الأقل"),
+    .min(16, "رقم الحساب يجب أن يكون 16 أحرف على الأقل"),
   userName: z.string().min(1, "الحقل مطلوب"),
   phoneNumber: z
     .string()

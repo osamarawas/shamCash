@@ -74,14 +74,15 @@ export default async function RootLayout({
             <NavBar />
             <Toaster
               icons={{
-                success: <CircleCheck className="text-white w-6 h-6 " />,
-                error: <CircleX className="text-white w-6 h-6 " />,
+                success: <CircleCheck />,
+                error: <CircleX />,
               }}
-              className={"!flex !items-center !gap-10"}
               toastOptions={{
                 classNames: {
                   success: "!bg-success !text-foreground !border-none",
                   error: "!bg-error !text-foreground !border-none",
+                  title: "!text-white mx-1 !font-bold ",
+                  icon: "!text-white !w-5 !h-5",
                 },
               }}
             />

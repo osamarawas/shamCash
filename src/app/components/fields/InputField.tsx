@@ -65,7 +65,7 @@ const InputField = <T extends Record<string, any>>({
           defaultValue={defaultValue}
           readOnly={readOnly}
           maxLength={maxLength}
-          className={`placeholder-muted-foreground !border-border_input focus:!border-border_focus_input w-full ${
+          className={`placeholder-muted-foreground placeholder:text-sm !border-border_input focus:!border-border_focus_input w-full text-sm ${
             error?.message && "border-destructive"
           }  ${classNameExtra}`}
         />
@@ -78,7 +78,7 @@ const InputField = <T extends Record<string, any>>({
           name={String(name)}
           id={String(name)}
           defaultValue={defaultValue}
-          className={`placeholder-muted-foreground !border-border_input focus:!border-border_focus_input w-full  ${
+          className={`placeholder-muted-foreground placeholder:text-sm !border-border_input focus:!border-border_focus_input w-full text-sm ${
             error?.message && "border-destructive"
           }  ${classNameExtra}`}
         />
