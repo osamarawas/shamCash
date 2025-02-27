@@ -34,7 +34,7 @@ export function OtpAlertDialog(props: OtpAlertDialogProps) {
   const handleResend = () => {
     if (timer === 0) {
       props.resend_otp();
-      setTimer(5); // مدة المؤقت بالثواني
+      setTimer(5);
     }
   };
 

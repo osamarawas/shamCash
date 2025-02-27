@@ -415,7 +415,7 @@ const MultiStepForm = () => {
                         className="w-16 mt-3 font-semibold text-md bg-inherit border-none shadow-none text-primary hover:bg-gray-200"
                         type="submit"
                       >
-                        تأكيد
+                        {t("forms.Confirm")}
                       </Button>
                     )}
                     {step === 1 ? (
@@ -424,7 +424,7 @@ const MultiStepForm = () => {
                         onClick={() => setStep(2)}
                         // onClick={() => toast.success("تم ارسال الطلب سابقاً.")}
                       >
-                        التالي
+                        {t("forms.next")}
                       </span>
                     ) : (
                       <span

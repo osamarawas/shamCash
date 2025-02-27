@@ -20,7 +20,7 @@ export type Card = {
   image: HTMLImageElement;
   title: string;
   description: string;
-  circleHover:string
+  circleHover?: string;
 };
 export type AboutCards = Card[];
 

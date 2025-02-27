@@ -532,7 +532,9 @@
     "imageRequired": "يجب رفع الصورة"
   },
   "forms": {
-    "back": " رجوع"
+    "back": "رجوع",
+    "Confirm": "تأكيد",
+    "next": "التالي"
   },
   "download": "تنزيل",
   "Android": "اندرويد",
