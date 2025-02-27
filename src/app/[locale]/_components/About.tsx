@@ -25,7 +25,7 @@ const About = async () => {
       <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 text-center ">
         {Array.isArray(aboutCardsArray) && aboutCardsArray.length > 0 ? (
           aboutCardsArray.map((about, index) => (
-            <Card item={about} key={index} />
+            <Card item={about} key={index} circleHover="280"/>
           ))
         ) : (
           <p>No links available</p>
