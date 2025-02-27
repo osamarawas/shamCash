@@ -29,7 +29,7 @@ const Footer = async () => {
       <div
         className="flex items-center justify-evenly   lg:px-10
              w-4/6 lg:w-1/3 mx-auto 
-             h-32 sm:h-28 "
+             h-40 sm:h-28 "
         data-aos="zoom-in"
         data-aos-duration="800"
       >

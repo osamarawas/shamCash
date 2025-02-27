@@ -1,8 +1,8 @@
 import { AccountType, DynamicForm } from "@/app/utils/types";
+import { useTranslations } from "next-intl";
 import { z } from "zod";
-import { getTranslations } from "next-intl/server";
 
-export const businessForm = async (): Promise<DynamicForm<{
+export const businessForm = (): DynamicForm<{
   email: string;
   accountNumber: string;
   userName: string;
@@ -16,133 +16,12 @@ export const businessForm = async (): Promise<DynamicForm<{
   commissionerIdentityImageFS?: string;
   commissionerIdentityImageBS?: string;
   physicalAddressImage?: string;
-}>> => {
-  const t = await getTranslations();
+}> => {
+  const t = useTranslations();
+
   return {
     id: "business",
     title: "Business Account Documentation",
-    type: "stipper",
-    fields: {
-      email: {
-        type: "email",
-        label: "البريد الالكتروني",
-        placeholder: "البريد الالكتروني",
-        name: "email",
-      },
-      accountNumber: {
-        type: "text",
-        label: "رقم الحساب",
-        placeholder: "رقم الحساب",
-        name: "accountNumber",
-      },
-      userName: {
-        type: "text",
-        label: "اسم الحساب",
-        placeholder: "اسم الحساب",
-        name: "userName",
-      },
-      phoneNumber: {
-        type: "text",
-        label: "رقم الهاتف",
-        placeholder: "رقم الهاتف",
-        name: "phoneNumber",
-        maxLength: 10,
-      },
-      taxNumber: {
-        type: "text",
-        label: "رقم التعريف الضريبي",
-        placeholder: "رقم التعريف الضريبي",
-        name: "taxNumber",
-      },
-      summary: {
-        type: "textarea",
-        label: " ملخص عن أنشطة الحساب",
-        placeholder: "اكتب هنا",
-        name: "summary",
-      },
-      commercialRegisterPhoto: {
-        type: "file",
-        label: "صورة السجل التجاري",
-        placeholder: "صورة السجل التجاري",
-        name: "commercialRegisterPhoto",
-        accept: "image/.jpg, .jpeg, .png",
-      },
-      licensePhoto: {
-        type: "file",
-        label: "صورة رخصة مزاولة مهنة",
-        placeholder: "صورة رخصة مزاولة مهنة",
-        name: "licensePhoto",
-        accept: "image/.jpg, .jpeg, .png",
-      },
-      physicalAddressImage: {
-        type: "file",
-        label: "صورة وثيقة تحمل الرقم الفيزيائي",
-        placeholder: "صورة وثيقة تحمل الرقم الفيزيائي",
-        name: "physicalAddressImage",
-        accept: "image/.jpg, .jpeg, .png",
-      },
-      ownerIdentityImageFS: {
-        type: "file",
-        label: "صورة هوية المالك",
-        placeholder: "الوجه الامامي",
-        name: "ownerIdentityImageFS",
-        accept: "image/.jpg, .jpeg, .png",
-      },
-      ownerIdentityImageBS: {
-        type: "file",
-        label: "صورة هوية المالك",
-        placeholder: "الوجه الخلفي",
-        name: "ownerIdentityImageBS",
-        accept: "image/.jpg, .jpeg, .png",
-      },
-      commissionerIdentityImageFS: {
-        type: "file",
-        label: "صورة هوية المفوض",
-        placeholder: "الوجه الامامي",
-        name: "commissionerIdentityImageFS",
-        accept: "image/.jpg, .jpeg, .png",
-      },
-      commissionerIdentityImageBS: {
-        type: "file",
-        label: "صورة هوية المفوض",
-        placeholder: "الوجه الخلفي",
-        name: "commissionerIdentityImageBS",
-        accept: "image/.jpg, .jpeg, .png",
-      },
-    },
-    endpoint: {
-      sendOtp: {
-        url: "/api/Authentication/checkVerifications",
-        method: "POST",
-      },
-      verificationAccount: {
-        url: "/api/CommercialAccounts/verifyAccount",
-        method: "POST",
-      },
-    },
-  };
-};
-
-export const organizationForm = async (): Promise<DynamicForm<{ 
-  email: string; 
-  accountNumber: string; 
-  userName: string; 
-  phoneNumber: string; 
-  taxNumber: string; 
-  summary: string; 
-  CopyOfTheLicense?: string; 
-  licensePhoto?: string; 
-  ownerIdentityImageFS?: string; 
-  ownerIdentityImageBS?: string; 
-  commissionerIdentityImageFS?: string; 
-  commissionerIdentityImageBS?: string; 
-  physicalAddressImage?: string; 
-}>> => {
-  const t = await getTranslations();
-
-  return {
-    id: "organization",
-    title: "Organization Account Documentation",
     type: "stipper",
     fields: {
       email: {
@@ -156,6 +35,7 @@ export const organizationForm = async (): Promise<DynamicForm<{
         label: t("verificationForm.account_number.label"),
         placeholder: t("verificationForm.account_number.placeholder"),
         name: "accountNumber",
+        maxLength: 16,
       },
       userName: {
         type: "text",
@@ -182,11 +62,19 @@ export const organizationForm = async (): Promise<DynamicForm<{
         placeholder: t("verificationForm.account_activity_summary.placeholder"),
         name: "summary",
       },
-      CopyOfTheLicense: {
+      commercialRegisterPhoto: {
         type: "file",
-        label: t("verificationForm.granted_license_image.label"),
-        placeholder: t("verificationForm.granted_license_image.placeholder"),
-        name: "CopyOfTheLicense",
+        label: t("verificationForm.commercial_register_image.label"),
+        placeholder: t("verificationForm.commercial_register_image.placeholder"),
+        name: "commercialRegisterPhoto",
+        accept: "image/.jpg, .jpeg, .png",
+      },
+      licensePhoto: {
+        type: "file",
+        label: t("verificationForm.practice_license_image.label"),
+        placeholder: t("verificationForm.practice_license_image.placeholder"),
+        name: "licensePhoto",
+        accept: "image/.jpg, .jpeg, .png",
       },
       physicalAddressImage: {
         type: "file",
@@ -237,16 +125,137 @@ export const organizationForm = async (): Promise<DynamicForm<{
   };
 };
 
-// ✅ تعريف مخطط التحقق باستخدام Zod
+export const organizationForm = (): DynamicForm<{
+  email: string;
+  accountNumber: string;
+  userName: string;
+  phoneNumber: string;
+  taxNumber: string;
+  summary: string;
+  licensePhoto?: string;
+  ownerIdentityImageFS?: string;
+  ownerIdentityImageBS?: string;
+  commissionerIdentityImageFS?: string;
+  commissionerIdentityImageBS?: string;
+  physicalAddressImage?: string;
+}> => {
+  const t = useTranslations();
+
+  return {
+    id: "organization",
+    title: "organization Account Documentation",
+    type: "stipper",
+    fields: {
+      email: {
+        type: "email",
+        label: t("verificationForm.email.label"),
+        placeholder: t("verificationForm.email.placeholder"),
+        name: "email",
+      },
+      accountNumber: {
+        type: "text",
+        label: t("verificationForm.account_number.label"),
+        placeholder: t("verificationForm.account_number.placeholder"),
+        name: "accountNumber",
+        maxLength: 16,
+      },
+      userName: {
+        type: "text",
+        label: t("verificationForm.account_name.label"),
+        placeholder: t("verificationForm.account_name.placeholder"),
+        name: "userName",
+      },
+      phoneNumber: {
+        type: "text",
+        label: t("verificationForm.account_phone_number.label"),
+        placeholder: t("verificationForm.account_phone_number.placeholder"),
+        name: "phoneNumber",
+        maxLength: 10,
+      },
+      taxNumber: {
+        type: "text",
+        label: t("verificationForm.tax_identification_number.label"),
+        placeholder: t("verificationForm.tax_identification_number.placeholder"),
+        name: "taxNumber",
+      },
+      summary: {
+        type: "textarea",
+        label: t("verificationForm.account_activity_summary.label"),
+        placeholder: t("verificationForm.account_activity_summary.placeholder"),
+        name: "summary",
+      },
+
+      licensePhoto: {
+        type: "file",
+        label: t("verificationForm.licensePhotoOrganization.label"),
+        placeholder: t("verificationForm.licensePhotoOrganization.placeholder"),
+        name: "licensePhoto",
+        accept: "image/.jpg, .jpeg, .png",
+      },
+      physicalAddressImage: {
+        type: "file",
+        label: t("verificationForm.physical_address_document.label"),
+        placeholder: t("verificationForm.physical_address_document.placeholder"),
+        name: "physicalAddressImage",
+        accept: "image/.jpg, .jpeg, .png",
+      },
+      ownerIdentityImageFS: {
+        type: "file",
+        label: t("verificationForm.owner_id_image.label"),
+        placeholder: t("verificationForm.owner_id_image.placeholder"),
+        name: "ownerIdentityImageFS",
+        accept: "image/.jpg, .jpeg, .png",
+      },
+      ownerIdentityImageBS: {
+        type: "file",
+        label: t("verificationForm.owner_id_image.label"),
+        placeholder: t("verificationForm.owner_id_image.placeholder1"),
+        name: "ownerIdentityImageBS",
+        accept: "image/.jpg, .jpeg, .png",
+      },
+      commissionerIdentityImageFS: {
+        type: "file",
+        label: t("verificationForm.delegate_id_image.label"),
+        placeholder: t("verificationForm.delegate_id_image.placeholder"),
+        name: "commissionerIdentityImageFS",
+        accept: "image/.jpg, .jpeg, .png",
+      },
+      commissionerIdentityImageBS: {
+        type: "file",
+        label: t("verificationForm.delegate_id_image.label"),
+        placeholder: t("verificationForm.delegate_id_image.placeholder1"),
+        name: "commissionerIdentityImageBS",
+        accept: "image/.jpg, .jpeg, .png",
+      },
+    },
+    endpoint: {
+      sendOtp: {
+        url: "/api/Authentication/checkVerifications",
+        method: "POST",
+      },
+      verificationAccount: {
+        url: "/api/OrganizationAccount/verifyAccount",
+        method: "POST",
+      },
+    },
+  };
+};
+
 export const businessformSchema = z.object({
   email: z.string().email("البريد الإلكتروني غير صالح").min(1, "الحقل مطلوب"),
-  accountNumber: z.string().min(1, "رقم الحساب يجب أن يكون 5 أحرف على الأقل"),
+  accountNumber: z
+    .string()
+    .regex(/^\d+$/, "رقم الحساب يجب أن يحتوي على أرقام فقط (0-9).")
+    .min(16, "رقم الحساب يجب أن يكون 16 أحرف على الأقل"),
   userName: z.string().min(1, "الحقل مطلوب"),
   phoneNumber: z
     .string()
     .regex(/^09\d{8}$/, "رقم الهاتف يجب أن يبدأ بـ 09 ويتكون من 10 أرقام فقط")
     .length(10, "رقم الهاتف يجب أن يحتوي على 10 أرقام فقط"),
-  taxNumber: z.string().min(5, "رقم التعريف الضريبي غير صالح"),
+  taxNumber: z
+    .string()
+    .regex(/^\d+$/, "رقم التعريف الضريبي يجب أن يحتوي على أرقام فقط (0-9).")
+    .min(5, "رقم التعريف الضريبي غير صالح"),
   summary: z
     .string()
     .max(2048, "الملخص يجب أن يكون أكثر تفصيلاً")
@@ -275,13 +284,19 @@ export const businessformSchema = z.object({
 
 export const organizationformSchema = z.object({
   email: z.string().email("البريد الإلكتروني غير صالح").min(1, "الحقل مطلوب"),
-  accountNumber: z.string().min(1, "رقم الحساب يجب أن يكون 5 أحرف على الأقل"),
+  accountNumber: z
+    .string()
+    .regex(/^\d+$/, "رقم الحساب يجب أن يحتوي على أرقام فقط (0-9).")
+    .min(16, "رقم الحساب يجب أن يكون 5 أحرف على الأقل"),
   userName: z.string().min(1, "الحقل مطلوب"),
   phoneNumber: z
     .string()
     .regex(/^09\d{8}$/, "رقم الهاتف يجب أن يبدأ بـ 09 ويتكون من 10 أرقام فقط")
     .length(10, "رقم الهاتف يجب أن يحتوي على 10 أرقام فقط"),
-  taxNumber: z.string().min(5, "رقم التعريف الضريبي غير صالح"),
+  taxNumber: z
+    .string()
+    .regex(/^\d+$/, "رقم التعريف الضريبي يجب أن يحتوي على أرقام فقط (0-9).")
+    .min(5, "رقم التعريف الضريبي غير صالح"),
   summary: z
     .string()
     .max(2048, "الملخص يجب أن يكون أكثر تفصيلاً")
@@ -323,10 +338,8 @@ export function getFormData(accountType: AccountType) {
     case "organization":
       return organizationForm();
     case "business":
-      console.log("Fetching business form data...");
       return businessForm();
     default:
-      console.error(`Invalid account type received: ${accountType}`);
       throw new Error(`Invalid account type: ${accountType}`);
   }
 }

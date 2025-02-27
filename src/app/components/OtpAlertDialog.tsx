@@ -17,16 +17,17 @@ import icon from "@/assets/icon/alertDialog.svg";
 import Image from "next/image";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 
-interface AlertDialogDemoProps {
+interface OtpAlertDialogProps {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
   otp: string;
   setOtp: Dispatch<SetStateAction<string>>;
   sure: (e?: React.BaseSyntheticEvent) => Promise<void>;
   resend_otp: () => Promise<void>;
+  classNameExtra: string;
 }
 
-export function AlertDialogDemo(props: AlertDialogDemoProps) {
+export function OtpAlertDialog(props:OtpAlertDialogProps) {
   const [timer, setTimer] = useState(0);
 
   const handleResend = () => {
@@ -66,13 +67,31 @@ export function AlertDialogDemo(props: AlertDialogDemoProps) {
               onChange={(value) => props.setOtp(value)}
             >
               <div className="text-center items-center mx-auto">
-                <InputOTPGroup className="gap-3">
-                  <InputOTPSlot className="inputOtp rounded-md" index={0} />
-                  <InputOTPSlot className="inputOtp rounded-md" index={1} />
-                  <InputOTPSlot className="inputOtp rounded-md" index={2} />
-                  <InputOTPSlot className="inputOtp rounded-md" index={3} />
-                  <InputOTPSlot className="inputOtp rounded-md" index={4} />
-                  <InputOTPSlot className="inputOtp rounded-md" index={5} />
+                <InputOTPGroup className="gap-3  !border-destructive">
+                  <InputOTPSlot
+                    className={`inputOtp rounded-md ${props.classNameExtra}`}
+                    index={0}
+                  />
+                  <InputOTPSlot
+                    className={`inputOtp rounded-md ${props.classNameExtra}`}
+                    index={1}
+                  />
+                  <InputOTPSlot
+                    className={`inputOtp rounded-md ${props.classNameExtra}`}
+                    index={2}
+                  />
+                  <InputOTPSlot
+                    className={`inputOtp rounded-md ${props.classNameExtra}`}
+                    index={3}
+                  />
+                  <InputOTPSlot
+                    className={`inputOtp rounded-md ${props.classNameExtra}`}
+                    index={4}
+                  />
+                  <InputOTPSlot
+                    className={`inputOtp rounded-md ${props.classNameExtra}`}
+                    index={5}
+                  />
                 </InputOTPGroup>
               </div>
             </InputOTP>

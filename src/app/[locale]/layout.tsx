@@ -12,6 +12,8 @@ import { getMessages, getTranslations } from "next-intl/server";
 import { Languages } from "../utils/enums";
 import clsx from "clsx";
 import NavBar from "../components/header/NavBar";
+import { Toaster } from "sonner";
+import { CircleCheck, CircleX } from "lucide-react";
 
 const notoKufi = Noto_Kufi_Arabic({
   subsets: ["arabic"],
@@ -71,6 +73,20 @@ export default async function RootLayout({
           >
             <AosInitializer />
             <NavBar />
+            <Toaster
+              icons={{
+                success: <CircleCheck />,
+                error: <CircleX />,
+              }}
+              toastOptions={{
+                classNames: {
+                  success: "!bg-success !text-foreground !border-none",
+                  error: "!bg-error !text-foreground !border-none",
+                  title: "!text-white mx-1 !font-bold ",
+                  icon: "!text-white !w-5 !h-5",
+                },
+              }}
+            />
             {children}
             <Footer />
           </ThemeProvider>

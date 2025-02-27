@@ -28,6 +28,8 @@ body[lang="ar"] {
     --footer-foreground: 203 4% 36%;
     --card: 0 0% 100%;
     --card-foreground: 222.2 84% 4.9%;
+    --success: 204 65% 44%;
+    --error: 353 61% 51%;
     --popover: 0 0% 100%;
     --popover-foreground: 222.2 84% 4.9%;
     --primary: 204 65% 44%;
@@ -65,6 +67,8 @@ body[lang="ar"] {
     --footer-foreground: 203 4% 36%;
     --card: 222.2 84% 4.9%;
     --card-foreground: 203 4% 36%;
+    --success: 204 65% 44%;
+    --error: 353 61% 51%;
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
     --hover: 205.71 18.42% 14.9%;

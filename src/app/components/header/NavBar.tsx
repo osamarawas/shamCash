@@ -80,7 +80,7 @@ export default function NavBar() {
             <Link
               key={link.id}
               href={link.Path}
-              className={`text-lg transition-colors hover:text-primary ${
+              className={`transition-colors hover:text-primary ${
                 isActive(link.Path) ? "text-primary font-semibold" : ""
               }`}
             >
@@ -118,7 +118,7 @@ export default function NavBar() {
             <Link
               key={link.id}
               href={link.Path}
-              className={`text-lg transition-colors hover:text-primary ${
+              className={`transition-colors hover:text-primary ${
                 isActive(link.Path) ? "text-primary font-semibold" : ""
               }`}
               onClick={() => setIsOpen(false)}
