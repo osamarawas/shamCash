@@ -520,6 +520,17 @@
       "placeholder": "صورة الترخيص"
     }
   },
+  "errors": {
+    "invalidEmail": "البريد الإلكتروني غير صالح",
+    "required": "الحقل مطلوب",
+    "accountNumberLength": "رقم الحساب يجب أن يكون 16 رقمًا على الأقل",
+    "invalidPhoneNumber": "رقم الهاتف يجب أن يبدأ بـ 09 ويتكون من 10 أرقام فقط",
+    "phoneNumberLength": "رقم الهاتف يجب أن يحتوي على 10 أرقام فقط",
+    "taxNumberDigitsOnly": "رقم التعريف الضريبي يجب أن يحتوي على أرقام فقط (0-9).",
+    "invalidTaxNumber": "رقم التعريف الضريبي غير صالح",
+    "summaryTooLong": "الملخص يجب أن يكون أكثر تفصيلاً",
+    "imageRequired": "يجب رفع الصورة"
+  },
   "download": "تنزيل",
   "Android": "اندرويد",
   "search": "بحث",

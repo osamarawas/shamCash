@@ -520,6 +520,18 @@
       "placeholder": "granted license image"
     }
   },
+"errors": {
+  "invalidEmail": "Invalid email address",
+  "required": "This field is required",
+  "accountNumberLength": "Account number must be at least 16 digits long",
+  "invalidPhoneNumber": "Phone number must start with 09 and be exactly 10 digits long",
+  "phoneNumberLength": "Phone number must contain exactly 10 digits",
+  "taxNumberDigitsOnly": "Tax number must contain only digits (0-9)",
+  "invalidTaxNumber": "Invalid tax number",
+  "summaryTooLong": "Summary must be more detailed",
+  "imageRequired": "Image upload is required"
+},
+  
   "Android": "Android",
   "download": "download",
   "search": "Search",

@@ -1,6 +1,7 @@
 import { AccountType, DynamicForm } from "@/app/utils/types";
 import { useTranslations } from "next-intl";
 import { z } from "zod";
+import { t } from "i18next";
 
 export const businessForm = (): DynamicForm<{
   email: string;
@@ -256,85 +257,86 @@ export const organizationForm = (): DynamicForm<{
 };
 
 export const businessformSchema = z.object({
-  email: z.string().email("البريد الإلكتروني غير صالح").min(1, "الحقل مطلوب"),
+  email: z.string().email(t("errors.invalidEmail")).min(1, t("errors.required")),
   accountNumber: z.preprocess(
     (val) => Number(val),
     z.number().refine((val) => val.toString().length >= 16, {
-      message: "رقم الحساب يجب أن يكون 16 رقمًا على الأقل",
+      message: t("errors.accountNumberLength"),
     })
   ),
-  userName: z.string().min(1, "الحقل مطلوب"),
+  userName: z.string().min(1, t("errors.required")),
   phoneNumber: z
     .string()
-    .regex(/^09\d{8}$/, "رقم الهاتف يجب أن يبدأ بـ 09 ويتكون من 10 أرقام فقط")
-    .length(10, "رقم الهاتف يجب أن يحتوي على 10 أرقام فقط"),
+    .regex(/^09\d{8}$/, t("errors.invalidPhoneNumber"))
+    .length(10, t("errors.phoneNumberLength")),
   taxNumber: z
     .string()
-    .regex(/^\d+$/, "رقم التعريف الضريبي يجب أن يحتوي على أرقام فقط (0-9).")
-    .min(5, "رقم التعريف الضريبي غير صالح"),
+    .regex(/^\d+$/, t("errors.taxNumberDigitsOnly"))
+    .min(5, t("errors.invalidTaxNumber")),
   summary: z
     .string()
-    .max(2048, "الملخص يجب أن يكون أكثر تفصيلاً")
-    .min(1, "الحقل مطلوب"),
+    .max(2048, t("errors.summaryTooLong"))
+    .min(1, t("errors.required")),
 
   commercialRegisterPhoto: z
     .any()
-    .refine((file) => file?.length > 0, "يجب رفع الصورة"),
-  licensePhoto: z.any().refine((file) => file?.length > 0, "يجب رفع الصورة"),
+    .refine((file) => file?.length > 0, t("errors.imageRequired")),
+  licensePhoto: z.any().refine((file) => file?.length > 0, t("errors.imageRequired")),
   ownerIdentityImageFS: z
     .any()
-    .refine((file) => file?.length > 0, "يجب رفع الصورة"),
+    .refine((file) => file?.length > 0, t("errors.imageRequired")),
   ownerIdentityImageBS: z
     .any()
-    .refine((file) => file?.length > 0, "يجب رفع الصورة"),
+    .refine((file) => file?.length > 0, t("errors.imageRequired")),
   commissionerIdentityImageFS: z
     .any()
-    .refine((file) => file?.length > 0, "يجب رفع الصورة"),
+    .refine((file) => file?.length > 0, t("errors.imageRequired")),
   commissionerIdentityImageBS: z
     .any()
-    .refine((file) => file?.length > 0, "يجب رفع الصورة"),
+    .refine((file) => file?.length > 0, t("errors.imageRequired")),
   physicalAddressImage: z
     .any()
-    .refine((file) => file?.length > 0, "يجب رفع الصورة"),
+    .refine((file) => file?.length > 0, t("errors.imageRequired")),
 });
 
 export const organizationformSchema = z.object({
-  email: z.string().email("البريد الإلكتروني غير صالح").min(1, "الحقل مطلوب"),
+  email: z.string().email(t("errors.invalidEmail")).min(1, t("errors.required")),
   accountNumber: z.preprocess(
     (val) => Number(val),
     z.number().refine((val) => val.toString().length >= 16, {
-      message: "رقم الحساب يجب أن يكون 16 رقمًا على الأقل",
+      message: t("errors.accountNumberLength"),
     })
   ),
-  userName: z.string().min(1, "الحقل مطلوب"),
+  userName: z.string().min(1, t("errors.required")),
   phoneNumber: z
     .string()
-    .regex(/^09\d{8}$/, "رقم الهاتف يجب أن يبدأ بـ 09 ويتكون من 10 أرقام فقط")
-    .length(10, "رقم الهاتف يجب أن يحتوي على 10 أرقام فقط"),
+    .regex(/^09\d{8}$/, t("errors.invalidPhoneNumber"))
+    .length(10, t("errors.phoneNumberLength")),
   taxNumber: z
     .string()
-    .regex(/^\d+$/, "رقم التعريف الضريبي يجب أن يحتوي على أرقام فقط (0-9).")
-    .min(5, "رقم التعريف الضريبي غير صالح"),
+    .regex(/^\d+$/, t("errors.taxNumberDigitsOnly"))
+    .min(5, t("errors.invalidTaxNumber")),
   summary: z
     .string()
-    .max(2048, "الملخص يجب أن يكون أكثر تفصيلاً")
-    .min(1, "الحقل مطلوب"),
-  licensePhoto: z.any().refine((file) => file?.length > 0, "يجب رفع الصورة"),
+    .max(2048, t("errors.summaryTooLong"))
+    .min(1, t("errors.required")),
+  
+  licensePhoto: z.any().refine((file) => file?.length > 0, t("errors.imageRequired")),
   ownerIdentityImageFS: z
     .any()
-    .refine((file) => file?.length > 0, "يجب رفع الصورة"),
+    .refine((file) => file?.length > 0, t("errors.imageRequired")),
   ownerIdentityImageBS: z
     .any()
-    .refine((file) => file?.length > 0, "يجب رفع الصورة"),
+    .refine((file) => file?.length > 0, t("errors.imageRequired")),
   commissionerIdentityImageFS: z
     .any()
-    .refine((file) => file?.length > 0, "يجب رفع الصورة"),
+    .refine((file) => file?.length > 0, t("errors.imageRequired")),
   commissionerIdentityImageBS: z
     .any()
-    .refine((file) => file?.length > 0, "يجب رفع الصورة"),
+    .refine((file) => file?.length > 0, t("errors.imageRequired")),
   physicalAddressImage: z
     .any()
-    .refine((file) => file?.length > 0, "يجب رفع الصورة"),
+    .refine((file) => file?.length > 0, t("errors.imageRequired")),
 });
 
 export type FormBusinessType = z.infer<typeof businessformSchema>;
