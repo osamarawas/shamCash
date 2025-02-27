@@ -1,4 +1,5 @@
 import { AccountType, DynamicForm } from "@/app/utils/types";
+import { useTranslations } from "next-intl";
 import { z } from "zod";
 
 export const businessForm = (): DynamicForm<{
@@ -16,6 +17,8 @@ export const businessForm = (): DynamicForm<{
   commissionerIdentityImageBS?: string;
   physicalAddressImage?: string;
 }> => {
+  const t = useTranslations();
+
   return {
     id: "business",
     title: "Business Account Documentation",
@@ -23,88 +26,88 @@ export const businessForm = (): DynamicForm<{
     fields: {
       email: {
         type: "email",
-        label: "البريد الالكتروني",
-        placeholder: "البريد الالكتروني",
+        label: t("verificationForm.email.label"),
+        placeholder: t("verificationForm.email.placeholder"),
         name: "email",
       },
       accountNumber: {
         type: "text",
-        label: "رقم الحساب",
-        placeholder: "رقم الحساب",
+        label: t("verificationForm.account_number.label"),
+        placeholder: t("verificationForm.account_number.placeholder"),
         name: "accountNumber",
         maxLength: 16,
       },
       userName: {
         type: "text",
-        label: "اسم الحساب",
-        placeholder: "اسم الحساب",
+        label: t("verificationForm.account_name.label"),
+        placeholder: t("verificationForm.account_name.placeholder"),
         name: "userName",
       },
       phoneNumber: {
         type: "text",
-        label: "رقم الهاتف",
-        placeholder: "رقم الهاتف",
+        label: t("verificationForm.account_phone_number.label"),
+        placeholder: t("verificationForm.account_phone_number.placeholder"),
         name: "phoneNumber",
         maxLength: 10,
       },
       taxNumber: {
         type: "text",
-        label: "رقم التعريف الضريبي",
-        placeholder: "رقم التعريف الضريبي",
+        label: t("verificationForm.tax_identification_number.label"),
+        placeholder: t("verificationForm.tax_identification_number.placeholder"),
         name: "taxNumber",
       },
       summary: {
         type: "textarea",
-        label: " ملخص عن أنشطة الحساب",
-        placeholder: "اكتب هنا",
+        label: t("verificationForm.account_activity_summary.label"),
+        placeholder: t("verificationForm.account_activity_summary.placeholder"),
         name: "summary",
       },
       commercialRegisterPhoto: {
         type: "file",
-        label: "صورة السجل التجاري",
-        placeholder: "صورة السجل التجاري",
+        label: t("verificationForm.commercial_register_image.label"),
+        placeholder: t("verificationForm.commercial_register_image.placeholder"),
         name: "commercialRegisterPhoto",
         accept: "image/.jpg, .jpeg, .png",
       },
       licensePhoto: {
         type: "file",
-        label: "صورة رخصة مزاولة مهنة",
-        placeholder: "صورة رخصة مزاولة مهنة",
+        label: t("verificationForm.practice_license_image.label"),
+        placeholder: t("verificationForm.practice_license_image.placeholder"),
         name: "licensePhoto",
         accept: "image/.jpg, .jpeg, .png",
       },
       physicalAddressImage: {
         type: "file",
-        label: "صورة وثيقة تحمل الرقم الفيزيائي",
-        placeholder: "صورة وثيقة تحمل الرقم الفيزيائي",
+        label: t("verificationForm.physical_address_document.label"),
+        placeholder: t("verificationForm.physical_address_document.placeholder"),
         name: "physicalAddressImage",
         accept: "image/.jpg, .jpeg, .png",
       },
       ownerIdentityImageFS: {
         type: "file",
-        label: "صورة هوية المالك",
-        placeholder: "الوجه الامامي",
+        label: t("verificationForm.owner_id_image.label"),
+        placeholder: t("verificationForm.owner_id_image.placeholder"),
         name: "ownerIdentityImageFS",
         accept: "image/.jpg, .jpeg, .png",
       },
       ownerIdentityImageBS: {
         type: "file",
-        label: "صورة هوية المالك",
-        placeholder: "الوجه الخلفي",
+        label: t("verificationForm.owner_id_image.label"),
+        placeholder: t("verificationForm.owner_id_image.placeholder1"),
         name: "ownerIdentityImageBS",
         accept: "image/.jpg, .jpeg, .png",
       },
       commissionerIdentityImageFS: {
         type: "file",
-        label: "صورة هوية المفوض",
-        placeholder: "الوجه الامامي",
+        label: t("verificationForm.delegate_id_image.label"),
+        placeholder: t("verificationForm.delegate_id_image.placeholder"),
         name: "commissionerIdentityImageFS",
         accept: "image/.jpg, .jpeg, .png",
       },
       commissionerIdentityImageBS: {
         type: "file",
-        label: "صورة هوية المفوض",
-        placeholder: "الوجه الخلفي",
+        label: t("verificationForm.delegate_id_image.label"),
+        placeholder: t("verificationForm.delegate_id_image.placeholder1"),
         name: "commissionerIdentityImageBS",
         accept: "image/.jpg, .jpeg, .png",
       },
@@ -136,6 +139,8 @@ export const organizationForm = (): DynamicForm<{
   commissionerIdentityImageBS?: string;
   physicalAddressImage?: string;
 }> => {
+  const t = useTranslations();
+
   return {
     id: "organization",
     title: "organization Account Documentation",
@@ -143,82 +148,82 @@ export const organizationForm = (): DynamicForm<{
     fields: {
       email: {
         type: "email",
-        label: "البريد الالكتروني",
-        placeholder: "البريد الالكتروني",
+        label: t("verificationForm.email.label"),
+        placeholder: t("verificationForm.email.placeholder"),
         name: "email",
       },
       accountNumber: {
         type: "text",
-        label: "رقم الحساب",
-        placeholder: "رقم الحساب",
+        label: t("verificationForm.account_number.label"),
+        placeholder: t("verificationForm.account_number.placeholder"),
         name: "accountNumber",
         maxLength: 16,
       },
       userName: {
         type: "text",
-        label: "اسم الحساب",
-        placeholder: "اسم الحساب",
+        label: t("verificationForm.account_name.label"),
+        placeholder: t("verificationForm.account_name.placeholder"),
         name: "userName",
       },
       phoneNumber: {
         type: "text",
-        label: "رقم الهاتف",
-        placeholder: "رقم الهاتف",
+        label: t("verificationForm.account_phone_number.label"),
+        placeholder: t("verificationForm.account_phone_number.placeholder"),
         name: "phoneNumber",
         maxLength: 10,
       },
       taxNumber: {
         type: "text",
-        label: "رقم التعريف الضريبي",
-        placeholder: "رقم التعريف الضريبي",
+        label: t("verificationForm.tax_identification_number.label"),
+        placeholder: t("verificationForm.tax_identification_number.placeholder"),
         name: "taxNumber",
       },
       summary: {
         type: "textarea",
-        label: " ملخص عن أنشطة الحساب",
-        placeholder: "اكتب هنا",
+        label: t("verificationForm.account_activity_summary.label"),
+        placeholder: t("verificationForm.account_activity_summary.placeholder"),
         name: "summary",
       },
 
       licensePhoto: {
         type: "file",
-        label: "صورة رخصة مزاولة مهنة",
-        placeholder: "صورة رخصة مزاولة مهنة",
+        label: t("verificationForm.licensePhotoOrganization.label"),
+        placeholder: t("verificationForm.licensePhotoOrganization.placeholder"),
         name: "licensePhoto",
         accept: "image/.jpg, .jpeg, .png",
       },
       physicalAddressImage: {
         type: "file",
-        label: "صورة وثيقة تحمل الرقم الفيزيائي",
-        placeholder: "صورة وثيقة تحمل الرقم الفيزيائي",
+        label: t("verificationForm.physical_address_document.label"),
+        placeholder: t("verificationForm.physical_address_document.placeholder"),
         name: "physicalAddressImage",
         accept: "image/.jpg, .jpeg, .png",
       },
       ownerIdentityImageFS: {
         type: "file",
-        label: "صورة هوية المالك",
-        placeholder: "الوجه الامامي",
+        label: t("verificationForm.owner_id_image.label"),
+        placeholder: t("verificationForm.owner_id_image.placeholder"),
         name: "ownerIdentityImageFS",
         accept: "image/.jpg, .jpeg, .png",
       },
       ownerIdentityImageBS: {
         type: "file",
-        label: "صورة هوية المالك",
-        placeholder: "الوجه الخلفي",
+        label: t("verificationForm.owner_id_image.label"),
+        placeholder: t("verificationForm.owner_id_image.placeholder1"),
         name: "ownerIdentityImageBS",
         accept: "image/.jpg, .jpeg, .png",
       },
       commissionerIdentityImageFS: {
         type: "file",
-        label: "صورة هوية المفوض",
-        placeholder: "الوجه الامامي",
+        label: t("verificationForm.delegate_id_image.label"),
+        placeholder: t("verificationForm.delegate_id_image.placeholder"),
         name: "commissionerIdentityImageFS",
         accept: "image/.jpg, .jpeg, .png",
       },
       commissionerIdentityImageBS: {
         type: "file",
-        label: "صورة هوية المفوض",
-        placeholder: "الوجه الخلفي",
+        label: t("verificationForm.delegate_id_image.label"),
+        placeholder: t("verificationForm.delegate_id_image.placeholder1"),
         name: "commissionerIdentityImageBS",
         accept: "image/.jpg, .jpeg, .png",
       },

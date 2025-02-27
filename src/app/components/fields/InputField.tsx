@@ -47,15 +47,20 @@ const InputField = <T extends Record<string, any>>({
 
   return (
     <div dir={setDirction(locale)}>
-      <label
-        className="block text-sm font-medium text-foreground  "
-        htmlFor={String(name)}
-      >
-        {label}
-      </label>
+      {/* عرض التسمية */}
+      {label && (
+        <label
+          className="block text-sm font-medium text-foreground"
+          htmlFor={String(name)}
+        >
+          {label}
+        </label>
+      )}
+
+      {/* الحقل بناءً على نوعه */}
       {type === "text" || type === "email" || type === "password" ? (
         <Input
-          {...register(name)}
+          {...register(name)} // ربط الحقل بـ useForm
           type={type}
           placeholder={placeholder}
           disabled={disabled}
@@ -71,7 +76,7 @@ const InputField = <T extends Record<string, any>>({
         />
       ) : (
         <Textarea
-          {...register(name)}
+          {...register(name)} // ربط الحقل بـ useForm
           placeholder={placeholder}
           disabled={disabled}
           autoFocus={autoFocus}
@@ -84,6 +89,7 @@ const InputField = <T extends Record<string, any>>({
         />
       )}
 
+      {/* عرض الخطأ إذا كان موجودًا */}
       {error && error.message && (
         <p
           className={`text-accent mt-2 text-sm font-medium ${
