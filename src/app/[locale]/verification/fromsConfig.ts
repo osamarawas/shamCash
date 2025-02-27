@@ -32,6 +32,7 @@ export const businessForm = (): DynamicForm<{
         label: "رقم الحساب",
         placeholder: "رقم الحساب",
         name: "accountNumber",
+        maxLength: 16,
       },
       userName: {
         type: "text",
@@ -151,6 +152,7 @@ export const organizationForm = (): DynamicForm<{
         label: "رقم الحساب",
         placeholder: "رقم الحساب",
         name: "accountNumber",
+        maxLength: 16,
       },
       userName: {
         type: "text",

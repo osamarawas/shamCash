@@ -8,7 +8,7 @@ import imgLightAr from "@/assets/images/verficationimage.svg";
 import imgDarkAr from "@/assets/images/verficationimage-dark.svg";
 import imgDarkEn from "@/assets/images/imgVrfication-darkEn.svg";
 import imgLightEn from "@/assets/images/imgVrfication-lightEn.svg";
-import { AlertDialogDemo } from "@/app/components/AlertDialog";
+import { OtpAlertDialog } from "@/app/components/OtpAlertDialog";
 import PathLine from "@/app/components/PathLine";
 import { useLocale, useTranslations } from "next-intl";
 import { postData } from "@/app/utils/apiService";
@@ -125,7 +125,10 @@ const MultiStepForm = () => {
       } else {
         if (+response.result === 1306) {
           console.log("otp is invalid ");
-        } else {
+          setErrorsApi((prev) => ({
+            ...prev,
+            otpError: true,
+          }));        } else {
           console.log("حصل حذث غير متوقع");
         }
       }
@@ -193,13 +196,16 @@ const MultiStepForm = () => {
           pagename={t(`verification.categories.${accountType}.name`)}
           backname={t("verification.title")}
         />
-        <AlertDialogDemo
+        <OtpAlertDialog
           open={openalert}
           setOpen={setOpenAlert}
           setOtp={setOtp}
           otp={otp}
           sure={handleSubmit(onSubmit)}
           resend_otp={handleSubmit(onCheckOtp)}
+          classNameExtra={`${
+            errorsApi.otpError && "border-2 !border-destructive"
+          }`}
         />
         <div className="mx-auto px-6 lg:px-16 flex flex-col lg:flex-row items-center justify-between">
           {/* الصورة على اليسار */}
