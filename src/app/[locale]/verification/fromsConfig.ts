@@ -323,9 +323,10 @@ export function getFormData(accountType: AccountType) {
     case "organization":
       return organizationForm();
     case "business":
-      console.log("business");
+      console.log("Fetching business form data...");
       return businessForm();
     default:
+      console.error(`Invalid account type received: ${accountType}`);
       throw new Error(`Invalid account type: ${accountType}`);
   }
 }
