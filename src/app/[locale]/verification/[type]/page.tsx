@@ -97,11 +97,13 @@ const MultiStepForm = () => {
       } else {
         if (+response.result === 1107) {
           toast.error("تم ارسال الطلب سابقاً.");
-        } else if (+response.result === 1206)
+        } else {
+          setStep(1);
           setErrorsApi((prev) => ({
             ...prev,
             accountError: true,
           }));
+        }
       }
     } catch (error) {
       console.error("❌ فشل الإرسال:", error);
