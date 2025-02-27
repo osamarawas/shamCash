@@ -68,6 +68,7 @@ const MultiStepForm = () => {
   });
 
   function getOtpBody(data: formType): Record<string, string> {
+    console.log(data);
     const oData: Record<string, string> = {};
     const fieldData: (keyof formType)[] = [
       "phoneNumber",
@@ -81,6 +82,7 @@ const MultiStepForm = () => {
     return oData;
   }
   const onCheckOtp = async (data: formType) => {
+    console.log(data);
     try {
       const otpData = getOtpBody(data);
       const response = await postData(
@@ -118,7 +120,6 @@ const MultiStepForm = () => {
         `${formData.endpoint.verificationAccount.url}`,
         otpWithData
       );
-      console.log(response);
       if (response.succeeded) {
         toast.success(" تم ارسال الطلب  بنجاح.");
         setOpenAlert(false);
@@ -128,7 +129,8 @@ const MultiStepForm = () => {
           setErrorsApi((prev) => ({
             ...prev,
             otpError: true,
-          }));        } else {
+          }));
+        } else {
           console.log("حصل حذث غير متوقع");
         }
       }

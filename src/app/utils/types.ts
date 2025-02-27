@@ -105,6 +105,7 @@ export interface IFormField<T extends Record<string, any>> {
     | ".doc,.docx,.xml"
     | ".pdf";
   multiple?: boolean;
+  valueAsNumber?: boolean;
 }
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any

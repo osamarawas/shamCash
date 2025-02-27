@@ -27,6 +27,7 @@ interface InputFieldProps<T extends Record<string, any>> {
   maxLength?: number;
   readOnly?: boolean;
   classNameExtra?: string;
+  valueAsNumber?: boolean;
 }
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const InputField = <T extends Record<string, any>>({
@@ -42,6 +43,7 @@ const InputField = <T extends Record<string, any>>({
   register,
   maxLength,
   classNameExtra,
+  valueAsNumber,
 }: InputFieldProps<T>) => {
   const locale = useLocale() as Languages;
 
@@ -60,7 +62,7 @@ const InputField = <T extends Record<string, any>>({
       {/* الحقل بناءً على نوعه */}
       {type === "text" || type === "email" || type === "password" ? (
         <Input
-          {...register(name)} // ربط الحقل بـ useForm
+          {...register(name, { valueAsNumber: valueAsNumber })}
           type={type}
           placeholder={placeholder}
           disabled={disabled}
@@ -76,7 +78,7 @@ const InputField = <T extends Record<string, any>>({
         />
       ) : (
         <Textarea
-          {...register(name)} // ربط الحقل بـ useForm
+          {...register(name, { valueAsNumber: valueAsNumber })}
           placeholder={placeholder}
           disabled={disabled}
           autoFocus={autoFocus}

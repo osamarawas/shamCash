@@ -17,6 +17,7 @@ export const businessForm = (): DynamicForm<{
   commissionerIdentityImageBS?: string;
   physicalAddressImage?: string;
 }> => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const t = useTranslations();
 
   return {
@@ -36,6 +37,7 @@ export const businessForm = (): DynamicForm<{
         placeholder: t("verificationForm.account_number.placeholder"),
         name: "accountNumber",
         maxLength: 16,
+        valueAsNumber: true,
       },
       userName: {
         type: "text",
@@ -53,7 +55,9 @@ export const businessForm = (): DynamicForm<{
       taxNumber: {
         type: "text",
         label: t("verificationForm.tax_identification_number.label"),
-        placeholder: t("verificationForm.tax_identification_number.placeholder"),
+        placeholder: t(
+          "verificationForm.tax_identification_number.placeholder"
+        ),
         name: "taxNumber",
       },
       summary: {
@@ -65,7 +69,9 @@ export const businessForm = (): DynamicForm<{
       commercialRegisterPhoto: {
         type: "file",
         label: t("verificationForm.commercial_register_image.label"),
-        placeholder: t("verificationForm.commercial_register_image.placeholder"),
+        placeholder: t(
+          "verificationForm.commercial_register_image.placeholder"
+        ),
         name: "commercialRegisterPhoto",
         accept: "image/.jpg, .jpeg, .png",
       },
@@ -79,7 +85,9 @@ export const businessForm = (): DynamicForm<{
       physicalAddressImage: {
         type: "file",
         label: t("verificationForm.physical_address_document.label"),
-        placeholder: t("verificationForm.physical_address_document.placeholder"),
+        placeholder: t(
+          "verificationForm.physical_address_document.placeholder"
+        ),
         name: "physicalAddressImage",
         accept: "image/.jpg, .jpeg, .png",
       },
@@ -139,6 +147,7 @@ export const organizationForm = (): DynamicForm<{
   commissionerIdentityImageBS?: string;
   physicalAddressImage?: string;
 }> => {
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   const t = useTranslations();
 
   return {
@@ -158,6 +167,7 @@ export const organizationForm = (): DynamicForm<{
         placeholder: t("verificationForm.account_number.placeholder"),
         name: "accountNumber",
         maxLength: 16,
+        valueAsNumber: true,
       },
       userName: {
         type: "text",
@@ -175,7 +185,9 @@ export const organizationForm = (): DynamicForm<{
       taxNumber: {
         type: "text",
         label: t("verificationForm.tax_identification_number.label"),
-        placeholder: t("verificationForm.tax_identification_number.placeholder"),
+        placeholder: t(
+          "verificationForm.tax_identification_number.placeholder"
+        ),
         name: "taxNumber",
       },
       summary: {
@@ -195,7 +207,9 @@ export const organizationForm = (): DynamicForm<{
       physicalAddressImage: {
         type: "file",
         label: t("verificationForm.physical_address_document.label"),
-        placeholder: t("verificationForm.physical_address_document.placeholder"),
+        placeholder: t(
+          "verificationForm.physical_address_document.placeholder"
+        ),
         name: "physicalAddressImage",
         accept: "image/.jpg, .jpeg, .png",
       },
@@ -243,10 +257,12 @@ export const organizationForm = (): DynamicForm<{
 
 export const businessformSchema = z.object({
   email: z.string().email("البريد الإلكتروني غير صالح").min(1, "الحقل مطلوب"),
-  accountNumber: z
-    .string()
-    .regex(/^\d+$/, "رقم الحساب يجب أن يحتوي على أرقام فقط (0-9).")
-    .min(16, "رقم الحساب يجب أن يكون 16 أحرف على الأقل"),
+  accountNumber: z.preprocess(
+    (val) => Number(val),
+    z.number().refine((val) => val.toString().length >= 16, {
+      message: "رقم الحساب يجب أن يكون 16 رقمًا على الأقل",
+    })
+  ),
   userName: z.string().min(1, "الحقل مطلوب"),
   phoneNumber: z
     .string()
@@ -284,10 +300,12 @@ export const businessformSchema = z.object({
 
 export const organizationformSchema = z.object({
   email: z.string().email("البريد الإلكتروني غير صالح").min(1, "الحقل مطلوب"),
-  accountNumber: z
-    .string()
-    .regex(/^\d+$/, "رقم الحساب يجب أن يحتوي على أرقام فقط (0-9).")
-    .min(16, "رقم الحساب يجب أن يكون 5 أحرف على الأقل"),
+  accountNumber: z.preprocess(
+    (val) => Number(val),
+    z.number().refine((val) => val.toString().length >= 16, {
+      message: "رقم الحساب يجب أن يكون 16 رقمًا على الأقل",
+    })
+  ),
   userName: z.string().min(1, "الحقل مطلوب"),
   phoneNumber: z
     .string()
