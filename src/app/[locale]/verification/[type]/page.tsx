@@ -22,7 +22,7 @@ import {
 } from "../fromsConfig";
 import InputField from "@/app/components/fields/InputField";
 import { setDirctionReverse } from "@/app/utils/helperServer";
-import { Languages } from "@/app/utils/enums";
+import { Languages, ResponseCodes } from "@/app/utils/enums";
 import { useTheme } from "next-themes";
 import { toast } from "sonner";
 import { z, ZodSchema } from "zod";
@@ -35,6 +35,7 @@ const MultiStepForm = () => {
   const schema = getFormSchema(accountType) as unknown as ZodSchema<
     FormBusinessType | FormOrganizationType
   >;
+  const t = useTranslations("");
   type formType = z.infer<typeof schema>;
   const formData = getFormData(accountType);
   const [step, setStep] = useState(1);
@@ -42,7 +43,6 @@ const MultiStepForm = () => {
   const [otp, setOtp] = useState<string>("");
   const locale = useLocale() as Languages;
   const { resolvedTheme } = useTheme();
-  const t = useTranslations("");
   const [errorsApi, setErrorsApi] = useState({
     accountError: false,
     otpError: false,
@@ -62,10 +62,19 @@ const MultiStepForm = () => {
     register,
     handleSubmit,
     setValue,
+
     formState: { errors },
   } = useForm<formType>({
     resolver: zodResolver(schema),
   });
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const onError = (errors: any) => {
+    const parsed = schema.safeParse(errors);
+
+    if (!parsed.success) {
+      toast.error("يرجى التحقق من البيانات المدخلة.");
+    }
+  };
 
   function getOtpBody(data: formType): Record<string, string> {
     console.log(data);
@@ -82,7 +91,6 @@ const MultiStepForm = () => {
     return oData;
   }
   const onCheckOtp = async (data: formType) => {
-    console.log(data);
     try {
       const otpData = getOtpBody(data);
       const response = await postData(
@@ -97,9 +105,14 @@ const MultiStepForm = () => {
           accountError: false,
         }));
       } else {
-        if (+response.result === 1107) {
+        if (
+          +response.result === ResponseCodes.ALREADY_SEND_DATA_FOR_VERIFICATIONS
+        ) {
           toast.error("تم ارسال الطلب سابقاً.");
         } else {
+          toast.error(
+            "الحساب غير موجود. يرجى التحقق من البيانات المدخلة والتأكد من صحتها."
+          );
           setStep(1);
           setErrorsApi((prev) => ({
             ...prev,
@@ -124,18 +137,18 @@ const MultiStepForm = () => {
         toast.success(" تم ارسال الطلب  بنجاح.");
         setOpenAlert(false);
       } else {
-        if (+response.result === 1306) {
-          console.log("otp is invalid ");
+        if (+response.result === ResponseCodes.OTP_IS_INVALID) {
           setErrorsApi((prev) => ({
             ...prev,
             otpError: true,
           }));
         } else {
-          console.log("حصل حذث غير متوقع");
+          toast.error("حصل خطا غير متوقع");
         }
       }
     } catch (error) {
       console.error("❌ فشل الإرسال:", error);
+      toast.error("فشل في الاتصال بالخادم. يرجى المحاولة لاحقاً.");
     }
   };
 
@@ -205,8 +218,9 @@ const MultiStepForm = () => {
           otp={otp}
           sure={handleSubmit(onSubmit)}
           resend_otp={handleSubmit(onCheckOtp)}
+          otpError={errorsApi.otpError}
           classNameExtra={`${
-            errorsApi.otpError && "border-2 !border-destructive"
+            errorsApi.otpError && "border !border-destructive"
           }`}
         />
         <div className="mx-auto px-6 lg:px-16 flex flex-col lg:flex-row items-center justify-between">
@@ -222,7 +236,7 @@ const MultiStepForm = () => {
           </div>
           {/* الفورم على اليمين */}
           <div className="lg:w-1/3 p-8">
-            <form onSubmit={handleSubmit(onCheckOtp)}>
+            <form onSubmit={handleSubmit(onCheckOtp, onError)}>
               {Object.keys(formData.fields).length > 0 ? (
                 <>
                   {/* القسم الأول */}
@@ -417,7 +431,7 @@ const MultiStepForm = () => {
                         className="w-16 h-9 inline-flex mt-3 py-2 px-4 font-semibold text-md bg-inherit border-none shadow-none text-primary rounded-md white justify-center items-center hover:bg-gray-200 cursor-pointer"
                         onClick={() => setStep(1)}
                       >
-                        رجوع
+                        {t("forms.back")}
                       </span>
                     )}
                   </div>

@@ -9,3 +9,6 @@ export function setDirctionReverse(locale: Languages) {
 export function setTextDirection(locale: Languages) {
   return locale === Languages.ARABIC ? "text-right" : "text-left";
 }
+export function setposition(locale: Languages) {
+  return locale === Languages.ARABIC ? "bottom-right" : "bottom-left";
+}

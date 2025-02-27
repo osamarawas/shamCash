@@ -520,6 +520,9 @@
       "placeholder": "صورة الترخيص"
     }
   },
+  "forms": {
+    "back": " رجوع"
+  },
   "download": "تنزيل",
   "Android": "اندرويد",
   "search": "بحث",

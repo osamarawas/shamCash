@@ -14,6 +14,11 @@ import clsx from "clsx";
 import NavBar from "../components/header/NavBar";
 import { Toaster } from "sonner";
 import { CircleCheck, CircleX } from "lucide-react";
+import {
+  setDirction,
+  setposition,
+  setTextDirection,
+} from "../utils/helperServer";
 
 const notoKufi = Noto_Kufi_Arabic({
   subsets: ["arabic"],
@@ -37,7 +42,7 @@ export async function generateMetadata(): Promise<Metadata> {
     applicationName: "شام كاش",
     icons: {
       icon: "/logo.svg", // تحديد أيقونة التطبيق
-    },  
+    },
   };
 }
 
@@ -74,15 +79,19 @@ export default async function RootLayout({
             <AosInitializer />
             <NavBar />
             <Toaster
+              dir={setDirction(locale)}
               icons={{
                 success: <CircleCheck />,
                 error: <CircleX />,
               }}
+              position={setposition(locale)}
               toastOptions={{
                 classNames: {
                   success: "!bg-success !text-foreground !border-none",
                   error: "!bg-error !text-foreground !border-none",
-                  title: "!text-white mx-1 !font-bold ",
+                  title: `!text-white mx-1 !font-bold ${setTextDirection(
+                    locale
+                  )}`,
                   icon: "!text-white !w-5 !h-5",
                 },
               }}

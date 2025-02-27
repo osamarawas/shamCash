@@ -25,9 +25,10 @@ interface OtpAlertDialogProps {
   sure: (e?: React.BaseSyntheticEvent) => Promise<void>;
   resend_otp: () => Promise<void>;
   classNameExtra: string;
+  otpError: boolean;
 }
 
-export function OtpAlertDialog(props:OtpAlertDialogProps) {
+export function OtpAlertDialog(props: OtpAlertDialogProps) {
   const [timer, setTimer] = useState(0);
 
   const handleResend = () => {
@@ -100,16 +101,23 @@ export function OtpAlertDialog(props:OtpAlertDialogProps) {
               className="text-center text-sm my-3 font-medium text-foreground"
             >
               <p>
-                إذا لم تستلم الرمز، يمكنك طلب{" "}
+                {props.otpError ? (
+                  <span className="text-error font-semibold">
+                    رمز OTP غير صحيح يمكنك طلب
+                  </span>
+                ) : (
+                  <>إذا لم تستلم الرمز، يمكنك طلب </>
+                )}
                 {timer > 0 ? (
-                  <span className=" font-semibold">
+                  <span className="font-semibold">
                     يمكنك إعادة الإرسال بعد {timer} ثانية.
                   </span>
                 ) : (
                   <span
-                    className="text-primary font-semibold cursor-pointer "
+                    className="text-primary font-semibold cursor-pointer"
                     onClick={handleResend}
                   >
+                    {" "}
                     إرساله مرة أخرى.
                   </span>
                 )}
