@@ -1,8 +1,22 @@
 import { AccountType, DynamicForm } from "@/app/utils/types";
-import { getTranslations } from "next-intl/server";
 import { z } from "zod";
+import { getTranslations } from "next-intl/server";
 
-export const businessForm = async (): Promise<DynamicForm<{ email: string; accountNumber: string; userName: string; phoneNumber: string; taxNumber: string; summary: string; commercialRegisterPhoto?: string; licensePhoto?: string; ownerIdentityImageFS?: string; ownerIdentityImageBS?: string; commissionerIdentityImageFS?: string; commissionerIdentityImageBS?: string; physicalAddressImage?: string; }>> => {
+export const businessForm = async (): Promise<DynamicForm<{
+  email: string;
+  accountNumber: string;
+  userName: string;
+  phoneNumber: string;
+  taxNumber: string;
+  summary: string;
+  commercialRegisterPhoto?: string;
+  licensePhoto?: string;
+  ownerIdentityImageFS?: string;
+  ownerIdentityImageBS?: string;
+  commissionerIdentityImageFS?: string;
+  commissionerIdentityImageBS?: string;
+  physicalAddressImage?: string;
+}>> => {
   const t = await getTranslations();
   return {
     id: "business",
@@ -11,87 +25,87 @@ export const businessForm = async (): Promise<DynamicForm<{ email: string; accou
     fields: {
       email: {
         type: "email",
-        label: t("verificationForm.email.label"),
-        placeholder: t("verificationForm.email.placeholder"),
+        label: "البريد الالكتروني",
+        placeholder: "البريد الالكتروني",
         name: "email",
       },
       accountNumber: {
         type: "text",
-        label: t("verificationForm.account_number.label"),
-        placeholder: t("verificationForm.account_number.placeholder"),
+        label: "رقم الحساب",
+        placeholder: "رقم الحساب",
         name: "accountNumber",
       },
       userName: {
         type: "text",
-        label: t("verificationForm.account_name.label"),
-        placeholder: t("verificationForm.account_name.placeholder"),
+        label: "اسم الحساب",
+        placeholder: "اسم الحساب",
         name: "userName",
       },
       phoneNumber: {
         type: "text",
-        label: t("verificationForm.account_phone_number.label"),
-        placeholder: t("verificationForm.account_phone_number.placeholder"),
+        label: "رقم الهاتف",
+        placeholder: "رقم الهاتف",
         name: "phoneNumber",
         maxLength: 10,
       },
       taxNumber: {
         type: "text",
-        label: t("verificationForm.tax_identification_number.label"),
-        placeholder: t("verificationForm.tax_identification_number.placeholder"),
+        label: "رقم التعريف الضريبي",
+        placeholder: "رقم التعريف الضريبي",
         name: "taxNumber",
       },
       summary: {
         type: "textarea",
-        label: t("verificationForm.account_activity_summary.label"),
-        placeholder: t("verificationForm.account_activity_summary.placeholder"),
+        label: " ملخص عن أنشطة الحساب",
+        placeholder: "اكتب هنا",
         name: "summary",
       },
       commercialRegisterPhoto: {
         type: "file",
-        label: t("verificationForm.commercial_register_image.label"),
-        placeholder: t("verificationForm.commercial_register_image.placeholder"),
+        label: "صورة السجل التجاري",
+        placeholder: "صورة السجل التجاري",
         name: "commercialRegisterPhoto",
         accept: "image/.jpg, .jpeg, .png",
       },
       licensePhoto: {
         type: "file",
-        label: t("verificationForm.practice_license_image.label"),
-        placeholder: t("verificationForm.practice_license_image.placeholder"),
+        label: "صورة رخصة مزاولة مهنة",
+        placeholder: "صورة رخصة مزاولة مهنة",
         name: "licensePhoto",
         accept: "image/.jpg, .jpeg, .png",
       },
       physicalAddressImage: {
         type: "file",
-        label: t("verificationForm.physical_address_document.label"),
-        placeholder: t("verificationForm.physical_address_document.placeholder"),
+        label: "صورة وثيقة تحمل الرقم الفيزيائي",
+        placeholder: "صورة وثيقة تحمل الرقم الفيزيائي",
         name: "physicalAddressImage",
         accept: "image/.jpg, .jpeg, .png",
       },
       ownerIdentityImageFS: {
         type: "file",
-        label: t("verificationForm.owner_id_image.label"),
-        placeholder: t("verificationForm.owner_id_image.placeholder"),
+        label: "صورة هوية المالك",
+        placeholder: "الوجه الامامي",
         name: "ownerIdentityImageFS",
         accept: "image/.jpg, .jpeg, .png",
       },
       ownerIdentityImageBS: {
         type: "file",
-        label: t("verificationForm.owner_id_image.label"),
-        placeholder: t("verificationForm.owner_id_image.placeholder1"),
+        label: "صورة هوية المالك",
+        placeholder: "الوجه الخلفي",
         name: "ownerIdentityImageBS",
         accept: "image/.jpg, .jpeg, .png",
       },
       commissionerIdentityImageFS: {
         type: "file",
-        label: t("verificationForm.delegate_id_image.label"),
-        placeholder: t("verificationForm.delegate_id_image.placeholder"),
+        label: "صورة هوية المفوض",
+        placeholder: "الوجه الامامي",
         name: "commissionerIdentityImageFS",
         accept: "image/.jpg, .jpeg, .png",
       },
       commissionerIdentityImageBS: {
         type: "file",
-        label: t("verificationForm.delegate_id_image.label"),
-        placeholder: t("verificationForm.delegate_id_image.placeholder1"),
+        label: "صورة هوية المفوض",
+        placeholder: "الوجه الخلفي",
         name: "commissionerIdentityImageBS",
         accept: "image/.jpg, .jpeg, .png",
       },
@@ -109,8 +123,23 @@ export const businessForm = async (): Promise<DynamicForm<{ email: string; accou
   };
 };
 
-export const organizationForm = async (): Promise<DynamicForm<{ email: string; accountNumber: string; userName: string; phoneNumber: string; taxNumber: string; summary: string; licensePhoto?: string; ownerIdentityImageFS?: string; ownerIdentityImageBS?: string; commissionerIdentityImageFS?: string; commissionerIdentityImageBS?: string; physicalAddressImage?: string; }>> => {
+export const organizationForm = async (): Promise<DynamicForm<{ 
+  email: string; 
+  accountNumber: string; 
+  userName: string; 
+  phoneNumber: string; 
+  taxNumber: string; 
+  summary: string; 
+  CopyOfTheLicense?: string; 
+  licensePhoto?: string; 
+  ownerIdentityImageFS?: string; 
+  ownerIdentityImageBS?: string; 
+  commissionerIdentityImageFS?: string; 
+  commissionerIdentityImageBS?: string; 
+  physicalAddressImage?: string; 
+}>> => {
   const t = await getTranslations();
+
   return {
     id: "organization",
     title: "Organization Account Documentation",
@@ -153,12 +182,11 @@ export const organizationForm = async (): Promise<DynamicForm<{ email: string; a
         placeholder: t("verificationForm.account_activity_summary.placeholder"),
         name: "summary",
       },
-      licensePhoto: {
+      CopyOfTheLicense: {
         type: "file",
-        label: t("verificationForm.practice_license_image.label"),
-        placeholder: t("verificationForm.practice_license_image.placeholder"),
-        name: "licensePhoto",
-        accept: "image/.jpg, .jpeg, .png",
+        label: t("verificationForm.granted_license_image.label"),
+        placeholder: t("verificationForm.granted_license_image.placeholder"),
+        name: "CopyOfTheLicense",
       },
       physicalAddressImage: {
         type: "file",
@@ -206,7 +234,6 @@ export const organizationForm = async (): Promise<DynamicForm<{ email: string; a
         method: "POST",
       },
     },
-
   };
 };
 

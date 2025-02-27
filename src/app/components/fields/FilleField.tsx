@@ -70,7 +70,7 @@ const FilleField = <T extends FieldValues>({
           {fileName || placeholder}
         </span>
 
-        {isUploaded ? (
+        {isUploaded || fileName ? (
           <IoIosCheckmarkCircleOutline className="w-5 h-5 success" />
         ) : (
           <Upload className="w-5 h-5 text-muted-foreground" />
