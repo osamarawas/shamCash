@@ -37,7 +37,6 @@ export const businessForm = (): DynamicForm<{
         placeholder: t("verificationForm.account_number.placeholder"),
         name: "accountNumber",
         maxLength: 16,
-        valueAsNumber: true,
       },
       userName: {
         type: "text",
@@ -167,7 +166,6 @@ export const organizationForm = (): DynamicForm<{
         placeholder: t("verificationForm.account_number.placeholder"),
         name: "accountNumber",
         maxLength: 16,
-        valueAsNumber: true,
       },
       userName: {
         type: "text",
