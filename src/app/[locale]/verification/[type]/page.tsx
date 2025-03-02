@@ -72,11 +72,12 @@ const MultiStepForm = () => {
     const parsed = schema.safeParse(errors);
 
     if (!parsed.success) {
-      toast.error(t("messages.checkEnteredData"));
+      toast.error("يرجى التحقق من البيانات المدخلة.");
     }
   };
 
   function getOtpBody(data: formType): Record<string, string> {
+    console.log(data);
     const oData: Record<string, string> = {};
     const fieldData: (keyof formType)[] = [
       "phoneNumber",
@@ -107,9 +108,11 @@ const MultiStepForm = () => {
         if (
           +response.result === ResponseCodes.ALREADY_SEND_DATA_FOR_VERIFICATIONS
         ) {
-          toast.error(t("messages.requestAlreadySent"));
+          toast.error("تم ارسال الطلب سابقاً.");
         } else {
-          toast.error(t("messages.accountNotFound"));
+          toast.error(
+            "الحساب غير موجود. يرجى التحقق من البيانات المدخلة والتأكد من صحتها."
+          );
           setStep(1);
           setErrorsApi((prev) => ({
             ...prev,
@@ -118,8 +121,8 @@ const MultiStepForm = () => {
         }
       }
     } catch (error) {
-      console.error(t("messages.requestFailed"), error);
-      toast.error(t("messages.serverConnectionFailed"));
+      console.error("❌ فشل الإرسال:", error);
+      toast.error("فشل في الاتصال بالخادم. يرجى المحاولة لاحقاً.");
     }
   };
 
@@ -130,11 +133,9 @@ const MultiStepForm = () => {
         `${formData.endpoint.verificationAccount.url}`,
         otpWithData
       );
-      console.log(response);
       if (response.succeeded) {
-        toast.success(t("messages.requestSentSuccessfully"));
+        toast.success(" تم ارسال الطلب  بنجاح.");
         setOpenAlert(false);
-        setOtp("");
       } else {
         if (+response.result === ResponseCodes.OTP_IS_INVALID) {
           setErrorsApi((prev) => ({
@@ -142,12 +143,12 @@ const MultiStepForm = () => {
             otpError: true,
           }));
         } else {
-          toast.error(t("messages.unexpectedError"));
+          toast.error("حصل خطا غير متوقع");
         }
       }
     } catch (error) {
-      console.error(t("messages.requestFailed"), error);
-      toast.error(t("messages.serverConnectionFailed"));
+      console.error("❌ فشل الإرسال:", error);
+      toast.error("فشل في الاتصال بالخادم. يرجى المحاولة لاحقاً.");
     }
   };
 

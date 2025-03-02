@@ -2,7 +2,7 @@ import { Languages } from "@/app/utils/enums";
 import { setDirction } from "@/app/utils/helperServer";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import React from "react";
 import {
   FieldError,
@@ -46,7 +46,7 @@ const InputField = <T extends Record<string, any>>({
   valueAsNumber,
 }: InputFieldProps<T>) => {
   const locale = useLocale() as Languages;
-
+  const t = useTranslations();
   return (
     <div dir={setDirction(locale)}>
       {/* عرض التسمية */}
@@ -98,7 +98,7 @@ const InputField = <T extends Record<string, any>>({
             error.message ? "text-destructive" : ""
           }`}
         >
-          {error.message as string}
+          {t(error.message) as string}
         </p>
       )}
     </div>

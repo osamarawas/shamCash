@@ -2,7 +2,7 @@ import { Languages } from "@/app/utils/enums";
 import { setDirction } from "@/app/utils/helperServer";
 import { Input } from "@/components/ui/input";
 import { IoIosCheckmarkCircleOutline } from "react-icons/io";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import React, { useState } from "react";
 import {
   FieldError,
@@ -51,6 +51,7 @@ const FilleField = <T extends FieldValues>({
 }: FilleFieldProps<T>) => {
   const locale = useLocale() as Languages;
   const [isUploaded, setIsUploaded] = useState(false);
+  const t = useTranslations();
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
@@ -110,7 +111,7 @@ const FilleField = <T extends FieldValues>({
             error.message ? "text-destructive" : ""
           }`}
         >
-          {error.message as string}
+          { t(error.message) as string}
         </p>
       )}
     </div>
