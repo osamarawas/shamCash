@@ -531,6 +531,15 @@
     "summaryTooLong": "الملخص يجب أن يكون أكثر تفصيلاً",
     "imageRequired": "يجب رفع الصورة"
   },
+  "messages": {
+    "checkEnteredData": "يرجى التحقق من البيانات المدخلة.",
+    "requestAlreadySent": "تم ارسال الطلب سابقاً.",
+    "accountNotFound": "الحساب غير موجود. يرجى التحقق من البيانات المدخلة والتأكد من صحتها.",
+    "serverConnectionFailed": "فشل في الاتصال بالخادم. يرجى المحاولة لاحقاً.",
+    "requestSentSuccessfully": "تم ارسال الطلب بنجاح.",
+    "unexpectedError": "حصل خطأ غير متوقع.",
+    "requestFailed": "فشل الإرسال."
+  },
   "forms": {
     "back": "رجوع",
     "Confirm": "تأكيد",

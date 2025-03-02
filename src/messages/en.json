@@ -531,6 +531,15 @@
     "summaryTooLong": "Summary must be more detailed",
     "imageRequired": "Image upload is required"
   },
+  "messages": {
+    "checkEnteredData": "Please check the entered data.",
+    "requestAlreadySent": "The request has already been sent.",
+    "accountNotFound": "Account not found. Please check the entered data and make sure it is correct.",
+    "serverConnectionFailed": "Failed to connect to the server. Please try again later.",
+    "requestSentSuccessfully": "The request has been sent successfully.",
+    "unexpectedError": "An unexpected error occurred.",
+    "requestFailed": "Sending failed."
+  },
   "forms": {
     "back": "back",
     "Confirm": "Confirm",

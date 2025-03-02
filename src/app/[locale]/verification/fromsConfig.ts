@@ -257,7 +257,10 @@ export const organizationForm = (): DynamicForm<{
 };
 
 export const businessformSchema = z.object({
-  email: z.string().email(t("errors.invalidEmail")).min(1, t("errors.required")),
+  email: z
+    .string()
+    .email(t("errors.invalidEmail"))
+    .min(1, t("errors.required")),
   accountNumber: z.preprocess(
     (val) => Number(val),
     z.number().refine((val) => val.toString().length >= 16, {
@@ -281,7 +284,9 @@ export const businessformSchema = z.object({
   commercialRegisterPhoto: z
     .any()
     .refine((file) => file?.length > 0, t("errors.imageRequired")),
-  licensePhoto: z.any().refine((file) => file?.length > 0, t("errors.imageRequired")),
+  licensePhoto: z
+    .any()
+    .refine((file) => file?.length > 0, t("errors.imageRequired")),
   ownerIdentityImageFS: z
     .any()
     .refine((file) => file?.length > 0, t("errors.imageRequired")),
@@ -300,7 +305,10 @@ export const businessformSchema = z.object({
 });
 
 export const organizationformSchema = z.object({
-  email: z.string().email(t("errors.invalidEmail")).min(1, t("errors.required")),
+  email: z
+    .string()
+    .email(t("errors.invalidEmail"))
+    .min(1, t("errors.required")),
   accountNumber: z.preprocess(
     (val) => Number(val),
     z.number().refine((val) => val.toString().length >= 16, {
@@ -320,8 +328,10 @@ export const organizationformSchema = z.object({
     .string()
     .max(2048, t("errors.summaryTooLong"))
     .min(1, t("errors.required")),
-  
-  licensePhoto: z.any().refine((file) => file?.length > 0, t("errors.imageRequired")),
+
+  licensePhoto: z
+    .any()
+    .refine((file) => file?.length > 0, t("errors.imageRequired")),
   ownerIdentityImageFS: z
     .any()
     .refine((file) => file?.length > 0, t("errors.imageRequired")),
