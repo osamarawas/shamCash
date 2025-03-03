@@ -30,7 +30,7 @@ export default function NavBar() {
 
   useEffect(() => {
     const handleScroll = (): void => {
-      if (window.scrollY > lastScrollY) {
+      if (window.scrollY > lastScrollY && window.scrollY > 20) {
         setIsVisible(false);
       } else {
         setIsVisible(true);

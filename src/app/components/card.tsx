@@ -3,12 +3,11 @@ import React from "react";
 import { Card as CardType } from "../utils/types";
 interface CardProps {
   item: CardType;
-  circleHover:string
 }
-const Card = ({ item , circleHover}: CardProps) => {
+const Card = ({ item }: CardProps) => {
   return (
     <div
-      className={`flex flex-col justify-center items-center h-[${circleHover}px] w-[${circleHover}px] box-content p-7 space-y-3 hover:bg-hover transition  rounded-full hover:cursor-default `}
+      className={`flex flex-col justify-center items-center h-80 w-80 box-content p-7 space-y-3 hover:bg-hover transition  rounded-full hover:cursor-default `}
       data-aos="fade-up"
       data-aos-duration="800"
     >

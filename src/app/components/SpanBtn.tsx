@@ -5,9 +5,9 @@ export default function DownloadBtn() {
   const t = useTranslations();
   const [hovered, setHovered] = useState(false);
 
-  const downloadApp = () => {
-    window.location.href = "https://shamcash.com/downloads/shamcash.apk";
-  };
+  // const downloadApp = () => {
+  //   window.location.href = "https://shamcash.com/downloads/shamcash.apk";
+  // };
   return (
     <span
       className="soon select-none"

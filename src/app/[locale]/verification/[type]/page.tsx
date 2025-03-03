@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { SetStateAction, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@/components/ui/button";
@@ -58,6 +58,16 @@ const MultiStepForm = () => {
     physicalAddressImage: "",
   });
 
+  const [isNextHovered, setIsNextHovered] = useState(false); // لحالة hover لزر "التالي"
+  const [isBackHovered, setIsBackHovered] = useState(false); // لحالة hover لزر "العودة"
+
+  const handleStepChange = (step: SetStateAction<number>) => {
+    setStep(step);
+    setIsNextHovered(false); // إلغاء التأثير عند التبديل بين الأزرار
+    setIsBackHovered(false); // إلغاء التأثير عند التبديل بين الأزرار
+  };
+
+
   const {
     register,
     handleSubmit,
@@ -70,9 +80,19 @@ const MultiStepForm = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onError = (errors: any) => {
     const parsed = schema.safeParse(errors);
-
     if (!parsed.success) {
-      toast.error("يرجى التحقق من البيانات المدخلة.");
+      if (
+        errors.email ||
+        errors.userName ||
+        errors.taxNumber ||
+        errors.summary ||
+        errors.accountNumber ||
+        errors.phoneNumber
+      ) {
+        setStep(1);
+      }
+
+      toast.error(t("messages.checkEnteredData"));
     }
   };
 
@@ -108,11 +128,9 @@ const MultiStepForm = () => {
         if (
           +response.result === ResponseCodes.ALREADY_SEND_DATA_FOR_VERIFICATIONS
         ) {
-          toast.error("تم ارسال الطلب سابقاً.");
+          toast.error(t("messages.requestAlreadySent"));
         } else {
-          toast.error(
-            "الحساب غير موجود. يرجى التحقق من البيانات المدخلة والتأكد من صحتها."
-          );
+          toast.error(t("messages.accountNotFound"));
           setStep(1);
           setErrorsApi((prev) => ({
             ...prev,
@@ -121,8 +139,8 @@ const MultiStepForm = () => {
         }
       }
     } catch (error) {
-      console.error("❌ فشل الإرسال:", error);
-      toast.error("فشل في الاتصال بالخادم. يرجى المحاولة لاحقاً.");
+      console.error(t("messages.requestFailed"), error);
+      toast.error(t("messages.serverConnectionFailed"));
     }
   };
 
@@ -133,9 +151,11 @@ const MultiStepForm = () => {
         `${formData.endpoint.verificationAccount.url}`,
         otpWithData
       );
+      console.log(response);
       if (response.succeeded) {
-        toast.success(" تم ارسال الطلب  بنجاح.");
+        toast.success(t("messages.requestSentSuccessfully"));
         setOpenAlert(false);
+        setOtp("");
       } else {
         if (+response.result === ResponseCodes.OTP_IS_INVALID) {
           setErrorsApi((prev) => ({
@@ -143,12 +163,12 @@ const MultiStepForm = () => {
             otpError: true,
           }));
         } else {
-          toast.error("حصل خطا غير متوقع");
+          toast.error(t("messages.unexpectedError"));
         }
       }
     } catch (error) {
-      console.error("❌ فشل الإرسال:", error);
-      toast.error("فشل في الاتصال بالخادم. يرجى المحاولة لاحقاً.");
+      console.error(t("messages.requestFailed"), error);
+      toast.error(t("messages.serverConnectionFailed"));
     }
   };
 
@@ -201,6 +221,7 @@ const MultiStepForm = () => {
     }
   };
 
+  console.log(errors.accountNumber ? true : false);
   return (
     <div
       className="mx-auto pt-5 lg:bg-none bg-cover bg-center bg-[url(../assets/images/verification-bg.svg)] "
@@ -412,7 +433,7 @@ const MultiStepForm = () => {
                   <div className="flex justify-between">
                     {step === 2 && (
                       <Button
-                        className="w-16 mt-3 font-semibold text-md bg-inherit border-none shadow-none text-primary hover:bg-gray-200"
+                        className=" mt-3 font-semibold text-md bg-inherit border-none shadow-none text-primary hover:bg-gray-200"
                         type="submit"
                       >
                         {t("forms.Confirm")}
@@ -420,20 +441,30 @@ const MultiStepForm = () => {
                     )}
                     {step === 1 ? (
                       <span
-                        className="w-16 h-9 inline-flex mt-3 py-2 px-4 font-semibold text-md bg-inherit border-none shadow-none text-primary rounded-md white justify-center items-center hover:bg-gray-200 cursor-pointer "
-                        onClick={() => setStep(2)}
-                        // onClick={() => toast.success("تم ارسال الطلب سابقاً.")}
-                      >
-                        {t("forms.next")}
-                      </span>
+                      className={`w-16 h-9 inline-flex mt-3 py-2 px-4 font-semibold text-md bg-inherit border-none shadow-none text-primary rounded-md white justify-center items-center cursor-pointer ${
+                        isBackHovered ? "hover:bg-gray-200" : ""
+                      }`}
+                      onClick={() => handleStepChange(2)} // عند النقر على "التالي"
+                      onMouseEnter={() => setIsNextHovered(true)} // تفعيل hover لزر التالي
+                      onMouseLeave={() => setIsNextHovered(false)} // إلغاء hover لزر التالي
+                      onTouchStart={() => setIsNextHovered(false)} // عند اللمس على الموبايل
+                    >
+                      {t("forms.next")}
+                    </span>
                     ) : (
                       <span
-                        className="w-16 h-9 inline-flex mt-3 py-2 px-4 font-semibold text-md bg-inherit border-none shadow-none text-primary rounded-md white justify-center items-center hover:bg-gray-200 cursor-pointer"
-                        onClick={() => setStep(1)}
+                        className={`w-16 h-9 inline-flex mt-3 py-2 px-4 font-semibold text-md bg-inherit border-none shadow-none text-primary rounded-md white justify-center items-center cursor-pointer ${
+                          isBackHovered ? "hover:bg-gray-200" : ""
+                        }`}
+                        onClick={() => handleStepChange(1)} // عند النقر على "العودة"
+                        onMouseEnter={() => setIsBackHovered(true)} // تفعيل hover لزر العودة
+                        onMouseLeave={() => setIsBackHovered(false)} // إلغاء hover لزر العودة
+                        onTouchStart={() => setIsBackHovered(false)} // عند اللمس على الموبايل
                       >
                         {t("forms.back")}
                       </span>
-                    )}
+                    )
+                    }
                   </div>
                 </>
               ) : (
