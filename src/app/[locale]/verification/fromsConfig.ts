@@ -278,7 +278,7 @@ export const businessformSchema = z.object({
   commercialRegisterPhoto: z
     .any()
     .refine((file) => file?.length > 0, "errors.imageRequired"),
-  licensePhoto: z.any().refine((file) => file?.length > 0, "errors.imageRequired"),
+  licensePhoto: z.any(),
   ownerIdentityImageFS: z
     .any()
     .refine((file) => file?.length > 0, "errors.imageRequired"),
