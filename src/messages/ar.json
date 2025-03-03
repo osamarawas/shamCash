@@ -482,12 +482,12 @@
       "placeholder": "اسم الحساب"
     },
     "account_phone_number": {
-      "label": "رقم الهاتف المربوط بالحساب",
+      "label": "رقم الهاتف المرتبط بالحساب",
       "placeholder": "رقم الهاتف"
     },
     "tax_identification_number": {
-      "label": "رقم التعريف الضريبي",
-      "placeholder": "رقم التعريف الضريبي"
+      "label": "الرقم المالي الحكومي",
+      "placeholder": "الرقم المالي الحكومي"
     },
     "account_activity_summary": {
       "label": "ملخص عن أنشطة الحساب",
@@ -502,10 +502,10 @@
       "placeholder": "صورة الرخصة"
     },
     "physical_address_document": {
-      "label": "صورة وثيقة تحمل الرقم الفيزيائي",
+      "label": "صورة وثيقة العنوان",
       "placeholder": "صورة الوثيقة"
     },
-    "owner_id_image": {
+    "Manager_id_image": {
       "label": "صورة هوية المالك",
       "placeholder": "الوجه الأمامي",
       "placeholder1": "الوجه الخلفي"
