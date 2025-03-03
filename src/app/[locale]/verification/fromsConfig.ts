@@ -291,9 +291,7 @@ export const businessformSchema = z.object({
   commissionerIdentityImageBS: z
     .any()
     .refine((file) => file?.length > 0, "errors.imageRequired"),
-  physicalAddressImage: z
-    .any()
-    .refine((file) => file?.length > 0, "errors.imageRequired"),
+  physicalAddressImage: z.any()
 });
 
 export const organizationformSchema = z.object({
@@ -331,10 +329,8 @@ export const organizationformSchema = z.object({
   commissionerIdentityImageBS: z
     .any()
     .refine((file) => file?.length > 0, "errors.imageRequired"),
-  physicalAddressImage: z
-    .any()
-    .refine((file) => file?.length > 0, "errors.imageRequired"),
-});
+  physicalAddressImage: z.any()
+  });
 
 export type FormBusinessType = z.infer<typeof businessformSchema>;
 export type FormOrganizationType = z.infer<typeof organizationformSchema>;

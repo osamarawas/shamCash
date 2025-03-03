@@ -506,7 +506,7 @@
       "placeholder": "صورة الوثيقة"
     },
     "Manager_id_image": {
-      "label": "صورة هوية المالك",
+      "label": "صورة هوية المدير",
       "placeholder": "الوجه الأمامي",
       "placeholder1": "الوجه الخلفي"
     },
@@ -550,5 +550,7 @@
   "search": "بحث",
   "searchResults": "نتائج البحث",
   "noresults": "لا توجد نتائج",
-  "appName": "تطبيق شام كاش"
+  "appName": "تطبيق شام كاش",
+  "IOS":"IOS",
+  "soon":"قريباً"
 }
