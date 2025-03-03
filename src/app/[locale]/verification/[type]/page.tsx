@@ -70,8 +70,18 @@ const MultiStepForm = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onError = (errors: any) => {
     const parsed = schema.safeParse(errors);
-
     if (!parsed.success) {
+      if (
+        errors.email ||
+        errors.userName ||
+        errors.taxNumber ||
+        errors.summary ||
+        errors.accountNumber ||
+        errors.phoneNumber
+      ) {
+        setStep(1);
+      }
+
       toast.error("يرجى التحقق من البيانات المدخلة.");
     }
   };
@@ -201,6 +211,7 @@ const MultiStepForm = () => {
     }
   };
 
+  console.log(errors.accountNumber ? true : false);
   return (
     <div
       className="mx-auto pt-5 lg:bg-none bg-cover bg-center bg-[url(../assets/images/verification-bg.svg)] "
