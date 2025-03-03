@@ -16,6 +16,7 @@ import {
 import icon from "@/assets/icon/alertDialog.svg";
 import Image from "next/image";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { useTranslations } from "next-intl"; // ✅ استخدام useTranslations بدلاً من getTranslations
 
 interface OtpAlertDialogProps {
   open: boolean;
@@ -28,8 +29,9 @@ interface OtpAlertDialogProps {
   otpError: boolean;
 }
 
-export function OtpAlertDialog(props: OtpAlertDialogProps) {
+export function OtpAlertDialog(props: OtpAlertDialogProps) { // ✅ إزالة async
   const [timer, setTimer] = useState(0);
+  const t = useTranslations(); // ✅ استخدام useTranslations بشكل صحيح
 
   const handleResend = () => {
     if (timer === 0) {
@@ -57,10 +59,10 @@ export function OtpAlertDialog(props: OtpAlertDialogProps) {
             width={60}
             height={60}
           />
-          <AlertDialogTitle className="">رمز التأكيد</AlertDialogTitle>
+          <AlertDialogTitle>{t("otpAllert.title")}</AlertDialogTitle>
           <AlertDialogDescription>
             <p dir="auto" className="text-center  mb-4 text-foreground">
-              أدخل رمز التحقق المرسل إلى بريدك الإلكتروني لإكمال العملية.
+              {t("otpAllert.otpmessage")}
             </p>
             <InputOTP
               maxLength={6}
@@ -69,30 +71,13 @@ export function OtpAlertDialog(props: OtpAlertDialogProps) {
             >
               <div className="text-center items-center mx-auto">
                 <InputOTPGroup className="gap-3  !border-destructive">
-                  <InputOTPSlot
-                    className={`inputOtp rounded-md ${props.classNameExtra}`}
-                    index={0}
-                  />
-                  <InputOTPSlot
-                    className={`inputOtp rounded-md ${props.classNameExtra}`}
-                    index={1}
-                  />
-                  <InputOTPSlot
-                    className={`inputOtp rounded-md ${props.classNameExtra}`}
-                    index={2}
-                  />
-                  <InputOTPSlot
-                    className={`inputOtp rounded-md ${props.classNameExtra}`}
-                    index={3}
-                  />
-                  <InputOTPSlot
-                    className={`inputOtp rounded-md ${props.classNameExtra}`}
-                    index={4}
-                  />
-                  <InputOTPSlot
-                    className={`inputOtp rounded-md ${props.classNameExtra}`}
-                    index={5}
-                  />
+                  {[...Array(6)].map((_, index) => (
+                    <InputOTPSlot
+                      key={index}
+                      className={`inputOtp rounded-md ${props.classNameExtra}`}
+                      index={index}
+                    />
+                  ))}
                 </InputOTPGroup>
               </div>
             </InputOTP>
@@ -103,14 +88,14 @@ export function OtpAlertDialog(props: OtpAlertDialogProps) {
               <p>
                 {props.otpError ? (
                   <span className="text-error font-semibold">
-                    رمز OTP غير صحيح يمكنك طلب
+                    {t("otpAllert.error")}
                   </span>
                 ) : (
-                  <>إذا لم تستلم الرمز، يمكنك طلب </>
+                  <>{t("otpAllert.rerequest")}</>
                 )}
                 {timer > 0 ? (
                   <span className="font-semibold">
-                    يمكنك إعادة الإرسال بعد {timer} ثانية.
+                    {t("otpAllert.rerequest1")} {timer} {t("otpAllert.rerequest2")}
                   </span>
                 ) : (
                   <span
@@ -118,26 +103,21 @@ export function OtpAlertDialog(props: OtpAlertDialogProps) {
                     onClick={handleResend}
                   >
                     {" "}
-                    إرساله مرة أخرى.
+                    {t("otpAllert.again")}
                   </span>
                 )}
               </p>
             </div>
           </AlertDialogDescription>
         </AlertDialogHeader>
-        <div className="">
-          <AlertDialogFooter dir="auto" className="">
-            <AlertDialogCancel
-              className="  "
-              onClick={() => props.setOpen(false)}
-            >
-              إغلاق
-            </AlertDialogCancel>
-            <AlertDialogAction type="submit" onClick={props.sure} className="">
-              تأكيد
-            </AlertDialogAction>
-          </AlertDialogFooter>
-        </div>
+        <AlertDialogFooter dir="auto">
+          <AlertDialogCancel onClick={() => props.setOpen(false)}>
+            {t("otpAllert.close")}
+          </AlertDialogCancel>
+          <AlertDialogAction type="submit" onClick={props.sure}>
+            {t("otpAllert.Confirm")}
+          </AlertDialogAction>
+        </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
   );

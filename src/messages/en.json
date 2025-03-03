@@ -545,6 +545,18 @@
     "Confirm": "Confirm",
     "next": "Next"
   },
+  "otpAllert": {
+  "title": "Confirmation Code",
+  "otpmessage": "Enter the verification code sent to your phone number to complete the process.",
+  "error": "Invalid OTP code, you can request",
+  "rerequest": "If you didn’t receive the code, you can request",
+  "rerequest1": "You can resend after",
+  "rerequest2": "seconds.",
+  "again": "Resend it.",
+  "Confirm": "Confirm",
+  "close": "Close"
+},
+
   "Android": "Android",
   "download": "download",
   "search": "Search",
