@@ -11,7 +11,7 @@ export async function generateKeys() {
           format: "pem",
         },
         privateKeyEncoding: {
-          type: "pkcs8",
+          type: "pkcs1",
           format: "pem",
         },
       },
@@ -90,4 +90,16 @@ export const encryptDataByAes = async (data: string, aesKey: string) => {
 
   // إرجاع البيانات المشفرة و IV في تنسيق "encryptedData.iv"
   return `${encryptedBase64}.${ivBase64}`;
+};
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export const encryptData = async (data: any) => {
+  // Your encryption logic here
+  const rsaPublicKey = await loadPublicKey();
+  let aesKey = generateRandomAESKey();
+  const encData = encryptDataByAes(data, aesKey);
+  const encrypter = new NodeRSA(rsaPublicKey!, "pkcs1-public");
+  const encrypted = encrypter.encrypt(aesKey, "base64");
+  aesKey = encrypted;
+  return { encData: encData, aesKey: aesKey };
 };
