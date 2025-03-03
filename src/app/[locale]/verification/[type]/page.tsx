@@ -442,7 +442,7 @@ const MultiStepForm = () => {
                     {step === 1 ? (
                       <span
                       className={`w-16 h-9 inline-flex mt-3 py-2 px-4 font-semibold text-md bg-inherit border-none shadow-none text-primary rounded-md white justify-center items-center cursor-pointer ${
-                        isBackHovered ? "hover:bg-gray-200" : ""
+                        isNextHovered ? "hover:bg-gray-200" : ""
                       }`}
                       onClick={() => handleStepChange(2)} // عند النقر على "التالي"
                       onMouseEnter={() => setIsNextHovered(true)} // تفعيل hover لزر التالي
