@@ -278,7 +278,7 @@ export const businessformSchema = z.object({
   commercialRegisterPhoto: z
     .any()
     .refine((file) => file?.length > 0, "errors.imageRequired"),
-  licensePhoto: z.any().refine((file) => file?.length > 0, "errors.imageRequired"),
+  licensePhoto: z.any(),
   ownerIdentityImageFS: z
     .any()
     .refine((file) => file?.length > 0, "errors.imageRequired"),
@@ -291,7 +291,7 @@ export const businessformSchema = z.object({
   commissionerIdentityImageBS: z
     .any()
     .refine((file) => file?.length > 0, "errors.imageRequired"),
-  physicalAddressImage: z.any()
+  physicalAddressImage: z.any(),
 });
 
 export const organizationformSchema = z.object({
@@ -310,13 +310,15 @@ export const organizationformSchema = z.object({
   taxNumber: z
     .string()
     .regex(/^\d+$/, "errors.taxNumberDigitsOnly")
-    .min(5,"errors.invalidTaxNumber"),
+    .min(5, "errors.invalidTaxNumber"),
   summary: z
     .string()
     .max(2048, "errors.summaryTooLong")
     .min(1, "errors.required"),
-  
-  licensePhoto: z.any().refine((file) => file?.length > 0, "errors.imageRequired"),
+
+  licensePhoto: z
+    .any()
+    .refine((file) => file?.length > 0, "errors.imageRequired"),
   ownerIdentityImageFS: z
     .any()
     .refine((file) => file?.length > 0, "errors.imageRequired"),
@@ -329,8 +331,8 @@ export const organizationformSchema = z.object({
   commissionerIdentityImageBS: z
     .any()
     .refine((file) => file?.length > 0, "errors.imageRequired"),
-  physicalAddressImage: z.any()
-  });
+  physicalAddressImage: z.any(),
+});
 
 export type FormBusinessType = z.infer<typeof businessformSchema>;
 export type FormOrganizationType = z.infer<typeof organizationformSchema>;
