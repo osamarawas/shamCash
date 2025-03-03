@@ -2,7 +2,7 @@ import { Languages } from "@/app/utils/enums";
 import { setDirction } from "@/app/utils/helperServer";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 import React from "react";
 import {
   FieldError,
@@ -27,7 +27,6 @@ interface InputFieldProps<T extends Record<string, any>> {
   maxLength?: number;
   readOnly?: boolean;
   classNameExtra?: string;
-  valueAsNumber?: boolean;
 }
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 const InputField = <T extends Record<string, any>>({
@@ -43,10 +42,9 @@ const InputField = <T extends Record<string, any>>({
   register,
   maxLength,
   classNameExtra,
-  valueAsNumber,
 }: InputFieldProps<T>) => {
   const locale = useLocale() as Languages;
-
+  const t = useTranslations();
   return (
     <div dir={setDirction(locale)}>
       {/* عرض التسمية */}
@@ -62,7 +60,7 @@ const InputField = <T extends Record<string, any>>({
       {/* الحقل بناءً على نوعه */}
       {type === "text" || type === "email" || type === "password" ? (
         <Input
-          {...register(name, { valueAsNumber: valueAsNumber })}
+          {...register(name)}
           type={type}
           placeholder={placeholder}
           disabled={disabled}
@@ -78,7 +76,7 @@ const InputField = <T extends Record<string, any>>({
         />
       ) : (
         <Textarea
-          {...register(name, { valueAsNumber: valueAsNumber })}
+          {...register(name)}
           placeholder={placeholder}
           disabled={disabled}
           autoFocus={autoFocus}
@@ -98,7 +96,7 @@ const InputField = <T extends Record<string, any>>({
             error.message ? "text-destructive" : ""
           }`}
         >
-          {error.message as string}
+          {t(error.message) as string}
         </p>
       )}
     </div>

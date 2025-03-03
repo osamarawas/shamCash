@@ -1,7 +1,6 @@
 import { AccountType, DynamicForm } from "@/app/utils/types";
 import { useTranslations } from "next-intl";
 import { z } from "zod";
-import { t } from "i18next";
 
 export const businessForm = (): DynamicForm<{
   email: string;
@@ -38,7 +37,6 @@ export const businessForm = (): DynamicForm<{
         placeholder: t("verificationForm.account_number.placeholder"),
         name: "accountNumber",
         maxLength: 16,
-        valueAsNumber: true,
       },
       userName: {
         type: "text",
@@ -168,7 +166,6 @@ export const organizationForm = (): DynamicForm<{
         placeholder: t("verificationForm.account_number.placeholder"),
         name: "accountNumber",
         maxLength: 16,
-        valueAsNumber: true,
       },
       userName: {
         type: "text",
@@ -257,96 +254,86 @@ export const organizationForm = (): DynamicForm<{
 };
 
 export const businessformSchema = z.object({
-  email: z
-    .string()
-    .email(t("errors.invalidEmail"))
-    .min(1, t("errors.required")),
+  email: z.string().email("errors.invalidEmail").min(1, "errors.required"),
   accountNumber: z.preprocess(
     (val) => Number(val),
     z.number().refine((val) => val.toString().length >= 16, {
-      message: t("errors.accountNumberLength"),
+      message: "errors.accountNumberLength",
     })
   ),
-  userName: z.string().min(1, t("errors.required")),
+  userName: z.string().min(1, "errors.required"),
   phoneNumber: z
     .string()
-    .regex(/^09\d{8}$/, t("errors.invalidPhoneNumber"))
-    .length(10, t("errors.phoneNumberLength")),
+    .regex(/^09\d{8}$/, "errors.invalidPhoneNumber")
+    .length(10, "errors.phoneNumberLength"),
   taxNumber: z
     .string()
-    .regex(/^\d+$/, t("errors.taxNumberDigitsOnly"))
-    .min(5, t("errors.invalidTaxNumber")),
+    .regex(/^\d+$/, "errors.taxNumberDigitsOnly")
+    .min(5, "errors.invalidTaxNumber"),
   summary: z
     .string()
-    .max(2048, t("errors.summaryTooLong"))
-    .min(1, t("errors.required")),
+    .max(2048, "errors.summaryTooLong")
+    .min(1, "errors.required"),
 
   commercialRegisterPhoto: z
     .any()
-    .refine((file) => file?.length > 0, t("errors.imageRequired")),
-  licensePhoto: z
-    .any()
-    .refine((file) => file?.length > 0, t("errors.imageRequired")),
+    .refine((file) => file?.length > 0, "errors.imageRequired"),
+  licensePhoto: z.any().refine((file) => file?.length > 0, "errors.imageRequired"),
   ownerIdentityImageFS: z
     .any()
-    .refine((file) => file?.length > 0, t("errors.imageRequired")),
+    .refine((file) => file?.length > 0, "errors.imageRequired"),
   ownerIdentityImageBS: z
     .any()
-    .refine((file) => file?.length > 0, t("errors.imageRequired")),
+    .refine((file) => file?.length > 0, "errors.imageRequired"),
   commissionerIdentityImageFS: z
     .any()
-    .refine((file) => file?.length > 0, t("errors.imageRequired")),
+    .refine((file) => file?.length > 0, "errors.imageRequired"),
   commissionerIdentityImageBS: z
     .any()
-    .refine((file) => file?.length > 0, t("errors.imageRequired")),
+    .refine((file) => file?.length > 0, "errors.imageRequired"),
   physicalAddressImage: z
     .any()
-    .refine((file) => file?.length > 0, t("errors.imageRequired")),
+    .refine((file) => file?.length > 0, "errors.imageRequired"),
 });
 
 export const organizationformSchema = z.object({
-  email: z
-    .string()
-    .email(t("errors.invalidEmail"))
-    .min(1, t("errors.required")),
+  email: z.string().email("errors.invalidEmail").min(1, "errors.required"),
   accountNumber: z.preprocess(
     (val) => Number(val),
     z.number().refine((val) => val.toString().length >= 16, {
-      message: t("errors.accountNumberLength"),
+      message: "errors.accountNumberLength",
     })
   ),
-  userName: z.string().min(1, t("errors.required")),
+  userName: z.string().min(1, "errors.required"),
   phoneNumber: z
     .string()
-    .regex(/^09\d{8}$/, t("errors.invalidPhoneNumber"))
-    .length(10, t("errors.phoneNumberLength")),
+    .regex(/^09\d{8}$/, "errors.invalidPhoneNumber")
+    .length(10, "errors.phoneNumberLength"),
   taxNumber: z
     .string()
-    .regex(/^\d+$/, t("errors.taxNumberDigitsOnly"))
-    .min(5, t("errors.invalidTaxNumber")),
+    .regex(/^\d+$/, "errors.taxNumberDigitsOnly")
+    .min(5,"errors.invalidTaxNumber"),
   summary: z
     .string()
-    .max(2048, t("errors.summaryTooLong"))
-    .min(1, t("errors.required")),
-
-  licensePhoto: z
-    .any()
-    .refine((file) => file?.length > 0, t("errors.imageRequired")),
+    .max(2048, "errors.summaryTooLong")
+    .min(1, "errors.required"),
+  
+  licensePhoto: z.any().refine((file) => file?.length > 0, "errors.imageRequired"),
   ownerIdentityImageFS: z
     .any()
-    .refine((file) => file?.length > 0, t("errors.imageRequired")),
+    .refine((file) => file?.length > 0, "errors.imageRequired"),
   ownerIdentityImageBS: z
     .any()
-    .refine((file) => file?.length > 0, t("errors.imageRequired")),
+    .refine((file) => file?.length > 0, "errors.imageRequired"),
   commissionerIdentityImageFS: z
     .any()
-    .refine((file) => file?.length > 0, t("errors.imageRequired")),
+    .refine((file) => file?.length > 0, "errors.imageRequired"),
   commissionerIdentityImageBS: z
     .any()
-    .refine((file) => file?.length > 0, t("errors.imageRequired")),
+    .refine((file) => file?.length > 0, "errors.imageRequired"),
   physicalAddressImage: z
     .any()
-    .refine((file) => file?.length > 0, t("errors.imageRequired")),
+    .refine((file) => file?.length > 0, "errors.imageRequired"),
 });
 
 export type FormBusinessType = z.infer<typeof businessformSchema>;
