@@ -32,7 +32,7 @@ const FaqPage = async ({ params }: FaqPageProps) => {
         backname={t("faqPage.title")}
       />
       <div className="container flex flex-col items-center gap-5 mx-auto my-6 lg:my-10">
-        <h2 className="text-primary text-center text-3xl font-bold mb-10 underLine relative mx-auto">
+        <h2 className="w-64 sm:w-fit text-primary text-center text-3xl font-bold mb-10 underLine relative mx-auto">
           {faqWithCategorie?.categoryName}
         </h2>
 

@@ -1,4 +1,5 @@
 import DownloadBtn from "@/app/components/DownloadBtn";
+import SpanBtn from "@/app/components/SpanBtn";
 import { Languages } from "@/app/utils/enums";
 import { getLocale, getTranslations } from "next-intl/server";
 
@@ -28,8 +29,9 @@ const Landing = async () => {
         >
           {t("landing.platformGoal")}
         </p>
-        <div className="flex justify-center mt-16">
+        <div className="flex flex-col items-center sm:flex-row flex-wrap justify-center gap-4 mt-16 w-full max-w-96 mx-auto">
           <DownloadBtn />
+          <SpanBtn />
         </div>
       </div>
     </div>

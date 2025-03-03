@@ -18,7 +18,8 @@ interface FaqPageProps {
 const VerificationPage = async ({ params }: FaqPageProps) => {
   const t = await getTranslations("");
   const verificationCategory = await verificationCategoryData();
-  const [publicKey, privateKey] = await generateKeys();
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [publicKey, privateKey] = (await generateKeys()) as any;
   console.log("Public Key:", publicKey);
   console.log("Private Key:", privateKey);
   const loadKey = loadPublicKey();

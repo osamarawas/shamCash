@@ -92,15 +92,15 @@ export const businessForm = (): DynamicForm<{
       },
       ownerIdentityImageFS: {
         type: "file",
-        label: t("verificationForm.owner_id_image.label"),
-        placeholder: t("verificationForm.owner_id_image.placeholder"),
+        label: t("verificationForm.Manager_id_image.label"),
+        placeholder: t("verificationForm.Manager_id_image.placeholder"),
         name: "ownerIdentityImageFS",
         accept: "image/.jpg, .jpeg, .png",
       },
       ownerIdentityImageBS: {
         type: "file",
-        label: t("verificationForm.owner_id_image.label"),
-        placeholder: t("verificationForm.owner_id_image.placeholder1"),
+        label: t("verificationForm.Manager_id_image.label"),
+        placeholder: t("verificationForm.Manager_id_image.placeholder1"),
         name: "ownerIdentityImageBS",
         accept: "image/.jpg, .jpeg, .png",
       },
@@ -213,15 +213,15 @@ export const organizationForm = (): DynamicForm<{
       },
       ownerIdentityImageFS: {
         type: "file",
-        label: t("verificationForm.owner_id_image.label"),
-        placeholder: t("verificationForm.owner_id_image.placeholder"),
+        label: t("verificationForm.Manager_id_image.label"),
+        placeholder: t("verificationForm.Manager_id_image.placeholder"),
         name: "ownerIdentityImageFS",
         accept: "image/.jpg, .jpeg, .png",
       },
       ownerIdentityImageBS: {
         type: "file",
-        label: t("verificationForm.owner_id_image.label"),
-        placeholder: t("verificationForm.owner_id_image.placeholder1"),
+        label: t("verificationForm.Manager_id_image.label"),
+        placeholder: t("verificationForm.Manager_id_image.placeholder1"),
         name: "ownerIdentityImageBS",
         accept: "image/.jpg, .jpeg, .png",
       },
@@ -291,9 +291,7 @@ export const businessformSchema = z.object({
   commissionerIdentityImageBS: z
     .any()
     .refine((file) => file?.length > 0, "errors.imageRequired"),
-  physicalAddressImage: z
-    .any()
-    .refine((file) => file?.length > 0, "errors.imageRequired"),
+  physicalAddressImage: z.any()
 });
 
 export const organizationformSchema = z.object({
@@ -331,10 +329,8 @@ export const organizationformSchema = z.object({
   commissionerIdentityImageBS: z
     .any()
     .refine((file) => file?.length > 0, "errors.imageRequired"),
-  physicalAddressImage: z
-    .any()
-    .refine((file) => file?.length > 0, "errors.imageRequired"),
-});
+  physicalAddressImage: z.any()
+  });
 
 export type FormBusinessType = z.infer<typeof businessformSchema>;
 export type FormOrganizationType = z.infer<typeof organizationformSchema>;

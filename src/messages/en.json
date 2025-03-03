@@ -471,23 +471,23 @@
   "verificationForm": {
     "email": {
       "label": "Email",
-      "placeholder": "email address"
+      "placeholder": "Email address"
     },
     "account_number": {
       "label": "Account Number",
-      "placeholder": "account number"
+      "placeholder": "Account number"
     },
     "account_name": {
       "label": "Account Name",
-      "placeholder": "account name"
+      "placeholder": "Account name"
     },
     "account_phone_number": {
       "label": "Account Phone Number",
-      "placeholder": "phone number"
+      "placeholder": "Phone number"
     },
     "tax_identification_number": {
       "label": "Tax Identification Number",
-      "placeholder": "tax ID number"
+      "placeholder": "Tax ID number"
     },
     "account_activity_summary": {
       "label": "Account Activity Summary",
@@ -495,29 +495,29 @@
     },
     "commercial_register_image": {
       "label": "Commercial Register Image",
-      "placeholder": "commercial register image"
+      "placeholder": "Commercial register image"
     },
     "practice_license_image": {
       "label": "Practice License Image",
-      "placeholder": "practice license image"
+      "placeholder": "Practice license image"
     },
     "physical_address_document": {
-      "label": "Physical Address Document",
-      "placeholder": "address document"
+      "label": "Address Document",
+      "placeholder": "Address document"
     },
-    "owner_id_image": {
-      "label": "Owner ID Image (Front)",
-      "placeholder": "front side of ID",
-      "placeholder1": "back side of ID"
+    "Manager_id_image": {
+      "label": "Manager ID Image",
+      "placeholder": "Front side of ID",
+      "placeholder1": "Back side of ID"
     },
     "delegate_id_image": {
-      "label": "Delegate ID Image (Front)",
-      "placeholder": "front side of ID",
-      "placeholder1": "back side of ID"
+      "label": "Delegate ID Image",
+      "placeholder": "Front side of ID",
+      "placeholder1": "Back side of ID"
     },
     "licensePhotoOrganization": {
       "label": "Granted License Image",
-      "placeholder": "granted license image"
+      "placeholder": "Granted license image"
     }
   },
   "errors": {
@@ -541,14 +541,16 @@
     "requestFailed": "Sending failed."
   },
   "forms": {
-    "back": "back",
+    "back": "Back",
     "Confirm": "Confirm",
-    "next": "next"
+    "next": "Next"
   },
   "Android": "Android",
   "download": "download",
   "search": "Search",
   "searchResults": "Search Results",
   "noresults": "No results",
-  "appName": "Sham Cash App"
+  "appName": "Sham Cash App",
+  "IOS":"IOS",
+  "soon":"soon"
 }
