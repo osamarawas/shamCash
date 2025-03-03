@@ -3,6 +3,12 @@ import { getTranslations } from "next-intl/server";
 
 import { Languages } from "@/app/utils/enums";
 import Category from "@/app/components/Category";
+import {
+  encryptDataByAes,
+  generateKeys,
+  generateRandomAESKey,
+  loadPublicKey,
+} from "@/app/utils/encrypt";
 
 interface FaqPageProps {
   params: Promise<{ locale: Languages }>;
@@ -12,6 +18,17 @@ interface FaqPageProps {
 const VerificationPage = async ({ params }: FaqPageProps) => {
   const t = await getTranslations("");
   const verificationCategory = await verificationCategoryData();
+  const [publicKey, privateKey] = await generateKeys();
+  console.log("Public Key:", publicKey);
+  console.log("Private Key:", privateKey);
+  const loadKey = loadPublicKey();
+  console.log(loadKey);
+  const random = generateRandomAESKey();
+  console.log(random);
+  const data = "Hello, World!";
+  const aesKey = generateRandomAESKey();
+  const encryptedData = await encryptDataByAes(data, aesKey);
+  console.log(encryptedData);
   return (
     <div
       className="sm:h-[calc(100vh-80px)] flex items-center container flex-col gap-5 mx-auto  pt-8 lg:pt-14 "
