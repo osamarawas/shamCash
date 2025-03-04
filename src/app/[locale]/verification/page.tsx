@@ -18,7 +18,7 @@ const VerificationPage = async ({ params }: FaqPageProps) => {
       className="sm:h-[calc(100vh-80px)] flex items-center container flex-col gap-5 mx-auto  pt-8 w-lg:pt-14 "
       dir="auto"
     >
-      <h2 className="-z-10 text-primary text-center text-3xl font-bold mb-14 underLine relative mx-auto w-60 sm:w-fit ">
+      <h2 className="-z-10 text-primary text-center text-3xl font-bold mb-14 underLine relative mx-auto sm:w-fit ">
         {t("verification.title")}
       </h2>
       <p className="mx-5 sm:mx-auto text-muted text-center text-lg font-semibold max-w-3xl">

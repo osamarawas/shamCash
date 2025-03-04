@@ -259,7 +259,7 @@ const MultiStepForm = () => {
             />
           </div>
           {/* الفورم على اليمين */}
-          <div className="lg:w-1/3 p-8">
+          <div className="lg:w-1/3 md:p-8 py-8 px-2">
             <form onSubmit={handleSubmit(onCheckOtp, onError)}>
               {Object.keys(formData.fields).length > 0 ? (
                 <>
@@ -339,7 +339,7 @@ const MultiStepForm = () => {
                     <div dir="auto">
                       {formData.fields.commercialRegisterPhoto && (
                         <div className="mb-4">
-                          <label className="block mb-1 text-sm font-medium text-foreground ">
+                          <label className="block mb-1 text-sm font-medium text-foreground">
                             {formData.fields.commercialRegisterPhoto.label}
                           </label>
                           <FilleField<formType>

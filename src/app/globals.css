@@ -115,7 +115,7 @@ body[lang="ar"] {
   .underLine::before {
     content: "";
     background: linear-gradient(269.87deg, #277eb8 -9.64%, #ffffff 96.57%);
-    @apply absolute h-0.5 -bottom-3 left-1/2 text-center w-full md:w-[calc(100%+50px)];
+    @apply absolute h-0.5 -bottom-3 left-1/2 text-center w-11/12 sm:w-[calc(100%+50px)];
     transform: translateX(-50%);
   }
 
