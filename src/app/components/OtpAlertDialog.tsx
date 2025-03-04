@@ -15,13 +15,15 @@ import {
 } from "@/components/ui/input-otp";
 import icon from "@/assets/icon/alertDialog.svg";
 import Image from "next/image";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import { useTranslations } from "next-intl"; // ✅ استخدام useTranslations بدلاً من getTranslations
+import { Dispatch, SetStateAction, useEffect } from "react";
+import { useTranslations } from "next-intl";
 
 interface OtpAlertDialogProps {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
   otp: string;
+  timer: number;
+  setTimer: Dispatch<SetStateAction<number>>;
   setOtp: Dispatch<SetStateAction<string>>;
   sure: (e?: React.BaseSyntheticEvent) => Promise<void>;
   resend_otp: () => Promise<void>;
@@ -29,24 +31,40 @@ interface OtpAlertDialogProps {
   otpError: boolean;
 }
 
-export function OtpAlertDialog(props: OtpAlertDialogProps) { // ✅ إزالة async
-  const [timer, setTimer] = useState(0);
-  const t = useTranslations(); // ✅ استخدام useTranslations بشكل صحيح
+export function OtpAlertDialog(props: OtpAlertDialogProps) {
+  const t = useTranslations();
 
+  const formatTime = (totalSeconds: number) => {
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+    return {
+      hours,
+      minutes,
+      seconds,
+    };
+  };
   const handleResend = () => {
-    if (timer === 0) {
+    if (props.timer === 0) {
       props.resend_otp();
-      setTimer(60);
+      props.setTimer(props.timer);
     }
   };
 
   useEffect(() => {
-    let interval: NodeJS.Timeout;
-    if (timer > 0) {
-      interval = setInterval(() => setTimer((prev) => prev - 1), 1000);
+    let interval: string | number | NodeJS.Timeout | undefined;
+    if (props.timer > 0) {
+      interval = setInterval(() => {
+        props.setTimer((prev) => {
+          const newTime = prev - 1;
+          return newTime;
+        });
+      }, 1000);
     }
     return () => clearInterval(interval);
-  }, [timer]);
+  }, [props, props.timer]);
+
+  const formattedTime = formatTime(props.timer);
 
   return (
     <AlertDialog open={props.open}>
@@ -59,10 +77,10 @@ export function OtpAlertDialog(props: OtpAlertDialogProps) { // ✅ إزالة a
             width={60}
             height={60}
           />
-          <AlertDialogTitle>{t("otpAllert.title")}</AlertDialogTitle>
+          <AlertDialogTitle>{t("otpAlert.title")}</AlertDialogTitle>
           <AlertDialogDescription>
             <p dir="auto" className="text-center  mb-4 text-foreground">
-              {t("otpAllert.otpmessage")}
+              {t("otpAlert.otpmessage")}
             </p>
             <InputOTP
               maxLength={6}
@@ -88,22 +106,27 @@ export function OtpAlertDialog(props: OtpAlertDialogProps) { // ✅ إزالة a
               <p>
                 {props.otpError ? (
                   <span className="text-error font-semibold">
-                    {t("otpAllert.error")}
+                    {t("otpAlert.error")}
                   </span>
                 ) : (
-                  <>{t("otpAllert.rerequest")}</>
+                  <>{t("otpAlert.rerequest")}</>
                 )}
-                {timer > 0 ? (
+                {props.timer > 0 ? (
                   <span className="font-semibold">
-                    {t("otpAllert.rerequest1")} {timer} {t("otpAllert.rerequest2")}
+                    {t("otpAlert.resendafter")}
+                    {formattedTime.hours > 0 &&
+                      `${formattedTime.hours} ${t("hour")} `}
+                    {formattedTime.minutes > 0 &&
+                      `${formattedTime.minutes} ${t("minute")} `}
+                    {formattedTime.seconds > 0 &&
+                      `${formattedTime.seconds} ${t("second")}`}
                   </span>
                 ) : (
                   <span
                     className="text-primary font-semibold cursor-pointer"
                     onClick={handleResend}
                   >
-                    {" "}
-                    {t("otpAllert.again")}
+                    {t("otpAlert.again")}
                   </span>
                 )}
               </p>
@@ -112,10 +135,10 @@ export function OtpAlertDialog(props: OtpAlertDialogProps) { // ✅ إزالة a
         </AlertDialogHeader>
         <AlertDialogFooter dir="auto">
           <AlertDialogCancel onClick={() => props.setOpen(false)}>
-            {t("otpAllert.close")}
+            {t("otpAlert.back")}
           </AlertDialogCancel>
           <AlertDialogAction type="submit" onClick={props.sure}>
-            {t("otpAllert.Confirm")}
+            {t("otpAlert.Confirm")}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>

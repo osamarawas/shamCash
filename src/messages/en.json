@@ -545,7 +545,7 @@
     "Confirm": "Confirm",
     "next": "Next"
   },
-  "otpAllert": {
+  "otpAlert": {
   "title": "Confirmation Code",
   "otpmessage": "Enter the verification code sent to your phone number to complete the process.",
   "error": "Invalid OTP code, you can request",
@@ -554,7 +554,9 @@
   "rerequest2": "seconds.",
   "again": "Resend it.",
   "Confirm": "Confirm",
-  "close": "Close"
+  "close": "Close",
+  "resendafter":"you can resend after",
+  "back": "Back"
 },
 
   "Android": "Android",
@@ -564,5 +566,8 @@
   "noresults": "No results",
   "appName": "Sham Cash App",
   "IOS":"IOS",
-  "soon":"soon"
+  "soon":"soon",
+  "hour":"h",
+  "minute":"m",
+  "second":"s"
 }
