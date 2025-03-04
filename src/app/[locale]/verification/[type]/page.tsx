@@ -43,11 +43,12 @@ const MultiStepForm = () => {
   const [otp, setOtp] = useState<string>("");
   const locale = useLocale() as Languages;
   const { resolvedTheme } = useTheme();
+  const [timer, setTimer] = useState(0);
+
   const [errorsApi, setErrorsApi] = useState({
     accountError: false,
     otpError: false,
   });
-
   const [fileNames, setFileNames] = useState({
     commercialRegisterPhoto: "",
     licensePhoto: "",
@@ -109,6 +110,7 @@ const MultiStepForm = () => {
       );
 
       if (response.succeeded) {
+        setTimer(response.data.timeLeft)
         setOpenAlert(true);
         setErrorsApi((prev) => ({
           ...prev,
@@ -211,7 +213,6 @@ const MultiStepForm = () => {
     }
   };
 
-  console.log(errors.accountNumber ? true : false);
   return (
     <div
       className="mx-auto pt-5 lg:bg-none bg-cover bg-center bg-[url(../assets/images/verification-bg.svg)] "
@@ -227,6 +228,8 @@ const MultiStepForm = () => {
           setOpen={setOpenAlert}
           setOtp={setOtp}
           otp={otp}
+          timer={timer}
+          setTimer={setTimer}
           sure={handleSubmit(onSubmit)}
           resend_otp={handleSubmit(onCheckOtp)}
           otpError={errorsApi.otpError}

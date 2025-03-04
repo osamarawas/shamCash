@@ -15,12 +15,14 @@ import {
 } from "@/components/ui/input-otp";
 import icon from "@/assets/icon/alertDialog.svg";
 import Image from "next/image";
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect } from "react";
 
 interface OtpAlertDialogProps {
   open: boolean;
   setOpen: Dispatch<SetStateAction<boolean>>;
   otp: string;
+  timer: number;
+  setTimer: Dispatch<SetStateAction<number>>;
   setOtp: Dispatch<SetStateAction<string>>;
   sure: (e?: React.BaseSyntheticEvent) => Promise<void>;
   resend_otp: () => Promise<void>;
@@ -29,22 +31,38 @@ interface OtpAlertDialogProps {
 }
 
 export function OtpAlertDialog(props: OtpAlertDialogProps) {
-  const [timer, setTimer] = useState(0);
 
+  const formatTime = (totalSeconds:number) => {
+    const hours = Math.floor(totalSeconds / 3600);
+    const minutes = Math.floor((totalSeconds % 3600) / 60);
+    const seconds = totalSeconds % 60;
+    return {
+      hours,
+      minutes,
+      seconds,
+    };
+  };
   const handleResend = () => {
-    if (timer === 0) {
+    if (props.timer === 0) {
       props.resend_otp();
-      setTimer(60);
+      props.setTimer(props.timer);
     }
   };
 
   useEffect(() => {
-    let interval: NodeJS.Timeout;
-    if (timer > 0) {
-      interval = setInterval(() => setTimer((prev) => prev - 1), 1000);
+    let interval: string | number | NodeJS.Timeout | undefined;
+    if (props.timer > 0) {
+      interval = setInterval(() => {
+        props.setTimer((prev) => {
+          const newTime = prev - 1;
+          return newTime;
+        });
+      }, 1000);
     }
     return () => clearInterval(interval);
-  }, [timer]);
+  }, [props, props.timer]);
+
+  const formattedTime = formatTime(props.timer);
 
   return (
     <AlertDialog open={props.open}>
@@ -108,9 +126,11 @@ export function OtpAlertDialog(props: OtpAlertDialogProps) {
                 ) : (
                   <>إذا لم تستلم الرمز، يمكنك طلب </>
                 )}
-                {timer > 0 ? (
+                {props.timer > 0 ? (
                   <span className="font-semibold">
-                    يمكنك إعادة الإرسال بعد {timer} ثانية.
+                    يمكنك إعادة الإرسال بعد {formattedTime.hours} ساعة و{" "}
+                    {formattedTime.minutes} دقيقة و {formattedTime.seconds}{" "}
+                    ثانية.
                   </span>
                 ) : (
                   <span
