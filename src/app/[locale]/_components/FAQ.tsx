@@ -22,7 +22,7 @@ const FAQ = async ({ locale }: FAQProps) => {
         {t("fAnswerQuestions.title")}
       </h3>
       <p
-        className="w-[68%] text-center text-xl text-muted leading-9 mt-10 font-medium"
+        className="w-3/4 md:text-center text-justify text-xl text-muted leading-9 mt-10 font-medium"
         data-aos="fade-up"
         data-aos-duration="800"
         dir="auto"

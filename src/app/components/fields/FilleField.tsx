@@ -65,7 +65,7 @@ const FilleField = <T extends FieldValues>({
     }
   };
   return (
-    <div className="flex flex-col" dir={setDirction(locale)}>
+    <div className="flex flex-col min-w-80" dir={setDirction(locale)}>
       <label className="justify-between flex items-center gap-2 border !border-border_input rounded-lg p-2 cursor-pointer hover:bg-hover">
         <span className="text-sm text-muted-foreground">
           {fileName || placeholder}
