@@ -68,7 +68,6 @@ const MultiStepForm = () => {
     setIsBackHovered(false); // إلغاء التأثير عند التبديل بين الأزرار
   };
 
-
   const {
     register,
     handleSubmit,
@@ -120,7 +119,7 @@ const MultiStepForm = () => {
       );
 
       if (response.succeeded) {
-        setTimer(response.data.timeLeft)
+        setTimer(response.data.timeLeft);
         setOpenAlert(true);
         setErrorsApi((prev) => ({
           ...prev,
@@ -225,7 +224,7 @@ const MultiStepForm = () => {
 
   return (
     <div
-      className="mx-auto pt-5 lg:bg-none bg-cover bg-center bg-[url(../assets/images/verification-bg.svg)] "
+      className="mx-auto pt-5 lg:bg-none  bg-cover bg-center bg-[url(../assets/images/verification-bg.svg)] "
       dir={setDirctionReverse(locale)}
     >
       <div className="container mx-auto">
@@ -444,16 +443,16 @@ const MultiStepForm = () => {
                     )}
                     {step === 1 ? (
                       <span
-                      className={`w-16 h-9 inline-flex mt-3 py-2 px-4 font-semibold text-md bg-inherit border-none shadow-none text-primary rounded-md white justify-center items-center cursor-pointer ${
-                        isNextHovered ? "hover:bg-gray-200" : ""
-                      }`}
-                      onClick={() => handleStepChange(2)} // عند النقر على "التالي"
-                      onMouseEnter={() => setIsNextHovered(true)} // تفعيل hover لزر التالي
-                      onMouseLeave={() => setIsNextHovered(false)} // إلغاء hover لزر التالي
-                      onTouchStart={() => setIsNextHovered(false)} // عند اللمس على الموبايل
-                    >
-                      {t("forms.next")}
-                    </span>
+                        className={`w-16 h-9 inline-flex mt-3 py-2 px-4 font-semibold text-md bg-inherit border-none shadow-none text-primary rounded-md white justify-center items-center cursor-pointer ${
+                          isNextHovered ? "hover:bg-gray-200" : ""
+                        }`}
+                        onClick={() => handleStepChange(2)} // عند النقر على "التالي"
+                        onMouseEnter={() => setIsNextHovered(true)} // تفعيل hover لزر التالي
+                        onMouseLeave={() => setIsNextHovered(false)} // إلغاء hover لزر التالي
+                        onTouchStart={() => setIsNextHovered(false)} // عند اللمس على الموبايل
+                      >
+                        {t("forms.next")}
+                      </span>
                     ) : (
                       <span
                         className={`w-16 h-9 inline-flex mt-3 py-2 px-4 font-semibold text-md bg-inherit border-none shadow-none text-primary rounded-md white justify-center items-center cursor-pointer ${
@@ -466,8 +465,7 @@ const MultiStepForm = () => {
                       >
                         {t("forms.back")}
                       </span>
-                    )
-                    }
+                    )}
                   </div>
                 </>
               ) : (

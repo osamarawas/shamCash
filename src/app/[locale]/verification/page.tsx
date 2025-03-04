@@ -21,7 +21,7 @@ const VerificationPage = async ({ params }: FaqPageProps) => {
       <h2 className="-z-10 text-primary text-center text-3xl font-bold mb-14 underLine relative mx-auto sm:w-fit ">
         {t("verification.title")}
       </h2>
-      <p className="mx-5 sm:mx-auto text-muted text-center text-lg font-semibold max-w-3xl">
+      <p className="mx-5 sm:mx-auto text-muted md:text-center text-justify text-lg font-semibold max-w-3xl">
         {t("verification.desc")}
       </p>
       <p className="font-semibold mt-10 text-2xl text-primary leading-10 text-center">
