@@ -43,11 +43,12 @@ const MultiStepForm = () => {
   const [otp, setOtp] = useState<string>("");
   const locale = useLocale() as Languages;
   const { resolvedTheme } = useTheme();
+  const [timer, setTimer] = useState(0);
+
   const [errorsApi, setErrorsApi] = useState({
     accountError: false,
     otpError: false,
   });
-
   const [fileNames, setFileNames] = useState({
     commercialRegisterPhoto: "",
     licensePhoto: "",
@@ -119,6 +120,7 @@ const MultiStepForm = () => {
       );
 
       if (response.succeeded) {
+        setTimer(response.data.timeLeft)
         setOpenAlert(true);
         setErrorsApi((prev) => ({
           ...prev,
@@ -221,7 +223,6 @@ const MultiStepForm = () => {
     }
   };
 
-  console.log(errors.accountNumber ? true : false);
   return (
     <div
       className="mx-auto pt-5 lg:bg-none bg-cover bg-center bg-[url(../assets/images/verification-bg.svg)] "
@@ -237,6 +238,8 @@ const MultiStepForm = () => {
           setOpen={setOpenAlert}
           setOtp={setOtp}
           otp={otp}
+          timer={timer}
+          setTimer={setTimer}
           sure={handleSubmit(onSubmit)}
           resend_otp={handleSubmit(onCheckOtp)}
           otpError={errorsApi.otpError}
@@ -256,7 +259,7 @@ const MultiStepForm = () => {
             />
           </div>
           {/* الفورم على اليمين */}
-          <div className="lg:w-1/3 p-8">
+          <div className="lg:w-1/3 md:p-8 py-8 px-2">
             <form onSubmit={handleSubmit(onCheckOtp, onError)}>
               {Object.keys(formData.fields).length > 0 ? (
                 <>
@@ -336,7 +339,7 @@ const MultiStepForm = () => {
                     <div dir="auto">
                       {formData.fields.commercialRegisterPhoto && (
                         <div className="mb-4">
-                          <label className="block mb-1 text-sm font-medium text-foreground ">
+                          <label className="block mb-1 text-sm font-medium text-foreground">
                             {formData.fields.commercialRegisterPhoto.label}
                           </label>
                           <FilleField<formType>

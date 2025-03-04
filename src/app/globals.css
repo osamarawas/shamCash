@@ -113,10 +113,9 @@ body[lang="ar"] {
   }
 
   .underLine::before {
-    width: calc(100% + 50px);
     content: "";
     background: linear-gradient(269.87deg, #277eb8 -9.64%, #ffffff 96.57%);
-    @apply absolute h-0.5 -bottom-3 left-1/2 text-center;
+    @apply absolute h-0.5 -bottom-3 left-1/2 text-center w-11/12 sm:w-[calc(100%+50px)];
     transform: translateX(-50%);
   }
 
@@ -261,8 +260,6 @@ body[lang="ar"] {
     animation: downloadBounce2 800ms linear alternate infinite;
   }
 
-
-
   .soon {
     /* Rounded corner overflow mask fix */
     -webkit-mask-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAIAAACQd1PeAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAA5JREFUeNpiYGBgAAgwAAAEAAGbA+oJAAAAAElFTkSuQmCC);
@@ -320,14 +317,12 @@ body[lang="ar"] {
   .soon:hover svg {
     left: 50%;
     transform: translate(-50%, -50%) rotate(60deg) scale(1);
-
   }
 
   .soon:hover span {
     transform: translate(0, 0) scale(1.3);
     transition: transform 400ms ease-out 0ms;
     animation: pulse 1.5s ease-in-out infinite;
-
   }
 
   @keyframes pulse {

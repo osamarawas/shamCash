@@ -17,7 +17,7 @@ const About = async () => {
       <p
         data-aos="fade-up"
         data-aos-duration="800"
-        className="text-center justify-center w-8/12 mx-auto mb-8 text-lg text-muted"
+        className="md:text-center text-justify w-3/4 mx-auto mb-8 text-lg text-muted"
         dir="auto"
       >
         {t("about.description")}

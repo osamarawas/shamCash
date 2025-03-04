@@ -17,7 +17,7 @@ const Features = async () => {
         {t("features.title")}
       </h2>
       <p
-        className="w-2/3 text-center  text-lg text-muted leading-9 font-medium "
+        className="w-3/4 md:text-center text-justify text-lg text-muted leading-9 font-medium "
         data-aos="fade-up"
         data-aos-duration="800"
         dir="auto"

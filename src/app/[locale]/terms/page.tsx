@@ -9,12 +9,12 @@ const Terms = async () => {
 
   return (
     <div className="py-8 lg:py-14 background-terms bg-[url(../assets/images/bg-light.svg)] dark:bg-[url(../assets/images/bg-dark.svg)]">
-      <h2 className="-z-10 text-primary text-center text-3xl font-bold mb-14 underLine relative mx-auto w-64 sm:w-fit">
+      <h2 className="-z-10 text-primary text-center text-3xl font-bold mb-14 underLine relative mx-auto sm:w-fit">
         {t("terms.title")}
       </h2>
       <p
         dir="auto"
-        className="mx-5 sm:mx-auto text-muted text-center text-lg font-semibold max-w-xl"
+        className="mx-5 sm:mx-auto text-muted md:text-center text-justify text-lg font-semibold max-w-xl"
       >
         {t("terms.desc")}
       </p>
