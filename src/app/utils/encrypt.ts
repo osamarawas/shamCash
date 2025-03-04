@@ -1,5 +1,6 @@
 import { generateKeyPair } from "crypto";
 import NodeRSA from "node-rsa";
+
 export async function generateKeys() {
   return new Promise((resolve, reject) => {
     generateKeyPair(
@@ -38,11 +39,9 @@ export const loadPublicKey = () => {
     }
 
     // Initialize NodeRSA with the public key from the .env file
-    const key = new NodeRSA(publicKeyString);
-
-    // Export the public key (this can be used for encryption)
-    const exportedPublicKey = key.exportKey("public");
-    return exportedPublicKey;
+    const key = new NodeRSA();
+    key.importKey(publicKeyString, "pkcs1-public-pem");
+    return publicKeyString;
   } catch (error) {
     console.error("Error loading public key:", error);
   }
@@ -50,16 +49,16 @@ export const loadPublicKey = () => {
 
 export const generateRandomAESKey = (): string => {
   // Create a 16-byte array to hold the key
-  const keyBytes = new Uint8Array(12);
+  const keyBytes = new Uint8Array(16);
 
   // Fill the array with random values
   crypto.getRandomValues(keyBytes);
 
-  // Encode the key as a base64 URL string
-  const base64Key = btoa(String.fromCharCode(...keyBytes));
+  // Convert the key bytes to base64 URL-safe format using a different approach
+  const base64Key = Buffer.from(keyBytes).toString("base64");
 
   // Convert the base64 string to a URL-safe base64 string
-  return base64Key.replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+  return base64Key.replace(/\+/g, "-").replace(/\//g, "_");
 };
 
 export const encryptDataByAes = async (data: string, aesKey: string) => {
@@ -97,8 +96,8 @@ export const encryptData = async (data: any) => {
   // Your encryption logic here
   const rsaPublicKey = await loadPublicKey();
   let aesKey = generateRandomAESKey();
-  const encData = encryptDataByAes(data, aesKey);
-  const encrypter = new NodeRSA(rsaPublicKey!, "pkcs1-public");
+  const encData = await encryptDataByAes(data, aesKey);
+  const encrypter = new NodeRSA(rsaPublicKey!, "pkcs1-public-pem");
   const encrypted = encrypter.encrypt(aesKey, "base64");
   aesKey = encrypted;
   return { encData: encData, aesKey: aesKey };
