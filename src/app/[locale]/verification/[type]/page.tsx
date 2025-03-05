@@ -244,7 +244,7 @@ const MultiStepForm = () => {
             errorsApi.otpError && "border !border-destructive"
           }`}
         />
-        <div className="mx-auto px-6 lg:px-16 flex flex-col lg:flex-row items-center justify-between">
+        <div className="mx-auto px-6 lg:pl-16 lg:pr-0 flex flex-col lg:flex-row items-center justify-between">
           {/* الصورة على اليسار */}
           <div className="hidden lg:block lg:w-1/2">
             <Image
@@ -256,7 +256,7 @@ const MultiStepForm = () => {
             />
           </div>
           {/* الفورم على اليمين */}
-          <div className="lg:w-1/3 md:p-8 py-8 px-2">
+          <div className="lg:w-1/3 md:p-8 md:pr-0 py-8 px-2">
             <form onSubmit={handleSubmit(onCheckOtp, onError)}>
               {Object.keys(formData.fields).length > 0 ? (
                 <>
