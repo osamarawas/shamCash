@@ -487,7 +487,7 @@
     },
     "tax_identification_number": {
       "label": "Government financial number",
-      "placeholder": "Government financial number"
+      "placeholder": "financial number"
     },
     "account_activity_summary": {
       "label": "Account Activity Summary",
@@ -546,18 +546,18 @@
     "next": "Next"
   },
   "otpAlert": {
-  "title": "Confirmation Code",
-  "otpmessage": "Enter the verification code sent to your phone number to complete the process.",
-  "error": "Invalid OTP code, you can request",
-  "rerequest": "If you didn’t receive the code, you can request",
-  "rerequest1": "You can resend after",
-  "rerequest2": "seconds.",
-  "again": "Resend it.",
-  "Confirm": "Confirm",
-  "close": "Close",
-  "resendafter":"you can resend after",
-  "back": "Back"
-},
+    "title": "Confirmation Code",
+    "otpmessage": "Enter the verification code sent to your phone number to complete the process.",
+    "error": "Invalid OTP code, you can request",
+    "rerequest": "If you didn’t receive the code, you can request",
+    "rerequest1": "You can resend after",
+    "rerequest2": "seconds.",
+    "again": "Resend it.",
+    "Confirm": "Confirm",
+    "close": "Close",
+    "resendafter": "you can resend after",
+    "back": "Back"
+  },
 
   "Android": "Android",
   "download": "download",
@@ -565,9 +565,9 @@
   "searchResults": "Search Results",
   "noresults": "No results",
   "appName": "Sham Cash App",
-  "IOS":"IOS",
-  "soon":"soon",
-  "hour":"h",
-  "minute":"m",
-  "second":"s"
+  "IOS": "IOS",
+  "soon": "soon",
+  "hour": "h",
+  "minute": "m",
+  "second": "s"
 }
