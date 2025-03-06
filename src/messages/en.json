@@ -486,8 +486,8 @@
       "placeholder": "Phone number"
     },
     "tax_identification_number": {
-      "label": "Tax Identification Number",
-      "placeholder": "Tax ID number"
+      "label": "Government financial number",
+      "placeholder": "Government financial number"
     },
     "account_activity_summary": {
       "label": "Account Activity Summary",
@@ -526,8 +526,8 @@
     "accountNumberLength": "Account number must be at least 16 digits long",
     "invalidPhoneNumber": "Phone number must start with 09 and be exactly 10 digits long",
     "phoneNumberLength": "Phone number must contain exactly 10 digits",
-    "taxNumberDigitsOnly": "Tax number must contain only digits (0-9)",
-    "invalidTaxNumber": "Invalid tax number",
+    "taxNumberDigitsOnly": "financial  number must contain only digits (0-9)",
+    "invalidTaxNumber": "Invalid financial  number",
     "summaryTooLong": "Summary must be more detailed",
     "imageRequired": "Image upload is required"
   },
