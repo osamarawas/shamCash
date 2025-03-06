@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server";
 
 import { Languages } from "@/app/utils/enums";
 import Category from "@/app/components/Category";
-import { encryptData } from "@/app/utils/encrypt";
+// import { encryptData } from "@/app/utils/encrypt";
 
 interface FaqPageProps {
   params: Promise<{ locale: Languages }>;
