@@ -15,7 +15,6 @@ const Landing = async () => {
     >
       <div className="">
         <h1 className="text-2xl lg:text-4xl font-bold leading-tight">
-          {locale === Languages.ARABIC && t("landing.app") + " "}
           <span className="text-gradiant ">{t("landing.appName") + " "}</span>
           {locale === Languages.ENGLISH && t("landing.app") + " "}
           {t("landing.appAvalable")}
