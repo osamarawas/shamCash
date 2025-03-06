@@ -487,7 +487,7 @@
     },
     "tax_identification_number": {
       "label": "Government financial number",
-      "placeholder": "financial number"
+      "placeholder": "Financial number"
     },
     "account_activity_summary": {
       "label": "Account Activity Summary",
