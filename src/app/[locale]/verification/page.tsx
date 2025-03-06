@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 
 import { Languages } from "@/app/utils/enums";
 import Category from "@/app/components/Category";
+import { encryptData } from "@/app/utils/encrypt";
 
 interface FaqPageProps {
   params: Promise<{ locale: Languages }>;
@@ -12,6 +13,15 @@ interface FaqPageProps {
 const VerificationPage = async ({ params }: FaqPageProps) => {
   const t = await getTranslations("");
   const verificationCategory = await verificationCategoryData();
+  const data = {
+    phoneNumber: "0931807056",
+    userName: "testq",
+    accountNumber: 1207192511396103,
+    email: "test@example.com",
+  };
+
+  const encryptedData = await encryptData(JSON.stringify(data));
+  console.log(encryptedData);
 
   return (
     <div

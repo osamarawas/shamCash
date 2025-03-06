@@ -28,6 +28,7 @@ import { toast } from "sonner";
 import { z, ZodSchema } from "zod";
 import { AccountType } from "@/app/utils/types";
 import { useParams } from "next/navigation";
+// import { encryptData } from "@/app/utils/encrypt";
 
 const MultiStepForm = () => {
   const params = useParams();
@@ -44,7 +45,6 @@ const MultiStepForm = () => {
   const locale = useLocale() as Languages;
   const { resolvedTheme } = useTheme();
   const [timer, setTimer] = useState(0);
-
   const [errorsApi, setErrorsApi] = useState({
     accountError: false,
     otpError: false,
@@ -97,7 +97,6 @@ const MultiStepForm = () => {
   };
 
   function getOtpBody(data: formType): Record<string, string> {
-    console.log(data);
     const oData: Record<string, string> = {};
     const fieldData: (keyof formType)[] = [
       "phoneNumber",
@@ -111,13 +110,20 @@ const MultiStepForm = () => {
     return oData;
   }
   const onCheckOtp = async (data: formType) => {
+    const otpData = getOtpBody(data);
+
     try {
-      const otpData = getOtpBody(data);
       const response = await postData(
         `${formData.endpoint.sendOtp.url}`,
         otpData
+        // {
+        //   encData:
+        //     "XAymvoHXAcRJdkUlODw1NJYJFicCX5aIhTBVuIa69hewciDp+82HvRLcRGjV2/FEHZmv66Is7uynqV79Xzegk1tIUnCY1CSZmBpKcX+6Ezzf2gaAl3LZAPdkNUOLepBdF0plA9tb4hVN8wC5ZP/TE7/3SdI+PNmyt5YD.QXGYjwtuj0wcQZdf",
+        //   aesKey:
+        //     "pKIWUBAq++uqH2/0EIiTfz0ESn8YpHiIjnKYiXmHbZpFbvC8RENsbnrukNtrZXO8KG2nk4Gm1HJXMQhYo8KEM7eh/g6GfMf6qpy/FHA2nNWMLRLrc2GzY7H615KAkbV61rVJLBd2m08YO2i5A2Y5ViIPdo/ywAoSDVUhy2bE+3OnZrKfPvnE9pUmGOzvsPf+B9wabLqBrkTNob1WGKGyw4e69tMpoNW8Ku9HO1+rtV4dUwVzBYH53P5+13md9L23M6vuG1Rutgn3b1pVdhPSkjnTuVmPEQeG2FidLlWRaOEk8bCvA69InQDqBoFp4i7cDD9YLla1hZbkTSEFc5t4bQ==",
+        // }
       );
-
+      console.log(response);
       if (response.succeeded) {
         setTimer(response.data.timeLeft);
         setOpenAlert(true);

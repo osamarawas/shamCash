@@ -2,6 +2,8 @@ import axios from "axios";
 
 // ✅ إنشاء instance لـ axios مع الإعدادات الافتراضية
 const axiosInstance = axios.create({
+  //with encypt https://shamcash.bokla.me
+  //without encrypt https://test.bokla.me
   baseURL: "https://test.bokla.me", // يمكن ضبطه من env
   withCredentials: true,
   headers: {
