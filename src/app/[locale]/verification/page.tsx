@@ -13,15 +13,15 @@ interface FaqPageProps {
 const VerificationPage = async ({ params }: FaqPageProps) => {
   const t = await getTranslations("");
   const verificationCategory = await verificationCategoryData();
-  const data = {
-    phoneNumber: "0931807056",
-    userName: "testq",
-    accountNumber: 1207192511396103,
-    email: "test@example.com",
-  };
+  // const data = {
+  //   phoneNumber: "0931807056",
+  //   userName: "testq",
+  //   accountNumber: 1207192511396103,
+  //   email: "test@example.com",
+  // };
 
-  const encryptedData = await encryptData(JSON.stringify(data));
-  console.log(encryptedData);
+  // const encryptedData = await encryptData(JSON.stringify(data));
+  // console.log(encryptedData);
 
   return (
     <div
