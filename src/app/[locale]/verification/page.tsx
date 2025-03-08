@@ -3,6 +3,7 @@ import { getTranslations } from "next-intl/server";
 
 import { Languages } from "@/app/utils/enums";
 import Category from "@/app/components/Category";
+import { decryptDataByAes, encryptData } from "@/app/utils/encrypt";
 
 interface FaqPageProps {
   params: Promise<{ locale: Languages }>;
@@ -12,6 +13,23 @@ interface FaqPageProps {
 const VerificationPage = async ({ params }: FaqPageProps) => {
   const t = await getTranslations("");
   const verificationCategory = await verificationCategoryData();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const originalText = "Hello, World!";
+  const data = {
+    email: "asda@gmail.com",
+    phoneNumber: "09897867565",
+    accoundName: "test",
+  };
+  // 🔒 تشفير النص
+  const encryptedText = await encryptData(data);
+  console.log("🔐 Encrypted:", encryptedText);
+
+  // 🔓 فك التشفير
+  const decryptedText = await decryptDataByAes(
+    "TzvrOkYImpkXrXP77PI1zOSfZETyyC74CmdmVuOfnA==.FYfChAanK6Qw0WpF",
+    "0hNbgpJVVVYPI9zAt56iIg=="
+  );
+  console.log("🔓 Decrypted:", decryptedText);
 
   return (
     <div
