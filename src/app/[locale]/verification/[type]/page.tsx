@@ -228,7 +228,7 @@ const MultiStepForm = () => {
       className="mx-auto pt-5 lg:bg-none bg-cover bg-center bg-[url(../assets/images/verification-bg.svg)] "
       dir={setDirctionReverse(locale)}
     >
-      <div className="container mx-auto">
+      <div className="container mx-auto ">
         <PathLine
           pagename={t(`verification.categories.${accountType}.name`)}
           backname={t("verification.title")}

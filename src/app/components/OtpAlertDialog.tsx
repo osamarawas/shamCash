@@ -126,7 +126,7 @@ export function OtpAlertDialog(props: OtpAlertDialogProps) {
                     className="text-primary font-semibold cursor-pointer"
                     onClick={handleResend}
                   >
-                    {t("otpAlert.again")}
+                  {" "}{t("otpAlert.again")}
                   </span>
                 )}
               </p>

@@ -11,7 +11,7 @@ const Category = ({ name, path }: CategoryProps) => {
     <Link
       className={`${badgeVariants({
         variant: "soft",
-      })} min-w-[320px] lg:min-w-[500px]`}
+      })} min-w-[320px] lg:min-w-[500px] mx-3`}
       href={path}
     >
       {name}

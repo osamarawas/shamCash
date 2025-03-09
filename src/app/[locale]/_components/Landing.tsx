@@ -1,11 +1,9 @@
 import DownloadBtn from "@/app/components/DownloadBtn";
 import SpanBtn from "@/app/components/SpanBtn";
-import { Languages } from "@/app/utils/enums";
-import { getLocale, getTranslations } from "next-intl/server";
+import {  getTranslations } from "next-intl/server";
 
 const Landing = async () => {
   const t = await getTranslations("");
-  const locale = await getLocale();
 
   return (
     <div

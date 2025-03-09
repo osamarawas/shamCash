@@ -14,7 +14,7 @@ const Terms = async () => {
       </h2>
       <p
         dir="auto"
-        className="mx-5 sm:mx-auto text-muted md:text-center text-justify text-lg font-semibold max-w-xl"
+        className="mx-5 sm:mx-auto text-muted md:text-center text-justify text-lg font-medium max-w-xl"
       >
         {t("terms.desc")}
       </p>
