@@ -28,6 +28,7 @@ import { toast } from "sonner";
 import { z, ZodSchema } from "zod";
 import { AccountType } from "@/app/utils/types";
 import { useParams } from "next/navigation";
+import { encryptData } from "@/app/utils/encrypt";
 // import { encryptData } from "@/app/utils/encrypt";
 
 const MultiStepForm = () => {
@@ -110,45 +111,69 @@ const MultiStepForm = () => {
     return oData;
   }
 
+  // const onCheckOtp = async (data: formType) => {
+  //   const otpData = getOtpBody(data);
+
+  //   const resp = await encryptData(JSON.stringify(otpData));
+
+  //   console.log(resp);
+  //   try {
+  //     const response = await postData(
+  //       `${formData.endpoint.sendOtp.url}`,
+  //       otpData
+
+  //       // {
+  //       //   encData:
+  //       //     "m1+dSlwabyf+VUBXbfkUyb6b6LUuhOd6+4cLFVCVywWboHd3VtRisa5YSMnpVWXtnsUGkOZ+PULkZQcNYUTP0thGpFNydLJJerhh7GdMh2IvN6pZaFMsAuXuv57LJ7BO00pqAyHQNBr6yq2nQIcBdquasklK8UnlqFPhaw==.6Q2kN+g8LyHHdObp",
+  //       //   aesKey:
+  //       //     "SutvdE8ww8AN7YyVKzqGPY0RZsQQzimKJdVKBnUfDwTxkzUXizlOf4jnIzroCg3MAVedWdg32Yh5/T1G0pZvPDVXx0Flp/MOPGNkwLJMdSWNaZnH/kbXJ2Zsm2GjFmiwnPTy/86nxh0PM5Yysx3N8r+aZeIQh/TI2Vsn48NEoN02IhjnWCkqh6IPTJeV1VkyMkE60bOCJ7EsL1yYzI0/GwGgr80mJc2hVL8ZvEa5Z3wifmIaf0U+/3WLyV3YPKF7uw0ZB+U7VeBiBRu7R24c4x0rXri4PyqVjeU6NihB6xl9l1tvzPtDSma3vccPBAmNUCmGyIF7ze6aGGEy3fGDNw==",
+  //       // }
+  //     );
+  //     console.log(response);
+  //     if (response.succeeded) {
+  //       setTimer(response.data.timeLeft);
+  //       setOpenAlert(true);
+  //       setErrorsApi((prev) => ({
+  //         ...prev,
+  //         accountError: false,
+  //       }));
+  //     } else {
+  //       if (
+  //         +response.result === ResponseCodes.ALREADY_SEND_DATA_FOR_VERIFICATIONS
+  //       ) {
+  //         toast.error(t("messages.requestAlreadySent"));
+  //       } else {
+  //         toast.error(t("messages.accountNotFound"));
+  //         setStep(1);
+  //         setErrorsApi((prev) => ({
+  //           ...prev,
+  //           accountError: true,
+  //         }));
+  //       }
+  //     }
+  //   } catch (error) {
+  //     console.error(t("messages.requestFailed"), error);
+  //     toast.error(t("messages.serverConnectionFailed"));
+  //   }
+  // };
+
   const onCheckOtp = async (data: formType) => {
     const otpData = getOtpBody(data);
-
-    // const resp = await encryptData(JSON.stringify(otpData));
-
-    // console.log(resp);
     try {
-      const response = await postData(
-        `${formData.endpoint.sendOtp.url}`,
-        otpData
+      const encrypted = await encryptData(JSON.stringify(otpData));
+      console.log("Encrypted:", encrypted);
 
-        // {
-        //   encData:
-        //     "Jo+ceagR/hMwETDaR6VhCBIDOttMacqYQjYH4HTGAQ==.5+gQmeVAFLTV52ko",
-        //   aesKey:
-        //     "STnF7s5Ug+oF8ppV/vo16cKV1WPMLqTg1zrspurIrYaXesgWZ4cpArolFGwKX8jR1uaejOx1Is62G3Yd2JgHky7vzcHGqvOBRv+DLo5i00e+jJ1OZ+31iF7YyWZ9ht8uwXjYWm6YOKPy/oJXKJRhRMTMi3TVufCUtqPrYuoinZvVzrduQH/NEPhAksm7YrrujnB2lotJV36piiaORxdSqo7vR2+heqOjJgb17j/x5ZDjCCWSIjYavEShT3Dm3MXm4Y1v0Si/lkYdnptLwNdM1IAVM26NlHwAGqP7dW6r8YprarBnZ3fl7Ty9Jy3INu00cDoWMgo6ZzNlomF9w7ao4g==",
-        // }
-      );
+      const response = await postData(`${formData.endpoint.sendOtp.url}`, {
+        encData: encrypted, // Send the encrypted data
+      });
+
       console.log(response);
       if (response.succeeded) {
         setTimer(response.data.timeLeft);
         setOpenAlert(true);
-        setErrorsApi((prev) => ({
-          ...prev,
-          accountError: false,
-        }));
+        setErrorsApi((prev) => ({ ...prev, accountError: false }));
       } else {
-        if (
-          +response.result === ResponseCodes.ALREADY_SEND_DATA_FOR_VERIFICATIONS
-        ) {
-          toast.error(t("messages.requestAlreadySent"));
-        } else {
-          toast.error(t("messages.accountNotFound"));
-          setStep(1);
-          setErrorsApi((prev) => ({
-            ...prev,
-            accountError: true,
-          }));
-        }
+        // Handle errors...
       }
     } catch (error) {
       console.error(t("messages.requestFailed"), error);
@@ -255,7 +280,7 @@ const MultiStepForm = () => {
           otpError={errorsApi.otpError}
           classNameExtra={`${
             errorsApi.otpError && "border !border-destructive"
-          }`}
+          } `}
         />
         <div className="mx-auto px-6 lg:px-16 flex flex-col lg:flex-row items-center justify-between">
           {/* الصورة على اليسار */}

@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server";
 
 import { Languages } from "@/app/utils/enums";
 import Category from "@/app/components/Category";
-import { encryptData } from "@/app/utils/encrypt";
+import { decryptDataByAes, encryptData } from "@/app/utils/encrypt";
 
 interface FaqPageProps {
   params: Promise<{ locale: Languages }>;
@@ -13,15 +13,25 @@ interface FaqPageProps {
 const VerificationPage = async ({ params }: FaqPageProps) => {
   const t = await getTranslations("");
   const verificationCategory = await verificationCategoryData();
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const originalText = "Hello, World!";
   const data = {
+    email: "osama@gmail.com",
     phoneNumber: "0931807056",
-    userName: "testq",
-    accountNumber: 1207192511396103,
-    email: "test@example.com",
+    userName: "osama",
+    accountNumber: "1234567891234567",
   };
+  // 🔒 تشفير النص
 
-  const resp = await encryptData(data);
-  console.log(resp);
+  // encryptData
+  const encrypt = await encryptData(JSON.stringify(data));
+  console.log(encrypt);
+  // 🔓 فك التشفير
+  const decryptedText = await decryptDataByAes(
+    "LL7M2IaL1GsxWrzrZ0pJn0r2U1etPGBQ+3OvxqIlp5814cCEKVjYKNJZ6fjKQo1nSpzkoOCtIoI9CyYQwpMEbsnh4xRuIVnP7zq9Ug+Y8VpQobJqvZHlvU5+SwOQxwuL1uH3k6XM+885u+LoJd1pg9d2oYLtUMdZ7gC5sw==.U8zIBTABS8AJ1ctF",
+    "R94OZZ8gwEK1NctwaOePsA=="
+  );
+  console.log("🔓 Decrypted old:", decryptedText);
 
   return (
     <div
