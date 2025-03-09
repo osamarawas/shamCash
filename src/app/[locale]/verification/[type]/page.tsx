@@ -109,18 +109,23 @@ const MultiStepForm = () => {
     }
     return oData;
   }
+
   const onCheckOtp = async (data: formType) => {
     const otpData = getOtpBody(data);
 
+    // const resp = await encryptData(JSON.stringify(otpData));
+
+    // console.log(resp);
     try {
       const response = await postData(
         `${formData.endpoint.sendOtp.url}`,
         otpData
+
         // {
         //   encData:
-        //     "XAymvoHXAcRJdkUlODw1NJYJFicCX5aIhTBVuIa69hewciDp+82HvRLcRGjV2/FEHZmv66Is7uynqV79Xzegk1tIUnCY1CSZmBpKcX+6Ezzf2gaAl3LZAPdkNUOLepBdF0plA9tb4hVN8wC5ZP/TE7/3SdI+PNmyt5YD.QXGYjwtuj0wcQZdf",
+        //     "Jo+ceagR/hMwETDaR6VhCBIDOttMacqYQjYH4HTGAQ==.5+gQmeVAFLTV52ko",
         //   aesKey:
-        //     "pKIWUBAq++uqH2/0EIiTfz0ESn8YpHiIjnKYiXmHbZpFbvC8RENsbnrukNtrZXO8KG2nk4Gm1HJXMQhYo8KEM7eh/g6GfMf6qpy/FHA2nNWMLRLrc2GzY7H615KAkbV61rVJLBd2m08YO2i5A2Y5ViIPdo/ywAoSDVUhy2bE+3OnZrKfPvnE9pUmGOzvsPf+B9wabLqBrkTNob1WGKGyw4e69tMpoNW8Ku9HO1+rtV4dUwVzBYH53P5+13md9L23M6vuG1Rutgn3b1pVdhPSkjnTuVmPEQeG2FidLlWRaOEk8bCvA69InQDqBoFp4i7cDD9YLla1hZbkTSEFc5t4bQ==",
+        //     "STnF7s5Ug+oF8ppV/vo16cKV1WPMLqTg1zrspurIrYaXesgWZ4cpArolFGwKX8jR1uaejOx1Is62G3Yd2JgHky7vzcHGqvOBRv+DLo5i00e+jJ1OZ+31iF7YyWZ9ht8uwXjYWm6YOKPy/oJXKJRhRMTMi3TVufCUtqPrYuoinZvVzrduQH/NEPhAksm7YrrujnB2lotJV36piiaORxdSqo7vR2+heqOjJgb17j/x5ZDjCCWSIjYavEShT3Dm3MXm4Y1v0Si/lkYdnptLwNdM1IAVM26NlHwAGqP7dW6r8YprarBnZ3fl7Ty9Jy3INu00cDoWMgo6ZzNlomF9w7ao4g==",
         // }
       );
       console.log(response);

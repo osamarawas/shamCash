@@ -96,9 +96,17 @@ export const encryptData = async (data: any) => {
   // Your encryption logic here
   const rsaPublicKey = await loadPublicKey();
   let aesKey = generateRandomAESKey();
+  console.log(aesKey);
   const encData = await encryptDataByAes(data, aesKey);
   const encrypter = new NodeRSA(rsaPublicKey!, "pkcs1-public-pem");
   const encrypted = encrypter.encrypt(aesKey, "base64");
   aesKey = encrypted;
   return { encData: encData, aesKey: aesKey };
 };
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export async function decryptData(data: any) {
+  if (!data || Object.keys(data).length === 0) return "";
+
+  return await decryptAes(data.encData, data.aesKey);
+}

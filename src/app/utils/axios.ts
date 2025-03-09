@@ -4,7 +4,7 @@ import axios from "axios";
 const axiosInstance = axios.create({
   //with encypt https://shamcash.bokla.me
   //without encrypt https://test.bokla.me
-  baseURL: "https://test.bokla.me", // يمكن ضبطه من env
+  baseURL: "https://shamcash.bokla.me", // يمكن ضبطه من env
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",
