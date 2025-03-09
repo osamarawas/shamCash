@@ -27,7 +27,8 @@ axiosInstance.interceptors.request.use(
       try {
         const bodyString = JSON.stringify(config.data);
         const encrypted = await encryptData(bodyString);
-        config.data = { encData: encrypted }; // Send encrypted data instead of raw
+        console.log(encrypted);
+        config.data = encrypted; // Send encrypted data instead of raw
       } catch (error) {
         console.error("Encryption failed:", error);
         // Optionally, proceed with unencrypted data or reject the request

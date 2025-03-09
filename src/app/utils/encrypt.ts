@@ -67,47 +67,37 @@ export const loadPublicKey = () => {
 // };
 
 // export const generateRandomAESKey = async (): Promise<string> => {
-//   // تأكد من توفر Web Crypto API
-//   if (!crypto || !crypto.subtle) {
-//     throw new Error("Web Crypto API is not available in this environment.");
+//   if (isBrowser) {
+//     if (!crypto || !crypto.subtle) {
+//       throw new Error("Web Crypto API is not available in this environment.");
+//     }
+//     const key = await crypto.subtle.generateKey(
+//       { name: "AES-GCM", length: 128 },
+//       true,
+//       ["encrypt", "decrypt"]
+//     );
+//     const exportedKey = await crypto.subtle.exportKey("raw", key);
+//     const base64Key = btoa(String.fromCharCode(...new Uint8Array(exportedKey)));
+//     return base64Key.replace(/\+/g, "-").replace(/\//g, "_");
+//   } else {
+//     const key = randomBytes(16);
+//     return key.toString("base64").replace(/\+/g, "-").replace(/\//g, "_");
 //   }
-
-//   // توليد مفتاح AES عشوائي باستخدام `crypto.subtle.generateKey`
-//   const key = await crypto.subtle.generateKey(
-//     { name: "AES-GCM", length: 128 },
-//     true, // المفتاح يمكن استخدامه للتشفير وفك التشفير
-//     ["encrypt", "decrypt"]
-//   );
-
-//   // تحويل المفتاح إلى بيانات قابلة للتخزين (مثل base64 URL-safe format)
-//   const exportedKey = await crypto.subtle.exportKey("raw", key);
-//   const base64Key = btoa(String.fromCharCode(...new Uint8Array(exportedKey)));
-
-//   // تحويل base64 إلى base64 URL-safe format
-//   return base64Key.replace(/\+/g, "-").replace(/\//g, "_");
 // };
 
-export const generateRandomAESKey = async (): Promise<string> => {
-  if (isBrowser) {
-    if (!crypto || !crypto.subtle) {
-      throw new Error("Web Crypto API is not available in this environment.");
-    }
-    const key = await crypto.subtle.generateKey(
-      { name: "AES-GCM", length: 128 },
-      true,
-      ["encrypt", "decrypt"]
-    );
-    const exportedKey = await crypto.subtle.exportKey("raw", key);
-    const base64Key = btoa(String.fromCharCode(...new Uint8Array(exportedKey)));
-    return base64Key.replace(/\+/g, "-").replace(/\//g, "_");
-  } else {
-    const key = randomBytes(16);
-    return key.toString("base64").replace(/\+/g, "-").replace(/\//g, "_");
-  }
+export const generateRandomAESKey = (): string => {
+  // توليد مفتاح AES بطول 128 بت (16 بايت)
+  const key = forge.random.getBytesSync(16);
+
+  // تحويل المفتاح إلى Base64 (مع تعديل ليتوافق مع URL-safe encoding)
+  return forge.util.encode64(key).replace(/\+/g, "-").replace(/\//g, "_");
 };
+
 export const encryptDataByAes = async (data: string, aesKey: string) => {
   const aesKeyBuffer = new TextEncoder().encode(aesKey);
-  const iv = crypto.getRandomValues(new Uint8Array(12));
+  // const iv = crypto.getRandomValues(new Uint8Array(12));
+  const ivBytes = forge.random.getBytesSync(12); // توليد IV بطول 12 بايت
+  const iv = new Uint8Array(ivBytes.split("").map((c) => c.charCodeAt(0)));
   const key = await crypto.subtle.importKey(
     "raw", // The format of the key
     aesKeyBuffer, // The raw key data (ArrayBuffer)
@@ -140,7 +130,8 @@ export const encryptData = async (data: any) => {
   // Your encryption logic here
   const rsaPublicKey = (await loadPublicKey()) as unknown as string;
   let aesKey = await generateRandomAESKey();
-
+  console.log(aesKey);
+  console.log(aesKey.length);
   const encData = await encryptDataByAes(data, aesKey);
   // const encrypter = new NodeRSA(rsaPublicKey!, "pkcs1-public-pem");
   // const encrypted = encrypter.encrypt(aesKey, "base64");

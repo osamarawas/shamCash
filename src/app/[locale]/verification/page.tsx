@@ -26,6 +26,7 @@ const VerificationPage = async ({ params }: FaqPageProps) => {
   // encryptData
   const encrypt = await encryptData(JSON.stringify(data));
   console.log(encrypt);
+  console.log(encrypt);
   // 🔓 فك التشفير
   const decryptedText = await decryptDataByAes(
     "LL7M2IaL1GsxWrzrZ0pJn0r2U1etPGBQ+3OvxqIlp5814cCEKVjYKNJZ6fjKQo1nSpzkoOCtIoI9CyYQwpMEbsnh4xRuIVnP7zq9Ug+Y8VpQobJqvZHlvU5+SwOQxwuL1uH3k6XM+885u+LoJd1pg9d2oYLtUMdZ7gC5sw==.U8zIBTABS8AJ1ctF",
