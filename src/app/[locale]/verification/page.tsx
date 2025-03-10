@@ -13,19 +13,6 @@ interface FaqPageProps {
 const VerificationPage = async ({ params }: FaqPageProps) => {
   const t = await getTranslations("");
   const verificationCategory = await verificationCategoryData();
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const originalText = "Hello, World!";
-  const data = {
-    email: "osama@gmail.com",
-    phoneNumber: "0931807056",
-    userName: "osama",
-    accountNumber: "1234567891234567",
-  };
-  // 🔒 تشفير النص
-
-  // encryptData
-  const encrypt = await encryptData(JSON.stringify(data));
-  console.log(encrypt);
 
   return (
     <div
