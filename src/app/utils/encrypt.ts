@@ -136,7 +136,6 @@ export const encryptData = async (data: any) => {
   // Your encryption logic here
   const rsaPublicKey = (await loadPublicKey()) as unknown as string;
   let aesKey = await generateRandomAESKey();
-  console.log(aesKey);
   const encData = await encryptDataByAes(data, aesKey);
   // const encrypter = new NodeRSA(rsaPublicKey!, "pkcs1-public-pem");
   // const encrypted = encrypter.encrypt(aesKey, "base64");
