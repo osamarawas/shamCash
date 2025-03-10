@@ -29,7 +29,6 @@ import { z, ZodSchema } from "zod";
 import { AccountType } from "@/app/utils/types";
 import { useParams } from "next/navigation";
 import { encryptData } from "@/app/utils/encrypt";
-// import { encryptData } from "@/app/utils/encrypt";
 
 const MultiStepForm = () => {
   const params = useParams();
@@ -111,69 +110,43 @@ const MultiStepForm = () => {
     return oData;
   }
 
-  // const onCheckOtp = async (data: formType) => {
-  //   const otpData = getOtpBody(data);
-
-  //   const resp = await encryptData(JSON.stringify(otpData));
-
-  //   console.log(resp);
-  //   try {
-  //     const response = await postData(
-  //       `${formData.endpoint.sendOtp.url}`,
-  //       otpData
-
-  //       // {
-  //       //   encData:
-  //       //     "m1+dSlwabyf+VUBXbfkUyb6b6LUuhOd6+4cLFVCVywWboHd3VtRisa5YSMnpVWXtnsUGkOZ+PULkZQcNYUTP0thGpFNydLJJerhh7GdMh2IvN6pZaFMsAuXuv57LJ7BO00pqAyHQNBr6yq2nQIcBdquasklK8UnlqFPhaw==.6Q2kN+g8LyHHdObp",
-  //       //   aesKey:
-  //       //     "SutvdE8ww8AN7YyVKzqGPY0RZsQQzimKJdVKBnUfDwTxkzUXizlOf4jnIzroCg3MAVedWdg32Yh5/T1G0pZvPDVXx0Flp/MOPGNkwLJMdSWNaZnH/kbXJ2Zsm2GjFmiwnPTy/86nxh0PM5Yysx3N8r+aZeIQh/TI2Vsn48NEoN02IhjnWCkqh6IPTJeV1VkyMkE60bOCJ7EsL1yYzI0/GwGgr80mJc2hVL8ZvEa5Z3wifmIaf0U+/3WLyV3YPKF7uw0ZB+U7VeBiBRu7R24c4x0rXri4PyqVjeU6NihB6xl9l1tvzPtDSma3vccPBAmNUCmGyIF7ze6aGGEy3fGDNw==",
-  //       // }
-  //     );
-  //     console.log(response);
-  //     if (response.succeeded) {
-  //       setTimer(response.data.timeLeft);
-  //       setOpenAlert(true);
-  //       setErrorsApi((prev) => ({
-  //         ...prev,
-  //         accountError: false,
-  //       }));
-  //     } else {
-  //       if (
-  //         +response.result === ResponseCodes.ALREADY_SEND_DATA_FOR_VERIFICATIONS
-  //       ) {
-  //         toast.error(t("messages.requestAlreadySent"));
-  //       } else {
-  //         toast.error(t("messages.accountNotFound"));
-  //         setStep(1);
-  //         setErrorsApi((prev) => ({
-  //           ...prev,
-  //           accountError: true,
-  //         }));
-  //       }
-  //     }
-  //   } catch (error) {
-  //     console.error(t("messages.requestFailed"), error);
-  //     toast.error(t("messages.serverConnectionFailed"));
-  //   }
-  // };
-
   const onCheckOtp = async (data: formType) => {
     const otpData = getOtpBody(data);
+    const resp = await encryptData(JSON.stringify(otpData));
+    console.log(resp);
     try {
-      const encrypted = await encryptData(JSON.stringify(otpData));
-      console.log("Encrypted:", encrypted);
+      const response = await postData(
+        `${formData.endpoint.sendOtp.url}`,
+        otpData
 
-      const response = await postData(`${formData.endpoint.sendOtp.url}`, {
-        encData: encrypted, // Send the encrypted data
-      });
-
+        // {
+        //   encData:
+        //     "m1+dSlwabyf+VUBXbfkUyb6b6LUuhOd6+4cLFVCVywWboHd3VtRisa5YSMnpVWXtnsUGkOZ+PULkZQcNYUTP0thGpFNydLJJerhh7GdMh2IvN6pZaFMsAuXuv57LJ7BO00pqAyHQNBr6yq2nQIcBdquasklK8UnlqFPhaw==.6Q2kN+g8LyHHdObp",
+        //   aesKey:
+        //     "SutvdE8ww8AN7YyVKzqGPY0RZsQQzimKJdVKBnUfDwTxkzUXizlOf4jnIzroCg3MAVedWdg32Yh5/T1G0pZvPDVXx0Flp/MOPGNkwLJMdSWNaZnH/kbXJ2Zsm2GjFmiwnPTy/86nxh0PM5Yysx3N8r+aZeIQh/TI2Vsn48NEoN02IhjnWCkqh6IPTJeV1VkyMkE60bOCJ7EsL1yYzI0/GwGgr80mJc2hVL8ZvEa5Z3wifmIaf0U+/3WLyV3YPKF7uw0ZB+U7VeBiBRu7R24c4x0rXri4PyqVjeU6NihB6xl9l1tvzPtDSma3vccPBAmNUCmGyIF7ze6aGGEy3fGDNw==",
+        // }
+      );
       console.log(response);
       if (response.succeeded) {
         setTimer(response.data.timeLeft);
         setOpenAlert(true);
-        setErrorsApi((prev) => ({ ...prev, accountError: false }));
+        setErrorsApi((prev) => ({
+          ...prev,
+          accountError: false,
+        }));
       } else {
-        // Handle errors...
+        if (
+          +response.result === ResponseCodes.ALREADY_SEND_DATA_FOR_VERIFICATIONS
+        ) {
+          toast.error(t("messages.requestAlreadySent"));
+        } else {
+          toast.error(t("messages.accountNotFound"));
+          setStep(1);
+          setErrorsApi((prev) => ({
+            ...prev,
+            accountError: true,
+          }));
+        }
       }
     } catch (error) {
       console.error(t("messages.requestFailed"), error);
