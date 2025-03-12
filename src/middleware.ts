@@ -1,9 +1,13 @@
 import createMiddleware from "next-intl/middleware";
-import { NextRequest } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { Languages } from "./app/utils/enums";
 
 export default async function middleware(request: NextRequest) {
   // Step 1: Use the incoming request (example)
+  const withVerification: boolean = true;
+  if (!withVerification && request.nextUrl.pathname.includes("verification")) {
+    return NextResponse.redirect(new URL("/", request.url));
+  }
 
   const defaultLocale =
     (request.headers.get("locale") as Languages) || Languages.ARABIC;

@@ -46,6 +46,9 @@ export default {
         hover: {
           DEFAULT: "hsl(var(--hover))",
         },
+        btn_Hover: {
+          DEFAULT: "hsl(var(--btn-hover))",
+        },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
           foreground: "hsl(var(--secondary-foreground))",

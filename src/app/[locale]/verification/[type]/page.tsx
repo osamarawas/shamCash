@@ -19,7 +19,7 @@ import {
   FormOrganizationType,
   getFormData,
   getFormSchema,
-} from "../fromsConfig";
+} from "../formsConfig";
 import InputField from "@/app/components/fields/InputField";
 import { setDirctionReverse } from "@/app/utils/helperServer";
 import { Languages, ResponseCodes } from "@/app/utils/enums";
@@ -28,7 +28,7 @@ import { toast } from "sonner";
 import { z, ZodSchema } from "zod";
 import { AccountType } from "@/app/utils/types";
 import { useParams } from "next/navigation";
-import { encryptData } from "@/app/utils/encrypt";
+import Spinner from "@/app/components/spinner";
 
 const MultiStepForm = () => {
   const params = useParams();
@@ -72,8 +72,7 @@ const MultiStepForm = () => {
     register,
     handleSubmit,
     setValue,
-
-    formState: { errors },
+    formState: { errors, isSubmitting },
   } = useForm<formType>({
     resolver: zodResolver(schema),
   });
@@ -107,13 +106,13 @@ const MultiStepForm = () => {
     for (let i = 0; i < fieldData.length; i++) {
       oData[fieldData[i]] = data[fieldData[i]];
     }
+    oData["type"] = accountType;
     return oData;
   }
 
   const onCheckOtp = async (data: formType) => {
     const otpData = getOtpBody(data);
-    const resp = await encryptData(JSON.stringify(otpData));
-    console.log(resp);
+
     try {
       const response = await postData(
         `${formData.endpoint.sendOtp.url}`,
@@ -444,16 +443,17 @@ const MultiStepForm = () => {
                   <div className="flex justify-between">
                     {step === 2 && (
                       <Button
-                        className=" mt-3 font-semibold text-md bg-inherit border-none shadow-none text-primary hover:bg-gray-200"
+                        className=" mt-3 font-semibold  bg-inherit border-none shadow-none text-primary hover:bg-btn_Hover "
                         type="submit"
+                        disabled={isSubmitting}
                       >
-                        {t("forms.Confirm")}
+                        {isSubmitting ? <Spinner /> : t("forms.Confirm")}
                       </Button>
                     )}
                     {step === 1 ? (
                       <span
                         className={`w-16 h-9 inline-flex mt-3 py-2 px-4 font-semibold text-md bg-inherit border-none shadow-none text-primary rounded-md white justify-center items-center cursor-pointer ${
-                          isNextHovered ? "hover:bg-gray-200" : ""
+                          isNextHovered ? "hover:bg-btn_Hover" : ""
                         }`}
                         onClick={() => handleStepChange(2)} // عند النقر على "التالي"
                         onMouseEnter={() => setIsNextHovered(true)} // تفعيل hover لزر التالي
@@ -465,7 +465,7 @@ const MultiStepForm = () => {
                     ) : (
                       <span
                         className={`w-16 h-9 inline-flex mt-3 py-2 px-4 font-semibold text-md bg-inherit border-none shadow-none text-primary rounded-md white justify-center items-center cursor-pointer ${
-                          isBackHovered ? "hover:bg-gray-200" : ""
+                          isBackHovered ? "hover:bg-btn_Hover" : ""
                         }`}
                         onClick={() => handleStepChange(1)} // عند النقر على "العودة"
                         onMouseEnter={() => setIsBackHovered(true)} // تفعيل hover لزر العودة

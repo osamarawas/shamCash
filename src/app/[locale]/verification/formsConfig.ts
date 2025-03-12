@@ -2,7 +2,7 @@ import { AccountType, DynamicForm } from "@/app/utils/types";
 import { useTranslations } from "next-intl";
 import { z } from "zod";
 
-export const businessForm = (): DynamicForm<{
+export const commercialForm = (): DynamicForm<{
   email: string;
   accountNumber: string;
   userName: string;
@@ -21,8 +21,8 @@ export const businessForm = (): DynamicForm<{
   const t = useTranslations();
 
   return {
-    id: "business",
-    title: "Business Account Documentation",
+    id: "commercial",
+    title: "commercial Account Documentation",
     type: "stipper",
     fields: {
       email: {
@@ -253,7 +253,7 @@ export const organizationForm = (): DynamicForm<{
   };
 };
 
-export const businessformSchema = z.object({
+export const commercialformSchema = z.object({
   email: z.string().email("errors.invalidEmail").min(1, "errors.required"),
   accountNumber: z.preprocess(
     (val) => Number(val),
@@ -334,15 +334,15 @@ export const organizationformSchema = z.object({
   physicalAddressImage: z.any(),
 });
 
-export type FormBusinessType = z.infer<typeof businessformSchema>;
+export type FormBusinessType = z.infer<typeof commercialformSchema>;
 export type FormOrganizationType = z.infer<typeof organizationformSchema>;
 
 export function getFormSchema(accountType: AccountType) {
   switch (accountType) {
     case "organization":
       return organizationformSchema;
-    case "business":
-      return businessformSchema;
+    case "commercial":
+      return commercialformSchema;
     default:
       throw new Error(`Invalid form type: ${accountType}`);
   }
@@ -352,8 +352,8 @@ export function getFormData(accountType: AccountType) {
   switch (accountType) {
     case "organization":
       return organizationForm();
-    case "business":
-      return businessForm();
+    case "commercial":
+      return commercialForm();
     default:
       throw new Error(`Invalid account type: ${accountType}`);
   }

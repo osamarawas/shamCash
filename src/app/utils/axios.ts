@@ -1,6 +1,7 @@
 import axios from "axios";
 import { encryptData } from "./encrypt";
 
+const withEncrypt: boolean = true;
 // ✅ إنشاء instance لـ axios مع الإعدادات الافتراضية
 const axiosInstance = axios.create({
   //with encypt https://shamcash.bokla.me
@@ -23,16 +24,18 @@ axiosInstance.interceptors.request.use(
       config.headers.Authorization = `Bearer ${token}`;
     }
 
-    if (config.data) {
-      try {
-        console.log("load", config.data);
-        const bodyString = JSON.stringify(config.data);
-        const encrypted = await encryptData(bodyString);
-        console.log(encrypted);
-        config.data = encrypted; // Send encrypted data instead of raw
-      } catch (error) {
-        console.error("Encryption failed:", error);
-        // Optionally, proceed with unencrypted data or reject the request
+    if (withEncrypt) {
+      if (config.data) {
+        try {
+          console.log("load", config.data);
+          const bodyString = JSON.stringify(config.data);
+          const encrypted = await encryptData(bodyString);
+          console.log(encrypted);
+          config.data = encrypted; // Send encrypted data instead of raw
+        } catch (error) {
+          console.error("Encryption failed:", error);
+          // Optionally, proceed with unencrypted data or reject the request
+        }
       }
     }
     return config;

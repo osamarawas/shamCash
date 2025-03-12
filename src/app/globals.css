@@ -37,6 +37,7 @@ body[lang="ar"] {
     --light-primary: 201 50% 95%;
     --light-primary-hover: 201 38% 84%;
     --hover: 204 56% 95%;
+    --btn-hover: 204 30% 90%;
     --secondary: 126 26% 58%;
     --secondary-foreground: 222.2 47.4% 11.2%;
     --muted: 203 4% 36%;
@@ -72,6 +73,7 @@ body[lang="ar"] {
     --popover: 222.2 84% 4.9%;
     --popover-foreground: 210 40% 98%;
     --hover: 205.71 18.42% 14.9%;
+    --btn-hover: 204 50% 80%;
     --primary: 204 65% 44%;
     --primary-foreground: 222.2 47.4% 11.2%;
     --light-primary: 204 39% 11%;

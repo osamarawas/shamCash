@@ -148,4 +148,4 @@ export interface IOption {
   label: string;
   value: string;
 }
-export type AccountType = "organization" | "business";
+export type AccountType = "organization" | "commercial";

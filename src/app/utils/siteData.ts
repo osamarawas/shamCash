@@ -539,9 +539,9 @@ export const verificationCategoryData = async (): Promise<
   const t = await getTranslations("");
   return [
     {
-      id: "business",
-      name: t("verification.categories.business.name"),
-      path: "/verification/business",
+      id: "commercial",
+      name: t("verification.categories.commercial.name"),
+      path: "/verification/commercial",
     },
     // { id: "2", name: "حساب حكومي", path: "/verification/2" },
     {

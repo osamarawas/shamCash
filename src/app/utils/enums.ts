@@ -14,3 +14,7 @@ export enum ResponseCodes {
   OTP_IS_INVALID = 1306,
   ALREADY_SEND_DATA_FOR_VERIFICATIONS = 1107,
 }
+export enum AccountTypeEnum {
+  ORGANIZATION = "organization",
+  COMMERCIAL = "commercial",
+}
