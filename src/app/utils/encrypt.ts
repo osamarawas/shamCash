@@ -133,15 +133,17 @@ export const encryptDataByAes = async (data: string, aesKey: string) => {
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const encryptData = async (data: any) => {
-  // Your encryption logic here
   const rsaPublicKey = (await loadPublicKey()) as unknown as string;
+  console.log("load public key ", rsaPublicKey);
   let aesKey = await generateRandomAESKey();
+  console.log("generate rsa key ", rsaPublicKey);
   const encData = await encryptDataByAes(data, aesKey);
+  console.log("encryptData key", encData);
   // const encrypter = new NodeRSA(rsaPublicKey!, "pkcs1-public-pem");
   // const encrypted = encrypter.encrypt(aesKey, "base64");
   // aesKey = encrypted;
   const dataBuffer = Buffer.from(aesKey, "utf8");
-
+  console.log("buffer key", encData);
   const encryptedDataBuffer = crypto.publicEncrypt(
     {
       key: rsaPublicKey,
@@ -149,10 +151,10 @@ export const encryptData = async (data: any) => {
     },
     dataBuffer
   );
-
+  console.log("encrypted buffer key", encryptedDataBuffer);
   // Convert the encrypted Buffer to a Base64 string
   aesKey = encryptedDataBuffer.toString("base64");
-
+  console.log("aesKey in base64", encryptedDataBuffer);
   return { encData: encData, aesKey: aesKey };
 };
 

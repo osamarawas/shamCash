@@ -25,6 +25,7 @@ axiosInstance.interceptors.request.use(
 
     if (config.data) {
       try {
+        console.log("load", config.data);
         const bodyString = JSON.stringify(config.data);
         const encrypted = await encryptData(bodyString);
         console.log(encrypted);
