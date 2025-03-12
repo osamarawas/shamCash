@@ -1,7 +1,7 @@
 import axios from "axios";
 import { encryptData } from "./encrypt";
 
-const withEncrypt: boolean = true;
+const withEncrypt: boolean = false;
 // ✅ إنشاء instance لـ axios مع الإعدادات الافتراضية
 const axiosInstance = axios.create({
   //with encypt https://shamcash.bokla.me
