@@ -32,6 +32,7 @@ export default function NavBar() {
     const handleScroll = (): void => {
       if (window.scrollY > lastScrollY && window.scrollY > 80) {
         setIsVisible(false);
+        setIsOpen(false);
       } else {
         setIsVisible(true);
       }

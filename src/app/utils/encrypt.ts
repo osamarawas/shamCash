@@ -134,31 +134,26 @@ export const encryptDataByAes = async (data: string, aesKey: string) => {
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export const encryptData = async (data: any) => {
   const rsaPublicKey = (await loadPublicKey()) as unknown as string;
-  console.log("load public key ", rsaPublicKey);
   let aesKey = await generateRandomAESKey();
-  console.log("generate rsa key ", aesKey);
   const encData = await encryptDataByAes(data, aesKey);
-  console.log("encryptData", encData);
 
-  const dataBuffer = Buffer.from(aesKey, "utf8");
-  console.log("dataBuffer", dataBuffer);
+  // const dataBuffer = Buffer.from(aesKey, "utf8");
   // -------------this from debug--------------------------
-  const encryptedDataBuffer = crypto.publicEncrypt(
-    {
-      key: rsaPublicKey,
-      padding: crypto.constants.RSA_PKCS1_PADDING,
-    },
-    dataBuffer
-  );
+  // const encryptedDataBuffer = crypto.publicEncrypt(
+  //   {
+  //     key: rsaPublicKey,
+  //     padding: crypto.constants.RSA_PKCS1_PADDING,
+  //   },
+  //   dataBuffer
+  // );
 
-  console.log("encrypted buffer key", encryptedDataBuffer);
+  // console.log("encrypted buffer key", encryptedDataBuffer);
 
-  const encryprtedData = forge.util.encode64(
+  const aesEncryprted = forge.util.encode64(
     forge.pki.publicKeyFromPem(rsaPublicKey).encrypt(aesKey, "RSAES-PKCS1-V1_5")
   );
-  console.log("encrpt aes", encryprtedData);
-  // Convert the encrypted Buffer to a Base64 string
-  aesKey = encryptedDataBuffer.toString("base64");
+  // aesKey = encryptedDataBuffer.toString("base64");
+  aesKey = aesEncryprted;
   console.log("aesKey in base64", aesKey);
   return { encData: encData, aesKey: aesKey };
 };

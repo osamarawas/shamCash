@@ -1,12 +1,11 @@
 import axios from "axios";
 import { encryptData } from "./encrypt";
 
-const withEncrypt: boolean = false;
-// ✅ إنشاء instance لـ axios مع الإعدادات الافتراضية
+const withEncrypt: boolean = true;
 const axiosInstance = axios.create({
-  //with encypt https://shamcash.bokla.me
-  //without encrypt https://test.bokla.me
-  baseURL: "https://test.bokla.me", // يمكن ضبطه من env
+  // https://shamcash.bokla.me
+  // https://test.bokla.me
+  baseURL: "https://test.bokla.me",
   withCredentials: true,
   headers: {
     "Content-Type": "application/json",
@@ -16,7 +15,7 @@ const axiosInstance = axios.create({
   },
 });
 
-// ✅ إضافة Interceptors لمعالجة التوكنات أو الأخطاء العامة
+//  إضافة Interceptors لمعالجة التوكنات أو الأخطاء العامة
 axiosInstance.interceptors.request.use(
   async (config) => {
     const token = localStorage.getItem("token");
