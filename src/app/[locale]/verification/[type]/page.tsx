@@ -266,7 +266,7 @@ const MultiStepForm = () => {
             />
           </div>
           {/* الفورم على اليمين */}
-          <div className="lg:w-1/3 md:p-8 md:pr-0 py-8 px-2">
+          <div className="lg:w-1/3 md:p-8 md:ps-0 py-8 px-2">
             <form onSubmit={handleSubmit(onCheckOtp, onError)}>
               {Object.keys(formData.fields).length > 0 ? (
                 <>
