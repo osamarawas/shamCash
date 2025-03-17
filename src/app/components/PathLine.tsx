@@ -17,8 +17,9 @@ import { useLocale } from "next-intl";
 interface PathLineProps {
   pagename: string | "";
   backname: string;
+  classNames?: string ;
 }
-const PathLine = ({ pagename, backname }: PathLineProps) => {
+const PathLine = ({ pagename, backname , classNames }: PathLineProps) => {
   const pathname = usePathname();
   const newUrl = getSecondLastPath(pathname);
   const locale = useLocale() as Languages;
@@ -33,7 +34,7 @@ const PathLine = ({ pagename, backname }: PathLineProps) => {
     return `/${locale}/${newUrl}`;
   };
   return (
-    <div className="flex  items-center" dir={setDirction(locale)}>
+    <div className={`flex  items-center ${classNames}` } dir={setDirction(locale)}>
       <Link href={`/${newUrl}`}>{setArrowDirction()}</Link>
 
       <div>

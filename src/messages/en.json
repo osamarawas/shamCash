@@ -438,8 +438,8 @@
     "desc": "We provide you with answers to the most common questions you may have about using the app. Our goal is to equip you with all the information you need for a smooth and comfortable experience.",
     "questions": {
       "q1": {
-        "question": "How much is the transfer fee?",
-        "answer": "The service is free, and there is currently no transfer fee."
+        "question": "How much is the transfer free?",
+        "answer": "The service is free, and there is currently no transfer free."
       },
       "q2": {
         "question": "What guarantees does the platform have to ensure it doesn't shut down suddenly? Is there a guarantor like Sham Bank, for example?",
