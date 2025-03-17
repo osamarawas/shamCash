@@ -12,7 +12,6 @@ interface FaqPageProps {
 const VerificationPage = async ({ params }: FaqPageProps) => {
   const t = await getTranslations("");
   const verificationCategory = await verificationCategoryData();
-
   return (
     <div
       className="flex items-center container flex-col gap-5 mx-auto  pt-8 pb-20 w-lg:pt-14 "
