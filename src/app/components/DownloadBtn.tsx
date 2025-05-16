@@ -6,7 +6,7 @@ export default function DownloadBtn() {
   const [hovered, setHovered] = useState(false);
 
   const downloadApp = () => {
-    window.location.href = "https://shamcash.com/downloads/shamcash.apk";
+    window.location.href = "https://shamcash.pro/downloads/shamcash.apk";
   };
   return (
     <a
